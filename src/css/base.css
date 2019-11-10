@@ -1,0 +1,45 @@
+body {
+	margin: 0 auto;
+	color: #fff;
+	user-select: none;
+	background: #270606a8;
+}
+li{
+  list-style: none;
+}
+input[type="radio"]{
+	display: none;
+}
+input[type="checkbox"]{
+	display: none;
+}
+button, a {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+input {
+  cursor: pointer;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.container {
+	width: auto;
+	height: auto;
+}
+.hide {
+    display: none !important;
+}
+.box{
+	width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: absolute;
+}

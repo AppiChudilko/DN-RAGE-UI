@@ -1,0 +1,10 @@
+@media (max-width:1000px) and (min-width:600px) {
+	#bg-right {
+		zoom:133.3%;
+	}
+}
+@media (max-width:1100px) and (min-width:1001px) {
+	#bg-right {
+		zoom:133.3%;
+	}
+}

@@ -1,9 +1,15 @@
 import React from 'react';
+import './css/base.css'
+import './css/adaptive.css'
+import AuthMain from './components/authorization/AuthMain';
 
 function App() {
   return (
-   <React.Fragment>
-   </React.Fragment>
+    <React.Fragment>
+      <div className="box" id="box">
+        <AuthMain />
+      </div>
+    </React.Fragment>
   );
 }
 

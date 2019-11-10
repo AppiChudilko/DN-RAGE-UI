@@ -1,0 +1,264 @@
+/*Основа для заднего фона*/
+.auth-main {
+    background: #1c1c1c;
+    width: -webkit-fill-available;
+	height: -webkit-fill-available;
+    display: flex;
+    flex-direction: row;
+}
+.auth-content {
+	width: inherit;
+	height: -webkit-fill-available;
+	display: flex;
+}
+.position-bg-bottom {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end; 
+}
+.auth-bg-bottom {
+    background: url(../img/background.png) no-repeat;
+    width: 504px;    
+    height: 335px;
+}
+.auth-bg-right {
+    background: url(../img/bg-right.png) no-repeat;
+    width: 472px;
+    height: -webkit-fill-available;
+    position: absolute;   
+}
+.position-bg-top {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    display: flex;    
+}
+.auth-bg-top {
+    background: url(../img/bg-top.svg) no-repeat;
+    width: 360.688px;
+    height: 303.781px;
+    margin-left: 455px;
+}
+.bg-left {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.bg-right {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+}
+/*Авторизация*/
+.content-left {
+    width: 960px;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.logo-auth{
+    background: url(../img/auth-logo.png) no-repeat;
+    width: 128px;
+    height: 143px;
+    flex: 1 0 auto;
+    margin-left: 39px;
+    margin-top: 33px;
+}
+.logo-reg{
+    background: url(../img/reg-logo.png) no-repeat;
+    width: 133px;
+    height: 71px;
+    flex: 1 0 auto;
+    margin-left: 39px;
+    margin-top: 33px;
+}
+.bg-auth{
+    background: url(../img/auth-bg.png) no-repeat;
+    width: 964px;
+    height: 813px;
+    flex: 0 0 auto;
+}
+.bg-reg{
+    background: url(../img/reg-bg.png) no-repeat;
+    width: 943px;
+    height: 815px;
+    flex: 0 0 auto;
+}
+.content-right {
+    width: 960px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100%;
+    background: #ffffff05;
+    z-index: 9;         
+}
+.circle-auth{
+    margin-top: 35px;
+    margin-left: 45px;
+    display: flex;
+}
+.circle-a {  
+    background-color: rgb(59, 59, 59);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 18px;  
+}
+.circle-change{
+    background: #3eb5f1 !important;
+}
+.menu-auth {
+    display: flex;
+    margin-top: 135px;
+}
+.box-menu-auth {
+    width: 480px;
+    height: 74px;
+    background: #ffffff05;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: HACKED;
+    color: rgb(255, 255, 255);
+    font-size: 46px;
+    line-height: 1.565; 
+    cursor: pointer;      
+}
+input:checked + .box-menu-auth{
+    background: #fff;
+    color: rgb(28, 28, 28);      
+}
+.input-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 170px;
+    flex-direction: column;
+}
+.input-login {
+    width: 480px;
+    height: 56px;
+    background: none;
+    font-family: Roboto;
+    color: rgb(62, 181, 241);
+    font-size: 28px;
+    line-height: 2.573; 
+    text-align: center;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fff;   
+}
+.input-lg-ots {
+    margin-bottom: 120px;
+}
+.input-login:focus {
+    border-bottom: 1px solid #3eb5f1;      
+}
+.input-login::placeholder {
+    font-family: "Roboto";
+    text-transform: uppercase;
+    font-size: 22px;
+    line-height: 3.273;
+    color: rgb(146, 145, 145);     
+}
+.button-auth {
+        background-color: rgb(62, 181, 241);
+        box-shadow: 0px 0px 14.24px 1.76px rgba(0, 0, 0, 0.2);
+        width: 480px;
+        height: 74px;
+        font-family: "HACKED";
+        font-size: 46px;
+        line-height: 1.565;
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 204px;           
+}
+.button-auth:active {
+    opacity: 0.8;
+}
+.input-reg {
+    width: 446px;
+    height: 56px;
+    background: none;
+    font-family: Roboto;
+    color: rgb(62, 181, 241);
+    font-size: 28px;
+    line-height: 2.573; 
+    text-align: center;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fff;   
+}
+.strok1{
+    margin-bottom: 120px;
+}
+.input-reg-right {
+    margin-right: 36px
+}
+.input-reg:focus {
+    border-bottom: 1px solid #3eb5f1;      
+}
+.input-reg::placeholder {
+    font-family: "Roboto";
+    text-transform: uppercase;
+    font-size: 22px;
+    line-height: 3.273;
+    color: rgb(146, 145, 145);     
+}
+.chk-circle {
+        border-radius: 50%;
+        background-color: rgb(44, 44, 44);
+        width: 25px;
+        height: 24px;
+        margin-right: 17px;        
+}
+.reg-checkbox {
+    margin-top: 126px;
+}
+.chk_reg {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    line-height: 4;
+    color: rgb(146, 145, 145);
+    cursor: pointer;
+}/*
+#chk1:checked ~ .button-reg {
+    background-color: #fff;
+}*/
+#chk1:checked + label .chk-circle {
+    background-color: #3eb5f1 !important;
+  }
+.button-reg {
+    background-color: rgb(62, 181, 241);
+    box-shadow: 0px 0px 14.24px 1.76px rgba(0, 0, 0, 0.2);
+    width: 480px;
+    height: 74px;
+    font-family: "HACKED";
+    font-size: 46px;
+    line-height: 1.565;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 102px;           
+}
+.button-reg:active {
+opacity: 0.8;
+}
