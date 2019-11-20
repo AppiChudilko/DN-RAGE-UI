@@ -2,7 +2,6 @@ body {
 	margin: 0 auto;
 	color: #fff;
 	user-select: none;
-	background: #270606a8;
 }
 li{
   list-style: none;
@@ -12,6 +11,11 @@ input[type="radio"]{
 }
 input[type="checkbox"]{
 	display: none;
+}
+input[type="text"], input[type="password"]  {
+  background: none;
+  border: none;
+  outline: none;
 }
 button, a {
   padding: 0;
@@ -28,9 +32,7 @@ input {
 ::-webkit-scrollbar {
     display: none;
 }
-input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
+input:focus::-webkit-input-placeholder { color:transparent; }
 .container {
 	width: auto;
 	height: auto;
@@ -41,5 +43,4 @@ input:focus::-webkit-input-placeholder {
 .box{
 	width: -webkit-fill-available;
   height: -webkit-fill-available;
-  position: absolute;
 }

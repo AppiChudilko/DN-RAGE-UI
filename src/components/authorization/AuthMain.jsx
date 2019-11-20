@@ -1,34 +1,32 @@
 import React from 'react';
-import './css/authorization.css';
-import './css/adaptive.css';
-import './fonts/style.css'
+import './css/auto.css'
 import Authorization from './Pages/Authorization';
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+// import CreatePlayer from './Pages/CreatePlayer';
 
 class AuthMain extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      show: true,
+      path: '/'
     }
   }
   render() {
     return (
       <React.Fragment>
+        {this.state.show ?
         <div className="auth-main">
-          <div className="bg-left">
-            <div className="position-bg-top">
-              <div className="auth-bg-top"></div>
-            </div>
-            <div className="position-bg-bottom">
-              <div className="auth-bg-bottom"></div>
-            </div>
-          </div>
-          <div className="bg-right" id="bg-right">
-            <div className="auth-bg-right"></div>
-          </div>
-          <div className="auth-content">
-            <Authorization />
-          </div>
+          
+            <Router>
+            <Route exact path="/" component={Authorization} />
+            {/* <Route exact path="/create" component={CreatePlayer} /> */}
+            <Redirect to={this.state.path} push />
+            </Router>
+          
         </div>
+        : null
+  }
       </React.Fragment>
     )
   }

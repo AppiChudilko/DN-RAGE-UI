@@ -1,0 +1,192 @@
+
+.auth-main {
+    background: #1c1c1c;
+    width: -webkit-fill-available;
+	height: -webkit-fill-available;
+    display: flex;
+    flex-direction: row;
+}
+.background-auth {
+    width: inherit;
+    display: flex;
+}
+.background-auth .bg-left {
+    display: flex;
+    flex-direction: column;
+}
+.bg-left .liner-top {
+    background: url(../img/liner-bg.svg) no-repeat;
+    width: 361px;
+    height: 304px;
+    margin-left: 455px;
+}
+.bg-left .bg-bottom {
+    background: url(../img/auth-bg-bottom.png) no-repeat;
+    width: 504px;
+    height: 332px;
+    margin-top: auto;
+}
+.bg-position-auth {
+    height: 100%;
+    position: absolute;
+    display: flex;
+}
+.bg-position-auth .bg-change-auth {
+    background: url(../img/auth-scelet.png) no-repeat;
+    width: 943px;
+    height: 892px;
+    margin-top: auto;
+}
+.bg-position-auth .bg-change-reg {
+    background: url(../img/reg-women.png) no-repeat;
+    width: 964px;
+    height: 813px;
+    margin-top: auto;
+}
+.bg-top-main {    
+    position: absolute;
+    display: flex;    
+    flex-direction: column;
+    margin-top: 35px;
+    margin-left: 45px;
+}
+.bg-top-main .bg-logo-auth {
+    background: url(../img/auth-logo.png) no-repeat;
+    width: 128px;
+    height: 143px;
+}
+.bg-top-main .bg-logo-reg {
+    background: url(../img/reg-logo.png) no-repeat;
+    width: 133px;
+    height: 71px;
+}
+.bg-top-main .circle-box {
+    display: flex;
+    margin-bottom: 33px;
+}
+.bg-top-main .circle-box .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #3b3b3b;
+}
+.bg-top-main .circle-box .circle:first-child {
+    margin-right: 18px;
+}
+.bg-top-main .circle-box .active {
+    background: #3eb5f1;
+}
+.bg-right {
+    display: flex;
+    margin-left: auto;
+}
+.bg-right .bg-right-auth {
+    background: url(../img/auth-bg-right.png) no-repeat;
+    width: 472px;
+    height: 100%;
+}
+.auth-main .content-main {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    position: absolute;
+}
+.content-main .content-auth {
+    width: 960px;
+    background: rgba(255, 255, 255, 0.012);
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content-auth .button-main {
+    display: flex;
+    margin-top: 135px;
+}
+.button-main input[type="radio"] + label.button-auth {
+    width: 480px;
+    height: 74px;
+    background: rgba(255, 255, 255, 0.012);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "HACKED";
+    font-size: 46px;
+    text-transform: uppercase;
+}
+.button-main input[type="radio"]:checked + label.button-auth {
+    background: rgba(255, 255, 255);
+    color: black;
+}
+.content-auth .auth-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 209px;
+}
+.auth-input input.auth-input-style {
+    width: 480px;
+    border-bottom: 1px solid #fff;
+    font-family: "Roboto";
+    font-size: 28px;
+    color: rgb(62, 181, 241);
+    text-align: center;
+    padding-bottom: 16px;
+}
+.auth-input input:focus.auth-input-style {
+    border-bottom: 1px solid rgb(62, 181, 241);
+}
+.auth-input input.auth-input-style:first-child {
+    margin-bottom: 167px;
+}
+.auth-input input::placeholder{    
+    font-size: 22px;
+    font-family: "RobotoThin";
+    color: rgb(146, 145, 145); 
+    text-transform: uppercase;
+}
+input:focus::-webkit-input-placeholder { 
+    color:transparent; 
+}
+.content-auth .button-auth-click {
+    width: 480px;
+    height: 74px;
+    background: #3eb5f1;
+    box-shadow: 0px 0px 14.24px 1.76px rgba(0, 0, 0, 0.2);
+    margin-top: auto;
+    margin-bottom: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "HACKED";
+    font-size: 46px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.content-auth .button-auth-click:active {
+    background: black;
+}
+.auth-input .reg-bloc {
+    
+}
+.auth-input .reg-bloc:first-child {
+    margin-bottom: 164px;
+}
+input.reg-input-style {
+    width: 446px;
+    border-bottom: 1px solid #fff;
+    font-family: "Roboto";
+    font-size: 28px;
+    color: rgb(62, 181, 241);
+    text-align: center;
+    padding-bottom: 16px;
+}
+input:focus.reg-input-style {
+    border-bottom: 1px solid rgb(62, 181, 241);
+}
+input.reg-input-style:first-child {
+    margin-right: 36px;
+}
+
+  
