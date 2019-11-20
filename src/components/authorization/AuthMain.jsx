@@ -2,7 +2,7 @@ import React from 'react';
 import './css/auto.css'
 import Authorization from './Pages/Authorization';
 import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-// import CreatePlayer from './Pages/CreatePlayer';//проверка
+// import CreatePlayer from './Pages/CreatePlayer';
 
 class AuthMain extends React.Component {
   constructor(props) {
