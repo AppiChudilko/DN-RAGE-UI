@@ -1,46 +1,47 @@
 body {
-	margin: 0 auto;
-	color: #fff;
-	user-select: none;
+    margin: 0 auto;
+    color: #fff;
+    user-select: none;
 }
 li{
-  list-style: none;
+    list-style: none;
 }
 input[type="radio"]{
-	display: none;
+    display: none;
 }
 input[type="checkbox"]{
-	display: none;
+    display: none;
 }
 input[type="text"], input[type="password"]  {
-  background: none;
-  border: none;
-  outline: none;
+    background: none;
+    border: none;
+    outline: none;
 }
 button, a {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
 }
 input {
-  cursor: pointer;
+    cursor: pointer;
 }
 ::-webkit-scrollbar {
     display: none;
 }
 input:focus::-webkit-input-placeholder { color:transparent; }
 .container {
-	width: auto;
-	height: auto;
+    width: auto;
+    height: auto;
 }
 .hide {
     display: none !important;
 }
 .box{
-	width: -webkit-fill-available;
-  height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }

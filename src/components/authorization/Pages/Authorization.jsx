@@ -15,29 +15,28 @@ class Authorization extends React.Component {
       loginReg: '',
       passwordReg: '',
       passwordRegCheck: '',
-
     }
 
   };
-  handleChange(value) {
-    this.setState({ showAuto: value });
-  };
-  valueLogin(event) { this.setState({ login: event.target.value }) };
-  valuePassword(event) { this.setState({ password: event.target.value }) };
+handleChange(value){
+  this.setState({showAuto: value});
+};
+valueLogin(event) { this.setState({ login: event.target.value }) };
+valuePassword(event) { this.setState({ password: event.target.value }) };
 
-  valueMailReg(event) { this.setState({ mailReg: event.target.value }) };
-  valueLoginReg(event) { this.setState({ loginReg: event.target.value }) };
-  valuePasswordReg(event) { this.setState({ passwordReg: event.target.value }) };
-  valuePasswordRegCheck(event) { this.setState({ passwordRegCheck: event.target.value }) };
+valueMailReg(event) { this.setState({ mailReg: event.target.value }) };
+valueLoginReg(event) { this.setState({ loginReg: event.target.value }) };
+valuePasswordReg(event) { this.setState({ passwordReg: event.target.value }) };
+valuePasswordRegCheck(event) { this.setState({ passwordRegCheck: event.target.value }) };
 
-  clickAuto() { };
-  clickReg() { };
+clickAuto() {};
+clickReg() {};
 
   checked = () => {
     this.setState({
       checked: !this.state.checked
     });
-  }
+  };
 
   render() {
     return (
