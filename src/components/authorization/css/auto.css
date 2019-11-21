@@ -165,6 +165,7 @@ input:focus::-webkit-input-placeholder {
     font-size: 46px;
     text-transform: uppercase;
     cursor: pointer;
+    margin-top: auto;
 }
 .content-auth .button-auth-click:active {
     background: black;

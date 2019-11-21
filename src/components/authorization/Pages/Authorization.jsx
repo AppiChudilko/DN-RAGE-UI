@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+/*import { Link } from "react-router-dom";*/
 
 
 class Authorization extends React.Component {
@@ -87,9 +87,9 @@ clickReg() {};
                   <input type="text" placeholder="введите логин" name="login-auth" className="auth-input-style" value={this.state.login} onChange={this.valueLogin.bind(this)} />
                   <input type="password" placeholder="введите пароль" name="password-auth" className="auth-input-style" onChange={this.valuePassword.bind(this)} />
                 </div>
-                <Link to="/create">
+                {/*<Link to="/create">*/}
                   <div className="button-auth-click" onClick={this.clickAuto}>Войти</div>
-                </Link>
+                {/*</Link>*/}
               </React.Fragment>
               :
               <React.Fragment>
@@ -110,9 +110,9 @@ clickReg() {};
                     </label>
                   </div>
                 </div>
-                <Link to="/create">
+                {/*<Link to="/create">*/}
                   <div className="button-auth-click" onClick={this.clickReg}>Готово</div>
-                </Link>
+                {/*</Link>*/}
               </React.Fragment>
             }
           </div>
