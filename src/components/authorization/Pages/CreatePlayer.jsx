@@ -1,5 +1,5 @@
 import React from 'react';
-import ChangePlayer from './Content/ChangePlayer';
+// import ChangePlayer from './Content/ChangePlayer';
 
 
 class CreatePlayer extends React.Component {
@@ -15,7 +15,8 @@ class CreatePlayer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="bg-left-create">
+        <div>ПРИВЕТ</div>
+        {/* <div className="bg-left-create">
             <span className="title-dednet">DEDNET</span>
             <div className="position-bg-bottom">
               <div className="create-bg-bottom" id="bg-right"></div>
@@ -27,7 +28,7 @@ class CreatePlayer extends React.Component {
           </div>
           <div className="create-content">
             <ChangePlayer />
-          </div>
+          </div> */}
        
       </React.Fragment>
     )

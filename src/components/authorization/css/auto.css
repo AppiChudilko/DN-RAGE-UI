@@ -149,12 +149,14 @@
 input:focus::-webkit-input-placeholder { 
     color:transparent; 
 }
+.content-auth a {
+    margin-top: auto;
+}
 .content-auth .button-auth-click {
     width: 480px;
     height: 74px;
     background: #3eb5f1;
     box-shadow: 0px 0px 14.24px 1.76px rgba(0, 0, 0, 0.2);
-    margin-top: auto;
     margin-bottom: 140px;
     display: flex;
     justify-content: center;
@@ -188,5 +190,30 @@ input:focus.reg-input-style {
 input.reg-input-style:first-child {
     margin-right: 36px;
 }
+.reg-checkbox {
+    margin-top: 35px;
+}
+.chk_reg {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    line-height: 4;
+    color: rgb(146, 145, 145);
+    cursor: pointer;
+}
+.chk-circle {
+    border-radius: 50%;
+    background-color: rgb(44, 44, 44);
+    width: 25px;
+    height: 24px;
+    margin-right: 17px;        
+}
+#chk1:checked + label .chk-circle {
+    background-color: #3eb5f1 !important;
+  }
+/*Выбор персонажа*/
 
   

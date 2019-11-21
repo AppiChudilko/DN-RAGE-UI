@@ -2,7 +2,7 @@ import React from 'react';
 import './css/auto.css'
 import Authorization from './Pages/Authorization';
 import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-// import CreatePlayer from './Pages/CreatePlayer';
+import CreatePlayer from './Pages/CreatePlayer';
 
 class AuthMain extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class AuthMain extends React.Component {
           
             <Router>
             <Route exact path="/" component={Authorization} />
-            {/* <Route exact path="/create" component={CreatePlayer} /> */}
+            <Route exact path="/create" component={CreatePlayer} />
             <Redirect to={this.state.path} push />
             </Router>
           
