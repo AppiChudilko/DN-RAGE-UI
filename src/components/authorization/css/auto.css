@@ -133,6 +133,7 @@
     color: rgb(62, 181, 241);
     text-align: center;
     padding-bottom: 16px;
+    margin-bottom: 80px;
 }
 .auth-input input:focus.auth-input-style {
     border-bottom: 1px solid rgb(62, 181, 241);
@@ -165,7 +166,6 @@ input:focus::-webkit-input-placeholder {
     font-size: 46px;
     text-transform: uppercase;
     cursor: pointer;
-    margin-top: auto;
 }
 .content-auth .button-auth-click:active {
     background: black;
@@ -216,5 +216,223 @@ input.reg-input-style:first-child {
     background-color: #3eb5f1 !important;
   }
 /*Выбор персонажа*/
+.reg-main {
+    background: #1c1c1c;
+    width: -webkit-fill-available;
+	height: -webkit-fill-available;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.create-bg-bottom{
+    background: url(../img/create-bg-left.png) no-repeat;
+    width: 460px;
+    height: 100%;
+}
+.create-bg-right{
+    background: url(../img/create-bg-right.png) no-repeat;
+    width: 355px;
+    height: 100%;
+}
+.position-bg-bottom {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end; 
+}
+.title-dednet{
+    font-family: 'HACKED';
+    font-size: 110px;
+    line-height: 0.655;
+    margin-left: 95px;
+    margin-top: 38px;        
+}
+.create-logo {
+    background: url(../img/create-logo.png) no-repeat;
+    width: 82px;
+    height: 92px;
+    position: absolute;
+    top: 23px;
+    right: 96px;
+}
+.bg-right-create {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+}
+.bg-left-create {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+}
+.create-content {
+	width: inherit;
+	height: -webkit-fill-available;
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+    flex-direction: column;
+}
+.change-create-player {              
+    width: 519px;
+    height: 808px;    
+}
+.change-create-player:not(:nth-child(3n)) {              
+    margin-right: 86px 
+}
+.border-top{
+    width: 301px;
+    height: 12px;
+    background-color: rgb(72, 185, 242); 
+    margin-left: auto;
 
+}
+.border-bottom{
+    width: 301px;
+    height: 12px;
+    background-color: rgb(72, 185, 242);
+    margin-top: 18px;
+
+}
+.block-create {
+    width: inherit;
+    height: 750px;
+    background-color: rgb(24, 24, 24);
+    display: flex;
+    flex-direction: column;    
+    margin-top: 18px;
+}
+.create-btn {
+    background: rgb(72, 185, 242);
+    width: inherit;
+    height: 69px;
+    margin-top: auto;
+    font-family: "HACKED";  
+    font-size: 48px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.create-btn:hover {
+    background: black;
+}
+.summ-create {
+    width: inherit;
+    height: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.color-svg-create-grey {
+    fill: rgb(28, 28, 28);
+}
+/* .summ-create:hover + svg path.color-svg-create-grey{
+    background: chocolate;
+    fill: #48b9f2 !important;
+} */
+.block-innerhit {
+    width: inherit;
+    height: inherit;
+    display: flex;    
+    flex-direction: column;
+}
+.info-player {
+    width: inherit;
+    height: 768px;
+    background-color: rgb(255, 255, 255, 0.051);
+    display: flex;
+    flex-direction: column;
+    
+      
+}
+.player_young {
+    background: url(../img/player_young.png) no-repeat ;
+    width: inherit;
+    height: 309px;
+    margin-top: -30px;
+}
+.player_old {
+    background: url(../img/player_old.png) no-repeat ;
+    width: inherit;
+    height: 305px;
+    margin-top: -26px;
+}
+.player_women {
+    background: url(../img/player_women.png) no-repeat ;
+    width: inherit;
+    height: 306px;
+    margin-top: -27px;
+}
+.main-box-change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.name-player-info {
+    width: inherit;
+    height: 69px;
+    background: rgb(72, 185, 242); 
+    font-size: 36px;
+    font-family: "Roboto"; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 42px;  
+}
+.text-box {
+    width: inherit;
+    height: 46px;
+    background: rgb(31, 31, 31);
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-family: "Roboto";
+}
+.text-box:not(:nth-child(3n)){
+    margin-bottom: 12px;
+
+}
+.title-info-text {
+    margin-left: 24px;
+}
+.text-box-blue {
+    color: rgb(72, 185, 242);
+    margin-left: auto;
+    margin-right: 29px
+}
+.slider-home-player {
+    background: rgb(31, 31, 31);
+    width: inherit;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-family: "Roboto"; 
+    font-size: 30px;
+    margin-top: 49px;
+}
+.button-slider-home {
+    background: url(../img/arrow-mini.png) no-repeat;
+    width: 15px;
+    height: 29px;
+    cursor: pointer;
+}
+.trans-arr {
+    rotate: 180deg;
+    margin-right: auto;
+    margin-left: 23px;
+}
+.arro-right {
+    margin-left:auto;
+    margin-right: 23px;
+}
   
