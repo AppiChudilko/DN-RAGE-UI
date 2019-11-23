@@ -6,34 +6,34 @@ import CreatePlayer from './Pages/CreatePlayer';
 import EventManager from "../../EventManager";
 
 class AuthMain extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      show: true,
-      path: '/'
+    constructor(props) {
+        super(props)
+        this.state = {
+            show: true,
+            path: '/'
+        }
     }
-  }
 
-  componentDidMount() {
-    EventManager.addHandler('authMain', value => {
-      if(value.type === 'show') { this.setState({show: !this.state.show})}
-      else return;
-    })
-  }
+    componentDidMount() {
+        EventManager.addHandler('authMain', value => {
+            if(value.type === 'show') { this.setState({show: !this.state.show})}
+            else return;
+        })
+    }
 
-  render() {
-    return (
-      <React.Fragment>
-        {this.state.show ?        
-            <Router>
-            <Route exact path="/" component={Authorization} />
-            <Route exact path="/create" component={CreatePlayer} />
-            <Redirect to={this.state.path} push />
-            </Router>
-        : null
-  }
-      </React.Fragment>
-    )
-  }
+    render() {
+        return (
+            <React.Fragment>
+                {this.state.show ?
+                    <Router>
+                        <Route exact path="/" component={Authorization} />
+                        <Route exact path="/create" component={CreatePlayer} />
+                        <Redirect to={this.state.path} push />
+                    </Router>
+                    : null
+                }
+            </React.Fragment>
+        )
+    }
 }
 export default AuthMain;
