@@ -16,7 +16,9 @@ class AuthMain extends React.Component {
 
     componentDidMount() {
         EventManager.addHandler('authMain', value => {
-            if(value.type === 'show') { this.setState({show: !this.state.show})}
+            if(value.type === 'show') { this.setState({show: true})}
+            else if(value.type === 'hide') { this.setState({show: false})}
+            else if(value.type === 'switch') { this.setState({show: !this.state.show})}
             else return;
         })
     }
