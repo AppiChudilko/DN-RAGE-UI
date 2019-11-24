@@ -107,10 +107,11 @@ class Authorization extends React.Component {
                                     <div className="auth-input">
                                         <div className="reg-bloc">
                                             <input type="text" placeholder="Придумайте логин" name="create-login" className="reg-input-style" onChange={this.valueLoginReg.bind(this)} />
-                                            <input type="password" placeholder="Придумайте пароль" name="create-password" className="reg-input-style" onChange={this.valuePasswordReg.bind(this)} />
+                                            <input type="text" placeholder="Введите свой E-mail" name="create-email" className="reg-input-style" onChange={this.valueMailReg.bind(this)} />
+
                                         </div>
                                         <div className="reg-bloc">
-                                            <input type="text" placeholder="Введите свой E-mail" name="create-email" className="reg-input-style" onChange={this.valueMailReg.bind(this)} />
+                                            <input type="password" placeholder="Придумайте пароль" name="create-password" className="reg-input-style" onChange={this.valuePasswordReg.bind(this)} />
                                             <input type="password" placeholder="Повторите пароль" name="create-password-repeat" className="reg-input-style" onChange={this.valuePasswordRegCheck.bind(this)} />
                                         </div>
                                         <div className="reg-checkbox">
