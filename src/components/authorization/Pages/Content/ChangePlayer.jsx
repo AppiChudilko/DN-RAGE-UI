@@ -1,6 +1,7 @@
 import React from 'react';
 import InfoPlayer from './InfoPlayer';
 import BoxCreate from './BoxCreate';
+import EventManager from "../../../../EventManager";
 
 class ChangePlayer extends React.Component {
   constructor(props) {
@@ -16,6 +17,13 @@ class ChangePlayer extends React.Component {
         { player: { name: "Appi Moretti", old: "55", money: "250000", date: "26.12.1996", sex: "m", spawn: ["Дом"], index_spawn: 0 } }
       ]
     }
+  }
+
+  componentDidMount() {
+    EventManager.addHandler('ChangePlayer', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else return;
+    })
   }
 
   clickLeftArrow(index) {

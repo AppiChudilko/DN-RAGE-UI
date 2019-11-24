@@ -20,15 +20,12 @@ class AuthMain extends React.Component {
             if(value.type === 'show') { this.setState({show: true})}
             else if(value.type === 'hide') { this.setState({show: false})}
             else if(value.type === 'switch') { this.setState({show: !this.state.show})}
-            else if(value.type === 'redirectToPlayer') { this.setState({redirectToPlayer: true})}
+            else if(value.type === 'redirectToPlayer') { this.setState({path: "/create"})}
             else return;
         })
     }
 
     render() {
-        if (this.state.redirectToPlayer) {
-            return <Redirect push to="/create" />;
-        }
         return (
             <React.Fragment>
                 {this.state.show ?
