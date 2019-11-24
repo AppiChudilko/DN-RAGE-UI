@@ -6,6 +6,7 @@ class ChangePlayer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      show: false,
       first_character_create: true,
       second_character_create: false,
       third_character_create: false,
