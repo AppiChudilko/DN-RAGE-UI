@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-
 
 class Authorization extends React.Component {
     constructor(props) {
@@ -98,9 +96,7 @@ class Authorization extends React.Component {
                                         <input type="text" placeholder="введите логин" name="login-auth" className="auth-input-style" value={this.state.login} onChange={this.valueLogin.bind(this)} />
                                         <input type="password" placeholder="введите пароль" name="password-auth" className="auth-input-style" onChange={this.valuePassword.bind(this)} />
                                     </div>
-                                    /*<Link to={this.state.pagePlayer}>*/
-                                        <div className="button-auth-click" onClick={this.clickLogin.bind(this)}>Войти</div>
-                                    /*</Link>*/
+                                    <div className="button-auth-click" onClick={this.clickLogin.bind(this)}>Войти</div>
                                 </React.Fragment>
                                 :
                                 <React.Fragment>
@@ -122,9 +118,7 @@ class Authorization extends React.Component {
                                             </label>
                                         </div>
                                     </div>
-                                    /*<Link to={this.state.pagePlayer}>*/
-                                        <div className="button-auth-click" onClick={this.clickReg.bind(this)}>Готово</div>
-                                    /*</Link>*/
+                                    <div className="button-auth-click" onClick={this.clickReg.bind(this)}>Готово</div>
                                 </React.Fragment>
                             }
                         </div>
