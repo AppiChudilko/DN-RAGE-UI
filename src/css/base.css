@@ -1,10 +1,14 @@
 body {
 	margin: 0 auto;
 	color: #fff;
-	user-select: none;
+  user-select: none;
 }
 li{
   list-style: none;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  outline: none;
 }
 input[type="radio"]{
 	display: none;
