@@ -44,6 +44,7 @@ class FaceLast extends React.Component {
         })}
         <div className="editor-circl-change">
           <div className="circle-change"></div>
+          <div className="circle-change"></div>
           <div className="circle-change circle-blue"></div>
         </div>
         <div className="last-button-menu">
@@ -52,10 +53,11 @@ class FaceLast extends React.Component {
           </Link>
           <div className="box-last-btn" onClick={() => this.props.reset(3)}>Сброс</div>
         </div>
-
-        <div className="next-button-menu">
-          <div className="box-next-btn">Сохранить</div>
-        </div>
+        <Link to="/choicerole" onClick={() => this.props.saveCustomization()}>
+          <div className="next-button-menu">
+            <div className="box-next-btn">Сохранить</div>
+          </div>
+        </Link>
       </React.Fragment>
     )
   }

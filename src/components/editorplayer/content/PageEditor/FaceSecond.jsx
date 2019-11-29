@@ -13,23 +13,22 @@ class FaceSecond extends React.Component {
     return (
       <React.Fragment>
         <div className="slider-editor-main">
-            <input type="radio" name="change-radio-slider" id="change-radio-slider1" className="range-slider-ch" />
-            <label htmlFor="change-radio-slider1">
-              <div className="slider-change-radio margin-right-perf"></div>
-            </label>
-            <input type="radio" name="change-radio-slider" id="change-radio-slider2" className="range-slider-ch" defaultChecked/>
-            <label htmlFor="change-radio-slider2">
-              <div className="slider-change-radio margin-right-perf"></div>
-            </label>
-            <input type="radio" name="change-radio-slider" id="change-radio-slider3" className="range-slider-ch" />
-            <label htmlFor="change-radio-slider3">
-              <div className="slider-change-radio"></div>
-            </label>
-          </div>
+          <input type="radio" name="change-radio-slider" id="change-radio-slider1" className="range-slider-ch" />
+          <label htmlFor="change-radio-slider1">
+            <div className="slider-change-radio margin-right-perf"></div>
+          </label>
+          <input type="radio" name="change-radio-slider" id="change-radio-slider2" className="range-slider-ch" defaultChecked />
+          <label htmlFor="change-radio-slider2">
+            <div className="slider-change-radio margin-right-perf"></div>
+          </label>
+          <input type="radio" name="change-radio-slider" id="change-radio-slider3" className="range-slider-ch" />
+          <label htmlFor="change-radio-slider3">
+            <div className="slider-change-radio"></div>
+          </label>
+        </div>
         <div className="header-title-editor">Лицо</div>
         <div className="block-editor-range">
           <div className="range-editor-block-big">
-
             {this.props.input_editor_nose.map((e, index) => {
               let i = "input_editor_face" + index;
               return (
@@ -48,13 +47,11 @@ class FaceSecond extends React.Component {
                 </React.Fragment>
               )
             })}
-
           </div>
         </div>
         <div className="header-title-editor">Глаза и Губы</div>
         <div className="block-editor-range">
           <div className="range-editor-block-big">
-
             {this.props.input_editor_eyes_lips.map((e, index) => {
               let i = "input_editor_face" + index;
               return (
@@ -73,24 +70,24 @@ class FaceSecond extends React.Component {
                 </React.Fragment>
               )
             })}
-
           </div>
         </div>
         <div className="editor-circl-change">
-              <div className="circle-change"></div>
-              <div className="circle-change circle-blue"></div>
-            </div>
-            <div className="last-button-menu">
-              <Link to="/editor/editor-character/face-first">
-                <div className="box-last-btn">Назад</div>
-              </Link>
-              <div className="box-last-btn" onClick={() => this.props.reset(2)}>Сброс</div>
-            </div>
-            <Link to="/editor/editor-character/face-last">
-              <div className="next-button-menu">
-                <div className="box-next-btn">Далее</div>
-              </div>
-            </Link>
+          <div className="circle-change"></div>
+          <div className="circle-change"></div>
+          <div className="circle-change circle-blue"></div>
+        </div>
+        <div className="last-button-menu">
+          <Link to="/editor/editor-character/face-first">
+            <div className="box-last-btn">Назад</div>
+          </Link>
+          <div className="box-last-btn" onClick={() => this.props.reset(2)}>Сброс</div>
+        </div>
+        <Link to="/editor/editor-character/face-last">
+          <div className="next-button-menu">
+            <div className="box-next-btn">Далее</div>
+          </div>
+        </Link>
       </React.Fragment>
     )
   }

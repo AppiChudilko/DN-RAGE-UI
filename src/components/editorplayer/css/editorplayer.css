@@ -271,6 +271,7 @@
 /* <!-- Редактор --> */
 .editor-main {
     width: 455px;
+    height: 1080px;
     margin-left: auto;
     background: rgb(28, 28, 28);
     display: flex;
@@ -469,4 +470,65 @@ input.range-slider-ch:checked + label .slider-change-radio {
 .range-slider-editor .input-range, .range-slider-editor-big .input-range {
     position: relative;
     width: 100%; 
+}
+/* Инпуты для ввода инфо*/
+.menu-editor-default .create-info-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.menu-editor-default .create-info-input input.auth-input-style {
+    width: 360px;
+    border-bottom: 1px solid #fff;
+    font-family: "Roboto";
+    font-size: 14px;
+    color: rgb(62, 181, 241);
+    text-align: center;
+    padding-bottom: 11px;
+    margin-bottom: 30px;
+}
+.menu-editor-default .create-info-input input:focus.auth-input-style {
+    border-bottom: 1px solid rgb(62, 181, 241);
+}
+.menu-editor-default .create-info-input input.auth-input-style:first-child {
+    margin-bottom: 30px;
+}
+.menu-editor-default .create-info-input input::placeholder{    
+    font-size: 14px;
+    font-family: "RobotoThin";
+    color: rgb(146, 145, 145); 
+    /* text-transform: uppercase; */
+}
+.def-style {
+    display: flex;
+    flex-direction: column;
+}
+.def-margin-auto {
+    margin-top: auto !important;
+}
+input.auth-input-style:focus::-webkit-input-placeholder { 
+    color:transparent; 
+}
+.info-role {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-family: 'Roboto';
+    padding-top: 11px;
+    display: flex;
+    flex-direction: column;
+}
+.role-custom {
+    align-items: center;
+}
+.info-role .title-info-role {
+    margin-bottom: 10px;
+}
+.player_role {
+    background: url(../img/role.png) no-repeat ;
+    width: inherit;
+    height: 271px;
+    margin-top: 22px;
 }
