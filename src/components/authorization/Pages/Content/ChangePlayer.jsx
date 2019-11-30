@@ -21,7 +21,9 @@ class ChangePlayer extends React.Component {
 
   componentDidMount() {
     EventManager.addHandler('ChangePlayer', value => {
-      if(value.type === 'show') { this.setState({show: true})}
+      if (value.type === 'show') { this.setState({ show: true }) }
+      else if (value.type === 'hide') { this.setState({ show: false }) }
+      else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
       else return;
     })
   }

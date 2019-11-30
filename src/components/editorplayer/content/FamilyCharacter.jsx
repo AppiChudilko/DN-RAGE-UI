@@ -69,25 +69,19 @@ class FamilyCharacter extends React.Component {
               </div>
             </div>
             <div className="box-character">
-              <span className="title-character">Стрельба</span>
+              <span className="title-character">Навык стрельбы</span>
               <div className="range-character">
                 <div className="background-character-range" style={{ width: this.props.shooting + "%" }}></div>
               </div>
             </div>
             <div className="box-character">
-              <span className="title-character">Скрытность</span>
-              <div className="range-character">
-                <div className="background-character-range" style={{ width: this.props.stealth + "%" }}></div>
-              </div>
-            </div>
-            <div className="box-character">
-              <span className="title-character">Полет</span>
+              <span className="title-character">Навык пилота</span>
               <div className="range-character">
                 <div className="background-character-range" style={{ width: this.props.flying + "%" }}></div>
               </div>
             </div>
             <div className="box-character">
-              <span className="title-character">Вождение</span>
+              <span className="title-character">Навык вождения</span>
               <div className="range-character">
                 <div className="background-character-range" style={{ width: this.props.driving + "%" }}></div>
               </div>
@@ -96,6 +90,12 @@ class FamilyCharacter extends React.Component {
               <span className="title-character">Психика</span>
               <div className="range-character">
                 <div className="background-character-range" style={{ width: this.props.psychics + "%" }}></div>
+              </div>
+            </div>
+            <div className="box-character">
+              <span className="title-character">Удача</span>
+              <div className="range-character">
+                <div className="background-character-range" style={{ width: this.props.stealth + "%" }}></div>
               </div>
             </div>
           </div>

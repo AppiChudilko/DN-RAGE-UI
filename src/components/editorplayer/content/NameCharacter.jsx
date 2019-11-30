@@ -35,7 +35,7 @@ class NameCharacter extends React.Component {
             <div className="circle-change"></div>
           </div>
           <div className="last-button-menu">
-            <div className="box-last-btn">Назад</div>
+            <div className="box-last-btn">Проверить</div>
             <div className="box-last-btn" onClick={this.props.reset.bind(this)}>Сброс</div>
           </div>
           <Link to="/editor/family-character">

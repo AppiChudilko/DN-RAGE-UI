@@ -7,9 +7,12 @@ class InfoPlayer extends React.Component {
       img: ''
     }
   }
-  selectChar(index) {
+  selectChar(name) {
     // console.log("Выбран персонаж с индексом " + index)
     //ивент на нажатие кнопки
+
+    mp.trigger('client:events:selectPlayer', // eslint-disable-line
+        name);
   }
   componentDidMount() {
     this.changeImg();
@@ -57,7 +60,7 @@ class InfoPlayer extends React.Component {
               <span>{this.props.spawn[this.props.index_spawn]}</span>
               <div className="button-slider-home arro-right" onClick={() => this.props.clickRightArrow(this.props.index)}></div>
             </div>
-            <div className="create-btn" onClick={() => this.selectChar(this.props.index)}>Войти</div>
+            <div className="create-btn" onClick={() => this.selectChar(this.props.name)}>Войти</div>
           </div>
           <div className="border-bottom"></div>
         </div>

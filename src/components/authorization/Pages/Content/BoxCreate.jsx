@@ -6,6 +6,10 @@ class BoxCreate extends React.Component {
     this.state = {
     }
   }
+
+  clickCreatePlayer() {
+    mp.trigger('client:events:createNewPlayer'); // eslint-disable-line
+  };
   
   render() {
     return (
@@ -20,7 +24,7 @@ class BoxCreate extends React.Component {
                     d="M112.000,60.667 L60.667,60.667 L60.667,112.000 L51.333,112.000 L51.333,60.667 L-0.000,60.667 L-0.000,51.333 L51.333,51.333 L51.333,-0.000 L60.667,-0.000 L60.667,51.333 L112.000,51.333 L112.000,60.667 Z" />
                 </svg>
               </div>
-              <div className="create-btn">СОЗДАТЬ</div>
+              <div className="create-btn" onClick={this.clickCreatePlayer.bind(this)}>СОЗДАТЬ</div>
             </div>
           </div>
           <div className="border-bottom"></div>
