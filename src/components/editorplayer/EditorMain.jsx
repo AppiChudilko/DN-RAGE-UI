@@ -10,7 +10,7 @@ class EditorMain extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: true,
+      show: false,
       path: '/editor/name-character'
     }
   }
@@ -25,6 +25,7 @@ class EditorMain extends React.Component {
       else if (value.type === 'hide') { this.setState({ show: false }) }
       else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
       else if (value.type === 'choicerole') { this.setState({ path: "/choicerole" }) }
+      else if (value.type === 'showFamilyPage') { this.setState({ path: "/editor/family-character" }) }
       else return;
     })
   }
