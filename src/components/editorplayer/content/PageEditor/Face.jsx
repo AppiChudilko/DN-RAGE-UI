@@ -39,7 +39,7 @@ class Face extends React.Component {
                       maxValue={100}
                       minValue={-100}
                       value={e.value}
-                      onChange={value => this.setState({ ...this.props.input_editor_face[index].value = value })}
+                      onChange={value => {this.setState({ ...this.props.input_editor_face[index].value = value }); this.props.setCustomization(value);}}
                       onChangeComplete={value => console.log(value)}
                     />
                     <div className="range-label">{e.value}</div>

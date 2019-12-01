@@ -20,6 +20,7 @@ class EditorCharacter extends React.Component {
             <Face
               input_editor_face={this.props.input_editor_face}
               reset={this.props.reset.bind(this)}
+              setCustomization={this.props.setCustomization.bind(this)}
             />
           </Route>
           <Route path="/editor/editor-character/face-second">
@@ -27,6 +28,7 @@ class EditorCharacter extends React.Component {
               input_editor_nose={this.props.input_editor_nose}
               input_editor_eyes_lips={this.props.input_editor_eyes_lips}
               reset={this.props.reset.bind(this)}
+              setCustomization={this.props.setCustomization.bind(this)}
             />
           </Route>
           <Route path="/editor/editor-character/face-last">
@@ -36,6 +38,7 @@ class EditorCharacter extends React.Component {
               clickRightArrow={this.props.clickRightArrow.bind(this)}
               reset={this.props.reset.bind(this)}
               saveCustomization={this.props.saveCustomization.bind(this)}
+              setCustomization={this.props.setCustomization.bind(this)}
             />
           </Route>
         </div>

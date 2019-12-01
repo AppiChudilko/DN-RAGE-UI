@@ -305,7 +305,8 @@ class EditorPlayer extends React.Component {
   saveCustomization() {
     // mp.trigger('client:user:auth:saveCustomization', параметры для передачи) // Сохранение кастомизации на сервер // eslint-disable-line
   }
-  setCustomization() {
+  setCustomization(value) {
+    console.log(value);
     // mp.trigger('client:user:auth:setCustomization', параметры для передачи) // Обновление кастомки на персонаже в реальном времени // eslint-disable-line
   }
   render() {
@@ -372,6 +373,7 @@ class EditorPlayer extends React.Component {
                   clickLeftArrow={this.clickLeftArrowEditorCharacter.bind(this)}
                   clickRightArrow={this.clickRightArrowEditorCharacter.bind(this)}
                   saveCustomization={this.saveCustomization.bind(this)}
+                  setCustomization={this.setCustomization.bind(this)}
               />
             </Route>
           </Switch>
