@@ -153,6 +153,7 @@ class EditorPlayer extends React.Component {
         break;
       default: break;
     }
+    this.setCustomization('resetEditorCharacter');
   }
   clickLeftArrowEditorCharacter(index) {
     let currentIndex = this.state.input_editor_face_last[index].index_help;
@@ -162,6 +163,7 @@ class EditorPlayer extends React.Component {
       currentIndex--;
     }
     this.setState(prev => ({ ...prev.input_editor_face_last[index].index_help = currentIndex }));
+    this.setCustomization('leftArrow');
   }
   clickRightArrowEditorCharacter(index) {
     let currentIndex = this.state.input_editor_face_last[index].index_help;
@@ -171,6 +173,7 @@ class EditorPlayer extends React.Component {
       currentIndex++;
     }
     this.setState(prev => ({ ...prev.input_editor_face_last[index].index_help = currentIndex }));
+    this.setCustomization('rightArrow');
   }
   updateStatsFamilyCharacter() {
     let parents = this.state.stats_parents;
@@ -195,9 +198,11 @@ class EditorPlayer extends React.Component {
       ...prev.slider[2].index_help = 10,
       ...prev.slider[3].index_help = 10,
     }, this.updateStatsFamilyCharacter()));
+    this.setCustomization('resetFamilyCharacter');
   }
   chekedSexFamilyCharacter() {
     this.setState({ cheked_sex: !this.state.cheked_sex })
+    this.setCustomization('sex');
   }
   clickLeftArrowFamilyCharacter(index) {
     let copy = this.state.slider;
@@ -210,6 +215,7 @@ class EditorPlayer extends React.Component {
       }
       copy[index].index_help = currentIndex;
       this.setState({ slider: copy }, this.updateStatsFamilyCharacter());
+      this.setCustomization('leftArrow');
       return;
     }
     let array = copy[index].parents
@@ -221,6 +227,7 @@ class EditorPlayer extends React.Component {
     }
     copy[index].index_help = currentIndex;
     this.setState({ slider: copy }, this.updateStatsFamilyCharacter());
+    this.setCustomization('leftArrow');
   }
   clickRightArrowFamilyCharacter(index) {
     let copy = this.state.slider;
@@ -233,6 +240,7 @@ class EditorPlayer extends React.Component {
       }
       copy[index].index_help = currentIndex;
       this.setState({ slider: copy }, this.updateStatsFamilyCharacter());
+      this.setCustomization('rightArrow');
       return;
     }
     let array = copy[index].parents
@@ -244,6 +252,7 @@ class EditorPlayer extends React.Component {
     }
     copy[index].index_help = currentIndex;
     this.setState({ slider: copy }, this.updateStatsFamilyCharacter());
+    this.setCustomization('rightArrow');
   }
   valueFirstName(event) { this.setState({ first_name: event.target.value }) };
   valueLastName(event) { this.setState({ last_name: event.target.value }) };
@@ -267,6 +276,7 @@ class EditorPlayer extends React.Component {
         currentIndex--;
       }
       this.setState(prev => ({ ...prev.slider_national[index].index_help = currentIndex }));
+      this.setCustomization('leftArrow');
       return;
     }
     let array = this.state.slider_national[index].nationality
@@ -277,6 +287,7 @@ class EditorPlayer extends React.Component {
       currentIndex--;
     }
     this.setState(prev => ({ ...prev.slider_national[index].index_help = currentIndex }));
+    this.setCustomization('leftArrow');
   }
   clickRightArrowNameCharacter(index) {
     if (index > 1) {
@@ -287,6 +298,7 @@ class EditorPlayer extends React.Component {
         currentIndex++;
       }
       this.setState(prev => ({ ...prev.slider_national[index].index_help = currentIndex }));
+      this.setCustomization('rightArrow');
       return;
     }
     let array = this.state.slider_national[index].nationality
@@ -297,6 +309,7 @@ class EditorPlayer extends React.Component {
       currentIndex++;
     }
     this.setState(prev => ({ ...prev.slider_national[index].index_help = currentIndex }));
+    this.setCustomization('rightArrow');
   }
   onCheckNumber(evt) {
     const financialGoal = (evt.target.validity.valid) ? evt.target.value : this.state.old_input;
