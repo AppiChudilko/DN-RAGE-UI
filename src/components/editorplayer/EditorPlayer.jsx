@@ -18,6 +18,7 @@ class EditorPlayer extends React.Component {
         { name: 'Ширина скул', value: 0 },
         { name: 'Глубина щеки', value: 0 },
         { name: 'Ширина челюсти', value: 0 },
+        { name: 'Форма челюсти', value: 0 },
         { name: 'Высота подбородка', value: 0 },
         { name: 'Глубина подбородка', value: 0 },
         { name: 'Ширина подбородка', value: 0 },
@@ -38,20 +39,20 @@ class EditorPlayer extends React.Component {
         { name: 'Толщина губ', value: 0 },
       ],
       input_editor_face_last: [
-        { title: "Волосы", maxVal: 37, index_help: 0 },
+        { title: "Волосы", maxVal: 37, index_help: 1 },
         { title: "Цвет волос", maxVal: 64, index_help: 0 },
         { title: "Брови", maxVal: 31, index_help: 0 },
         { title: "Цвет бровей", maxVal: 64, index_help: 0 },
         { title: "Цвет глаз", maxVal: 32, index_help: 0 },
-        { title: "Веснушки", maxVal: 10, index_help: 0 },
+        { title: "Веснушки", maxVal: 17, index_help: 0 },
         { title: "Цвет веснушек", maxVal: 10, index_help: 0 },
-        { title: "Борода", maxVal: 10, index_help: 0 },
-        { title: "Цвет бороды", maxVal: 10, index_help: 0 }
+        { title: "Борода", maxVal: 28, index_help: 0 },
+        { title: "Цвет бороды", maxVal: 64, index_help: 0 }
       ],
       cheked_sex: false,
       slider: [
-        { title: "Мать", parents: ["Ханна", "Обри", "Жасмин", "Жизель", "Амелия", "Изабелла", "Зои", "Ава", "Камилла", "Вайолет", "София", "Эйлин", "Николь", "Эшли", "Грейс", "Брианна", "Натали", "Оливия", "Элизабет", "Кэтрин", "Эмма", "Мисти"], index_help: 0 },
-        { title: "Отец", parents: ["Бенджамин", "Бенджамин", "Джоуи", "Ной", "Андре", "Джоан", "Алекс", "Исаак", "Эвон", "Итон", "Винсент", "Анжел", "Диего", "Адриан", "Габриель", "Майкл", "Сантьяго", "Кевин", "Луис", "Самюэль", "Энтони", "Клайд", "Нико", "Джон"], index_help: 0 },
+        { title: "Мать", parents: ["Дарлин", "Обри", "Жасмин", "Жизель", "Амелия", "Изабелла", "Зои", "Ава", "Камилла", "Вайолет", "София", "Эйлин", "Николь", "Эшли", "Грейс", "Брианна", "Натали", "Оливия", "Элизабет", "Кэтрин", "Эмма", "Мисти"], index_help: 0 },
+        { title: "Отец", parents: ["Бенджамин", "Бенджамин", "Эдвард", "Ной", "Андре", "Джоан", "Алекс", "Исаак", "Эвон", "Итон", "Винсент", "Анжел", "Диего", "Адриан", "Габриель", "Майкл", "Сантьяго", "Кевин", "Луис", "Самюэль", "Энтони", "Клайд", "Нико", "Джон"], index_help: 0 },
         { title: "Сходство", index_help: 10 },
         { title: "Кожа", index_help: 10 }
       ],
@@ -203,7 +204,7 @@ class EditorPlayer extends React.Component {
   }
   chekedSexFamilyCharacter() {
     this.setState({ cheked_sex: !this.state.cheked_sex });
-    this.setCustomization();
+    this.setSex();
   }
   clickLeftArrowFamilyCharacter(index) {
     let copy = this.state.slider;
@@ -317,13 +318,17 @@ class EditorPlayer extends React.Component {
     this.setState({ old_input: financialGoal });
   }
   saveCustomization() {
-    // mp.trigger('client:user:auth:saveCustomization', параметры для передачи) // Сохранение кастомизации на сервер // eslint-disable-line
+     mp.trigger('client:events:custom:save') // eslint-disable-line
   }
   setCustomization() {
      mp.trigger('client:events:custom:set' // eslint-disable-line
-         , JSON.stringify(this.state.stats), JSON.stringify(this.state.input_editor_face), JSON.stringify(this.state.input_editor_nose)
+         , JSON.stringify(this.state.input_editor_face), JSON.stringify(this.state.input_editor_nose)
          , JSON.stringify(this.state.input_editor_eyes_lips), JSON.stringify(this.state.input_editor_face_last), this.state.cheked_sex
          , this.state.slider[0].index_help, this.state.slider[1].index_help, this.state.slider[2].index_help, this.state.slider[3].index_help)
+  }
+  setSex() {
+     mp.trigger('client:events:custom:setSex' // eslint-disable-line
+         , this.state.cheked_sex)
   }
   render() {
     return (
