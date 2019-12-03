@@ -22,7 +22,7 @@ class Authorization extends React.Component {
     handleChange(value) {
         this.setState({ showAuto: value });
     };
-    valueLogin(event) { this.setState({ login: event.target.value }) };
+    valueLogin(event) { this.setState({ login: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
     valuePassword(event) { this.setState({ password: event.target.value }) };
 
     valueMailReg(event) { this.setState({ mailReg: event.target.value }) };

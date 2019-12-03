@@ -16,7 +16,7 @@ class NameCharacter extends React.Component {
 
   registerPlayer() {
     mp.trigger('client:events:custom:register', // eslint-disable-line
-        this.props.first_name, this.props.last_name, this.props.old_input);
+        this.props.first_name, this.props.last_name, this.props.old_input, this.props.nationality[this.props.index_help]);
   }
 
   render() {

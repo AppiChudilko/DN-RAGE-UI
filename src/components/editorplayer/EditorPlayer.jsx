@@ -318,7 +318,8 @@ class EditorPlayer extends React.Component {
     this.setState({ old_input: financialGoal });
   }
   saveCustomization() {
-     mp.trigger('client:events:custom:save') // eslint-disable-line
+     mp.trigger('client:events:custom:save', // eslint-disable-line
+      this.state.stats.endurance, this.state.stats.driving, this.state.stats.flying, this.state.stats.psychics, this.state.stats.shooting, this.state.stats.stealth, this.state.stats.strength);
   }
   setCustomization() {
      mp.trigger('client:events:custom:set' // eslint-disable-line
