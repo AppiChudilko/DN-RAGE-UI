@@ -7,12 +7,9 @@ class InfoPlayer extends React.Component {
       img: ''
     }
   }
-  selectChar(name) {
-    // console.log("Выбран персонаж с индексом " + index)
-    //ивент на нажатие кнопки
-
+  selectChar(name, spawnName) {
     mp.trigger('client:events:selectPlayer', // eslint-disable-line
-        name);
+        name, spawnName);
   }
   componentDidMount() {
     this.changeImg();
@@ -46,10 +43,10 @@ class InfoPlayer extends React.Component {
             <div className="name-player-info">{this.props.name}</div>
             <div className="info-text-player">
               <div className="text-box">
-                <span className="title-info-text">Возраст</span> <span className="text-box-blue">{this.props.old}</span>
+                <span className="title-info-text">Уровень</span> <span className="text-box-blue">{this.props.old}</span>
               </div>
               <div className="text-box">
-                <span className="title-info-text">Деньги</span> <span className="text-box-blue">{this.props.money} $</span>
+                <span className="title-info-text">Деньги</span> <span className="text-box-blue">{this.props.money}</span>
               </div>
               <div className="text-box">
                 <span className="title-info-text">Последний вход</span> <span className="text-box-blue">{this.props.date}</span>
@@ -60,7 +57,7 @@ class InfoPlayer extends React.Component {
               <span>{this.props.spawn[this.props.index_spawn]}</span>
               <div className="button-slider-home arro-right" onClick={() => this.props.clickRightArrow(this.props.index)}></div>
             </div>
-            <div className="create-btn" onClick={() => this.selectChar(this.props.name)}>Войти</div>
+            <div className="create-btn" onClick={() => this.selectChar(this.props.name, this.props.spawn[this.props.index_spawn])}>Войти</div>
           </div>
           <div className="border-bottom"></div>
         </div>

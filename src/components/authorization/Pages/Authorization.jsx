@@ -26,7 +26,8 @@ class Authorization extends React.Component {
     valuePassword(event) { this.setState({ password: event.target.value }) };
 
     valueMailReg(event) { this.setState({ mailReg: event.target.value }) };
-    valueLoginReg(event) { this.setState({ loginReg: event.target.value }) };
+    valueLoginReg(event) { this.setState({ loginReg: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
+
     valuePasswordReg(event) { this.setState({ passwordReg: event.target.value }) };
     valuePasswordRegCheck(event) { this.setState({ passwordRegCheck: event.target.value }) };
 
@@ -95,7 +96,7 @@ class Authorization extends React.Component {
                             {this.state.showAuto ?
                                 <React.Fragment>
                                     <div className="auth-input">
-                                        <input type="text" placeholder="введите логин" name="login-auth" className="auth-input-style" value={this.state.login} onChange={this.valueLogin.bind(this)} />
+                                        <input type="text" pattern="[a-zA-Z0-9]*" placeholder="введите логин" name="login-auth" className="auth-input-style" value={this.state.login} onChange={this.valueLogin.bind(this)} />
                                         <input type="password" placeholder="введите пароль" name="password-auth" className="auth-input-style" onChange={this.valuePassword.bind(this)} />
                                     </div>
                                     <div className="button-auth-click" onClick={this.clickLogin.bind(this)}>Войти</div>
@@ -104,7 +105,7 @@ class Authorization extends React.Component {
                                 <React.Fragment>
                                     <div className="auth-input">
                                         <div className="reg-bloc">
-                                            <input type="text" placeholder="Придумайте логин" name="create-login" className="reg-input-style" onChange={this.valueLoginReg.bind(this)} />
+                                            <input type="text" pattern="[a-zA-Z0-9]*" placeholder="Придумайте логин" name="create-login" className="reg-input-style" onChange={this.valueLoginReg.bind(this)} />
                                             <input type="text" placeholder="Введите свой E-mail" name="create-email" className="reg-input-style" onChange={this.valueMailReg.bind(this)} />
 
                                         </div>

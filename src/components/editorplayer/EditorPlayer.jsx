@@ -256,8 +256,8 @@ class EditorPlayer extends React.Component {
     this.setState({ slider: copy }, this.updateStatsFamilyCharacter());
     this.setCustomization();
   }
-  valueFirstName(event) { this.setState({ first_name: event.target.value }) };
-  valueLastName(event) { this.setState({ last_name: event.target.value }) };
+  valueFirstName(event) { this.setState({ first_name: event.target.value.replace(/[^a-zA-Z]+/g,'') }) };
+  valueLastName(event) { this.setState({ last_name: event.target.value.replace(/[^a-zA-Z]+/g,'') }) };
   resetNameCharacter() {
     this.setState(prev => ({
       ...prev.slider_national[0].index_help = 0,

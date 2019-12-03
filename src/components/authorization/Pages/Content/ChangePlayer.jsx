@@ -12,7 +12,7 @@ class ChangePlayer extends React.Component {
       second_character_create: false,
       third_character_create: false,
       info_player: [
-        { player: { name: "Nika Kondr", old: "21", money: "2500", date: "01.08.1998", sex: "w", spawn: ["Дом", "Квартира", "Бомж"], index_spawn: 0 } },
+        { player: { name: "Nika Kondr213", old: "21", money: "2500", date: "01.08.1998", sex: "w", spawn: ["Дом", "Квартира", "Бомж"], index_spawn: 0 } },
         { player: { name: "Godvil Moretti", old: "25", money: "250000", date: "03.08.1994", sex: "m", spawn: ["Дом", "Квартира"], index_spawn: 0 } },
         { player: { name: "Appi Moretti", old: "55", money: "250000", date: "26.12.1996", sex: "m", spawn: ["Дом"], index_spawn: 0 } }
       ]
@@ -24,6 +24,14 @@ class ChangePlayer extends React.Component {
       if (value.type === 'show') { this.setState({ show: true }) }
       else if (value.type === 'hide') { this.setState({ show: false }) }
       else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
+      else if (value.type === 'updatePlayers') {
+        this.setState({ first_character_create: value.isShow1 });
+        this.setState({ second_character_create: value.isShow2 });
+        this.setState({ third_character_create: value.isShow3 });
+        this.setState({ info_player: value.players});
+
+        this.changeImg();
+      }
       else return;
     })
   }
