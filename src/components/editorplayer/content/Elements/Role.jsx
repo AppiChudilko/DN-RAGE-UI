@@ -8,7 +8,8 @@ class Role extends React.Component {
     }
   }
   selectChar(index) {
-    // mp.trigger('client:user:auth: selectRole', index) // Установка роли персонажа // eslint-disable-line
+     mp.trigger('client:events:custom:choiceRole' // eslint-disable-line
+         , index)
   }
   
   render() {
