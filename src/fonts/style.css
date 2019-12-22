@@ -47,7 +47,7 @@
     font-style: italic;
 }
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'RobotoBold';
     src: local('Roboto Bold'), local('Roboto-Bold'), url('Robotobold.woff2') format('woff2'), url('Robotobold.woff') format('woff'), url('Robotobold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
