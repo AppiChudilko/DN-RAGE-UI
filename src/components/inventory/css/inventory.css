@@ -1,5 +1,5 @@
 body {
-    background: #352929;
+    /* background: #352929; */
 }
 .inv-box{
     width: inherit;
@@ -416,6 +416,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     height: 62px;
     background-color: rgb(72, 185, 242);
     margin-bottom: 9px;
+    cursor: pointer;
 }
 .invetory-trunk {
     margin-bottom: auto;
