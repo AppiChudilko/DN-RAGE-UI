@@ -1,0 +1,142 @@
+.phone-position {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+.android-phone {
+    background: url(../img/android/android.png) no-repeat;
+    width: 317px;
+    height: 587px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+.rotate-androind {      
+    transform: rotate(-90deg) translate(0px, -128%) scale(2);
+}
+.rotate-components {
+    transform: rotate(90deg) translate(94px, 94px);
+    width: 463px !important;
+    height: 276px !important;
+}
+.phone-bg {
+    width: 276px;
+    height: 463px;
+    overflow: hidden;
+    margin-top: 3px;
+    margin-right: 1px;
+}
+.bg-one {
+    background: url(../img/android/background/bg-1.png) no-repeat;
+}
+.android-content {
+    width: 276px;
+    height: 463px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: .5s;
+    overflow: hidden;
+}
+.main-app-box{
+    margin-top: auto;
+    margin-bottom: 25px;
+    margin-left: 14px;
+    margin-right: 15px;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+.app-box {
+    width: 46px;
+    height: 49px;
+    background-color: rgb(0, 42, 80, 0.45);
+    border-radius: 5px;
+    margin-right: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+}
+.android-content .app-box:nth-child(4), .android-content .app-box:last-child {
+    margin-right: 0px;
+}
+.android-content .app-box:nth-child(-n+4){
+    margin-bottom: 20px;
+}
+.rotate-components .app-box {
+    margin-right: 14px !important;
+    margin-bottom: 0px !important;
+    width: 40px;
+    height: 41px;
+}
+.rotate-components .app-box:last-child {
+    margin-right: 0px !important;
+}
+.app-icon {
+    background-size: 32px 32px;
+    width: 32px;
+    height: 32px;
+    filter: invert(100%);
+}    
+.rotate-components .app-box .app-icon {
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+}
+.icons-settings {
+    background: url(../img/android/icons/settings.png) no-repeat;
+}
+.icons-phone {
+    background: url(../img/android/icons/telephone.png) no-repeat;
+}
+.info-top {
+    display: flex;
+    align-items: center;
+    font-family: "Montserrat";
+    font-size: 8px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 14px;
+}
+.icon-network{
+    background: url(../img/android/icons/network.png) no-repeat;
+    width: 12px;
+    height: 7px;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+.info-time-box {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    margin-top: 37px;
+}
+.time-date {
+    margin-right: auto;
+    margin-left: 21px
+}
+.txt-time{
+    font-family: "Montserrat";
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+}
+.txt-date{
+    font-family: "Montserrat";
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+}
+.weather {
+    font-family: "Montserrat";
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    margin-right: 16px;
+    margin-top: 6px;
+}
+  
