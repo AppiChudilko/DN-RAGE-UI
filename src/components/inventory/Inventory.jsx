@@ -36,37 +36,37 @@ class Inventory extends React.Component {
       ],
 
       items: [ // Инвентарь
-        { id: 1, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" }, // айди предмета из базы
-        { id: 2, item_id: 2, name: "Кола", volume: 15, icon: "img-burger", params: "{}" }, // items.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 3, item_id: 3, name: "Кокс", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 4, item_id: 4, name: "Калькулятор", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 5, item_id: 5, name: "Мачете", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 6, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 7, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 8, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 9, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 10, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 11, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 12, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 13, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 42, item_id: 90, name: "P90", volume: 15, icon: "img-weapon", params: "{}" },
-        { id: 43, item_id: 102, name: "Очки", volume: 15, icon: "img-outfit", params: "{}" },
+        { id: 1, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" }, // айди предмета из базы
+        { id: 2, item_id: 2, name: "Кола", volume: 15, desc: "", icon: "img-burger", params: "{}" }, // items.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 3, item_id: 3, name: "Кокс", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 4, item_id: 4, name: "Калькулятор", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 5, item_id: 5, name: "Мачете", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 6, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 7, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 8, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 9, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 10, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 11, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 12, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 13, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 42, item_id: 90, name: "P90", volume: 15, desc: "", icon: "img-weapon", params: "{}" },
+        { id: 43, item_id: 102, name: "Очки", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
       ],
 
       vehicle_items: [ // Багажник
-        { id: 14, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" }, // айди предмета из базы
-        { id: 15, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" }, // vehicle_items.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 16, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 17, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 18, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 19, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 20, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 21, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 22, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 23, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 24, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 25, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
-        { id: 26, item_id: 1, name: "Бургер", volume: 15, icon: "img-burger", params: "{}" },
+        { id: 14, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" }, // айди предмета из базы
+        { id: 15, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" }, // vehicle_items.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 16, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 17, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 18, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 19, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 20, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 21, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 22, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 23, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 24, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 25, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
+        { id: 26, item_id: 1, name: "Бургер", volume: 15, desc: "", icon: "img-burger", params: "{}" },
       ],
       hotbar: [ // Слоты быстрого доступа (не больше 15, пустые добавляются сами)
         { index: 1, item_id: 1, name: "Бургерcкурочкой", icon: "img-burger", params: "{}" },
@@ -75,20 +75,20 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 28, item_id: 101, name: "Кепка", volume: 15, icon: "img-outfit", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
-        { id: 29, item_id: 102, name: "Очки", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 30, item_id: 103, name: "Маска", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 31, item_id: 104, name: "Футболка", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 32, item_id: 105, name: "Бижютерия", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 33, item_id: 106, name: "Серьги", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 34, item_id: 107, name: "Штаны", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 35, item_id: 108, name: "Часы", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 36, item_id: 109, name: "Браслет", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 37, item_id: 110, name: "Обувь", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 38, item_id: 111, name: "Часы", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 39, item_id: 112, name: "Телефон", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 40, item_id: 113, name: "Деньги", volume: 15, icon: "img-outfit", params: "{}" },
-        { id: 41, item_id: 114, name: "Карта", volume: 15, icon: "img-outfit", params: "{}" },
+        { id: 28, item_id: 101, name: "Кепка", volume: 15, desc: "", icon: "img-outfit", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
+        { id: 29, item_id: 102, name: "Очки", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 30, item_id: 103, name: "Маска", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 31, item_id: 104, name: "Футболка", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 32, item_id: 105, name: "Бижютерия", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 33, item_id: 106, name: "Серьги", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 34, item_id: 107, name: "Штаны", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 35, item_id: 108, name: "Часы", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 36, item_id: 109, name: "Браслет", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 37, item_id: 110, name: "Обувь", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 38, item_id: 111, name: "Часы", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 39, item_id: 112, name: "Телефон", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 40, item_id: 113, name: "Деньги", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
+        { id: 41, item_id: 114, name: "Карта", volume: 15, desc: "", icon: "img-outfit", params: "{}" },
       ],
       itemsById: { // В массивах должны быть айди всех предметов разного типа
         food: [1], // Можно "съесть"
@@ -139,8 +139,8 @@ class Inventory extends React.Component {
       ],
 
       equipment_weapon: [ // Экипированное оружие
-        { id: 27, item_id: 47, name: "AK47", volume: 15, icon: "img-weapon", params: "{}" }, // equipment_weapon.item_id айди оружия
-        { id: 28, item_id: 90, name: "P90", volume: 15, icon: "img-weapon", params: "{}" }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 27, item_id: 47, name: "AK47", volume: 15, desc: "", icon: "img-weapon", params: "{}" }, // equipment_weapon.item_id айди оружия
+        { id: 28, item_id: 90, name: "P90", volume: 15, desc: "", icon: "img-weapon", params: "{}" }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
       ]
     }
   }
@@ -148,6 +148,11 @@ class Inventory extends React.Component {
   componentDidMount() {
     EventManager.addHandler('inventory', value => {
       if (value.type === 'show') { this.setState({ show: true }) }
+      if (value.type === 'showOrHide') {
+        let status = !this.state.show;
+        mp.trigger('client:inventory:status', status); // eslint-disable-line
+        this.setState({ show: status })
+      }
       if (value.type === 'trunk') { this.setState({ trunk_open: true }) }
       else return;
     })
@@ -760,7 +765,7 @@ class Inventory extends React.Component {
                           <div className={`img-inv-box ${item.icon}`}></div>
                           <div className="obj-inf-box">
                             <div className="obj-inf-title"><span>{item.name}</span></div>
-                            <div className="obj-inf-weight"><span>Объем: {item.volume} см3</span></div>
+                            <div className="obj-inf-weight"><span>{item.desc}</span></div>
                           </div>
                         </div>
                       )
@@ -889,7 +894,7 @@ class Inventory extends React.Component {
                         <div className={`img-inv-box ${item.icon}`}></div>
                         <div className="obj-inf-box">
                           <div className="obj-inf-title"><span>{item.name}</span></div>
-                          <div className="obj-inf-weight"><span>Объем: {item.volume} см3</span></div>
+                          <div className="obj-inf-weight"><span>{item.desc}</span></div>
                         </div>
                       </div>
                     )
