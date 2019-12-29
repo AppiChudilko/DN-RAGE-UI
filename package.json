@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@kiyasov/noty": "^1.1.4",
     "animate.css": "^3.7.2",
+    "noty": "^3.2.0-beta",
     "react": "^16.11.0",
     "react-animated-css": "^1.2.1",
     "react-dom": "^16.11.0",

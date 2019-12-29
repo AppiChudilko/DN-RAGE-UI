@@ -2,8 +2,8 @@ body {
     /* background: #352929; */
 }
 .inv-box{
-    width: inherit;
-    height: inherit;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,13 +85,12 @@ body {
 .img-inv-box {   
     margin-left: 14px;
 }
-.img-burger {
-    background: url(../img/burger.png) no-repeat;
-    width: 41px;
-    height: 41px;
-}
 .obj-inf-box {
     margin-left: 16px;
+    height: 41px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .obj-inf-title {
     font-family: "Roboto";
@@ -303,6 +302,11 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     background-color: rgb(255, 255, 255, 0.102);  
     border-right: 8px solid rgb(72, 185, 242);
 }
+
+.style-weapon-txt-craft-selected {
+    background-color: rgb(255, 255, 255, 0.102);  
+    border-right: 8px solid rgb(72, 185, 242);
+}
 .liner-weapon-crafting {
     width: 20.5%;
     height: 8px;
@@ -368,7 +372,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 }
 .liner-crafting-obj {
     width: 20.5%;
-    margin-left: auto;
+    margin-right: auto;
     height: 8px;
     background: #48b9f2;
 }
@@ -413,10 +417,19 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 }
 .trunk-box {
     width: 62px;
-    height: 62px;
+    height: 24px;
     background-color: rgb(72, 185, 242);
     margin-bottom: 9px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto";
+    font-size: 8px;
+    text-transform: uppercase;
+}
+.trunk-box:hover{
+    background: #000;
 }
 .invetory-trunk {
     margin-bottom: auto;
@@ -467,3 +480,15 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     text-align: center;
     word-wrap: break-word;
    }
+
+.obj-inf-count {
+    margin-left: auto;
+    margin-right: 40px;
+    font-family: "Roboto";
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 14px;
+}
+.object-box:hover .obj-inf-count {
+    margin-right: 33px;
+}

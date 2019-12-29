@@ -25,16 +25,18 @@ class AuthMain extends React.Component {
     }
 
     render() {
+        if (!this.state.show) {
+            return null;
+          }
         return (
             <React.Fragment>
-                {this.state.show ?
+                <div id="box">
                     <Router>
                         <Route exact path="/" component={Authorization} />
                         <Route exact path="/create" component={CreatePlayer} />
                         <Redirect to={this.state.path} push />
                     </Router>
-                    : null
-                }
+                    </div>
             </React.Fragment>
         )
     }

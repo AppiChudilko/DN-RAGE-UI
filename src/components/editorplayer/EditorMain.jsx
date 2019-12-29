@@ -32,17 +32,17 @@ class EditorMain extends React.Component {
     }
     return (
       <React.Fragment >
-        
-        <Router>
-          <Route path="/editor">
-            <EditorPlayer />
-          </Route>
-          <Route path="/choicerole">
-            <ChoiceRole />
-          </Route>
-          <Redirect to={this.state.path} push />
-        </Router>
-        
+        <div className="adaptive_editor">
+          <Router>
+            <Route path="/editor">
+              <EditorPlayer />
+            </Route>
+            <Route path="/choicerole">
+              <ChoiceRole />
+            </Route>
+            <Redirect to={this.state.path} push />
+          </Router>
+        </div>
       </React.Fragment>
     )
   }

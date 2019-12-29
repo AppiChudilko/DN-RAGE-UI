@@ -12,14 +12,10 @@ import Phone from './components/phone/Phone';
 function App() {
   return (
     <React.Fragment>
-      <div className="box" id="box">
         <AuthMain />
         <Inventory />
-        <Phone />
-      </div>
-      <div className="adaptive_editor">
+        <Phone />  
         <EditorMain />
-      </div>
     </React.Fragment>
   );
 }

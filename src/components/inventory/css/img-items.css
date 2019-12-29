@@ -1,0 +1,153 @@
+/*FOOD*/
+.img-burger {
+    background: url(../img/food/burger.png) no-repeat;
+    width: 41px;
+    height: 41px;
+}
+.img-cola {
+    background: url(../img/food/cola.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 39px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+/*OUTFITS*/
+.img-cap {
+    background: url(../img/outfit/cap.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 36px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-glasses {
+    background: url(../img/outfit/glasses.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 41px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-mask {
+    background: url(../img/outfit/hockey-mask.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 35px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-shirt {
+    background: url(../img/outfit/shirt.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 35px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-jewerly {
+    background: url(../img/outfit/pearl-necklace.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 35px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-earrings {
+    background: url(../img/outfit/earrings.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 31px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-jeans {
+    background: url(../img/outfit/jeans.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 18px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-watch {
+    background: url(../img/outfit/wristwatch.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 20px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-bracelet {
+    background: url(../img/outfit/bracelet.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 19px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-boot {
+    background: url(../img/outfit/boot.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 35px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-clock {
+    background: url(../img/outfit/circular-clock-tool.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 32px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-phone {
+    background: url(../img/outfit/smartphone.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 22px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-money {
+    background: url(../img/outfit/notes.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 35px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-card {
+    background: url(../img/outfit/credit-card.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 33px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+/*WEAPON*/
+.img-weapon {
+    background: url(../img/weapon/img-weapon.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 40px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+.img-machete {
+    background: url(../img/weapon/machete.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 40px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+/*DRUGS*/
+.img-cocaine {
+    background: url(../img/items/drugs.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 36px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
