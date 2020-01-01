@@ -40,52 +40,12 @@ class Inventory extends React.Component {
 
       items: [ // Инвентарь
         { id: 1, item_id: 1, name: "Бургер", volume: 15, desc: "123", params: "{}" }, // айди предмета из базы
-        { id: 2, item_id: 2, name: "Кола", volume: 15, desc: "", params: "{}" }, // items.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 3, item_id: 3, name: "Кокс", volume: 15, desc: "", params: "{}" },
-        { id: 4, item_id: 4, name: "Калькулятор", volume: 15, desc: "", params: "{}" },
-        { id: 85, item_id: 4, name: "Калькулятор", volume: 15, desc: "", params: "{}" },
-        { id: 5, item_id: 5, name: "Мачете", volume: 15, desc: "", params: "{}" },
-        { id: 6, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 7, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 8, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 9, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 10, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 11, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 12, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 13, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 42, item_id: 90, name: "P90", volume: 15, desc: "", params: "{}" },
-        { id: 43, item_id: 101, name: "Кепка", volume: 15, desc: "", params: "{}" },
-        { id: 44, item_id: 102, name: "Очки", volume: 15, desc: "", params: "{}" },
-        { id: 45, item_id: 103, name: "Маска", volume: 15, desc: "", params: "{}" },
-        { id: 46, item_id: 104, name: "Футболка", volume: 15, desc: "", params: "{}" },
-        { id: 47, item_id: 105, name: "Бижютерия", volume: 15, desc: "", params: "{}" },
-        { id: 48, item_id: 106, name: "Серьги", volume: 15, desc: "", params: "{}" },
-        { id: 49, item_id: 107, name: "Штаны", volume: 15, desc: "", params: "{}" },
-        { id: 50, item_id: 108, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 51, item_id: 109, name: "Браслет", volume: 15, desc: "", params: "{}" },
-        { id: 52, item_id: 110, name: "Обувь", volume: 15, desc: "", params: "{}" },
-        { id: 53, item_id: 111, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 54, item_id: 112, name: "Телефон", volume: 15, desc: "", params: "{}" },
-        { id: 55, item_id: 113, name: "Деньги", volume: 15, desc: "", params: "{}" },
-        { id: 56, item_id: 114, name: "Карта", volume: 15, desc: "", params: "{}" },
       ],
       itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
 
       secondary_items: [ // Багажник
         { id: 15, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 14, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" }, // айди предмета из базы
-        { id: 16, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 17, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 18, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 19, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 20, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 21, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 22, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 23, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 24, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 25, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
-        { id: 26, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" },
       ],
       secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
@@ -98,20 +58,20 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 28, item_id: 101, name: "Кепка", volume: 15, desc: "", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
-        { id: 29, item_id: 102, name: "Очки", volume: 15, desc: "", params: "{}" },
-        { id: 30, item_id: 103, name: "Маска", volume: 15, desc: "", params: "{}" },
-        { id: 31, item_id: 104, name: "Футболка", volume: 15, desc: "", params: "{}" },
-        { id: 32, item_id: 105, name: "Бижютерия", volume: 15, desc: "", params: "{}" },
-        { id: 33, item_id: 106, name: "Серьги", volume: 15, desc: "", params: "{}" },
-        { id: 34, item_id: 107, name: "Штаны", volume: 15, desc: "", params: "{}" },
-        { id: 35, item_id: 108, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 36, item_id: 109, name: "Браслет", volume: 15, desc: "", params: "{}" },
-        { id: 37, item_id: 110, name: "Обувь", volume: 15, desc: "", params: "{}" },
-        { id: 38, item_id: 111, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 39, item_id: 112, name: "Телефон", volume: 15, desc: "", params: "{}" },
-        { id: 40, item_id: 113, name: "Деньги", volume: 15, desc: "", params: "{}" },
-        { id: 41, item_id: 114, name: "Карта", volume: 15, desc: "", params: "{}" },
+        { id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
+        { id: 29, item_id: 270, name: "Очки", volume: 15, desc: "", params: "{}" },
+        { id: 30, item_id: 274, name: "Маска", volume: 15, desc: "", params: "{}" },
+        { id: 31, item_id: 265, name: "Футболка", volume: 15, desc: "", params: "{}" },
+        { id: 32, item_id: 268, name: "Аксессуар", volume: 15, desc: "", params: "{}" },
+        { id: 33, item_id: 271, name: "Серьги", volume: 15, desc: "", params: "{}" },
+        { id: 34, item_id: 266, name: "Штаны", volume: 15, desc: "", params: "{}" },
+        { id: 35, item_id: 272, name: "Часы", volume: 15, desc: "", params: "{}" },
+        { id: 36, item_id: 273, name: "Браслет", volume: 15, desc: "", params: "{}" },
+        { id: 37, item_id: 267, name: "Обувь", volume: 15, desc: "", params: "{}" },
+        { id: 38, item_id: 7, name: "Часы", volume: 15, desc: "", params: "{}" },
+        { id: 39, item_id: 8, name: "Телефон", volume: 15, desc: "", params: "{}" },
+        { id: 40, item_id: 48, name: "Деньги", volume: 15, desc: "", params: "{}" },
+        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", params: "{}" },
       ],
       itemsById: { // В массивах должны быть айди всех предметов разного типа
         food: [1], // Можно "съесть"
@@ -123,20 +83,20 @@ class Inventory extends React.Component {
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
       outfitById: { // В массивах должны быть айди всех outfit-предметов разного типа
-        cap: [101], // Кепки
-        glasses: [102], // Очки
-        mask: [103], // Маски
-        shirt: [104], // Футболки
-        jewerly: [105], // Бижютерия (ожерелья?)
-        earrings: [106], // Серьги
-        jeans: [107], // Штаны
-        watch: [108], // Часы
-        bracelet: [109], // Браслеты
-        boot: [110], // Обувь
-        clock: [111], // Часы (второй раз?)
-        phone: [112], // Телефоны
-        money: [113], // Деньги?
-        card: [114], // Карточки
+        cap: [269], // Кепки
+        glasses: [270], // Очки
+        mask: [274], // Маски
+        shirt: [265], // Футболки
+        jewerly: [268], // Аксессуар (ожерелья?)
+        earrings: [271], // Серьги
+        jeans: [266], // Штаны
+        watch: [272], // Часы
+        bracelet: [273], // Браслеты
+        boot: [267], // Обувь
+        clock: [7], // Часы (второй раз?)
+        phone: [8], // Телефоны
+        money: [48], // Деньги?
+        card: [50], // Карточки
       },
 
       // !!! Элементы массива outfit нельзя менять местами !!!
