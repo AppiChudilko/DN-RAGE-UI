@@ -227,7 +227,10 @@ class Inventory extends React.Component {
       items_copy = [...this.state.secondary_items]
     }
     items_copy.forEach((item, i) => {
-      if(this.state.itemsById.food.includes(item.item_id)) { items_copy[i].icon = "img-burger" }
+
+      items_copy[i].icon = "icon-item img-" + item.item_id;
+
+      /*if(this.state.itemsById.food.includes(item.item_id)) { items_copy[i].icon = "img-burger" }
       else if(this.state.itemsById.drinks.includes(item.item_id)) { items_copy[i].icon = "img-cola" }
       else if(this.state.itemsById.consumable.includes(item.item_id)) { items_copy[i].icon = "img-cocaine" }
       else if(this.state.outfitById.cap.includes(item.item_id)) { items_copy[i].icon = "img-cap" }
@@ -245,7 +248,7 @@ class Inventory extends React.Component {
       else if(this.state.outfitById.money.includes(item.item_id)) { items_copy[i].icon = "img-money" }
       else if(this.state.outfitById.card.includes(item.item_id)) { items_copy[i].icon = "img-card" }
       else if([47, 90].includes(item.item_id)) { items_copy[i].icon = "img-weapon" }
-      else if([5].includes(item.item_id)) { items_copy[i].icon = "img-machete" }
+      else if([5].includes(item.item_id)) { items_copy[i].icon = "img-machete" }*/
     })
     inventory === 'primary' ?
     this.setState({items: items_copy}, () => { this.setState({updateItemIcons_primary_timeout: false}); this.updateStacks('primary') })
