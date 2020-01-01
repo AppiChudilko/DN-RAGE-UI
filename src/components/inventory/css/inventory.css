@@ -413,13 +413,14 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
 }
 .trunk-boxes-main {
-    width: 62px;
+    width: 82px;
 }
 .trunk-box {
     width: 62px;
     height: 24px;
-    background-color: rgb(72, 185, 242);
+    background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 9px;
+    padding: 0 10px;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -429,7 +430,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     text-transform: uppercase;
 }
 .trunk-box:hover{
-    background: #000;
+    background: #48b9f2;
 }
 .invetory-trunk {
     margin-bottom: auto;

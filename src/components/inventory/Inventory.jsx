@@ -179,6 +179,12 @@ class Inventory extends React.Component {
         mp.trigger('client:inventory:status', status); // eslint-disable-line
         this.setState({ show: status })
       }
+      if (value.type === 'updateEquip') {
+        this.setState({ outfit: value.outfit })
+      }
+      if (value.type === 'updateItems') {
+        this.setState({ items: value.items })
+      }
       if (value.type === 'secondary_inv') { 
         this.setState({
           secondary_inv_open: true,
@@ -910,6 +916,7 @@ class Inventory extends React.Component {
     this.setState({ secondary_inv_open: false })
   }
   closeInventory() {
+    mp.trigger('client:inventory:status', false); // eslint-disable-line
     this.setState({ show: false })
   }
   openTrunk() {
@@ -971,7 +978,7 @@ class Inventory extends React.Component {
                     <div className="liner-inv-info"></div>
                     <div className="player-title-info">
                       <div className="player-inv-name"><span>Имя: Nika Kondr</span></div>
-                      <div className="player-inv-old"><span>Возраст: 21</span></div>
+                      <div className="player-inv-old"><span>ID Аккаунта: 456</span></div>
                     </div>
                     <div className="outfit-player-box">
                       {this.state.outfit[0].map((item, i) => {
