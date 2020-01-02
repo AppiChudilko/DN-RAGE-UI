@@ -58,7 +58,7 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
+        /*{ id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
         { id: 29, item_id: 270, name: "Очки", volume: 15, desc: "", params: "{}" },
         { id: 30, item_id: 274, name: "Маска", volume: 15, desc: "", params: "{}" },
         { id: 31, item_id: 265, name: "Футболка", volume: 15, desc: "", params: "{}" },
@@ -71,7 +71,7 @@ class Inventory extends React.Component {
         { id: 38, item_id: 7, name: "Часы", volume: 15, desc: "", params: "{}" },
         { id: 39, item_id: 8, name: "Телефон", volume: 15, desc: "", params: "{}" },
         { id: 40, item_id: 48, name: "Деньги", volume: 15, desc: "", params: "{}" },
-        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", params: "{}" },
+        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", params: "{}" },*/
       ],
       itemsById: { // В массивах должны быть айди всех предметов разного типа
         food: [1], // Можно "съесть"
@@ -144,6 +144,9 @@ class Inventory extends React.Component {
       }
       if (value.type === 'updateItems') {
         this.setState({ items: value.items })
+      }
+      if (value.type === 'updateEquipItems') {
+        this.setState({ equipment_outfit: value.items })
       }
       if (value.type === 'secondary_inv') { 
         this.setState({
@@ -370,7 +373,7 @@ class Inventory extends React.Component {
     switch (button.action) {
       case "close":
         break;
-      case "select": // Убрать в багажник
+      case "select": // Взять в руки
         this.selectWeapon(this.state.inter_menu_selected.item)
         break;
       case "move": // Убрать в багажник
@@ -397,9 +400,6 @@ class Inventory extends React.Component {
       case "drink": // Выпить
         this.itemDrink(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
-      case "equip": // Экипировать
-        this.itemEquip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
-        break;
       case "give": // Передать
         this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
@@ -408,6 +408,9 @@ class Inventory extends React.Component {
         break;
       case "take_off": // Снять
         this.itemTakeOff(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "equip": // Экипировать
+        this.itemEquip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "unequip": // Снять экипировку / Убрать в инвентарь
         this.itemUnequip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -631,6 +634,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
           // mp.call ... экипировать и удалить из инвентаря
+          mp.trigger('client:inventory:equip', item.id); // eslint-disable-line
         }
         break;
       case 'secondary_inv':
@@ -739,6 +743,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'outfit')
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ items: this.state.items.concat(item) })
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
           // mp.call ... снять с персонажа и переместить в инвентарь
         }
         break;
@@ -767,6 +772,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.count, item.params); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -791,6 +797,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.state.items.concat(item) })
           if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... снять оружие из экипировки и переместить в инвентарь
+          mp.trigger('client:inventory:unEquip', item.id); // eslint-disable-line
         }
         break;
       default:
