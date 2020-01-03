@@ -126,7 +126,7 @@
     filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
 }
 /*WEAPON*/
-.img-weapon {
+.img-279 {
     background: url(../img/weapon/img-weapon.png) no-repeat;
     width: 41px;
     height: 41px;

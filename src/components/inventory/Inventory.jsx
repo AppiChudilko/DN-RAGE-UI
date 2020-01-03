@@ -22,11 +22,11 @@ class Inventory extends React.Component {
       inter_menu_selected: { item: {}, source: '' }, // Сюда автоматически записывается выбранный предмет для взаимодействия через меню
       weight_now: 20,
       weight_max: 100,
-      trade_ids: [123, 321, 345, 23, 674, 12],
+      trade_ids: [], // Сюда записываются ID ближайших игроков для торговли
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
         { name: "Выбрать", action: "select", show: false },
-        { name: "Надеть", action: "put_on", show: false },
+        { name: "Переложить", action: "move", show: false },
         { name: "Использовать", action: "use", show: false },
         { name: "Употребить", action: "consume", show: false },
         { name: "Съесть", action: "eat", show: false },
@@ -49,7 +49,6 @@ class Inventory extends React.Component {
 
         { name: "Передать", action: "give", show: true },
         { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
-        { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Быстрый доступ", action: "to_hotbar", show: false },
         { name: "Снять", action: "take_off", show: false },
         { name: "Убрать", action: "from_hotbar", show: false },
@@ -59,14 +58,14 @@ class Inventory extends React.Component {
       ],
 
       items: [ // Инвентарь
-        { id: 1, item_id: 1, name: "Бургер", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 2, item_id: 1, name: "Бургер", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 3, item_id: 1, name: "Бургер", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 4, item_id: 1, name: "Бургер", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 5, item_id: 8, name: "Бургер id8", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 6, item_id: 8, name: "Бургер id8", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 7, item_id: 8, name: "Бургер id8", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 8, item_id: 8, name: "Бургер id8", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 1, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 2, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 3, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 4, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 5, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 6, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 7, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 8, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
       ],
       itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
@@ -105,7 +104,7 @@ class Inventory extends React.Component {
         drinks: [2], // Можно "выпить"
         usable: [4], // Можно "использовать"
         consumable: [3], // Можно "употребить"
-        equipable: [47, 90, 5], // Можно "экипировать"
+        equipable: [95, 109], // Можно "экипировать"
       },
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
@@ -149,8 +148,8 @@ class Inventory extends React.Component {
       ],
 
       equipment_weapon: [ // Экипированное оружие
-        { id: 27, item_id: 47, name: "M4A1", serial: "0001244", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
-        { id: 28, item_id: 90, name: "P90", serial: "0001254", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 27, item_id: 95, name: "M4A1", serial: "0001244", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
+        { id: 28, item_id: 109, name: "P90", serial: "0001254", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
       ],
       selected_weapon_id: 27,
       updateItemIcons_primary_timeout: false,
@@ -189,6 +188,7 @@ class Inventory extends React.Component {
     this.checkOutfit() // Правильное отображение иконок одежды и прочего outfit'a
     this.updateItemIcons('primary')
     this.updateItemIcons('secondary')
+    this.sumWeightInventory()
   }
 
   componentDidUpdate(prevProp, prevState) {
@@ -200,10 +200,23 @@ class Inventory extends React.Component {
     }
     if (this.state.items !== prevState.items) { // Обновляет быстрый доступ при изменении this.state.hotbar
       this.updateItemIcons('primary')
+      this.sumWeightInventory()
     }
     if (this.state.secondary_items !== prevState.secondary_items) { // Обновляет быстрый доступ при изменении this.state.hotbar
       this.updateItemIcons('secondary')
     }
+    if (this.state.trade_ids !== prevState.trade_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
+      this.updateTradeMenu()
+    }
+  }
+  sumWeightInventory() {
+   let items_inv = this.state.items;
+   let sum = 0
+    for (var i=0; i<items_inv.length; i++) {
+      sum += parseInt(items_inv[i].volume)      
+    }
+    sum /= 1000
+    this.setState({weight_now: sum})    
   }
   updateItemIcons(inventory){
     let items_copy = []
@@ -244,6 +257,23 @@ class Inventory extends React.Component {
     this.setState({items: items_copy}, () => { this.setState({updateItemIcons_primary_timeout: false}); this.updateStacks('primary') })
     :
     this.setState({secondary_items: items_copy}, () => { this.setState({updateItemIcons_secondary_timeout: false}); this.updateStacks('secondary') })
+  }
+  updateTradeMenu(){
+    let menu = [...this.state.inter_menu]
+    let index = -1
+    menu.forEach((item) => {
+      index = menu.indexOf(item)
+      if(item.action === 'trade_id'){
+        if (index !== -1) menu.splice(index, 1)
+      } else {
+        if(item.action !== 'close') menu[index].show = false
+      }
+    })
+    let trade_ids_copy = [...this.state.trade_ids]
+    trade_ids_copy.forEach((id) => {
+      menu.push({name: "ID: " + id, trade_player_id: id, action: "trade_id", show: true})
+    })
+    this.setState({inter_menu: menu})
   }
   updateStacks(inventory){
     let items_copy = []
@@ -326,6 +356,7 @@ class Inventory extends React.Component {
     this.setState({ craft: !this.state.craft })
   }
   handlePos(e, item, source) { // Функция которая генерирует меню взаимодействия
+    if (source === 'hotbar' && Object.entries(item).length === 0) return;
     if (source === 'outfit' && item.equipped === false) return; // Не открывать меню взаимодействия если ячейка outfit'a пустая
     this.setState(prevState => ({ ...prevState.inter_menu_selected.item = item, ...prevState.inter_menu_selected.source = source }))
     if (this.state.inter_show) {
@@ -352,11 +383,11 @@ class Inventory extends React.Component {
     if (this.state.itemsById.usable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('use') // Использовать
     }
-    if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+    if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('equip') // Экипировать
     }
     for (let i = 0; i < Object.keys(this.state.outfitById).length; i++) {
-      if (Object.values(this.state.outfitById)[i].includes(item.item_id)) {
+      if (Object.values(this.state.outfitById)[i].includes(item.item_id) && source !== 'secondary_inv') {
         if (source !== 'outfit') {
           actions.push('put_on') // Надеть
           break;
@@ -409,8 +440,14 @@ class Inventory extends React.Component {
     }
     this.setState({ x: x, y: y });
   }
-  giveItemMenu(){
-    this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+  giveItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
+    let trade_ids_copy = []
+    let max = 1000 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    let min = 1 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    for(let i = 0; i<6; i++){ // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+      trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    }
+    this.setState({trade_ids: trade_ids_copy}) // Записывает ID ближайших игроков для передачи предмета
   }
   closeInterMenu(e, button) {
 
@@ -445,8 +482,11 @@ class Inventory extends React.Component {
         this.itemDrink(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "give": // Передать
-        giveItemMenu()
+        this.giveItemMenu()
         return;
+      case "trade_id": // Выбор ID, кому передать
+        this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.trade_player_id);
+        break;
       case "drop": // Выкинуть
         this.itemDrop(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
@@ -519,6 +559,10 @@ class Inventory extends React.Component {
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
+          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
+            console.log('Перевес!')
+            return;
+          }
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ items: this.state.items.concat(item) })
           // mp.call ... переместить в инвентарь и удалить из багажника
@@ -681,39 +725,43 @@ class Inventory extends React.Component {
           // mp.trigger('client:inventory:equip', item.id); // eslint-disable-line
         }
         break;
-      case 'secondary_inv':
+      /* case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
           // mp.call ... экипировать и удалить из багажника
         }
-        break;
+        break; */
       default:
         break;
     }
   }
-  itemGive(item, source) {
+  itemGive(item, source, trade_player_id) {
+    this.setState({trade_ids: []})
     switch (source) {
       case 'hotbar':
         if (this.checkItem(item, 'hotbar') !== null) {
           item = this.checkItem(item, 'hotbar')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... передать и удалить из инвентаря
+          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
+          // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
         }
         break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... передать и удалить из инвентаря
+          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
+          // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
-          // mp.call ... передать и удалить из багажника
+          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
+          // mp.call ... передать и удалить из багажника (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
         }
         break;
       case 'outfit':
@@ -721,7 +769,8 @@ class Inventory extends React.Component {
         if (this.checkItem(item, 'outfit') !== null) {
           item = this.checkItem(item, 'outfit')
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
-          // mp.call ... передать и удалить с персонажа
+          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
+          // mp.call ... передать и удалить с персонажа (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
         }
         break;
       case 'weapon':
@@ -729,7 +778,8 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'weapon')
           this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
           if (item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
-          // mp.call ... передать оружие и удалить из экипировки
+          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
+          // mp.call ... передать оружие и удалить из экипировки (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
         }
         break;
       default:
@@ -785,6 +835,10 @@ class Inventory extends React.Component {
         item = this.getOutfitByType(item.type)[0]
         if (this.checkItem(item, 'outfit') !== null) {
           item = this.checkItem(item, 'outfit')
+          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
+            console.log('Перевес!')
+            return;
+          }
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ items: this.state.items.concat(item) })
           // mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
@@ -824,14 +878,14 @@ class Inventory extends React.Component {
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
-      case 'secondary_inv':
+      /* case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
           // mp.call ... надеть на персонажа и удалить из багажника
         }
-        break;
+        break; */
       default:
         break;
     }
@@ -841,6 +895,10 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
+          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
+            console.log('Перевес!')
+            return;
+          }
           this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
           this.setState({ items: this.state.items.concat(item) })
           if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
@@ -990,7 +1048,7 @@ class Inventory extends React.Component {
                       {this.state.itemsCounted.map((item, i) => {
                         const index = `item${i}`
                         return (
-                          <div className="object-box" key={index} onClick={(e) => this.handlePos(e, item, 'inventory')}>
+                          <div className="object-box" key={index} onContextMenu={(e) => this.handlePos(e, item, 'inventory')}>
                             <div className={`img-inv-box ${item.icon}`}></div>
                             <div className="obj-inf-box">
                               <div className="obj-inf-title"><span>{item.name}</span></div>
@@ -1014,14 +1072,14 @@ class Inventory extends React.Component {
                       {this.state.outfit[0].map((item, i) => {
                         const index = `item-outf${i}`
                         return (
-                          <div key={index} className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`} onClick={(e) => this.handlePos(e, item, 'outfit')}></div>
+                          <div key={index} className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
                         )
                       })}
                       <div className="bottom-otf-box">
                         {this.state.outfit[1].map((item, i) => {
                           const index = `items-outf${i}`
                           return (
-                            <div key={index} className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`} onClick={(e) => this.handlePos(e, item, 'outfit')}></div>
+                            <div key={index} className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
                           )
                         })}
                       </div>
@@ -1082,7 +1140,7 @@ class Inventory extends React.Component {
                           {this.state.equipment_weapon.map((item, i) => {
                             const index = `weaponplayer${i}`
                             return (
-                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onClick={(e) => this.handlePos(e, item, 'weapon')}><span>Оружие: {item.name}</span><span className="style-serial-weapon">Cерийный номер: {item.serial}</span></div>
+                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>Оружие: {item.name}</span><span className="style-serial-weapon">S/N: {item.serial}</span></div>
                             )
                           })}
                         </div>
@@ -1112,7 +1170,7 @@ class Inventory extends React.Component {
                     {this.state.hotbar.map((item, i) => {
                       const index = `hotbar${i}`
                       return (
-                        <div className="squar-inv-box" key={index} data-title={item.name} onClick={(e) => this.handlePos(e, item, 'hotbar')}>
+                        <div className="squar-inv-box" key={index} data-title={item.name} onContextMenu={(e) => this.handlePos(e, item, 'hotbar')}>
                           <div className={item.icon} />
                         </div>
                       )
@@ -1127,7 +1185,7 @@ class Inventory extends React.Component {
                     {this.state.secondary_itemsCounted.map((item, i) => {
                       const index = `item${i}`
                       return (
-                        <div className="object-box-trunk" key={index} onClick={(e) => this.handlePos(e, item, 'secondary_inv')}>
+                        <div className="object-box-trunk" key={index} onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
                           <div className={`img-inv-box ${item.icon}`}></div>
                           <div className="obj-inf-box">
                             <div className="obj-inf-title"><span>{item.name}</span></div>

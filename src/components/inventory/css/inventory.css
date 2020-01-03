@@ -1,6 +1,6 @@
-body {
-    /* background: #352929; */
-}
+/* body {
+    background: #352929;
+} */
 .inv-box{
     width: -webkit-fill-available;
     height: -webkit-fill-available;
@@ -521,4 +521,5 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     display: flex;
     justify-content: flex-end;
     position: absolute;
+    font-size: 22px;
 }
