@@ -26,18 +26,33 @@ class Inventory extends React.Component {
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
         { name: "Выбрать", action: "select", show: false },
+        { name: "Надеть", action: "put_on", show: false },
         { name: "Использовать", action: "use", show: false },
         { name: "Употребить", action: "consume", show: false },
         { name: "Съесть", action: "eat", show: false },
         { name: "Выпить", action: "drink", show: false },
-        { name: "Переложить", action: "move", show: false },
         { name: "Взять", action: "take", show: false },
         { name: "Экипировать", action: "equip", show: false },
+
+        { name: "Информация о билете", action: "infoLoto", show: false },
+
+        { name: "Взять 1гр.", action: "take1gr", show: false },
+        { name: "Взять 10гр.", action: "take10gr", show: false },
+        { name: "Взять 50гр.", action: "take50gr", show: false },
+        { name: "Взвесить", action: "weightGr", show: false },
+
+        { name: "Взять 1гр.", action: "take1gr", show: false },
+
+        { name: "Посчитать", action: "countItems", show: false },
+        { name: "Посчитать", action: "countMoney", show: false },
+        { name: "Посчитать", action: "countPt", show: false },
+
         { name: "Передать", action: "give", show: true },
         { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
         { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Быстрый доступ", action: "to_hotbar", show: false },
         { name: "Снять", action: "take_off", show: false },
+        { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
         { name: "Надеть", action: "put_on", show: false },
         { name: "Закрыть", action: "close", show: false, color: '#f44336' },
@@ -346,7 +361,7 @@ class Inventory extends React.Component {
           actions.push('put_on') // Надеть
           break;
         } else {
-          actions.push('take_off') // Надеть
+          actions.push('take_off') // Снять
           break;
         }
       }
@@ -398,6 +413,7 @@ class Inventory extends React.Component {
     this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
   }
   closeInterMenu(e, button) {
+
     switch (button.action) {
       case "close":
         break;
@@ -781,11 +797,15 @@ class Inventory extends React.Component {
   }
   itemPutOn(item, source) {
     for (let i = 0; i < this.state.outfit[0].length; i++) {
-      if (this.state.outfit[0][i].type === this.getOutfitType(item) && this.state.outfit[0][i].equipped === true) return;
+      if (this.state.outfit[0][i].type === this.getOutfitType(item) && this.state.outfit[0][i].equipped === true) {
+        mp.trigger('client:inventory:notify', '~r~Предмет уже экипирован, для начала снимите его'); // eslint-disable-line
+        return;
+      }
     }
     for (let i = 0; i < this.state.outfit[1].length; i++) {
       if (this.state.outfit[1][i].type === this.getOutfitType(item) && this.state.outfit[1][i].equipped === true) return;
     }
+
     switch (source) {
       case 'hotbar':
         if (this.checkItem(item, 'hotbar') !== null) {
