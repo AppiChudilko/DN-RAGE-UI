@@ -290,12 +290,19 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     font-size: 20px;
     color: #fff;
 }
+.style-serial-weapon {
+    font-family: "RobotoLight";
+    color: rgb(202, 202, 202);
+    font-size: 12px;
+    margin-top: 6px;
+}
 .style-weapon-txt-craft {
     margin-bottom: 33px;
     padding-left: 9px;
-    height: 39px;
+    height: 52px;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin-bottom: 9px;
 }
 .style-weapon-txt-craft:hover {
@@ -380,7 +387,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     margin-bottom: 21px;
 }
 .craft-btn-obj {
-    width: 350px;
+    width: 300px;
     height: 47px;
     background: rgb(255, 255, 255);
     margin-top: 30px;
@@ -391,12 +398,28 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     font-size: 30px;
     text-transform: uppercase;
     color: #000;
-    transition: 0.3s;
-    
+    transition: 0.3s;    
 }
-.craft-btn-obj:hover {
+.craft-btn-obj:hover,  .craft-help-menu:hover{
     background: #000;
     color:#fff;
+}
+.craft-btn-main {
+    display: flex;
+}
+.craft-help-menu {
+    width: 50px;
+    height: 47px;
+    background: rgb(73, 184, 241);
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "HACKED";
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    transition: 0.3s;
 }
 .close-window-craft {
     background: url("../img/close.png") no-repeat;
@@ -492,4 +515,10 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 }
 .object-box:hover .obj-inf-count {
     margin-right: 33px;
+}
+.weight-title-inv {
+    width: inherit;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
 }

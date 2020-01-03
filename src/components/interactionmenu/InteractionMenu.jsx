@@ -18,7 +18,7 @@ class InteractionMenu extends React.Component {
             if(!button.show){ return }
             const index = `intermenu${i}`
             return (
-              <div key={index} className="inter-box" onClick={(e) => this.props.closeInterMenu(e, button)}><span>{button.name}</span></div>
+              <div key={index} className="inter-box" style={{color: button.color}} onClick={(e) => this.props.closeInterMenu(e, button)}><span>{button.name}</span></div>
             )
           })}
         </div>
