@@ -772,7 +772,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, item.params); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -817,11 +817,11 @@ class Inventory extends React.Component {
         let inventory = this.state.items;
 
         for (let i = 0; i < inventory.length; i++) {
-          mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
+          /*mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
           mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
           mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
           mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
-          mp.trigger('client:events:debug', item.id); // eslint-disable-line
+          mp.trigger('client:events:debug', item.id); // eslint-disable-line*/
 
           if (inventory[i].item_id === item.item_id && inventory[i].name === item.name &&
             inventory[i].desc === item.desc &&
