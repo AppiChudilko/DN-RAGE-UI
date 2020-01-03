@@ -39,13 +39,13 @@ class Inventory extends React.Component {
       ],
 
       items: [ // Инвентарь
-        { id: 1, item_id: 1, name: "Бургер", volume: 15, desc: "123", params: "{}" }, // айди предмета из базы
+        { id: 1, item_id: 1, name: "Бургер", volume: 15, desc: "123", counti: 0, params: {} }, // айди предмета из базы
       ],
       itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
 
       secondary_items: [ // Багажник
-        { id: 15, item_id: 1, name: "Бургер", volume: 15, desc: "", params: "{}" }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 15, item_id: 1, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
       ],
       secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
@@ -58,20 +58,20 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
-        /*{ id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", params: "{}" }, // equipment_outfit.item_id айди предмета в игре
-        { id: 29, item_id: 270, name: "Очки", volume: 15, desc: "", params: "{}" },
-        { id: 30, item_id: 274, name: "Маска", volume: 15, desc: "", params: "{}" },
-        { id: 31, item_id: 265, name: "Футболка", volume: 15, desc: "", params: "{}" },
-        { id: 32, item_id: 268, name: "Аксессуар", volume: 15, desc: "", params: "{}" },
-        { id: 33, item_id: 271, name: "Серьги", volume: 15, desc: "", params: "{}" },
-        { id: 34, item_id: 266, name: "Штаны", volume: 15, desc: "", params: "{}" },
-        { id: 35, item_id: 272, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 36, item_id: 273, name: "Браслет", volume: 15, desc: "", params: "{}" },
-        { id: 37, item_id: 267, name: "Обувь", volume: 15, desc: "", params: "{}" },
-        { id: 38, item_id: 7, name: "Часы", volume: 15, desc: "", params: "{}" },
-        { id: 39, item_id: 8, name: "Телефон", volume: 15, desc: "", params: "{}" },
-        { id: 40, item_id: 48, name: "Деньги", volume: 15, desc: "", params: "{}" },
-        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", params: "{}" },*/
+        /*{ id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", counti: 0, params: {} }, // equipment_outfit.item_id айди предмета в игре
+        { id: 29, item_id: 270, name: "Очки", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 30, item_id: 274, name: "Маска", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 31, item_id: 265, name: "Футболка", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 32, item_id: 268, name: "Аксессуар", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 33, item_id: 271, name: "Серьги", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 34, item_id: 266, name: "Штаны", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 35, item_id: 272, name: "Часы", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 36, item_id: 273, name: "Браслет", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 37, item_id: 267, name: "Обувь", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 38, item_id: 7, name: "Часы", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 39, item_id: 8, name: "Телефон", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 40, item_id: 48, name: "Деньги", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", counti: 0, params: {} },*/
       ],
       itemsById: { // В массивах должны быть айди всех предметов разного типа
         food: [1], // Можно "съесть"
@@ -122,8 +122,8 @@ class Inventory extends React.Component {
       ],
 
       equipment_weapon: [ // Экипированное оружие
-        { id: 27, item_id: 47, name: "M4A1", volume: 15, desc: "", params: "{}" }, // equipment_weapon.item_id айди оружия
-        { id: 28, item_id: 90, name: "P90", volume: 15, desc: "", params: "{}" }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 27, item_id: 47, name: "M4A1", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
+        { id: 28, item_id: 90, name: "P90", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
       ],
       selected_weapon_id: 27,
       updateItemIcons_primary_timeout: false,
@@ -232,7 +232,7 @@ class Inventory extends React.Component {
       
       let found = false
       updatedItemsCounted.forEach((itemCounted, i) => {
-        if(item.item_id === itemCounted.item_id && item.name === itemCounted.name && item.desc === itemCounted.desc && item.params === itemCounted.params){
+        if(item.item_id === itemCounted.item_id && item.name === itemCounted.name && item.desc === itemCounted.desc && item.counti === itemCounted.counti && JSON.stringify(item.params) === JSON.stringify(itemCounted.params)){
           updatedItemsCounted[i].count++;
           found = true;
         }
@@ -494,7 +494,7 @@ class Inventory extends React.Component {
     }
     switch (source) {
       case "inventory":
-        this.setState({ hotbar: hotbar.concat({ index: hotbar.length + 1, item_id: item.item_id, name: item.name, desc: item.desc, icon: item.icon, params: item.params }) })
+        this.setState({ hotbar: hotbar.concat({ index: hotbar.length + 1, item_id: item.item_id, name: item.name, desc: item.desc, counti: item.counti, icon: item.icon, params: item.params }) })
         // mp.call ... сохранить ячейки быстрого доступа
         break;
       default:
@@ -772,7 +772,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          mp.trigger('client:inventory:equip', item.id, item.item_id, item.count, item.params); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, item.params); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -815,9 +815,17 @@ class Inventory extends React.Component {
     switch (source) {
       case 'inventory':
         let inventory = this.state.items;
+
         for (let i = 0; i < inventory.length; i++) {
-          if (inventory[i].item_id === item.item_id && inventory[i].name === item.name && 
-            inventory[i].desc === item.desc && inventory[i].params === item.params) {
+          mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
+          mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
+          mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
+          mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
+          mp.trigger('client:events:debug', item.id); // eslint-disable-line
+
+          if (inventory[i].item_id === item.item_id && inventory[i].name === item.name &&
+            inventory[i].desc === item.desc &&
+            inventory[i].counti === item.counti && JSON.stringify(inventory[i].params) === JSON.stringify(item.params)) {
             return inventory[i];
           }
         }
@@ -826,7 +834,8 @@ class Inventory extends React.Component {
         let inventory_hotbar = this.state.items;
         for (let i = 0; i < inventory_hotbar.length; i++) {
           if (inventory_hotbar[i].item_id === item.item_id && inventory_hotbar[i].name === item.name && 
-            inventory_hotbar[i].desc === item.desc && inventory_hotbar[i].params === item.params) {
+            inventory_hotbar[i].desc === item.desc &&
+            inventory_hotbar[i].counti === item.counti && JSON.stringify(inventory_hotbar[i].params) === JSON.stringify(item.params)) {
             return inventory_hotbar[i];
           }
         }
@@ -835,7 +844,8 @@ class Inventory extends React.Component {
         let secondary_items = this.state.secondary_items;
         for (let i = 0; i < secondary_items.length; i++) {
           if (secondary_items[i].item_id === item.item_id && secondary_items[i].name === item.name && 
-            secondary_items[i].desc === item.desc && secondary_items[i].params === item.params) {
+            secondary_items[i].desc === item.desc &&
+            secondary_items[i].counti === item.counti && JSON.stringify(secondary_items[i].params) === JSON.stringify(item.params)) {
             return secondary_items[i];
           }
         }
@@ -844,7 +854,8 @@ class Inventory extends React.Component {
         let equipment = this.state.equipment_weapon;
         for (let i = 0; i < equipment.length; i++) {
           if (equipment[i].item_id === item.item_id && equipment[i].name === item.name && 
-            equipment[i].desc === item.desc && equipment[i].params === item.params) {
+            equipment[i].desc === item.desc &&
+            equipment[i].counti === item.counti && JSON.stringify(equipment[i].params) === JSON.stringify(item.params)) {
             return equipment[i];
           }
         }
@@ -853,7 +864,8 @@ class Inventory extends React.Component {
         let outfit = this.state.equipment_outfit;
         for (let i = 0; i < outfit.length; i++) {
           if (outfit[i].item_id === item.item_id && outfit[i].name === item.name && 
-            outfit[i].desc === item.desc && outfit[i].params === item.params) {
+            outfit[i].desc === item.desc &&
+            outfit[i].counti === item.counti && JSON.stringify(outfit[i].params) === JSON.stringify(item.params)) {
             return outfit[i];
           }
         }

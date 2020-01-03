@@ -43,7 +43,7 @@ class InfoPlayer extends React.Component {
             <div className="name-player-info">{this.props.name}</div>
             <div className="info-text-player">
               <div className="text-box">
-                <span className="title-info-text">Уровень</span> <span className="text-box-blue">{this.props.old}</span>
+                <span className="title-info-text">ID Аккаунта</span> <span className="text-box-blue">{this.props.old}</span>
               </div>
               <div className="text-box">
                 <span className="title-info-text">Деньги</span> <span className="text-box-blue">{this.props.money}</span>
