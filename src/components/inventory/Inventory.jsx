@@ -26,13 +26,14 @@ class Inventory extends React.Component {
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
         { name: "Выбрать", action: "select", show: false },
-        { name: "Переложить", action: "move", show: false },
-        { name: "Использовать", action: "use", show: false },
-        { name: "Употребить", action: "consume", show: false },
-        { name: "Съесть", action: "eat", show: false },
-        { name: "Выпить", action: "drink", show: false },
-        { name: "Взять", action: "take", show: false },
-        { name: "Экипировать", action: "equip", show: false },
+
+        { name: "Надеть", action: "put_on", show: false, color: '#4CAF50' },
+        { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
+        { name: "Употребить", action: "consume", show: false, color: '#4CAF50' },
+        { name: "Съесть", action: "eat", show: false, color: '#4CAF50' },
+        { name: "Выпить", action: "drink", show: false, color: '#4CAF50' },
+        { name: "Экипировать", action: "equip", show: false, color: '#4CAF50' },
+        { name: "Зарядить", action: "loadw", show: false, color: '#4CAF50' },
 
         { name: "Информация о билете", action: "infoLoto", show: false },
 
@@ -48,11 +49,14 @@ class Inventory extends React.Component {
         { name: "Посчитать", action: "countPt", show: false },
 
         { name: "Передать", action: "give", show: true },
+
+        { name: "Переложить", action: "move", show: false, color: '#2196F3' },
+        { name: "Взять", action: "take", show: false, color: '#2196F3' },
+
         { name: "Быстрый доступ", action: "to_hotbar", show: false },
         { name: "Снять", action: "take_off", show: false },
         { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
-        { name: "Надеть", action: "put_on", show: false },
 
         { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
         { name: "Закрыть", action: "close", show: false, color: '#f44336' },
@@ -149,10 +153,8 @@ class Inventory extends React.Component {
       ],
 
       equipment_weapon: [ // Экипированное оружие
-        { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
-        { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
       ],
-      selected_weapon_id: 27,
+      selected_weapon_id: 0,
       updateItemIcons_primary_timeout: false,
       updateItemIcons_secondary_timeout: false,
     }
@@ -174,6 +176,9 @@ class Inventory extends React.Component {
       }
       if (value.type === 'updateEquipItems') {
         this.setState({ equipment_outfit: value.items })
+      }
+      if (value.type === 'updateWeaponItems') {
+        this.setState({ equipment_weapon: value.items })
       }
       if (value.type === 'updateLabel') {
         this.setState({ player_name: value.uname });
@@ -467,6 +472,16 @@ class Inventory extends React.Component {
     this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
     mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
   }
+  loadwItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
+    /*let trade_ids_copy = []
+    let max = 1000 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    let min = 1 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    for(let i = 0; i<6; i++){ // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+      trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    }
+    this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
+    mp.trigger('client:inventory:loadwItemMenu'); // eslint-disable-line
+  }
   closeInterMenu(e, button) {
 
     switch (button.action) {
@@ -501,6 +516,9 @@ class Inventory extends React.Component {
         break;
       case "give": // Передать
         this.giveItemMenu();
+        return;
+      case "loadw": // Передать
+        this.loadwItemMenu();
         return;
       case "trade_id": // Выбор ID, кому передать
         this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.trade_player_id);
@@ -756,7 +774,7 @@ class Inventory extends React.Component {
     }
   }
   itemGive(item, source, trade_player_id) {
-    this.setState({trade_ids: []})
+    this.setState({trade_ids: []});
     switch (source) {
       case 'hotbar':
         if (this.checkItem(item, 'hotbar') !== null) {
@@ -1158,7 +1176,7 @@ class Inventory extends React.Component {
                           {this.state.equipment_weapon.map((item, i) => {
                             const index = `weaponplayer${i}`
                             return (
-                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>Оружие: {item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
+                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>{item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
                             )
                           })}
                         </div>

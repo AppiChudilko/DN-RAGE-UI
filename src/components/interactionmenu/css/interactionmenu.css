@@ -14,5 +14,5 @@
 }
 .inter-box:hover{
     background: rgb(72, 185, 242);
-    color: #fff;
+    color: #fff !important;
 }
