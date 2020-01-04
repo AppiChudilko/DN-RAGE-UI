@@ -48,12 +48,13 @@ class Inventory extends React.Component {
         { name: "Посчитать", action: "countPt", show: false },
 
         { name: "Передать", action: "give", show: true },
-        { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
         { name: "Быстрый доступ", action: "to_hotbar", show: false },
         { name: "Снять", action: "take_off", show: false },
         { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
         { name: "Надеть", action: "put_on", show: false },
+
+        { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
         { name: "Закрыть", action: "close", show: false, color: '#f44336' },
       ],
 
@@ -148,8 +149,8 @@ class Inventory extends React.Component {
       ],
 
       equipment_weapon: [ // Экипированное оружие
-        { id: 27, item_id: 95, name: "M4A1", serial: "0001244", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
-        { id: 28, item_id: 109, name: "P90", serial: "0001254", volume: 15, desc: "", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
+        { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: {} }, // equipment_weapon.item_id айди оружия
+        { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: {} }, // equipment_weapon.id Уникальный id предмета из базы (не должны повторяться)
       ],
       selected_weapon_id: 27,
       updateItemIcons_primary_timeout: false,
@@ -162,7 +163,7 @@ class Inventory extends React.Component {
       if (value.type === 'show') { this.setState({ show: true }) }
       if (value.type === 'showOrHide') {
         let status = !this.state.show;
-        // mp.trigger('client:inventory:status', status); // eslint-disable-line
+        mp.trigger('client:inventory:status', status); // eslint-disable-line
         this.setState({ show: status })
       }
       if (value.type === 'updateEquip') {
@@ -173,6 +174,16 @@ class Inventory extends React.Component {
       }
       if (value.type === 'updateEquipItems') {
         this.setState({ equipment_outfit: value.items })
+      }
+      if (value.type === 'updateLabel') {
+        this.setState({ player_name: value.uname });
+        this.setState({ player_id: value.uid });
+      }
+      if (value.type === 'updateMaxW') {
+        this.setState({ weight_max: value.val })
+      }
+      if (value.type === 'updateTrade') {
+        this.setState({ trade_ids: value.idList })
       }
       if (value.type === 'secondary_inv') { 
         this.setState({
@@ -215,8 +226,14 @@ class Inventory extends React.Component {
     for (var i=0; i<items_inv.length; i++) {
       sum += parseInt(items_inv[i].volume)      
     }
-    sum /= 1000
+    //sum /= 1000 И как по вашему он должен подсчитывать? Facepalm
     this.setState({weight_now: sum})    
+  }
+  numberToK(num) {
+    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
+  }
+  notifyToClient(text) {
+    mp.trigger('client:inventory:notify', text); // eslint-disable-line
   }
   updateItemIcons(inventory){
     let items_copy = []
@@ -441,13 +458,14 @@ class Inventory extends React.Component {
     this.setState({ x: x, y: y });
   }
   giveItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
-    let trade_ids_copy = []
+    /*let trade_ids_copy = []
     let max = 1000 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     let min = 1 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     for(let i = 0; i<6; i++){ // Эта строка для теста (генерирует рандомные ID игроков для торговли)
       trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     }
-    this.setState({trade_ids: trade_ids_copy}) // Записывает ID ближайших игроков для передачи предмета
+    this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
+    mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
   }
   closeInterMenu(e, button) {
 
@@ -482,7 +500,7 @@ class Inventory extends React.Component {
         this.itemDrink(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "give": // Передать
-        this.giveItemMenu()
+        this.giveItemMenu();
         return;
       case "trade_id": // Выбор ID, кому передать
         this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.trade_player_id);
@@ -559,8 +577,8 @@ class Inventory extends React.Component {
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
-          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
-            console.log('Перевес!')
+          if(this.state.weight_now + item.volume > this.state.weight_max){
+            this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
             return;
           }
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
@@ -722,7 +740,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
           // mp.call ... экипировать и удалить из инвентаря
-          // mp.trigger('client:inventory:equip', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id); // eslint-disable-line
         }
         break;
       /* case 'secondary_inv':
@@ -835,13 +853,13 @@ class Inventory extends React.Component {
         item = this.getOutfitByType(item.type)[0]
         if (this.checkItem(item, 'outfit') !== null) {
           item = this.checkItem(item, 'outfit')
-          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
-            console.log('Перевес!')
+          if(this.state.weight_now + item.volume > this.state.weight_max){
+            this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
             return;
           }
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ items: this.state.items.concat(item) })
-          // mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
           // mp.call ... снять с персонажа и переместить в инвентарь
         }
         break;
@@ -852,7 +870,7 @@ class Inventory extends React.Component {
   itemPutOn(item, source) {
     for (let i = 0; i < this.state.outfit[0].length; i++) {
       if (this.state.outfit[0][i].type === this.getOutfitType(item) && this.state.outfit[0][i].equipped === true) {
-        mp.trigger('client:inventory:notify', '~r~Предмет уже экипирован, для начала снимите его'); // eslint-disable-line
+        this.notifyToClient('~r~Предмет уже экипирован, для начала снимите его');
         return;
       }
     }
@@ -874,7 +892,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          // mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -895,15 +913,15 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
-          if(this.state.weight_now + item.volume/100 > this.state.weight_max){
-            console.log('Перевес!')
+          if(this.state.weight_now + item.volume > this.state.weight_max){
+            this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
             return;
           }
           this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
           this.setState({ items: this.state.items.concat(item) })
           if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... снять оружие из экипировки и переместить в инвентарь
-          // mp.trigger('client:inventory:unEquip', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:unEquip', item.id); // eslint-disable-line
         }
         break;
       default:
@@ -1004,7 +1022,7 @@ class Inventory extends React.Component {
     this.setState({ secondary_inv_open: false})
   }
   closeInventory() {
-    // mp.trigger('client:inventory:status', false); // eslint-disable-line
+    mp.trigger('client:inventory:status', false); // eslint-disable-line
     this.setState({ show: false, craft: false })
   }
   openTrunk() {
@@ -1043,7 +1061,7 @@ class Inventory extends React.Component {
                 <div className="inv-row-main">
                   <div className="player-inv">
                     <div className="liner-inv"></div>
-    <div className="title-inv"><span>Инвентарь</span> <span className="weight-title-inv">({this.state.weight_now}/{this.state.weight_max}K)</span> </div>
+    <div className="title-inv"><span>Инвентарь</span> <span className="weight-title-inv">({this.numberToK(this.state.weight_now)}/{this.numberToK(this.state.weight_max)})</span> </div>
                     <div className="object-inv-box">
                       {this.state.itemsCounted.map((item, i) => {
                         const index = `item${i}`
@@ -1140,7 +1158,7 @@ class Inventory extends React.Component {
                           {this.state.equipment_weapon.map((item, i) => {
                             const index = `weaponplayer${i}`
                             return (
-                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>Оружие: {item.name}</span><span className="style-serial-weapon">S/N: {item.serial}</span></div>
+                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>Оружие: {item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
                             )
                           })}
                         </div>
