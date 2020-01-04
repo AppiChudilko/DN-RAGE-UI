@@ -89,27 +89,14 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
-        { id: 28, item_id: 269, name: "Головной убор", volume: 15, desc: "", counti: 0, params: {} }, // equipment_outfit.item_id айди предмета в игре
-        { id: 29, item_id: 270, name: "Очки", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 30, item_id: 274, name: "Маска", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 31, item_id: 265, name: "Футболка", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 32, item_id: 268, name: "Аксессуар", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 33, item_id: 271, name: "Серьги", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 34, item_id: 266, name: "Штаны", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 35, item_id: 272, name: "Часы", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 36, item_id: 273, name: "Браслет", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 37, item_id: 267, name: "Обувь", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 38, item_id: 7, name: "Часы", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 39, item_id: 8, name: "Телефон", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 40, item_id: 48, name: "Деньги", volume: 15, desc: "", counti: 0, params: {} },
-        { id: 41, item_id: 50, name: "Карта", volume: 15, desc: "", counti: 0, params: {} },
       ],
+
       itemsById: { // В массивах должны быть айди всех предметов разного типа
         food: [1], // Можно "съесть"
         drinks: [2], // Можно "выпить"
         usable: [4], // Можно "использовать"
         consumable: [3], // Можно "употребить"
-        equipable: [95, 109], // Можно "экипировать"
+        equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
       },
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
@@ -189,6 +176,14 @@ class Inventory extends React.Component {
       }
       if (value.type === 'updateTrade') {
         this.setState({ trade_ids: value.idList })
+      }
+      if (value.type === 'weaponToInventory') {
+        this.state.equipment_weapon.forEach((item) => {
+          if (value.itemId == item.id) {
+            this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
+            this.setState({ items: this.state.items.concat(item) })
+          }
+        });
       }
       if (value.type === 'secondary_inv') { 
         this.setState({
@@ -758,7 +753,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
           // mp.call ... экипировать и удалить из инвентаря
-          mp.trigger('client:inventory:equip', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
         }
         break;
       /* case 'secondary_inv':
