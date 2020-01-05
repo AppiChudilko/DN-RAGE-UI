@@ -5,6 +5,7 @@ import './css/img-items.css';
 import { Animated } from 'react-animated-css';
 import InteractionMenu from '../interactionmenu/InteractionMenu';
 import EventManager from "../../EventManager";
+import { thisExpression } from '@babel/types';
 
 class Inventory extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Inventory extends React.Component {
       weight_now: 20,
       weight_max: 100,
       trade_ids: [], // Сюда записываются ID ближайших игроков для торговли
+      loadw_ids: [{name: "P90", id: 28}], // Сюда записываются данные оружия в экипировке которое можно зарядить выбранными патронами
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
         { name: "Выбрать", action: "select", show: false, color: '#4CAF50' },
@@ -63,18 +65,15 @@ class Inventory extends React.Component {
       ],
 
       items: [ // Инвентарь
-        { id: 1, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 2, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 3, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 4, item_id: 1, name: "Бургер", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 5, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 6, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 7, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 8, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
-        { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
-        { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-        { id: 29, item_id: 115, name: "Пушка шаталка", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
-        { id: 30, item_id: 116, name: "Чёткая снайпа", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+        { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+        { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+        { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+        { id: 5, item_id: 146, name: "Патроны", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: { slot1:true, slot2:false, slot3: true, slot4:false } },
+        { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: { slot1:false, slot2:true, slot3: true, slot4:true } },
+        { id: 29, item_id: 115, name: "Пушка шаталка", volume: 15, desc: "AR-0001244", counti: 0, params: { slot1:false, slot2:false, slot3: false, slot4:false } },
+        { id: 30, item_id: 116, name: "Чёткая снайпа", volume: 15, desc: "SM-0001244", counti: 0, params: { slot1:true, slot2:true, slot3: true, slot4:true } },
         { id: 31, item_id: 117, name: "Выбор твоей бабушки", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
         { id: 32, item_id: 118, name: "Какая то хрень", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
         { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
@@ -107,6 +106,7 @@ class Inventory extends React.Component {
         usable: [4], // Можно "использовать"
         consumable: [3], // Можно "употребить"
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
+        ammo: [146 /*просто пример*/], // Предметы которыми можно зарядить оружие (патроны)
       },
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
@@ -152,6 +152,7 @@ class Inventory extends React.Component {
       equipment_weapon: [ // Экипированное оружие
       ],
       selected_weapon_id: 0,
+      selected_weapon_item_id: 0,
       updateItemIcons_primary_timeout: false,
       updateItemIcons_secondary_timeout: false,
     }
@@ -163,7 +164,7 @@ class Inventory extends React.Component {
       if (value.type === 'showOrHide') {
         let status = !this.state.show;
         if(!status) this.closeInterMenu(null, { action: null });
-        // -- mp.trigger('client:inventory:status', status); // eslint-disable-line
+        mp.trigger('client:inventory:status', status); // eslint-disable-line
         this.setState({ show: status })
       }
       if (value.type === 'updateEquip') {
@@ -210,6 +211,7 @@ class Inventory extends React.Component {
     })
 
     if(this.state.selected_weapon_id === 0) this.setState({craft: true});
+    this.setState({selected_weapon_item_id: this.getSelectedWeaponById().item_id});
 
     this.checkHotbar() // Обновление слотов быстрого доступа
     this.checkOutfit() // Правильное отображение иконок одежды и прочего outfit'a
@@ -235,9 +237,22 @@ class Inventory extends React.Component {
     if (this.state.trade_ids !== prevState.trade_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
       this.updateTradeMenu()
     }
+    if (this.state.loadw_ids !== prevState.loadw_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
+      this.updateLoadWMenu()
+    }
     if(this.state.selected_weapon_id !== prevState.selected_weapon_id) {
       if(this.state.selected_weapon_id === 0) this.setState({craft: true});
+      this.setState({selected_weapon_item_id: this.getSelectedWeaponById().item_id});
     }
+  }
+  getSelectedWeaponById(){
+    let item = { item_id: 0 }
+    for(let i = 0; i<this.state.equipment_weapon.length; i++){
+      if(this.state.equipment_weapon[i].id === this.state.selected_weapon_id){
+        item = this.state.equipment_weapon[i];
+      }
+    }
+    return item;
   }
   sumWeightInventory() {
    let items_inv = this.state.items;
@@ -252,7 +267,7 @@ class Inventory extends React.Component {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
   }
   notifyToClient(text) {
-    // -- mp.trigger('client:inventory:notify', text); // eslint-disable-line
+    mp.trigger('client:inventory:notify', text); // eslint-disable-line
   }
   updateItemIcons(inventory){
     let items_copy = []
@@ -311,6 +326,23 @@ class Inventory extends React.Component {
     })
     this.setState({inter_menu: menu})
   }
+  updateLoadWMenu(){
+    let menu = [...this.state.inter_menu]
+    let index = -1
+    menu.forEach((item) => {
+      index = menu.indexOf(item)
+      if(item.action === 'loadw_id'){
+        if (index !== -1) menu.splice(index, 1)
+      } else {
+        if(item.action !== 'close') menu[index].show = false
+      }
+    })
+    let loadw_ids_copy = [...this.state.loadw_ids]
+    loadw_ids_copy.forEach((item) => {
+      menu.push({name: item.name, loadw_id: item.id, action: "loadw_id", show: true})
+    })
+    this.setState({inter_menu: menu})
+  }
   updateStacks(inventory){
     let items_copy = []
     if(inventory === 'primary'){
@@ -352,6 +384,14 @@ class Inventory extends React.Component {
     this.setState({itemsCounted: updatedItemsCounted})
     :
     this.setState({secondary_itemsCounted: updatedItemsCounted})
+  }
+  getWeaponBorderColor(item_id){ // Возвращает цвет выделения оружия по item_id
+    switch(true) {
+      case item_id === 109:
+        return '#f24a4a';
+      default:
+        return '#48baf2';
+    }
   }
   checkHotbar() { // Обновляет хотбар, генерирует пустые ячейки
     if (this.state.hotbar.length < 15) {
@@ -422,6 +462,9 @@ class Inventory extends React.Component {
     if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('equip') // Экипировать
     }
+    if (this.state.itemsById.ammo.includes(item.item_id) && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('loadw') // Зарядить оружие
+    }
     for (let i = 0; i < Object.keys(this.state.outfitById).length; i++) {
       if (Object.values(this.state.outfitById)[i].includes(item.item_id) && source !== 'secondary_inv') {
         if (source !== 'outfit') {
@@ -484,20 +527,17 @@ class Inventory extends React.Component {
       trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     }
     this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
-    // -- mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
+    mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
   }
   loadwItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
-    /*let trade_ids_copy = []
-    let max = 1000 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
-    let min = 1 // Эта строка для теста (генерирует рандомные ID игроков для торговли)
-    for(let i = 0; i<6; i++){ // Эта строка для теста (генерирует рандомные ID игроков для торговли)
-      trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
+    let loadw_ids_copy = []
+    for(let i = 0; i<this.state.equipment_weapon.length; i++){ // Эта строка для теста (получает всё экипированное оружие)
+      loadw_ids_copy.push({name: this.state.equipment_weapon[i].name, id: this.state.equipment_weapon[i].id}) // Эта строка для теста (получает всё экипированное оружие)
     }
-    this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
-    // -- mp.trigger('client:inventory:loadwItemMenu'); // eslint-disable-line
+    this.setState({loadw_ids: loadw_ids_copy}) // Эта строка для теста (записывает всё экипированное оружие)
+    mp.trigger('client:inventory:loadwItemMenu'); // eslint-disable-line
   }
   closeInterMenu(e, button) {
-
     switch (button.action) {
       case "close":
         break;
@@ -531,11 +571,14 @@ class Inventory extends React.Component {
       case "give": // Передать
         this.giveItemMenu();
         return;
-      case "loadw": // Передать
+      case "loadw": // Зарядить
         this.loadwItemMenu();
         return;
       case "trade_id": // Выбор ID, кому передать
         this.itemGive(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.trade_player_id);
+        break;
+      case "loadw_id": // Выбор ID оружия для зарядки
+        this.loadW(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.loadw_id);
         break;
       case "drop": // Выкинуть
         this.itemDrop(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -594,9 +637,16 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
-          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
+          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) }, () => {
+            if(item.id === this.state.selected_weapon_id) {
+              if(this.state.equipment_weapon.length === 0) {
+                this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+              } else {
+                this.selectWeapon(this.state.equipment_weapon[0]) // Выбрать перое экипированное оружие (что бы окно оружия не пропало совсем)
+              }
+            }
+          })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
-          if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... переместить в багажник, снять оружие из экипировки, и удалить из инвентаря
         }
         break;
@@ -774,7 +824,7 @@ class Inventory extends React.Component {
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
           this.setState({ selected_weapon_id: item.id, craft: false })
           // mp.call ... экипировать и удалить из инвентаря
-          // -- mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
         }
         break;
       /* case 'secondary_inv':
@@ -829,10 +879,40 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
-          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
-          if (item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) }, () => {
+            if(item.id === this.state.selected_weapon_id) {
+              if(this.state.equipment_weapon.length === 0) {
+                this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+              } else {
+                this.selectWeapon(this.state.equipment_weapon[0]) // Выбрать перое экипированное оружие (что бы окно оружия не пропало совсем)
+              }
+            }
+          })
           console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
           // mp.call ... передать оружие и удалить из экипировки (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  loadW(item, source, loadw_id) {
+    this.setState({ loadw_ids: [] });
+    switch (source) {
+      case 'hotbar':
+        if (this.checkItem(item, 'hotbar') !== null) {
+          item = this.checkItem(item, 'hotbar')
+          this.setState({ items: this.arrayRemove(this.state.items, item) })
+          console.log(`Заряжаю оружие ID ${loadw_id}, патронами ${item.name}, ID ${item.id}`)
+          // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
+        }
+        break;
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          this.setState({ items: this.arrayRemove(this.state.items, item) })
+          console.log(`Заряжаю оружие ID ${loadw_id}, патронами ${item.name}, ID ${item.id}`)
+          // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
         }
         break;
       default:
@@ -873,8 +953,15 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
-          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
-          if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) }, () => {
+            if(item.id === this.state.selected_weapon_id) {
+              if(this.state.equipment_weapon.length === 0) {
+                this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+              } else {
+                this.selectWeapon(this.state.equipment_weapon[0]) // Выбрать перое экипированное оружие (что бы окно оружия не пропало совсем)
+              }
+            }
+          })
           // mp.call ... выбросить и удалить из экипировки
         }
         break;
@@ -894,7 +981,7 @@ class Inventory extends React.Component {
           }
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ items: this.state.items.concat(item) })
-          // -- mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
           // mp.call ... снять с персонажа и переместить в инвентарь
         }
         break;
@@ -927,7 +1014,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          // -- mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -952,11 +1039,18 @@ class Inventory extends React.Component {
             this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
             return;
           }
-          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) })
+          this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) }, () => {
+            if(item.id === this.state.selected_weapon_id) {
+              if(this.state.equipment_weapon.length === 0) {
+                this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
+              } else {
+                this.selectWeapon(this.state.equipment_weapon[0]) // Выбрать перое экипированное оружие (что бы окно оружия не пропало совсем)
+              }
+            }
+          })
           this.setState({ items: this.state.items.concat(item) })
-          if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... снять оружие из экипировки и переместить в инвентарь
-          // -- mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
@@ -964,13 +1058,12 @@ class Inventory extends React.Component {
     }
   }
   selectWeapon(item) {
-    console.log(item)
     if (this.checkItem(item, 'weapon') !== null) {
       item = this.checkItem(item, 'weapon')
       this.setState({ selected_weapon_id: item.id })
       // mp.call ... выбрать оружие для модификации и взять в руки
 
-      // -- mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
+      mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
     }
   }
   checkItem(item, source) { // Проверка и поиск предмета в том или ином source (инвентарь,багажник,экипировка и тд.)
@@ -979,11 +1072,11 @@ class Inventory extends React.Component {
         let inventory = this.state.items;
 
         for (let i = 0; i < inventory.length; i++) {
-          /*// // -- mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
-          // // -- mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
-          // // -- mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
-          // // -- mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
-          // // -- mp.trigger('client:events:debug', item.id); // eslint-disable-line*/
+          /*// mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
+          // mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
+          // mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
+          // mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
+          // mp.trigger('client:events:debug', item.id); // eslint-disable-line*/
 
           if (inventory[i].item_id === item.item_id && inventory[i].name === item.name &&
             inventory[i].desc === item.desc &&
@@ -1060,7 +1153,7 @@ class Inventory extends React.Component {
     this.setState({ secondary_inv_open: false})
   }
   closeInventory() {
-    // -- mp.trigger('client:inventory:status', false); // eslint-disable-line
+    mp.trigger('client:inventory:status', false); // eslint-disable-line
     this.setState({ show: false, craft: false })
   }
   openTrunk() {
@@ -1206,20 +1299,33 @@ class Inventory extends React.Component {
                           {this.state.equipment_weapon.map((item, i) => {
                             const index = `weaponplayer${i}`
                             return (
-                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onClick={() => this.selectWeapon(item)} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>{item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
+                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`}
+                               onClick={() => this.selectWeapon(item)} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}
+                               style={{ borderColor: this.getWeaponBorderColor(item.item_id) }}>
+                                 <span>{item.name}</span>
+                                 <span className="style-serial-weapon">{item.desc}</span>
+                                 </div>
                             )
                           })}
                         </div>
                         <div className="weapon-craft-box">
-                          <div className="liner-weapon-crafting"></div>
+                          <div className="liner-weapon-crafting" style={{ background: this.getWeaponBorderColor(this.state.selected_weapon_item_id) }}></div>
                           <div className="box-img-equip-weapon">
-                            <div className="weapon-m41"></div>
+                            <div className={this.state.selected_weapon_item_id !== 0 ? "selected-weapon img-" + this.state.selected_weapon_item_id : "weapon-m41"}></div>
                           </div>
                           <div className="main-box-craft-weapon">
-                            <div className="square-box-craft-weapon sqr-wp-top"></div>
-                            <div className="square-box-craft-weapon sqr-wp-top"></div>
-                            <div className="square-box-craft-weapon sqr-wp-top"></div>
-                            <div className="square-box-craft-weapon sqr-wp-top"></div>
+                            <div className="square-box-craft-weapon sqr-wp-top">
+                              <div className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot1 ? "weapon-mod-active weapon-supressor" : "weapon-mod weapon-supressor" : ""} />
+                            </div>
+                            <div className="square-box-craft-weapon sqr-wp-top">
+                              <div className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot2 ? "weapon-mod-active weapon-flashlight" : "weapon-mod weapon-flashlight" : ""} />
+                            </div>
+                            <div className="square-box-craft-weapon sqr-wp-top">
+                              <div className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot3 ? "weapon-mod-active weapon-grip" : "weapon-mod weapon-grip" : ""} />
+                            </div>
+                            <div className="square-box-craft-weapon sqr-wp-top">
+                              <div className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot4 ? "weapon-mod-active weapon-scope" : "weapon-mod weapon-scope" : ""} />
+                            </div>
                             {/* <div className="square-box-craft-weapon sqr-wp-left"></div>
                             <div className="square-box-craft-weapon"></div>
                             <div className="square-box-craft-weapon"></div>

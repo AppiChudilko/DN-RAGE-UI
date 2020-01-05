@@ -334,6 +334,17 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     width: 252px;
     height: 79px;
 }
+.selected-weapon {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 100%;
+    height: 100%;
+    background-size: 190px !important;
+    background-position: center !important;
+    /* filter: brightness(0) saturate(100%) invert(100%) sepia(2%) saturate(590%) hue-rotate(205deg) brightness(118%) contrast(100%); */
+}
 .main-box-craft-weapon {
     display: flex;
     flex-wrap: wrap;
@@ -343,6 +354,44 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     height: 62px;
     background: rgb(255, 255, 255, 0.051);
     margin-right: 20px;
+}
+.weapon-mod-active {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 62px;
+    height: 62px;
+    background-size: 54px !important;
+    background-position: center !important;
+    filter: brightness(400%) contrast(20%);
+}
+.weapon-mod {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 62px;
+    height: 62px;
+    background-size: 54px !important;
+    background-position: center !important;
+    filter: brightness(400%) contrast(20%);
+    opacity: 0.3;
+}
+.weapon-mod-active:hover {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
+}
+.weapon-supressor {
+    background: url("../img/weapon/supressor.png") no-repeat;
+}
+.weapon-flashlight {
+    background: url("../img/weapon/flashlight.png") no-repeat;
+}
+.weapon-grip {
+    background: url("../img/weapon/grip.png") no-repeat;
+}
+.weapon-scope {
+    background: url("../img/weapon/scope.png") no-repeat;
 }
 .square-box-craft-weapon:first-child {
     margin-left: 21px;
