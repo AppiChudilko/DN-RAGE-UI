@@ -71,6 +71,16 @@ class Inventory extends React.Component {
         { id: 6, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
         { id: 7, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
         { id: 8, item_id: 8, name: "Бургер id8", volume: 1500, desc: "123", counti: 0, params: {} }, // айди предмета из базы
+        { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
+        { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 29, item_id: 115, name: "Пушка шаталка", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
+        { id: 30, item_id: 116, name: "Чёткая снайпа", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 31, item_id: 117, name: "Выбор твоей бабушки", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
+        { id: 32, item_id: 118, name: "Какая то хрень", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
+        { id: 34, item_id: 120, name: "Пистолет-обрез?", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 35, item_id: 121, name: "Ракетница", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
+        { id: 36, item_id: 122, name: "Гранатомёт", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
       ],
       itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
@@ -152,7 +162,8 @@ class Inventory extends React.Component {
       if (value.type === 'show') { this.setState({ show: true }) }
       if (value.type === 'showOrHide') {
         let status = !this.state.show;
-        mp.trigger('client:inventory:status', status); // eslint-disable-line
+        if(!status) this.closeInterMenu(null, { action: null });
+        // -- mp.trigger('client:inventory:status', status); // eslint-disable-line
         this.setState({ show: status })
       }
       if (value.type === 'updateEquip') {
@@ -198,6 +209,8 @@ class Inventory extends React.Component {
       else return;
     })
 
+    if(this.state.selected_weapon_id === 0) this.setState({craft: true});
+
     this.checkHotbar() // Обновление слотов быстрого доступа
     this.checkOutfit() // Правильное отображение иконок одежды и прочего outfit'a
     this.updateItemIcons('primary')
@@ -222,6 +235,9 @@ class Inventory extends React.Component {
     if (this.state.trade_ids !== prevState.trade_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
       this.updateTradeMenu()
     }
+    if(this.state.selected_weapon_id !== prevState.selected_weapon_id) {
+      if(this.state.selected_weapon_id === 0) this.setState({craft: true});
+    }
   }
   sumWeightInventory() {
    let items_inv = this.state.items;
@@ -236,7 +252,7 @@ class Inventory extends React.Component {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
   }
   notifyToClient(text) {
-    mp.trigger('client:inventory:notify', text); // eslint-disable-line
+    // -- mp.trigger('client:inventory:notify', text); // eslint-disable-line
   }
   updateItemIcons(inventory){
     let items_copy = []
@@ -468,7 +484,7 @@ class Inventory extends React.Component {
       trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     }
     this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
-    mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
+    // -- mp.trigger('client:inventory:giveItemMenu'); // eslint-disable-line
   }
   loadwItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
     /*let trade_ids_copy = []
@@ -478,7 +494,7 @@ class Inventory extends React.Component {
       trade_ids_copy.push(Math.floor(Math.random() * (max - min + 1) ) << 0) // Эта строка для теста (генерирует рандомные ID игроков для торговли)
     }
     this.setState({trade_ids: ['']}) // Записывает ID ближайших игроков для передачи предмета*/
-    mp.trigger('client:inventory:loadwItemMenu'); // eslint-disable-line
+    // -- mp.trigger('client:inventory:loadwItemMenu'); // eslint-disable-line
   }
   closeInterMenu(e, button) {
 
@@ -747,6 +763,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'hotbar')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
+          this.setState({ selected_weapon_id: item.id, craft: false })
           // mp.call ... экипировать и удалить из инвентаря
         }
         break;
@@ -755,8 +772,9 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
+          this.setState({ selected_weapon_id: item.id, craft: false })
           // mp.call ... экипировать и удалить из инвентаря
-          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          // -- mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
         }
         break;
       /* case 'secondary_inv':
@@ -764,6 +782,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
+          this.setState({ selected_weapon_id: item.id, craft: false })
           // mp.call ... экипировать и удалить из багажника
         }
         break; */
@@ -875,7 +894,7 @@ class Inventory extends React.Component {
           }
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ items: this.state.items.concat(item) })
-          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          // -- mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
           // mp.call ... снять с персонажа и переместить в инвентарь
         }
         break;
@@ -908,7 +927,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          // -- mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
@@ -937,7 +956,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.state.items.concat(item) })
           if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... снять оружие из экипировки и переместить в инвентарь
-          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          // -- mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
@@ -945,12 +964,13 @@ class Inventory extends React.Component {
     }
   }
   selectWeapon(item) {
+    console.log(item)
     if (this.checkItem(item, 'weapon') !== null) {
       item = this.checkItem(item, 'weapon')
       this.setState({ selected_weapon_id: item.id })
       // mp.call ... выбрать оружие для модификации и взять в руки
 
-      mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
+      // -- mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
     }
   }
   checkItem(item, source) { // Проверка и поиск предмета в том или ином source (инвентарь,багажник,экипировка и тд.)
@@ -959,11 +979,11 @@ class Inventory extends React.Component {
         let inventory = this.state.items;
 
         for (let i = 0; i < inventory.length; i++) {
-          /*// mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
-          // mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
-          // mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
-          // mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
-          // mp.trigger('client:events:debug', item.id); // eslint-disable-line*/
+          /*// // -- mp.trigger('client:events:debug', typeof inventory[i].params); // eslint-disable-line
+          // // -- mp.trigger('client:events:debug', JSON.stringify(inventory[i].params)); // eslint-disable-line
+          // // -- mp.trigger('client:events:debug', inventory[i].id == item.id); // eslint-disable-line
+          // // -- mp.trigger('client:events:debug', inventory[i].id); // eslint-disable-line
+          // // -- mp.trigger('client:events:debug', item.id); // eslint-disable-line*/
 
           if (inventory[i].item_id === item.item_id && inventory[i].name === item.name &&
             inventory[i].desc === item.desc &&
@@ -1040,7 +1060,7 @@ class Inventory extends React.Component {
     this.setState({ secondary_inv_open: false})
   }
   closeInventory() {
-    mp.trigger('client:inventory:status', false); // eslint-disable-line
+    // -- mp.trigger('client:inventory:status', false); // eslint-disable-line
     this.setState({ show: false, craft: false })
   }
   openTrunk() {
@@ -1126,14 +1146,24 @@ class Inventory extends React.Component {
                     <div className="liner-inv"></div>
                     <div className="title-inv"><span>{this.state.craft ? 'Крафт' : 'Оружие'}</span></div>
                     <div className="menu-craft-change">
-                      <input type="radio" name="btn-craft-class" id="btn-craft-class1" defaultChecked onChange={this.changeBtnCraft.bind(this)}></input>
-                      <label htmlFor="btn-craft-class1" className="btn-craft" style={{ marginRight: 4 + 'px' }}>
-                        <div className="bg-color-craft-block img-btn-weapon"></div>
-                      </label>
-                      <input type="radio" name="btn-craft-class" id="btn-craft-class2" onChange={this.changeBtnCraft.bind(this)}></input>
+                    {this.state.selected_weapon_id !== 0 ? 
+                    <React.Fragment>
+                    <input type="radio" name="btn-craft-class" id="btn-craft-class1" checked={!this.state.craft} onChange={this.changeBtnCraft.bind(this)}></input>
+                    <label htmlFor="btn-craft-class1" className="btn-craft" style={{ marginRight: 4 + 'px' }}>
+                      <div className="bg-color-craft-block img-btn-weapon"></div>
+                    </label>
+                    <input type="radio" name="btn-craft-class" id="btn-craft-class2" checked={this.state.craft} onChange={this.changeBtnCraft.bind(this)}></input>
                       <label htmlFor="btn-craft-class2" className="btn-craft">
                         <div className="bg-color-craft-block img-btn-cutter"></div>
                       </label>
+                    </React.Fragment>
+                     : 
+                    <React.Fragment>
+                     <input type="radio" name="btn-craft-class" id="btn-craft-class2" checked={this.state.craft} onChange={this.changeBtnCraft.bind(this)}></input>
+                      <label htmlFor="btn-craft-class2" className="btn-craft">
+                        <div className="bg-color-craft-block img-btn-cutter"></div>
+                      </label>
+                    </React.Fragment>}
                     </div>
                     {this.state.craft ?
                       <React.Fragment>
@@ -1176,7 +1206,7 @@ class Inventory extends React.Component {
                           {this.state.equipment_weapon.map((item, i) => {
                             const index = `weaponplayer${i}`
                             return (
-                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>{item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
+                              <div key={index} className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`} onClick={() => this.selectWeapon(item)} onContextMenu={(e) => this.handlePos(e, item, 'weapon')}><span>{item.name}</span><span className="style-serial-weapon">{item.desc}</span></div>
                             )
                           })}
                         </div>
@@ -1190,10 +1220,10 @@ class Inventory extends React.Component {
                             <div className="square-box-craft-weapon sqr-wp-top"></div>
                             <div className="square-box-craft-weapon sqr-wp-top"></div>
                             <div className="square-box-craft-weapon sqr-wp-top"></div>
-                            <div className="square-box-craft-weapon sqr-wp-left"></div>
+                            {/* <div className="square-box-craft-weapon sqr-wp-left"></div>
                             <div className="square-box-craft-weapon"></div>
                             <div className="square-box-craft-weapon"></div>
-                            <div className="square-box-craft-weapon"></div>
+                            <div className="square-box-craft-weapon"></div> */}
                           </div>
                         </div>
 

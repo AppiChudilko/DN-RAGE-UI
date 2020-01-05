@@ -256,6 +256,7 @@
 .menu-craft-change {
     display: flex;
     margin-top: 10px;
+    background-color: rgb(38, 36, 36);
 }
 .btn-craft {
     width: 174px;
@@ -283,12 +284,13 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     height: 44px;
 }
 .weapon-player-equip {
-    height: 219px;
+    height: 300px;
     width: inherit;
     margin-top: 27px;
     font-family: "RobotoBold";
     font-size: 20px;
     color: #fff;
+    overflow: auto;
 }
 .style-serial-weapon {
     font-family: "RobotoLight";
