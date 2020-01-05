@@ -25,7 +25,7 @@ class Inventory extends React.Component {
       trade_ids: [], // Сюда записываются ID ближайших игроков для торговли
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
-        { name: "Выбрать", action: "select", show: false },
+        { name: "Выбрать", action: "select", show: false, color: '#4CAF50' },
 
         { name: "Надеть", action: "put_on", show: false, color: '#4CAF50' },
         { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
@@ -176,6 +176,9 @@ class Inventory extends React.Component {
       }
       if (value.type === 'updateTrade') {
         this.setState({ trade_ids: value.idList })
+      }
+      if (value.type === 'updateSelectWeapon') {
+        this.setState({ selected_weapon_id: value.selectId });
       }
       if (value.type === 'weaponToInventory') {
         this.state.equipment_weapon.forEach((item) => {
@@ -934,7 +937,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.state.items.concat(item) })
           if(item.id === this.state.selected_weapon_id) this.setState({ selected_weapon_id: 0 }) // Убрать выделение с оружия если оно выбрано
           // mp.call ... снять оружие из экипировки и переместить в инвентарь
-          mp.trigger('client:inventory:unEquip', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
@@ -946,6 +949,8 @@ class Inventory extends React.Component {
       item = this.checkItem(item, 'weapon')
       this.setState({ selected_weapon_id: item.id })
       // mp.call ... выбрать оружие для модификации и взять в руки
+
+      mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
     }
   }
   checkItem(item, source) { // Проверка и поиск предмета в том или ином source (инвентарь,багажник,экипировка и тд.)
