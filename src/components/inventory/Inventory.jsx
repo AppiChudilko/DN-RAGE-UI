@@ -5,7 +5,6 @@ import './css/img-items.css';
 import { Animated } from 'react-animated-css';
 import InteractionMenu from '../interactionmenu/InteractionMenu';
 import EventManager from "../../EventManager";
-import { thisExpression } from '@babel/types';
 
 class Inventory extends React.Component {
   constructor(props) {
