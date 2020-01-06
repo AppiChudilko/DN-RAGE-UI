@@ -612,7 +612,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           // mp.call ... переместить в багажник и удалить из инвентаря
-          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
         }
         break;
       case 'outfit':
@@ -622,7 +622,7 @@ class Inventory extends React.Component {
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
-          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в багажник, снять с персонажа, и удалить из инвентаря
         }
         break;
