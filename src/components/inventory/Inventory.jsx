@@ -165,6 +165,13 @@ class Inventory extends React.Component {
         if(!status) this.closeInterMenu(null, { action: null });
         mp.trigger('client:inventory:status', status); // eslint-disable-line
         this.setState({ show: status })
+
+        if (status == false) {
+          this.setState({ secondary_inv_open: false });
+          this.setState({ secondary_items: [] });
+          this.setState({ secondary_items_owner_id: 0 });
+          this.setState({ secondary_items_owner_type: 0 });
+        }
       }
       if (value.type === 'updateEquip') {
         this.setState({ outfit: value.outfit })
@@ -175,8 +182,19 @@ class Inventory extends React.Component {
       if (value.type === 'updateEquipItems') {
         this.setState({ equipment_outfit: value.items })
       }
+      if (value.type === 'updateSubItems') {
+        this.setState({ secondary_inv_open: true });
+        this.setState({ secondary_items: value.items });
+        this.setState({ secondary_items_owner_id: value.ownerId });
+        this.setState({ secondary_items_owner_type: value.ownerType });
+      }
       if (value.type === 'updateWeaponItems') {
-        this.setState({ equipment_weapon: value.items })
+        this.setState({ equipment_weapon: value.items });
+
+        if (this.state.selected_weapon_id == 0) {
+          this.setState({ craft: false });
+          this.setState({ selected_weapon_id: this.state.equipment_weapon[0].id });
+        }
       }
       if (value.type === 'updateLabel') {
         this.setState({ player_name: value.uname });
@@ -189,6 +207,8 @@ class Inventory extends React.Component {
         this.setState({ trade_ids: value.idList })
       }
       if (value.type === 'updateSelectWeapon') {
+        if (value.selectId > 0)
+          this.setState({ craft: false });
         this.setState({ selected_weapon_id: value.selectId });
       }
       if (value.type === 'weaponToInventory') {
@@ -386,8 +406,14 @@ class Inventory extends React.Component {
   }
   getWeaponBorderColor(item_id){ // Возвращает цвет выделения оружия по item_id
     switch(true) {
-      case item_id === 109:
+      case item_id >= 54 && item_id <= 69:
+        return '#4CAF50';
+      case item_id >= 70 && item_id <= 84:
+        return '#FFC107';
+      case item_id >= 85 && item_id <= 93:
         return '#f24a4a';
+      case item_id >= 127 && item_id <= 136:
+        return '#795548';
       default:
         return '#48baf2';
     }
@@ -1154,6 +1180,11 @@ class Inventory extends React.Component {
   closeInventory() {
     mp.trigger('client:inventory:status', false); // eslint-disable-line
     this.setState({ show: false, craft: false })
+
+    this.setState({ secondary_inv_open: false });
+    this.setState({ secondary_items: [] });
+    this.setState({ secondary_items_owner_id: 0 });
+    this.setState({ secondary_items_owner_type: 0 });
   }
   openTrunk() {
     this.setState({ secondary_inv_open: true }) // <----- это нужно будет убрать и открывать эвентом с клиента
