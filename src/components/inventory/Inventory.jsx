@@ -24,13 +24,14 @@ class Inventory extends React.Component {
       weight_max: 100,
       trade_ids: [], // Сюда записываются ID ближайших игроков для торговли
       loadw_ids: [{name: "P90", id: 28}], // Сюда записываются данные оружия в экипировке которое можно зарядить выбранными патронами
+      upgradew_ids: [{name: "P90", id: 28}], // Сюда записываются данные оружия в экипировке которое можно зарядить выбранными патронами
 
       inter_menu: [ // Пункты меню (генерируются динамично, в зависимости от выбранного предмета)
         { name: "Выбрать", action: "select", show: false, color: '#4CAF50' },
         { name: "Разрядить", action: "unloadW", show: false },
 
         { name: "Надеть", action: "put_on", show: false, color: '#4CAF50' },
-        { name: "Надеть на оружие", action: "put_on_gun", show: false, color: '#4CAF50' },
+        { name: "Модифицировать", action: "put_on_gun", show: false, color: '#4CAF50' },
         { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
         { name: "Употребить", action: "consume", show: false, color: '#4CAF50' },
         { name: "Съесть", action: "eat", show: false, color: '#4CAF50' },
@@ -105,7 +106,7 @@ class Inventory extends React.Component {
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
         ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
         countPt: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
-        putOnGun: [293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471], // Предметы которыми можно зарядить оружие (патроны)
+        putOnGun: [293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473], // Предметы которыми можно зарядить оружие (патроны)
       },
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
@@ -227,6 +228,13 @@ class Inventory extends React.Component {
           }
         });
       }
+      if (value.type === 'updateWeaponParams') {
+        this.state.equipment_weapon.forEach((item, i) => { //TODO ПЖ СДЕЛАЙТЕ ЧТОБЫ ОБНОВЛЯЛСЯ PARAMS
+          if (value.itemId == item.id) {
+            //value.params
+          }
+        });
+      }
       if (value.type === 'secondary_inv') { 
         this.setState({
           secondary_inv_open: true,
@@ -263,6 +271,9 @@ class Inventory extends React.Component {
     }
     if (this.state.loadw_ids !== prevState.loadw_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
       this.updateLoadWMenu()
+    }
+    if (this.state.upgradew_ids !== prevState.upgradew_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
+      this.updateUpgradeWMenu()
     }
     if(this.state.selected_weapon_id !== prevState.selected_weapon_id) {
       if(this.state.selected_weapon_id === 0) this.setState({craft: true});
@@ -364,6 +375,23 @@ class Inventory extends React.Component {
     let loadw_ids_copy = [...this.state.loadw_ids]
     loadw_ids_copy.forEach((item) => {
       menu.push({name: item.name, loadw_id: item.id, action: "loadw_id", show: true})
+    })
+    this.setState({inter_menu: menu})
+  }
+  updateUpgradeWMenu(){
+    let menu = [...this.state.inter_menu]
+    let index = -1
+    menu.forEach((item) => {
+      index = menu.indexOf(item)
+      if(item.action === 'loadw_id'){
+        if (index !== -1) menu.splice(index, 1)
+      } else {
+        if(item.action !== 'close') menu[index].show = false
+      }
+    })
+    let upgradew_ids_copy = [...this.state.upgradew_ids]
+    upgradew_ids_copy.forEach((item) => {
+      menu.push({name: item.name, upgradew: JSON.stringify(item.item), action: "upgradew_id", show: true})
     })
     this.setState({inter_menu: menu})
   }
@@ -557,6 +585,13 @@ class Inventory extends React.Component {
     }
     this.setState({loadw_ids: loadw_ids_copy}) // Эта строка для теста (записывает всё экипированное оружие)
   }
+  upgradewItemMenu(){ // Тут нужно получать ID ближайших игроков для передачи предмета
+    let upgradew_ids_copy = []
+    for(let i = 0; i<this.state.equipment_weapon.length; i++){ // Эта строка для теста (получает всё экипированное оружие)
+      upgradew_ids_copy.push({name: this.state.equipment_weapon[i].name, item: this.state.equipment_weapon[i]}) // Эта строка для теста (получает всё экипированное оружие)
+    }
+    this.setState({upgradew_ids: upgradew_ids_copy}) // Эта строка для теста (записывает всё экипированное оружие)
+  }
   countPtItemMenu(item){ // Тут нужно получать ID ближайших игроков для передачи предмета
     this.notifyToClient('В коробке ~g~' + parseInt(item.counti) + 'пт.');
   }
@@ -594,6 +629,9 @@ class Inventory extends React.Component {
       case "loadw": // Зарядить
         this.loadwItemMenu();
         return;
+      case "put_on_gun": // Экипировать
+        this.upgradewItemMenu()
+        return;
       case "countPt": // Посчитать патроны
         this.countPtItemMenu(this.state.inter_menu_selected.item);
         break;
@@ -606,6 +644,9 @@ class Inventory extends React.Component {
       case "loadw_id": // Выбор ID оружия для зарядки
         this.loadW(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.loadw_id);
         break;
+      case "upgradew_id": // Выбор ID оружия для зарядки
+        this.upgradeW(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source, button.upgradew);
+        break;
       case "drop": // Выкинуть
         this.itemDrop(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
@@ -614,9 +655,6 @@ class Inventory extends React.Component {
         break;
       case "equip": // Экипировать
         this.itemEquip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
-        break;
-      case "put_on_gun": // Экипировать
-        this.itemPutOnGun(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "unequip": // Снять экипировку / Убрать в инвентарь
         this.itemUnequip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -866,6 +904,22 @@ class Inventory extends React.Component {
           //this.setState({ items: this.arrayRemove(this.state.items, item) })
           // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
           mp.trigger('client:inventory:loadWeapon', item.id, item.item_id, loadw_id, item.counti); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  upgradeW(item, source, upgradew) {
+    this.setState({ upgradew_ids: [] });
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          //this.setState({ items: this.arrayRemove(this.state.items, item) })
+          // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
+          console.log(upgradew);
+          mp.trigger('client:inventory:upgradeWeapon', item.id, item.item_id, upgradew); // eslint-disable-line
         }
         break;
       default:
