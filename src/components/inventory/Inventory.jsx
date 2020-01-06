@@ -30,6 +30,7 @@ class Inventory extends React.Component {
         { name: "Разрядить", action: "unloadW", show: false },
 
         { name: "Надеть", action: "put_on", show: false, color: '#4CAF50' },
+        { name: "Надеть на оружие", action: "put_on_gun", show: false, color: '#4CAF50' },
         { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
         { name: "Употребить", action: "consume", show: false, color: '#4CAF50' },
         { name: "Съесть", action: "eat", show: false, color: '#4CAF50' },
@@ -104,6 +105,7 @@ class Inventory extends React.Component {
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
         ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
         countPt: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
+        putOnGun: [293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471], // Предметы которыми можно зарядить оружие (патроны)
       },
 
       // !!! Ключи объекта outfitById нельзя менять местами !!!
@@ -481,6 +483,9 @@ class Inventory extends React.Component {
     if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('equip') // Экипировать
     }
+    if (this.state.itemsById.putOnGun.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('put_on_gun') // Надеть на оружие
+    }
     if (this.state.itemsById.ammo.includes(item.item_id) && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('loadw') // Зарядить оружие
     }
@@ -609,6 +614,9 @@ class Inventory extends React.Component {
         break;
       case "equip": // Экипировать
         this.itemEquip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "put_on_gun": // Экипировать
+        this.itemPutOnGun(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "unequip": // Снять экипировку / Убрать в инвентарь
         this.itemUnequip(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -964,6 +972,22 @@ class Inventory extends React.Component {
           // mp.call ... надеть на персонажа и удалить из багажника
         }
         break; */
+      default:
+        break;
+    }
+  }
+  itemPutOnGun(item, source) {
+
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          this.setState({ items: this.arrayRemove(this.state.items, item) })
+          this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
+          // mp.call ... надеть на персонажа и удалить из инвентаря
+        }
+        break;
       default:
         break;
     }
