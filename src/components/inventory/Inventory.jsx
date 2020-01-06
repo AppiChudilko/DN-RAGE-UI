@@ -54,9 +54,7 @@ class Inventory extends React.Component {
         { name: "Переложить", action: "move", show: false, color: '#2196F3' },
         { name: "Взять", action: "take", show: false, color: '#2196F3' },
 
-        { name: "Быстрый доступ", action: "to_hotbar", show: false },
         { name: "Снять", action: "take_off", show: false },
-        { name: "Убрать", action: "from_hotbar", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
 
         { name: "Выбросить", action: "drop", show: false, color: '#FF9800' },
@@ -90,9 +88,7 @@ class Inventory extends React.Component {
       ],
       secondary_items_owner_id: 0,
       secondary_items_owner_type: 0,
-      
-      hotbar: [ // Слоты быстрого доступа (не больше 15, пустые добавляются сами)
-      ],
+
       selected_item: {},
 
       // Надетые на персонажа предметы
@@ -177,6 +173,7 @@ class Inventory extends React.Component {
         this.setState({ outfit: value.outfit })
       }
       if (value.type === 'updateItems') {
+        console.log(value.items);
         this.setState({ items: value.items })
       }
       if (value.type === 'updateEquipItems') {
@@ -232,7 +229,6 @@ class Inventory extends React.Component {
     if(this.state.selected_weapon_id === 0) this.setState({craft: true});
     this.setState({selected_weapon_item_id: this.getSelectedWeaponById().item_id});
 
-    this.checkHotbar() // Обновление слотов быстрого доступа
     this.checkOutfit() // Правильное отображение иконок одежды и прочего outfit'a
     this.updateItemIcons('primary')
     this.updateItemIcons('secondary')
@@ -240,17 +236,15 @@ class Inventory extends React.Component {
   }
 
   componentDidUpdate(prevProp, prevState) {
-    if (this.state.hotbar !== prevState.hotbar) { // Обновляет быстрый доступ при изменении this.state.hotbar
-      this.checkHotbar()
-    }
+
     if (this.state.equipment_outfit !== prevState.equipment_outfit) { // Обновляет отображение outfit'a при изменении this.state.equipment_outfit
       this.checkOutfit()
     }
-    if (this.state.items !== prevState.items) { // Обновляет быстрый доступ при изменении this.state.hotbar
+    if (this.state.items !== prevState.items) {// Обновляем primary
       this.updateItemIcons('primary')
       this.sumWeightInventory()
     }
-    if (this.state.secondary_items !== prevState.secondary_items) { // Обновляет быстрый доступ при изменении this.state.hotbar
+    if (this.state.secondary_items !== prevState.secondary_items) { // Обновляем secondary
       this.updateItemIcons('secondary')
     }
     if (this.state.trade_ids !== prevState.trade_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
@@ -418,15 +412,6 @@ class Inventory extends React.Component {
         return '#48baf2';
     }
   }
-  checkHotbar() { // Обновляет хотбар, генерирует пустые ячейки
-    if (this.state.hotbar.length < 15) {
-      let hotbar = this.state.hotbar
-      while (hotbar.length < 15) {
-        hotbar.push({});
-      }
-      this.setState({ hotbar })
-    }
-  }
   checkOutfit() { // Это выглядит как "эпичный пиздец", но оно очень хорошо работает :D (обновляет состояние предметов outfit)
     let foundOutfit = [];
     for (let i = 0; i < Object.keys(this.state.outfitById).length; i++) {
@@ -457,7 +442,6 @@ class Inventory extends React.Component {
     this.setState({ craft: !this.state.craft })
   }
   handlePos(e, item, source) { // Функция которая генерирует меню взаимодействия
-    if (source === 'hotbar' && Object.entries(item).length === 0) return;
     if (source === 'outfit' && item.equipped === false) return; // Не открывать меню взаимодействия если ячейка outfit'a пустая
     this.setState(prevState => ({ ...prevState.inter_menu_selected.item = item, ...prevState.inter_menu_selected.source = source }))
     if (this.state.inter_show) {
@@ -506,12 +490,6 @@ class Inventory extends React.Component {
     }
     if (this.state.secondary_inv_open && source === 'secondary_inv') {
       actions.push('take') // Взять
-    }
-    if (source === 'hotbar') {
-      actions.push('from_hotbar') // Убрать из быстрого доступа
-    }
-    if (source === 'inventory') {
-      actions.push('to_hotbar') // Добавить в быстрый доступ
     }
     if (source === 'outfit') {
       actions.push('take_off') // Снять
@@ -575,12 +553,6 @@ class Inventory extends React.Component {
       case "take": // Взять
         this.moveToInventory(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
-      case "from_hotbar": // Удалить из быстрого доступа
-        this.removeFromHotbar(this.state.inter_menu_selected.item)
-        break;
-      case "to_hotbar": // Добавить в быстрый доступ
-        this.moveToHotbar(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
-        break;
       case "use": // Использовать
         this.itemUse(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
@@ -634,14 +606,6 @@ class Inventory extends React.Component {
   }
   moveItem(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          this.setState({ secondary_items: this.state.secondary_items.concat(item) })
-          // mp.call ... переместить в багажник и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -697,36 +661,8 @@ class Inventory extends React.Component {
         break;
     }
   }
-  moveToHotbar(item, source) {
-    let hotbar = this.state.hotbar.filter(function (ele) {
-      return Object.entries(ele).length !== 0;
-    });
-    if (hotbar.length >= 15) {
-      console.log("Все ячейки заняты!")
-      return;
-    }
-    switch (source) {
-      case "inventory":
-        this.setState({ hotbar: hotbar.concat({ index: hotbar.length + 1, item_id: item.item_id, name: item.name, desc: item.desc, counti: item.counti, icon: item.icon, params: item.params }) })
-        // mp.call ... сохранить ячейки быстрого доступа
-        break;
-      default:
-        break;
-    }
-  }
-  removeFromHotbar(item) {
-    this.setState({ hotbar: this.arrayRemove(this.state.hotbar, item) })
-    // mp.call ... сохранить ячейки быстрого доступа
-  }
   itemUse(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
-          // mp.call ... использовать предмет и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -747,13 +683,6 @@ class Inventory extends React.Component {
   }
   itemConsume(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... употребить и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -774,13 +703,6 @@ class Inventory extends React.Component {
   }
   itemEat(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... съесть и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -801,13 +723,6 @@ class Inventory extends React.Component {
   }
   itemDrink(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... выпить и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -833,15 +748,6 @@ class Inventory extends React.Component {
       }
     }
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
-          this.setState({ selected_weapon_id: item.id, craft: false })
-          // mp.call ... экипировать и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -868,14 +774,6 @@ class Inventory extends React.Component {
   itemGive(item, source, trade_player_id) {
     this.setState({trade_ids: []});
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
-          // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -924,14 +822,6 @@ class Inventory extends React.Component {
   loadW(item, source, loadw_id) {
     this.setState({ loadw_ids: [] });
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          console.log(`Заряжаю оружие ID ${loadw_id}, патронами ${item.name}, ID ${item.id}`)
-          // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -946,13 +836,6 @@ class Inventory extends React.Component {
   }
   itemDrop(item, source) {
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... выбросить и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -1026,14 +909,6 @@ class Inventory extends React.Component {
     }
 
     switch (source) {
-      case 'hotbar':
-        if (this.checkItem(item, 'hotbar') !== null) {
-          item = this.checkItem(item, 'hotbar')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          // mp.call ... надеть на персонажа и удалить из инвентаря
-        }
-        break;
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
@@ -1107,16 +982,6 @@ class Inventory extends React.Component {
             inventory[i].desc === item.desc &&
             inventory[i].counti === item.counti && JSON.stringify(inventory[i].params) === JSON.stringify(item.params)) {
             return inventory[i];
-          }
-        }
-        break;
-      case 'hotbar':
-        let inventory_hotbar = this.state.items;
-        for (let i = 0; i < inventory_hotbar.length; i++) {
-          if (inventory_hotbar[i].item_id === item.item_id && inventory_hotbar[i].name === item.name && 
-            inventory_hotbar[i].desc === item.desc &&
-            inventory_hotbar[i].counti === item.counti && JSON.stringify(inventory_hotbar[i].params) === JSON.stringify(item.params)) {
-            return inventory_hotbar[i];
           }
         }
         break;
@@ -1365,18 +1230,6 @@ class Inventory extends React.Component {
 
                       </React.Fragment>
                     }
-                  </div>
-                </div>
-                <div className="inv-clm-main">
-                  <div className="main-for-squar-box">
-                    {this.state.hotbar.map((item, i) => {
-                      const index = `hotbar${i}`
-                      return (
-                        <div className="squar-inv-box" key={index} data-title={item.name} onContextMenu={(e) => this.handlePos(e, item, 'hotbar')}>
-                          <div className={item.icon} />
-                        </div>
-                      )
-                    })}
                   </div>
                 </div>
               </div>
