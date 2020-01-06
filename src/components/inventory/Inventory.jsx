@@ -612,6 +612,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           // mp.call ... переместить в багажник и удалить из инвентаря
+          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
         }
         break;
       case 'outfit':
@@ -620,6 +621,8 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'outfit')
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в багажник, снять с персонажа, и удалить из инвентаря
         }
         break;
@@ -636,6 +639,8 @@ class Inventory extends React.Component {
             }
           })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в багажник, снять оружие из экипировки, и удалить из инвентаря
         }
         break;
@@ -654,6 +659,7 @@ class Inventory extends React.Component {
           }
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ items: this.state.items.concat(item) })
+          mp.trigger('client:inventory:moveFrom', item.id); // eslint-disable-line
           // mp.call ... переместить в инвентарь и удалить из багажника
         }
         break;
@@ -841,6 +847,7 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           // mp.call ... выбросить и удалить из инвентаря
+          mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'secondary_inv':
@@ -848,6 +855,8 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           // mp.call ... выбросить и удалить из багажника
+
+          mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'outfit':
@@ -856,6 +865,8 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'outfit')
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           // mp.call ... выбросить и снять с персонажа
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'weapon':
@@ -871,6 +882,9 @@ class Inventory extends React.Component {
             }
           })
           // mp.call ... выбросить и удалить из экипировки
+
+          mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
+          mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
@@ -1040,7 +1054,8 @@ class Inventory extends React.Component {
     });
   }
   closeSecondaryInventory() {
-    this.setState({ secondary_inv_open: false})
+    this.setState({ secondary_inv_open: false});
+    mp.trigger('client:inventory:statusSecondary', false);
   }
   closeInventory() {
     mp.trigger('client:inventory:status', false); // eslint-disable-line
@@ -1087,7 +1102,8 @@ class Inventory extends React.Component {
                 <div className="inv-row-main">
                   <div className="player-inv">
                     <div className="liner-inv"></div>
-    <div className="title-inv"><span>Инвентарь</span> <span className="weight-title-inv">({this.numberToK(this.state.weight_now)}/{this.numberToK(this.state.weight_max)})</span> </div>
+                    <div className="title-inv"><span>Инвентарь</span>
+                    <span className="weight-title-inv">({this.numberToK(this.state.weight_now)}/{this.numberToK(this.state.weight_max)})</span> </div>
                     <div className="object-inv-box">
                       {this.state.itemsCounted.map((item, i) => {
                         const index = `item${i}`
@@ -1251,14 +1267,7 @@ class Inventory extends React.Component {
                       )
                     })}
                   </div>
-                  :
-                  <div className="trunk-boxes-main">
-                    <div className="trunk-box" onClick={() => this.openTrunk()}>Багажник</div>
-                    <div className="trunk-box" onClick={() => this.openStock()}>Склад</div>
-                    <div className="trunk-box" onClick={() => this.openFridger()}>Холодильник</div>
-                    <div className="trunk-box" onClick={() => this.openWorld()}>Мир</div>
-                    <div className="trunk-box">Что-то еще</div>
-                  </div>
+                  : ''
                 }
 
               </div>
