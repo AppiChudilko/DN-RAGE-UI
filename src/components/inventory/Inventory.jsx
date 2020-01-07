@@ -207,6 +207,9 @@ class Inventory extends React.Component {
       if (value.type === 'updateMaxW') {
         this.setState({ weight_max: value.val })
       }
+      if (value.type === 'updateSubMax') {
+        this.setState({ secondary_weight_max: value.maxSum })
+      }
       if (value.type === 'updateTrade') {
         this.setState({ trade_ids: value.idList })
       }
@@ -237,7 +240,7 @@ class Inventory extends React.Component {
           }
         });
       }
-      if (value.type === 'secondary_inv') { 
+      if (value.type === 'secondary_inv') {
         this.setState({
           secondary_inv_open: true,
           secondary_items: value.items, // Массив с предметами вторичного инвентаря (багажник, склад и тд.)
