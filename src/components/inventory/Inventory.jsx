@@ -21,7 +21,9 @@ class Inventory extends React.Component {
       inter_show: false,
       inter_menu_selected: { item: {}, source: '' }, // Сюда автоматически записывается выбранный предмет для взаимодействия через меню
       weight_now: 20,
-      weight_max: 100,
+      weight_max: 70000,
+      secondary_weight_now: 20,
+      secondary_weight_max: 1000000,
       trade_ids: [], // Сюда записываются ID ближайших игроков для торговли
       loadw_ids: [{name: "P90", id: 28}], // Сюда записываются данные оружия в экипировке которое можно зарядить выбранными патронами
       upgradew_ids: [{name: "P90", id: 28}], // Сюда записываются данные оружия в экипировке которое можно зарядить выбранными патронами
@@ -69,7 +71,7 @@ class Inventory extends React.Component {
         { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
         { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
         { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
-        { id: 5, item_id: 146, name: "Патроны", volume: 15, desc: "", counti: 0, params: {} },
+        { id: 5, item_id: 279, name: "Патроны", volume: 15, desc: "", counti: 0, params: {} },
         { id: 27, item_id: 95, name: "HK-416", volume: 15, desc: "AR-0001244", counti: 0, params: { slot1:true, slot2:false, slot3: true, slot4:false } },
         { id: 28, item_id: 109, name: "P90", volume: 15, desc: "SM-0001244", counti: 0, params: { slot1:false, slot2:true, slot3: true, slot4:true } },
         { id: 29, item_id: 115, name: "Пушка шаталка", volume: 15, desc: "AR-0001244", counti: 0, params: { slot1:false, slot2:false, slot3: false, slot4:false } },
@@ -252,6 +254,7 @@ class Inventory extends React.Component {
     this.updateItemIcons('primary')
     this.updateItemIcons('secondary')
     this.sumWeightInventory()
+    this.sumWeightSecondaryInventory()
   }
 
   componentDidUpdate(prevProp, prevState) {
@@ -265,6 +268,7 @@ class Inventory extends React.Component {
     }
     if (this.state.secondary_items !== prevState.secondary_items) { // Обновляем secondary
       this.updateItemIcons('secondary')
+      this.sumWeightSecondaryInventory()
     }
     if (this.state.trade_ids !== prevState.trade_ids) { // Показвыает в меню список ID игроков рядом при обновлени this.state.trade_ids
       this.updateTradeMenu()
@@ -295,8 +299,15 @@ class Inventory extends React.Component {
     for (var i=0; i<items_inv.length; i++) {
       sum += parseInt(items_inv[i].volume)      
     }
-    //sum /= 1000 И как по вашему он должен подсчитывать? Facepalm
     this.setState({weight_now: sum})    
+  }
+  sumWeightSecondaryInventory() {
+    let items_secondary_inv = this.state.secondary_items;
+    let sum = 0
+    for (var i=0; i<items_secondary_inv.length; i++) {
+      sum += parseInt(items_secondary_inv[i].volume)
+    }
+    this.setState({secondary_weight_now: sum})
   }
   numberToK(num) {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
@@ -316,28 +327,7 @@ class Inventory extends React.Component {
       items_copy = [...this.state.secondary_items]
     }
     items_copy.forEach((item, i) => {
-
       items_copy[i].icon = "icon-item img-" + item.item_id;
-
-      /*if(this.state.itemsById.food.includes(item.item_id)) { items_copy[i].icon = "img-burger" }
-      else if(this.state.itemsById.drinks.includes(item.item_id)) { items_copy[i].icon = "img-cola" }
-      else if(this.state.itemsById.consumable.includes(item.item_id)) { items_copy[i].icon = "img-cocaine" }
-      else if(this.state.outfitById.cap.includes(item.item_id)) { items_copy[i].icon = "img-cap" }
-      else if(this.state.outfitById.glasses.includes(item.item_id)) { items_copy[i].icon = "img-glasses" }
-      else if(this.state.outfitById.mask.includes(item.item_id)) { items_copy[i].icon = "img-mask" }
-      else if(this.state.outfitById.shirt.includes(item.item_id)) { items_copy[i].icon = "img-shirt" }
-      else if(this.state.outfitById.jewerly.includes(item.item_id)) { items_copy[i].icon = "img-jewerly" }
-      else if(this.state.outfitById.earrings.includes(item.item_id)) { items_copy[i].icon = "img-earrings" }
-      else if(this.state.outfitById.jeans.includes(item.item_id)) { items_copy[i].icon = "img-jeans" }
-      else if(this.state.outfitById.watch.includes(item.item_id)) { items_copy[i].icon = "img-watch" }
-      else if(this.state.outfitById.bracelet.includes(item.item_id)) { items_copy[i].icon = "img-bracelet" }
-      else if(this.state.outfitById.boot.includes(item.item_id)) { items_copy[i].icon = "img-boot" }
-      else if(this.state.outfitById.clock.includes(item.item_id)) { items_copy[i].icon = "img-clock" }
-      else if(this.state.outfitById.phone.includes(item.item_id)) { items_copy[i].icon = "img-phone" }
-      else if(this.state.outfitById.money.includes(item.item_id)) { items_copy[i].icon = "img-money" }
-      else if(this.state.outfitById.card.includes(item.item_id)) { items_copy[i].icon = "img-card" }
-      else if([47, 90].includes(item.item_id)) { items_copy[i].icon = "img-weapon" }
-      else if([5].includes(item.item_id)) { items_copy[i].icon = "img-machete" }*/
     })
     inventory === 'primary' ?
     this.setState({items: items_copy}, () => { this.setState({updateItemIcons_primary_timeout: false}); this.updateStacks('primary') })
@@ -357,7 +347,7 @@ class Inventory extends React.Component {
     })
     let trade_ids_copy = [...this.state.trade_ids]
     trade_ids_copy.forEach((id) => {
-      menu.push({name: "ID: " + id, trade_player_id: id, action: "trade_id", show: true})
+      menu.unshift({name: "ID: " + id, trade_player_id: id, action: "trade_id", show: true})
     })
     this.setState({inter_menu: menu})
   }
@@ -374,7 +364,7 @@ class Inventory extends React.Component {
     })
     let loadw_ids_copy = [...this.state.loadw_ids]
     loadw_ids_copy.forEach((item) => {
-      menu.push({name: item.name, loadw_id: item.id, action: "loadw_id", show: true})
+      menu.unshift({name: item.name, loadw_id: item.id, action: "loadw_id", show: true})
     })
     this.setState({inter_menu: menu})
   }
@@ -679,6 +669,10 @@ class Inventory extends React.Component {
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
+          if(this.state.secondary_weight_now + item.volume > this.state.secondary_weight_max){
+            this.notifyToClient('~r~Хранилище переполнено ;c');
+            return;
+          }
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           // mp.call ... переместить в багажник и удалить из инвентаря
@@ -689,6 +683,10 @@ class Inventory extends React.Component {
         item = this.getOutfitByType(item.type)[0]
         if (this.checkItem(item, 'outfit') !== null) {
           item = this.checkItem(item, 'outfit')
+          if(this.state.secondary_weight_now + item.volume > this.state.secondary_weight_max){
+            this.notifyToClient('~r~Хранилище переполнено ;c');
+            return;
+          }
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
@@ -699,6 +697,10 @@ class Inventory extends React.Component {
       case 'weapon':
         if (this.checkItem(item, 'weapon') !== null) {
           item = this.checkItem(item, 'weapon')
+          if(this.state.secondary_weight_now + item.volume > this.state.secondary_weight_max){
+            this.notifyToClient('~r~Хранилище переполнено ;c');
+            return;
+          }
           this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) }, () => {
             if(item.id === this.state.selected_weapon_id) {
               if(this.state.equipment_weapon.length === 0) {
@@ -1190,7 +1192,7 @@ class Inventory extends React.Component {
     }
     return (
       <React.Fragment>
-        <div id="box">
+        <div id="box" onContextMenu={(e)=> e.preventDefault()}>
           <InteractionMenu
             x={this.state.x}
             y={this.state.y}
@@ -1353,23 +1355,27 @@ class Inventory extends React.Component {
               </div>
               <div className="invetory-trunk">
                 {this.state.secondary_inv_open ?
-                  <div className="trunk-info-menu">
-                    <div className="close-window-craft color-blue-btn" onClick={() => this.closeSecondaryInventory()}></div>
-                    {this.state.secondary_itemsCounted.map((item, i) => {
-                      const index = `item${i}`
-                      return (
-                        <div className="object-box-trunk" key={index} onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
-                          <div className={`img-inv-box ${item.icon}`}></div>
-                          <div className="obj-inf-box">
-                            <div className="obj-inf-title"><span>{item.name}</span></div>
-                            <div className="obj-inf-weight"><span>{item.desc}</span></div>
-                          </div>
-                          {item.count > 1 ? <div className="obj-inf-count">{item.count}</div>: null}
-                        </div>
-                      )
-                    })}
-                  </div>
-                  : ''
+                    <div>
+                      <div className="liner-secondary-inv"></div>
+                      <div className="title-secondary-inv"><span>({this.numberToK(this.state.secondary_weight_now)}/{this.numberToK(this.state.secondary_weight_max)})</span></div>
+                      <div className="trunk-info-menu">
+                        <div className="close-window-craft color-blue-btn" onClick={() => this.closeSecondaryInventory()}></div>
+                        {this.state.secondary_itemsCounted.map((item, i) => {
+                          const index = `item${i}`
+                          return (
+                              <div className="object-box-trunk" key={index} onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
+                                <div className={`img-inv-box ${item.icon}`}></div>
+                                <div className="obj-inf-box">
+                                  <div className="obj-inf-title"><span>{item.name}</span></div>
+                                  <div className="obj-inf-weight"><span>{item.desc}</span></div>
+                                </div>
+                                {item.count > 1 ? <div className="obj-inf-count">{item.count}</div>: null}
+                              </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                    : ''
                 }
 
               </div>

@@ -1,6 +1,6 @@
 /* body {
     background: #352929;
-} */
+}*/
 .inv-box{
     width: -webkit-fill-available;
     height: -webkit-fill-available;
@@ -50,6 +50,31 @@
     color: #000000;
     text-transform: uppercase;
 }
+ .title-secondary-inv {
+     width: inherit;
+     height: 24px;
+     background-color: rgb(255, 255, 255);
+     display: flex;
+     justify-content: left;
+     align-items: center;
+     padding-left: 5px;
+     font-family: "HACKED";
+     font-size: 18px;
+     color: #000000;
+     text-transform: uppercase;
+ }
+ .liner-secondary-inv {
+     -moz-transform: scaleX(-1);
+     -webkit-transform: scaleX(-1);
+     -o-transform: scaleX(-1);
+     transform: scaleX(-1);
+     background: url(../img/liner-inv.png) no-repeat;
+     width: 201px;
+     height: 9px;
+     margin-right: auto;
+     margin-top: -32px;
+     margin-bottom: -2px;
+ }
 .liner-inv {
     background: url(../img/liner-inv.png) no-repeat;
     width: 201px;
