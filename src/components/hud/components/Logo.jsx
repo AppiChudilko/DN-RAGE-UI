@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Logo extends React.Component {
   constructor(props) {
@@ -12,6 +13,22 @@ class Logo extends React.Component {
       id: '0001',
     }
   }
+
+  componentDidMount() {
+    EventManager.addHandler('hudl', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({date: value.date});
+        this.setState({time: value.time});
+        this.setState({online: value.online});
+        this.setState({max_player: value.max_player});
+        this.setState({id: value.id});
+      }
+      else return;
+    })
+  }
+
   render() {
     if (!this.state.show) {
       return null;

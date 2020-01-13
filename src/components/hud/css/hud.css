@@ -178,7 +178,7 @@
     display: flex;
     width: inherit;
     font-family: "RobotoLight";
-    font-size: 11px;
+    font-size: 13px;
     color: #fff;
  }
  .oil-tt{
@@ -192,7 +192,7 @@
     width: 212.99px;
     height: 6.99px;
     background:rgb(71, 71, 71);
-    margin-top: 12px;
+    margin-top: 8px;
     margin-left: 12px;
     overflow: hidden;
  }
@@ -263,34 +263,35 @@
     margin-bottom: 40px;
 }
 .gps-main {
-    width: 386px;
-    height: 75px;
+    /*width: 386px;*/
+    height: 64px;
     background: rgb(0, 0, 0, 0.502);
-    margin-left: 383px;
+    margin-left: 323px;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding-left: 19px;
+    padding-right: 19px;
 }
 .gps-title {
     font-family: "Roboto";
     color: rgb(72, 185, 242);
-    font-size: 26px;
+    font-size: 16px;
     text-align: left;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 .gps-txt {
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
 }
 .watch-main {
     width: 153px;
     height: 46px;
     background: rgb(0, 0, 0, 0.502);
-    margin-left: 383px;
+    margin-left: 323px;
     margin-bottom: 2px;
     display: flex;
     flex-direction: row;
@@ -347,14 +348,16 @@
     margin-left:  auto;
 }
 .logo-main .logo-img {
-    background: url('../img/logo.png') no-repeat;
+    background: url('../img/dnlogo.gif') no-repeat;
+    background-size: cover;
+    margin-top: -28px;
+    margin-right: -40px;
     width: 82px;
-    height: 44px;
+    height: 82px;
 }
 .logo-main .logo-info {
-    margin-right: 32px;
     text-align: right;
-    font-size: 20px;
+    font-size: 12px;
     color: #fff;
     font-family: 'RobotoRegular';
 }

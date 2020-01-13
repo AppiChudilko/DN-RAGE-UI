@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Gps extends React.Component {
   constructor(props) {
@@ -9,6 +10,20 @@ class Gps extends React.Component {
       street: 'Международная станция Якитики'
     }
   }
+
+  componentDidMount() {
+    EventManager.addHandler('hudg', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({show: value.isShow});
+        this.setState({district: value.district});
+        this.setState({street: value.street});
+      }
+      else return;
+    })
+  }
+
   render() {
     if (!this.state.show) {
       return null;

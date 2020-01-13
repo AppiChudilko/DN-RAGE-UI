@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Watch extends React.Component {
   constructor(props) {
@@ -10,6 +11,21 @@ class Watch extends React.Component {
       temp: '20',
     }
   }
+
+  componentDidMount() {
+    EventManager.addHandler('hudw', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({show: value.isShow});
+        this.setState({time: value.time});
+        this.setState({date: value.date});
+        this.setState({temp: value.temp});
+      }
+      else return;
+    })
+  }
+
   render() {
     if (!this.state.show) {
       return null;

@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Player extends React.Component {
   constructor(props) {
@@ -6,12 +7,28 @@ class Player extends React.Component {
     this.state = {
       show: true,
       microphone: false,
-      drink: 40,
-      eat: 20,
-      wallet: 100000,
-      card: 10000000,
+      drink: 100,
+      eat: 100,
+      wallet: "$98,999,550,381.45",
+      card: "$98,999,550,381.45",
     }
   }
+
+  componentDidMount() {
+    EventManager.addHandler('hudp', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({microphone: value.microphone});
+        this.setState({drink: value.drink});
+        this.setState({eat: value.eat});
+        this.setState({wallet: value.wallet});
+        this.setState({card: value.card});
+      }
+      else return;
+    })
+  }
+
   formatCurrency(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
   }
@@ -44,11 +61,11 @@ class Player extends React.Component {
           <div className="money">
             <div className="money-box">
               <div className="img-wallet"></div>
-              <div className="wallet-text">{this.formatCurrency(this.state.wallet)} $</div>
+              <div className="wallet-text">{this.state.wallet}</div>
             </div>
             <div className="money-box">
               <div className="img-credit-card"></div>
-              <div className="credit-text">{this.formatCurrency(this.state.card)} $</div>
+              <div className="credit-text">{this.state.card}</div>
             </div>
           </div>
         </div>

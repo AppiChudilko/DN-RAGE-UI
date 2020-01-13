@@ -5,13 +5,23 @@ import Car from './components/Car';
 import Gps from './components/Gps';
 import Watch from './components/Watch';
 import Logo from './components/Logo';
+import EventManager from "../../EventManager";
 class Hud extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false,
+      show: true,
     }
   }
+
+  componentDidMount() {
+    EventManager.addHandler('hud', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else return;
+    })
+  }
+
   render() {
     if (!this.state.show) {
       return null;

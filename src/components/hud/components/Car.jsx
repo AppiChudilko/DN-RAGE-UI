@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Car extends React.Component {
   constructor(props) {
@@ -9,13 +10,33 @@ class Car extends React.Component {
       door: false,
       engine: false,
       fuel: 100,
+      fuelType: 'L',
       max_fuel: 200,// Максимальная вместимость топливного бака
       speed: 200,
 
       deg: -45,
     }
   }
+
+
   componentDidMount() {
+
+    EventManager.addHandler('hudc', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({show: value.isShow});
+        this.setState({light: value.light});
+        this.setState({door: value.door});
+        this.setState({engine: value.engine});
+        this.setState({fuel: value.fuel});
+        this.setState({fuelType: value.fuelType});
+        this.setState({max_fuel: value.max_fuel});
+        this.setState({speed: value.speed});
+      }
+      else return;
+    })
+
     this.speed();
   }
   componentDidUpdate(prevProp, prevState) {
@@ -24,17 +45,10 @@ class Car extends React.Component {
     }
   }
   speed() { // Чуть позже добавлю перерисованный спидометр, ибо текущий с погрешностью
-    if (this.state.speed <= 0) {
-      this.setState({ deg: -45 })
-    } else if (this.state.speed >= 400) {
-      this.setState({ deg: 135 })
-    } else if (this.state.speed <= 80) {
-      let a = (((100 / 80) * this.state.speed) / 100) * 68 - 45;
-      this.setState({ deg: a })
-    } else if (this.state.speed > 80 && this.state.speed < 400) {
-      let i = (this.state.speed / 400) * 190 - 45;
-      this.setState({ deg: i })
-    }
+
+    let speedProcent = this.state.speed / 400 * 100;
+    let deg = 180 * (speedProcent / 100);
+    this.setState({ deg: deg - 45 });
   }
   render() {
     let fuel_liner = (this.state.fuel * 100) / this.state.max_fuel;
@@ -64,7 +78,7 @@ class Car extends React.Component {
           <div className="bak-oil">
             <div className="oil-text">
               <div className="oil-tt">Топливо</div>
-              <div className="oil-num">{this.state.fuel} L</div>
+              <div className="oil-num">{this.state.fuel} {this.state.fuelType}</div>
             </div>
             <div className="oil-liner">
               <div className="full-liner" style={{ width: fuel_liner + '%' }}></div>
