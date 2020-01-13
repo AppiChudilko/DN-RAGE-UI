@@ -233,10 +233,23 @@ class Inventory extends React.Component {
           }
         });
       }
+      if (value.type === 'updateItemIdCount') {
+        this.state.items.forEach((item) => {
+          if (value.itemId == item.id) { //TODO мб не правильно сделал
+            let newItem = item;
+            this.setState({ items: this.arrayRemove(this.state.items, item) });
+            newItem.counti = value.count;
+            this.setState({ items: this.state.items.concat(newItem) });
+          }
+        });
+      }
       if (value.type === 'updateWeaponParams') {
-        this.state.equipment_weapon.forEach((item, i) => { //TODO ПЖ СДЕЛАЙТЕ ЧТОБЫ ОБНОВЛЯЛСЯ PARAMS
+        this.state.equipment_weapon.forEach((item, i) => { //TODO мб не правильно сделал
           if (value.itemId == item.id) {
-            //value.params
+            let newItem = item;
+            this.setState({ equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item) });
+            newItem.params = value.params; //TODO обвесы не обновляются почему-то сами иокнки
+            this.setState({ equipment_weapon: this.state.equipment_weapon.concat(newItem) });
           }
         });
       }
