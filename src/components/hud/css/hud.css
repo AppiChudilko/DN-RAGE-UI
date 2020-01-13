@@ -1,11 +1,3 @@
-.test{
-    width: 100px;
-    height: 100px;
-    background: black;
-}
-body {
-    background: #505050ef;
-}
 .hud-main {
     width: -webkit-fill-available;    
     height: -webkit-fill-available;
