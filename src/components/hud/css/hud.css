@@ -1,5 +1,5 @@
 .hud-main {
-    width: -webkit-fill-available;    
+    width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
     position: absolute;
@@ -101,7 +101,7 @@
     height: 21px;
     margin-left: 12px;
     margin-right: 14px;
-} 
+}
 .money-box .img-credit-card {
     background: url(../img/credit-card.png) no-repeat;
     width: 21px;
@@ -117,7 +117,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 59%;
-} 
+}
 .credit-text {
     font-size: 12.489px;
     font-family: "RobotoLight";
@@ -127,14 +127,14 @@
     text-overflow: ellipsis;
     width: 59%;
 }
- .use-mic {
+.use-mic {
     filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
- }
- .car-hud{
-     display: flex;
-     margin-bottom: 2px;
- }
- .elements-auto {
+}
+.car-hud{
+    display: flex;
+    margin-bottom: 2px;
+}
+.elements-auto {
     width: 194px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
@@ -142,73 +142,89 @@
     display: flex;
     justify-content: center;
     align-items: center;
- } 
- .bak-oil{
+}
+.bak-oil{
     width: 236px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
     display: flex;
     flex-direction: column;
- }
- .light-auto {
+}
+.light-auto {
     background: url(../img/light.png) no-repeat;
     width: 50px;
     height: 29px;
- }
- .off-door-auto {
+}
+.off-door-auto {
     background: url(../img/off-door.png) no-repeat;
     width: 48px;
     height: 36px;
     margin-left: 20px;
- }
- .on-door-auto {
+}
+.on-door-auto {
     background: url(../img/on-door.png) no-repeat;
     width: 48px;
     height: 29px;
     margin-left: 20px;
- }
- .key-auto {
+}
+.key-auto {
     background: url(../img/key.png) no-repeat;
     width: 48px;
     height: 24px;
     margin-left: 15px;
- }
- .oil-text {
+}
+.oil-text {
     margin-top: 7px;
     display: flex;
     width: inherit;
     font-family: "RobotoLight";
     font-size: 13px;
     color: #fff;
- }
- .oil-tt{
-    margin-left: 12px; 
- }
- .oil-num{
+}
+.oil-tt{
+    margin-left: 12px;
+}
+.oil-num{
     margin-left: auto;
     margin-right: 11px;
- }
- .oil-liner {
+}
+.oil-liner {
     width: 212.99px;
     height: 6.99px;
     background:rgb(71, 71, 71);
     margin-top: 8px;
     margin-left: 12px;
     overflow: hidden;
- }
- .full-liner{
+}
+.full-liner{
     background: #48b9f2;
     height: inherit;
     transition-duration: 0.2s;
- }
- .speedbox-main{
+}
+.speedbox-main{
     margin-bottom: 26px;
     width: 432px;
     display: flex;
     justify-content: center;
     position: relative;
- }
-  .speedbox {
+}
+
+.speedbox-small {
+    margin-bottom: 2px;
+    width: 432px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    position: relative;
+}
+
+.speedbox-small .speed-txt {
+    font-size: 34px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.speedbox {
     display: flex;
     position: relative;
     width: 390px;
@@ -312,7 +328,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 19px;
-} 
+}
 .time-box .time {
     width: inherit;
     height: 14px;
@@ -363,4 +379,8 @@
 }
 .span-bold {
     font-family: 'RobotoBlack';
+}
+
+.hide {
+    display: none;
 }
