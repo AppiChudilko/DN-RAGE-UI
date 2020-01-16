@@ -107,7 +107,7 @@ class Inventory extends React.Component {
         drinks: [2], // Можно "выпить"
         usable: [4], // Можно "использовать"
         consumable: [3], // Можно "употребить"
-        bag: [264], // Открыть сумку
+        bag: [264, 263], // Открыть сумку
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
         ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
         countPt: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
@@ -126,7 +126,7 @@ class Inventory extends React.Component {
         watch: [272], // Часы
         bracelet: [273], // Браслеты
         boot: [267], // Обувь
-        bag: [264], // Сумка
+        bag: [264, 263], // Сумка
         clock: [7], // Часы (второй раз?)
         phone: [8], // Телефоны
         money: [48], // Деньги?
@@ -427,7 +427,7 @@ class Inventory extends React.Component {
         item.item_id >= 138 && item.item_id <= 145 ||
         item.item_id >= 154 && item.item_id <= 157 ||
         item.item_id >= 163 && item.item_id <= 180 ||
-        item.item_id >= 264 && item.item_id <= 277) {
+        item.item_id >= 263 && item.item_id <= 277) {
           isStack = false
         }
       if(isStack){
@@ -544,7 +544,7 @@ class Inventory extends React.Component {
           break;
         } else {
           actions.push('take_off') // Снять
-          if (item.item_id == 264)
+          if (item.item_id == 264 || item.item_id == 263)
             actions.push('openBag') // Открыть сумку
           break;
         }
@@ -856,20 +856,20 @@ class Inventory extends React.Component {
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
-          mp.trigger('client:inventory:openBag', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'outfit':
         item = this.getOutfitByType(item.type)[0]
         if (this.checkItem(item, 'outfit') !== null) {
           item = this.checkItem(item, 'outfit')
-          mp.trigger('client:inventory:openBag', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
-          mp.trigger('client:inventory:openBag', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
