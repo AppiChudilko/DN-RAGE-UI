@@ -56,8 +56,11 @@ class Inventory extends React.Component {
 
         { name: "Передать", action: "give", show: true },
 
+        { name: "Открыть сумку", action: "openBag", show: false, color: '#2196F3' },
         { name: "Переложить", action: "move", show: false, color: '#2196F3' },
         { name: "Взять", action: "take", show: false, color: '#2196F3' },
+
+        { name: "Информация о предмете", action: "infoItem", show: false },
 
         { name: "Снять", action: "take_off", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
@@ -98,6 +101,7 @@ class Inventory extends React.Component {
 
       // Надетые на персонажа предметы
       equipment_outfit: [ // equipment_outfit.id Уникальный id предмета из базы (не должны повторяться)
+        //{ id: 15, item_id: 264, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }
       ],
 
       itemsById: { // В массивах должны быть айди всех предметов разного типа
@@ -105,6 +109,7 @@ class Inventory extends React.Component {
         drinks: [2], // Можно "выпить"
         usable: [4], // Можно "использовать"
         consumable: [3], // Можно "употребить"
+        bag: [264, 263], // Открыть сумку
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
         ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
         countPt: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
@@ -123,6 +128,7 @@ class Inventory extends React.Component {
         watch: [272], // Часы
         bracelet: [273], // Браслеты
         boot: [267], // Обувь
+        bag: [264, 263], // Сумка
         clock: [7], // Часы (второй раз?)
         phone: [8], // Телефоны
         money: [48], // Деньги?
@@ -142,6 +148,7 @@ class Inventory extends React.Component {
           { slot: "outf-watch", equipped: false, type: 'watch' },
           { slot: "outf-bracelet", equipped: false, type: 'bracelet' },
           { slot: "outf-boot", equipped: false, type: 'boot' },
+          { slot: "outf-bag", equipped: false, type: 'bag' },
         ],
         [
           { slot: "outf-clock", equipped: false, type: 'clock' },
@@ -422,7 +429,7 @@ class Inventory extends React.Component {
         item.item_id >= 138 && item.item_id <= 145 ||
         item.item_id >= 154 && item.item_id <= 157 ||
         item.item_id >= 163 && item.item_id <= 180 ||
-        item.item_id >= 264 && item.item_id <= 277) {
+        item.item_id >= 263 && item.item_id <= 277) {
           isStack = false
         }
       if(isStack){
@@ -464,10 +471,10 @@ class Inventory extends React.Component {
         for (let k = 0; k < this.state.equipment_outfit.length; k++) {
           if (Object.values(this.state.outfitById)[i][j] === this.state.equipment_outfit[k].item_id) {
             foundOutfit.push(i);
-            if (i < 10) {
+            if (i < 11) {
               this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = true }))
             } else {
-              this.setState(prevState => ({ ...prevState.outfit[1][i - 10].equipped = true }))
+              this.setState(prevState => ({ ...prevState.outfit[1][i - 11].equipped = true }))
             }
           }
         }
@@ -475,10 +482,10 @@ class Inventory extends React.Component {
     }
     for (let i = 0; i < 14; i++) {
       if (!foundOutfit.includes(i)) {
-        if (i < 10) {
+        if (i < 11) {
           this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = false }))
         } else {
-          this.setState(prevState => ({ ...prevState.outfit[1][i - 10].equipped = false }))
+          this.setState(prevState => ({ ...prevState.outfit[1][i - 11].equipped = false }))
         }
       }
     }
@@ -497,13 +504,19 @@ class Inventory extends React.Component {
       this.setState({ inter_menu: menu, inter_show: false })
     }
     let menu = this.state.inter_menu
-    let actions = ["give", "drop", "close"] // Стандартные действия для всех предметов (передать, выбросить, закрыть)
+    let actions = ["give", "drop", "infoItem", "close"] // Стандартные действия для всех предметов (передать, выбросить, закрыть)
     if (source === 'weapon') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('select') // Выбрать оружие
       actions.push('unloadW') // Выбрать оружие
     }
     if (this.state.itemsById.food.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('eat') // Съесть
+    }
+    if (this.state.itemsById.bag.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('openBag') // Открыть сумку
+
+      if (source !== 'outfit')
+        actions.push('put_on') // Надеть
     }
     if (this.state.itemsById.drinks.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('drink') // Выпить
@@ -533,6 +546,8 @@ class Inventory extends React.Component {
           break;
         } else {
           actions.push('take_off') // Снять
+          if (item.item_id == 264 || item.item_id == 263)
+            actions.push('openBag') // Открыть сумку
           break;
         }
       }
@@ -629,6 +644,12 @@ class Inventory extends React.Component {
       case "drink": // Выпить
         this.itemDrink(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
+      case "openBag": // Открыть сумку
+        this.itemOpenBag(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "infoItem": // Открыть сумку
+        this.itemInfoItem(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
       case "give": // Передать
         this.giveItemMenu();
         return;
@@ -692,7 +713,7 @@ class Inventory extends React.Component {
           this.setState({ items: this.arrayRemove(this.state.items, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           // mp.call ... переместить в багажник и удалить из инвентаря
-          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
         }
         break;
       case 'outfit':
@@ -706,7 +727,7 @@ class Inventory extends React.Component {
           this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
-          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в багажник, снять с персонажа, и удалить из инвентаря
         }
         break;
@@ -728,7 +749,7 @@ class Inventory extends React.Component {
           })
           this.setState({ secondary_items: this.state.secondary_items.concat(item) })
           mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
-          mp.trigger('client:inventory:moveTo', item.id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
+          mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в багажник, снять оружие из экипировки, и удалить из инвентаря
         }
         break;
@@ -747,7 +768,7 @@ class Inventory extends React.Component {
           }
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ items: this.state.items.concat(item) })
-          mp.trigger('client:inventory:moveFrom', item.id); // eslint-disable-line
+          mp.trigger('client:inventory:moveFrom', item.id, this.state.secondary_items_owner_type); // eslint-disable-line
           // mp.call ... переместить в инвентарь и удалить из багажника
         }
         break;
@@ -829,6 +850,63 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           // mp.call ... выпить и удалить из багажника
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemOpenBag(item, source) {
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      case 'outfit':
+        item = this.getOutfitByType(item.type)[0]
+        if (this.checkItem(item, 'outfit') !== null) {
+          item = this.checkItem(item, 'outfit')
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemInfoItem(item, source) {
+
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'weapon':
+        if (this.checkItem(item, 'weapon') !== null) {
+          item = this.checkItem(item, 'weapon')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'outfit':
+        item = this.getOutfitByType(item.type)[0]
+        if (this.checkItem(item, 'outfit') !== null) {
+          item = this.checkItem(item, 'outfit')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
         }
         break;
       default:
@@ -1036,14 +1114,14 @@ class Inventory extends React.Component {
           // mp.call ... надеть на персонажа и удалить из инвентаря
         }
         break;
-      /* case 'secondary_inv':
+       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
           this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
-          // mp.call ... надеть на персонажа и удалить из багажника
+          mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
         }
-        break; */
+        break;
       default:
         break;
     }
