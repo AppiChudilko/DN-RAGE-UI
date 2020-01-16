@@ -60,6 +60,8 @@ class Inventory extends React.Component {
         { name: "Переложить", action: "move", show: false, color: '#2196F3' },
         { name: "Взять", action: "take", show: false, color: '#2196F3' },
 
+        { name: "Информация о предмете", action: "infoItem", show: false },
+
         { name: "Снять", action: "take_off", show: false },
         { name: "Убрать в инвентарь", action: "unequip", show: false },
 
@@ -502,7 +504,7 @@ class Inventory extends React.Component {
       this.setState({ inter_menu: menu, inter_show: false })
     }
     let menu = this.state.inter_menu
-    let actions = ["give", "drop", "close"] // Стандартные действия для всех предметов (передать, выбросить, закрыть)
+    let actions = ["give", "drop", "infoItem", "close"] // Стандартные действия для всех предметов (передать, выбросить, закрыть)
     if (source === 'weapon') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('select') // Выбрать оружие
       actions.push('unloadW') // Выбрать оружие
@@ -644,6 +646,9 @@ class Inventory extends React.Component {
         break;
       case "openBag": // Открыть сумку
         this.itemOpenBag(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "infoItem": // Открыть сумку
+        this.itemInfoItem(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "give": // Передать
         this.giveItemMenu();
@@ -870,6 +875,38 @@ class Inventory extends React.Component {
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemInfoItem(item, source) {
+
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'weapon':
+        if (this.checkItem(item, 'weapon') !== null) {
+          item = this.checkItem(item, 'weapon')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'outfit':
+        item = this.getOutfitByType(item.type)[0]
+        if (this.checkItem(item, 'outfit') !== null) {
+          item = this.checkItem(item, 'outfit')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          this.notifyToClient(`~b~Имя: ~s~${item.name}\n~b~Объем: ~s~${item.volume}см³`)
         }
         break;
       default:
