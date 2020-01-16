@@ -179,7 +179,7 @@
     width: 63px;
     height: 63px;
     position: absolute;
-    margin-top: 153px;
+    margin-top: 118px;
     margin-left: 259px;
 }
 .outf-earrings {
@@ -203,7 +203,7 @@
     width: 36px;
     height: 72px;
     position: absolute;
-    margin-top: 265px;
+    margin-top: 221px;
     margin-left: 272px;
 }          
 .outf-bracelet {
@@ -213,6 +213,15 @@
     position: absolute;
     margin-top: 321px;
     margin-left: 52px;
+}
+.outf-bag {
+    background: url(../img/outfit/handbag.png) no-repeat;
+    width: 63px;
+    height: 63px;
+    position: absolute;
+    margin-top: 321px;
+    margin-left: 259px;
+    background-size: contain;
 }
 .outf-boot {
     background: url(../img/outfit/boot.png) no-repeat;
