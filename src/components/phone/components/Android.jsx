@@ -38,7 +38,7 @@ class Android extends React.Component {
             title: "Nika Kondr",
             text: "nika.kondr@ded.net",
             type: 3,
-            value: 'https://i.imgur.com/9LIsZtLl.jpg',
+            value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
           },
           {
             title: "Включить громкость",
