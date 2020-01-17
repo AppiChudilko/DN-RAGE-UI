@@ -7,6 +7,7 @@ class UMenuContainer extends React.Component {
     this.state = {
     }
   }
+
   render() {
     return (
       <React.Fragment >
@@ -15,16 +16,18 @@ class UMenuContainer extends React.Component {
           <span className="u-texttittle">{this.props.data.title}</span>
         </div>
         <div className="u-li-menu">
-        {this.props.data.items.map((e, i) => {
+          {this.props.data.items.map((e, i) => {
             return (
               <UFrame
                 menu={this.props.data.UUID}
                 item={e}
                 key={i}
                 id={i}
+                type={e.type}
+                event={this.callback}
               />
             )
-          })}          
+          })}
         </div>
       </React.Fragment>
     )

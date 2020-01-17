@@ -50,7 +50,7 @@
 }
 .main-app-box{
     margin-top: auto;
-    margin-bottom: 25px;
+    margin-bottom: 34px;
     margin-left: 14px;
     margin-right: 15px;
     width: inherit;
@@ -121,7 +121,7 @@
     width: inherit;
     display: flex;
     flex-direction: row;
-    margin-top: 37px;
+    margin-top: 29px;
 }
 .time-date {
     margin-right: auto;
@@ -150,6 +150,9 @@
     width: inherit;
     height: 17px;
     display: flex;
+    /* background: #2d72c1; */
+}
+.bg-blue-andr {
     background: #2d72c1;
 }
 .topbar-andr .left-topbar {
@@ -177,8 +180,8 @@
 /*UMenu*/
 .uni-menu {
     width: inherit;
-    height: 442px;
-    overflow: hidden;
+    height: 409px;
+    
 }
 .u-title {
     height: 40px;
@@ -200,18 +203,23 @@
 }
 .u-li-menu {
     width: inherit;
-    height: 409px;
+    height: 370px;
     background: #ffffffdb;
-    overflow: hidden;
+    overflow: scroll;
 }
 .u-menu-l {
-    min-height: 50px;
     width: inherit;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #e0e0e0;
 }
 .l-title {
-    margin-left: 30px;
+    padding-left: 30px;
+    min-height: 47px;
+    width: 246px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .txt-title {
     font-family: "RobotoRegular";
@@ -220,7 +228,7 @@
     font-size: 12px;
 }
 .txt-lasttitle {
-    font-family: "Roboto";
+    font-family: "RobotoRegular";
     color: #919191;
     font-size: 10px;
 }
@@ -493,3 +501,57 @@ h4 {
     height: 60px;
     z-index: 35;
   }
+.player-info-box {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+}
+.mobile-profile {
+    display: flex;
+    align-items: center;
+    width: 276px;
+    height: 60px;
+}
+.mobile-profile .m-player-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10%;
+}
+.mobile-profile .m-player-info {
+    color: #3a3a3a;
+    font-family: 'RobotoRegular';
+    margin-left: 6%;
+}
+.mobile-profile .m-email-player {
+    font-size: 11px;
+    margin-top: 2px;
+}
+.mobile-profile .m-name-player {
+    font-family: 'RobotoBold';
+}
+.m_keys_bar{
+    width: 276px;
+    height: 37px;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.m-sqr-bar {
+    background: url(../img/android/icons/sqr-bar.svg) no-repeat;
+    width: 13px;
+    height: 13px;
+}
+.m-crl-bar {
+    background: url(../img/android/icons/crl-bar.svg) no-repeat;
+    width: 14px;
+    height: 15px;
+    margin-left: 64px;
+    margin-right: 64px;
+}
+.m-trngl-bar {
+    background: url(../img/android/icons/trngl-bar.svg) no-repeat;
+    width: 14px;
+    height: 15px;
+}

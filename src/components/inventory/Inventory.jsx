@@ -85,6 +85,8 @@ class Inventory extends React.Component {
         { id: 34, item_id: 120, name: "Пистолет-обрез?", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
         { id: 35, item_id: 121, name: "Ракетница", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
         { id: 36, item_id: 122, name: "Гранатомёт", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        { id: 37, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+        
       ],
       itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
       ],
@@ -546,8 +548,6 @@ class Inventory extends React.Component {
           break;
         } else {
           actions.push('take_off') // Снять
-          if (item.item_id == 264 || item.item_id == 263)
-            actions.push('openBag') // Открыть сумку
           break;
         }
       }
@@ -559,6 +559,11 @@ class Inventory extends React.Component {
       actions.push('take') // Взять
     }
     if (source === 'outfit') {
+      if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit') !== null) {
+        if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 263 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 264){
+          actions.push('openBag') // Открыть сумку
+        }
+      }
       actions.push('take_off') // Снять
     }
     if (source === 'weapon') {
