@@ -482,7 +482,7 @@ class Inventory extends React.Component {
         }
       }
     }
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 15; i++) {
       if (!foundOutfit.includes(i)) {
         if (i < 11) {
           this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = false }))
