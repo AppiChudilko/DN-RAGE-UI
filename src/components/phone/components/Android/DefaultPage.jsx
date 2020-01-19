@@ -27,7 +27,7 @@ class DefaultPage extends React.Component {
             {this.props.data.map((e, i) => {
               const index = `appBox${i}`
               return (
-                <Link to={e.link} className="app-box" onClick={() => this.props.clickApps(i)} key={index} >
+                <Link to={e.link} className="app-box" onClick={() => this.props.clickApps(e, i)} key={index} >
                   <div className={`app-icon icons-${e.img}`}></div>
                 </Link>
               )

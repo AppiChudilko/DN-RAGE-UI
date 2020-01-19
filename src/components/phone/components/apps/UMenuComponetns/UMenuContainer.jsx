@@ -12,7 +12,6 @@ class UMenuContainer extends React.Component {
     return (
       <React.Fragment >
         <div className="u-title">
-          <div className="menu-list "></div>
           <span className="u-texttittle">{this.props.data.title}</span>
         </div>
         <div className="u-li-menu">

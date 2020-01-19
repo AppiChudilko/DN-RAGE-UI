@@ -19,9 +19,9 @@
     transform: rotate(-90deg) translate(0px, -128%) scale(2);
 }
 .rotate-components {
-    transform: rotate(90deg) translate(94px, 94px);
+    transform: rotate(90deg) translate(116px, 70px);
     width: 463px !important;
-    height: 276px !important;
+    height: 230px !important;
     transition: .5s;
 }
 .phone-bg {
@@ -31,12 +31,41 @@
     margin-top: 3px;
     margin-right: 1px;
 }
-.bg-one {
-    background: url(../img/android/background/bg-1.png) no-repeat;
+.bg-0 {
+    background: url(https://i.imgur.com/PSr4n0g.png) no-repeat center;
+    background-size: cover;
+}
+.bg-1 {
+    background: url(https://i.ytimg.com/vi/c_3Rmwmzs4c/maxresdefault.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-2 {
+    background: url(https://images3.alphacoders.com/841/841112.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-3 {
+    background: url(https://i.pinimg.com/originals/17/95/a8/1795a8ad3bef7f77eec1e50b89dcab74.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-4 {
+    background: url(https://i.pinimg.com/originals/b6/d7/34/b6d734ddaa97170f4ca5e2e93c38d053.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-5 {
+    background: url(http://i.imgur.com/megfG87.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-6 {
+    background: url(https://www.itl.cat/pngfile/big/63-635502_gta-5-live-wallpaper-gta-v-4k-background.jpg) no-repeat center;
+    background-size: cover;
+}
+.bg-7 {
+    background: url(https://www.ecopetit.cat/iconpics/f/13/133332/gta-5-city-wallpaper.jpg) no-repeat center;
+    background-size: cover;
 }
 .android-content {
     width: 276px;
-    height: 463px;
+    height: 409px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,9 +77,19 @@
     width: inherit !important;
     height: inherit !important;
 }
+.rotate-components .m_keys_bar {
+    width: 464px;
+}
+.rotate-components .uni-menu {
+    height: 222px;
+}
+.rotate-components .u-li-menu {
+    height: 182px;
+}
+
 .main-app-box{
     margin-top: auto;
-    margin-bottom: 34px;
+    margin-bottom: 15px;
     margin-left: 14px;
     margin-right: 15px;
     width: inherit;
@@ -61,13 +100,17 @@
 .app-box {
     width: 46px;
     height: 49px;
-    background-color: rgb(0, 42, 80, 0.45);
+    background-color: rgb(0, 0, 0, 0.35);
     border-radius: 5px;
     margin-right: 19px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-position: center;
+    transition: 0.3s;
+}
+.app-box:hover {
+    background-color: rgb(0, 0, 0, 0.80);
 }
 .android-content .app-box:nth-child(4), .android-content .app-box:last-child {
     margin-right: 0px;
@@ -88,7 +131,6 @@
     background-size: 32px 32px;
     width: 32px;
     height: 32px;
-    filter: invert(100%);
 }    
 .rotate-components .app-box .app-icon {
     background-size: 24px 24px;
@@ -97,9 +139,55 @@
 }
 .icons-settings {
     background: url(../img/android/icons/settings.png) no-repeat;
+    background-size: 32px;
 }
 .icons-phone {
     background: url(../img/android/icons/telephone.png) no-repeat;
+    background-size: 32px;
+}
+.icons-sms {
+    background: url(../img/android/icons/sms.png) no-repeat;
+    background-size: 32px;
+}
+.icons-gps {
+    background: url(../img/android/icons/gps.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-cont {
+    background: url(../img/android/icons/cont.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-apps {
+    background: url(../img/android/icons/apps.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-fleeca {
+    background: url(../img/android/icons/fleeca.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-maze {
+    background: url(../img/android/icons/maze.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-blaine {
+    background: url(../img/android/icons/blaine.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+.icons-pacific {
+    background: url(../img/android/icons/pacific.png) no-repeat;
+    background-size: 32px;
+    filter: invert(100%);
+}
+.icons-invader {
+    background: url(../img/android/icons/invader.png) no-repeat;
+    background-size: 32px;
+    /*filter: invert(100%);*/
 }
 .info-top {
     display: flex;
@@ -192,8 +280,8 @@
 .menu-list {
     width: 13px;
     height: 9px;
-    background: url(../img/android/icons/menu.png) no-repeat;
-    margin-left: 10px;
+    /*background: url(../img/android/icons/menu.png) no-repeat;
+    margin-left: 10px;*/
 }
 .u-texttittle {
     font-family: "RobotoMedium";
@@ -208,13 +296,14 @@
     overflow: scroll;
 }
 .u-menu-l {
-    width: inherit;
+    padding: 0 17px;
+    width: auto;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
 }
 .l-title {
-    padding-left: 30px;
+    /*padding-left: 30px;*/
     min-height: 47px;
     width: 246px;
     display: flex;
@@ -516,7 +605,7 @@ h4 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
 }
 .mobile-profile .m-player-info {
     color: #3a3a3a;
