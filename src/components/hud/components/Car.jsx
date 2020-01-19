@@ -6,7 +6,7 @@ class Car extends React.Component {
     super(props)
     this.state = {
       show: true,
-      isShowSmall: true,
+      isShowSmall: false,
       light: false,
       door: false,
       engine: false,
@@ -16,6 +16,7 @@ class Car extends React.Component {
       speed: 200,
 
       deg: -45,
+      color: '#48B9F2',
     }
   }
 
@@ -53,7 +54,7 @@ class Car extends React.Component {
   }
   render() {
     let fuel_liner = (this.state.fuel * 100) / this.state.max_fuel;
-    const speed_score = { transform: `rotate(${this.state.deg}deg)` };
+    const speed_score = { transform: `rotate(${this.state.deg}deg)`, borderBottomColor: this.state.color, borderLeftColor: this.state.color };
 
     if (!this.state.show) {
       return null;
@@ -85,7 +86,7 @@ class Car extends React.Component {
               <div className="oil-num">{this.state.fuel} {this.state.fuelType}</div>
             </div>
             <div className="oil-liner">
-              <div className="full-liner" style={{ width: fuel_liner + '%' }}></div>
+              <div className="full-liner" style={{ width: fuel_liner + '%', background: this.state.color }}></div>
             </div>
           </div>
         </div>

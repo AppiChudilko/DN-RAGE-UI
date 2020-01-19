@@ -9,6 +9,7 @@ class Watch extends React.Component {
       time: '14:00',
       date: '13.01.2020',
       temp: '20',
+      color: '#48B9F2',
     }
   }
 

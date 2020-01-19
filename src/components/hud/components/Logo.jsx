@@ -11,6 +11,7 @@ class Logo extends React.Component {
       online: '1000',
       max_player: '1000',
       id: '0001',
+      color: '#48B9F2',
     }
   }
 

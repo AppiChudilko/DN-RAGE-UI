@@ -11,6 +11,7 @@ class Player extends React.Component {
       eat: 100,
       wallet: "$98,999,550,381.45",
       card: "$98,999,550,381.45",
+      color: '#48B9F2',
     }
   }
 
@@ -46,14 +47,14 @@ class Player extends React.Component {
             <div className="needs-box">
               <div className="img-drink"></div>
               <div className="liner-needs">
-                <div className="color-liner" style={{ width: this.state.drink + '%' }}></div>
+                <div className="color-liner" style={{ width: this.state.drink + '%', background: this.state.color }}></div>
               </div>
               <div className="needs-text">{this.state.drink}%</div>
             </div>
             <div className="needs-box">
               <div className="img-eat"></div>
               <div className="liner-needs">
-                <div className="color-liner" style={{ width: this.state.eat + '%' }}></div>
+                <div className="color-liner" style={{ width: this.state.eat + '%', background: this.state.color }}></div>
               </div>
               <div className="needs-text">{this.state.eat}%</div>
             </div>
@@ -61,7 +62,7 @@ class Player extends React.Component {
           <div className="money">
             <div className="money-box">
               <div className="img-wallet"></div>
-              <div className="wallet-text">{this.state.wallet}</div>
+              <div className="wallet-text" style={{ color: this.state.color }}>{this.state.wallet}</div>
             </div>
             <div className="money-box">
               <div className="img-credit-card"></div>
