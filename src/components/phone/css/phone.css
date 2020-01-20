@@ -309,7 +309,7 @@
     transition: 0.3s;
 }
 .u-menu-l.hoverable:hover {
-    background: #4794eb26;
+    background: #4794eb26 !important;
 }
 .l-title {
     /*padding-left: 30px;*/

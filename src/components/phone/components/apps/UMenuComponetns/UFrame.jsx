@@ -38,7 +38,7 @@ class UFrame extends React.Component {
   render() {
     return (
       <React.Fragment >
-        <div className={this.props.item.clickable ? 'u-menu-l hoverable' : 'u-menu-l'} onClick={() => this.buttonClick(this.props.item.params)}>
+        <div style={{background: this.props.item.background}} className={this.props.item.clickable ? 'u-menu-l hoverable' : 'u-menu-l'} onClick={() => this.buttonClick(this.props.item.params)}>
           {(this.props.type === 0) ?
               <React.Fragment>
                 <div className="mobile-profile">
