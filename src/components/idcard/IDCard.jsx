@@ -46,7 +46,7 @@ class IDCard extends React.Component {
           <div className="idcard_box">
             <div className="plash_left">
               <div className="photo_player">
-                <img src={this.state.photo} className="img-size-card" />
+                <img src={this.state.photo} className="img-size-card" alt=""/>
               </div>
               <div className="box-for-liner">
                 <div className="liner-shadow-card"></div>
