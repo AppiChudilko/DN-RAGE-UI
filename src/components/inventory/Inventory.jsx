@@ -428,6 +428,7 @@ class Inventory extends React.Component {
         item.item_id == 44 || item.item_id == 50 || 
         item.item_id == 51 || item.item_id == 52 || 
         item.item_id == 53 || item.item_id == 252 ||
+        item.item_id >= 27 && item.item_id <= 30 ||
         item.item_id >= 138 && item.item_id <= 145 ||
         item.item_id >= 154 && item.item_id <= 157 ||
         item.item_id >= 163 && item.item_id <= 180 ||
