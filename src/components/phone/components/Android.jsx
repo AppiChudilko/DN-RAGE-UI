@@ -47,7 +47,7 @@ class Android extends React.Component {
             title: "Приложение #1",
             text: "",
             type: 1,
-            background: '#000',
+            //background: '#000',
             clickable: true,
             params: {}
           },
