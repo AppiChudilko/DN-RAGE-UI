@@ -65,7 +65,7 @@ class IDCard extends React.Component {
                   </div>
                   <div className="pl-age">
                     <span className="pl-grow row-tsp">Возраст</span>
-                    <span className="pl-black">{this.state.player_info.age}</span>
+                    <span className="pl-black">{this.state.player_info.age} лет</span>
                   </div>
                 </div>
                 <div className="pl-clm">

@@ -22,6 +22,8 @@
 }
 .idcard_box .plash_right{
     width: 402px;
+    background: url(../img/bg-flag.png) no-repeat;
+    background-position: 69px 31px;
     background-color: rgb(255, 255, 255);
     height: inherit;
     display: flex;
