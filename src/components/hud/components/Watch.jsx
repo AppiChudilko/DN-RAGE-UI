@@ -38,7 +38,7 @@ class Watch extends React.Component {
             <div className="time">{this.state.time} <div className="time-img-watch"></div></div>
             <div className="date">{this.state.date}</div>
           </div>
-          <div className="degrees">{this.state.temp}°C</div>
+          <div className="degrees">{this.state.temp}</div>
         </div>
       </React.Fragment>
     )

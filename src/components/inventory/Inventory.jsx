@@ -132,7 +132,7 @@ class Inventory extends React.Component {
         boot: [267], // Обувь
         bag: [264, 263], // Сумка
         clock: [7], // Часы (второй раз?)
-        phone: [8], // Телефоны
+        phone: [8,27,28,29,30], // Телефоны
         money: [48], // Деньги?
         card: [50], // Карточки
       },

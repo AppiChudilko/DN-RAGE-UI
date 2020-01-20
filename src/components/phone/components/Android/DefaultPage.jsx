@@ -21,7 +21,7 @@ class DefaultPage extends React.Component {
               <div className="txt-time">{this.props.top_bar.time}</div>
               <div className="txt-date">{this.props.top_bar.date}</div>
             </div>
-            <div className="weather"><span>{this.props.top_bar.temperature}C</span> </div>
+            <div className="weather"><span>{this.props.top_bar.temperature}</span> </div>
           </div>
           <div className="main-app-box">
             {this.props.data.map((e, i) => {

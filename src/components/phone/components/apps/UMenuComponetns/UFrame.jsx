@@ -9,6 +9,7 @@ class UFrame extends React.Component {
   }
   callback = (action, ...args) => {
     console.log(action, this.props.menu, this.props.id, ...args)
+    mp.trigger('client:phone:callBack', action, this.props.menu, this.props.id, ...args); // eslint-disable-line
   }
   buttonClick(params) {
     this.callback('button', params);

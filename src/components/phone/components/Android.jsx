@@ -98,7 +98,7 @@ class Android extends React.Component {
   }
 
   componentDidMount() {
-    EventManager.addHandler('phone-a', value => {
+    EventManager.addHandler('phone3', value => {
       if(value.type === 'show') { this.setState({show: true})}
       else if(value.type === 'hide') { this.setState({show: false})}
       else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }

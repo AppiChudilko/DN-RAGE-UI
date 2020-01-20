@@ -49,10 +49,6 @@ class License extends React.Component {
     } else {
       this.setState({ photo: this.state.player_info.img })
     }
-
-    console.log('TEST', this.state.player_info);
-    console.log('TEST1', this.state.photo);
-
   }
   render() {
     if (!this.state.show) {
