@@ -265,6 +265,11 @@
     color: #fff;
     margin-left: 4px;
 }
+
+.hoverable {
+    cursor: pointer;
+}
+
 /*UMenu*/
 .uni-menu {
     width: inherit;
@@ -296,15 +301,19 @@
     overflow: scroll;
 }
 .u-menu-l {
-    padding: 0 17px;
+    padding: 8px 17px;
     width: auto;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
+    transition: 0.3s;
+}
+.u-menu-l.hoverable:hover {
+    background: #4794eb26;
 }
 .l-title {
     /*padding-left: 30px;*/
-    min-height: 47px;
+    min-height: 27px;
     width: 246px;
     display: flex;
     flex-direction: column;

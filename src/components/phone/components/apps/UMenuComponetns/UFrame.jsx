@@ -38,10 +38,21 @@ class UFrame extends React.Component {
   render() {
     return (
       <React.Fragment >
-        <div className="u-menu-l">
+        <div className={this.props.item.clickable ? 'u-menu-l hoverable' : 'u-menu-l'} onClick={() => this.buttonClick(this.props.item.params)}>
+          {(this.props.type === 0) ?
+              <React.Fragment>
+                <div className="mobile-profile">
+                  <img className="m-player-photo" src={this.props.item.value} />
+                  <div className="m-player-info">
+                    <div className="m-name-player">{this.props.item.title}</div>
+                    <div className="m-email-player">{this.props.item.text}</div>
+                  </div>
+                </div>
+              </React.Fragment> : ''
+          }
           {(this.props.type === 1) ?
             <React.Fragment>
-              <div className="l-title" onClick={() => this.buttonClick(this.props.item.params)}>
+              <div className="l-title">
                 <div className="txt-title">{this.props.item.title}</div>
                 <div className="txt-lasttitle">{this.props.item.text}</div>
               </div>
@@ -57,17 +68,6 @@ class UFrame extends React.Component {
             </React.Fragment> : ''
           }
           {(this.props.type === 3) ?
-            <React.Fragment>
-              <div className="mobile-profile">
-                <img className="m-player-photo" src={this.props.item.value} />
-                <div className="m-player-info">
-                  <div className="m-name-player">{this.props.item.title}</div>
-                  <div className="m-email-player">{this.props.item.text}</div>
-                </div>
-              </div>
-            </React.Fragment> : ''
-          }
-          {(this.props.type === 4) ?
             <React.Fragment>
               <div className="l-title">
                 <div className="txt-title">{this.props.item.title}</div>
