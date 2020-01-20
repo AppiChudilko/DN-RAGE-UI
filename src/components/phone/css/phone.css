@@ -261,7 +261,7 @@
 .left-topbar .battery-info {
     font-size: 12px;
     margin-right: 3px;
-    font-family: "RobotoRegular";
+    font-family: "Roboto";
     color: #fff;
     margin-left: 4px;
 }
@@ -311,13 +311,13 @@
     justify-content: center;
 }
 .txt-title {
-    font-family: "RobotoRegular";
+    font-family: "Roboto";
     margin-bottom: 2px;
     color: #3a3a3a;
     font-size: 12px;
 }
 .txt-lasttitle {
-    font-family: "RobotoRegular";
+    font-family: "Roboto";
     color: #919191;
     font-size: 10px;
 }
@@ -609,7 +609,7 @@ h4 {
 }
 .mobile-profile .m-player-info {
     color: #3a3a3a;
-    font-family: 'RobotoRegular';
+    font-family: 'Roboto';
     margin-left: 6%;
 }
 .mobile-profile .m-email-player {
