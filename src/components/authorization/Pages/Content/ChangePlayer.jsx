@@ -30,7 +30,7 @@ class ChangePlayer extends React.Component {
         this.setState({ third_character_create: value.isShow3 });
         this.setState({ info_player: value.players});
 
-        this.changeImg();
+        //this.props.changeImg(); TODO надо тут обновить картинку, но чет не работает
       }
       else return;
     })

@@ -31,6 +31,7 @@ class License extends React.Component {
       else if(value.type === 'updateValues') {
         this.setState({player_info: value.info})
         this.setState({show: value.isShow})
+        this.checkSexandImg();
       }
       else return;
     })
@@ -38,6 +39,7 @@ class License extends React.Component {
     this.checkSexandImg();
   }
   checkSexandImg() {
+
     if (this.state.player_info.img === '') {
       if (this.state.player_info.sex === 'Мужской') {
         this.setState({ photo: img_man });
@@ -47,6 +49,9 @@ class License extends React.Component {
     } else {
       this.setState({ photo: this.state.player_info.img })
     }
+
+    console.log('TEST', this.state.player_info);
+    console.log('TEST1', this.state.photo);
 
   }
   render() {
