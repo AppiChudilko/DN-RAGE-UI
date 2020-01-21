@@ -103,8 +103,13 @@ class Android extends React.Component {
       else if(value.type === 'hide') { this.setState({show: false})}
       else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
       else if (value.type === 'updateMenu') {
-        this.setState({ menu: value.menu })
-        UMenu.forceUpdate();
+        try {
+          this.setState({ menu: value.menu })
+          UMenu.forceUpdate();
+        }
+        catch (e) {
+          console.log(e);
+        }
       }
       else if (value.type === 'updateTopBar') { this.setState({ top_bar: value.bar }) }
       else return;
