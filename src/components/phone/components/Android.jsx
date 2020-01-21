@@ -41,7 +41,7 @@ class Android extends React.Component {
             text: "nika.kondr@ded.net",
             type: 0,
             value: 'https://a.rsg.sc//n/nika.kondr', //TODO Передаем сюда socialclub и получаем аватар
-            params: {}
+            params: { name: "null" }
           },
           {
             title: "Приложение #1",
@@ -49,14 +49,14 @@ class Android extends React.Component {
             type: 1,
             //background: '#000',
             clickable: true,
-            params: {}
+            params: { name: "null" }
           },
           {
             title: "Приложение #2",
             text: "",
             type: 1,
             clickable: true,
-            params: {}
+            params: { name: "null" }
           },
         ]
       },
@@ -69,27 +69,27 @@ class Android extends React.Component {
             text: "nika.kondr@ded.net",
             type: 0,
             value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-            params: {}
+            params: { name: "null" }
           },
           {
             title: "Включить громкость",
             text: "Oписание",
             type: 1,
-            params: {}
+            params: { name: "null" }
           },
           {
             title: "Включить громкость",
             text: "Oписание",
             type: 2,
             value: true,
-            params: {}
+            params: { name: "null" }
           },
           {
             title: "Test громкость",
             text: "",
             type: 3,
             value: false,
-            params: {}
+            params: { name: "null" }
           },
         ]
       },
@@ -102,7 +102,10 @@ class Android extends React.Component {
       if(value.type === 'show') { this.setState({show: true})}
       else if(value.type === 'hide') { this.setState({show: false})}
       else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
-      else if (value.type === 'updateMenu') { this.setState({ menu: value.menu }) }
+      else if (value.type === 'updateMenu') {
+        this.setState({ menu: value.menu })
+        UMenu.forceUpdate();
+      }
       else if (value.type === 'updateTopBar') { this.setState({ top_bar: value.bar }) }
       else return;
     })

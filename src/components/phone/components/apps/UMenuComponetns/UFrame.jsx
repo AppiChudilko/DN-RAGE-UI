@@ -12,10 +12,20 @@ class UFrame extends React.Component {
     mp.trigger('client:phone:callBack', action, this.props.menu, this.props.id, ...args); // eslint-disable-line
   }
   buttonClick(params) {
-    this.callback('button', JSON.stringify(params));
+    try {
+      this.callback('button', JSON.stringify(params));
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
   checkboxChange(event, params) {
-    this.callback('checkbox', event.target.checked, JSON.stringify(params));
+    try {
+      this.callback('checkbox', event.target.checked, JSON.stringify(params));
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
   getCheckbox(isChecked, params) {
     let uid = Math.random().toString(36).substr(2, 9);
