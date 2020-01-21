@@ -13,11 +13,11 @@ class Android extends React.Component {
       path: '/phone/android/defaultpage',
       rotate: false,
       top_bar: {
-        time: '12:01',
+        time: '00:00',
         battery: 10,
         wifi: 10,
         network: 10,
-        temperature: '+25',
+        temperature: '0',
         date: '15 декабря'
 
       },
@@ -31,36 +31,7 @@ class Android extends React.Component {
         { link: "/phone/android/umenu", action: 'cont', img: 'cont' },
         { link: "/phone/android/umenu", action: 'sms', img: 'sms' },
       ],
-
       menu: {
-        UUID: 'apps',
-        title: 'Установленные приложения',
-        items: [
-          {
-            title: "Nika Kondr",
-            text: "nika.kondr@ded.net",
-            type: 0,
-            value: 'https://a.rsg.sc//n/nika.kondr', //TODO Передаем сюда socialclub и получаем аватар
-            params: { name: "null" }
-          },
-          {
-            title: "Приложение #1",
-            text: "",
-            type: 1,
-            //background: '#000',
-            clickable: true,
-            params: { name: "null" }
-          },
-          {
-            title: "Приложение #2",
-            text: "",
-            type: 1,
-            clickable: true,
-            params: { name: "null" }
-          },
-        ]
-      },
-      menu1: {
         UUID: '11223',
         title: 'Настройки',
         items: [
@@ -99,12 +70,9 @@ class Android extends React.Component {
 
   componentDidMount() {
     EventManager.addHandler('phone3', value => {
-      if(value.type === 'show') { this.setState({show: true})}
-      else if(value.type === 'hide') { this.setState({show: false})}
-      else if (value.type === 'switch') { this.setState({ show: !this.state.show }) }
-      else if (value.type === 'updateMenu') {
+      if (value.type === 'updateMenu') {
         try {
-          this.setState({ menu: value.menu })
+          this.setState({ menu: value.menu });
           UMenu.forceUpdate();
         }
         catch (e) {
