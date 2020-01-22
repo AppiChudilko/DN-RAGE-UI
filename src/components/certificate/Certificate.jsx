@@ -32,7 +32,7 @@ class Certificate extends React.Component {
   }
   componentDidMount() {
 
-    EventManager.addHandler('license', value => {
+    EventManager.addHandler('certificate', value => {
       if(value.type === 'show') { this.setState({show: true})}
       else if(value.type === 'hide') { this.setState({show: false})}
       else if(value.type === 'updateValues') {
