@@ -52,7 +52,7 @@ class Certificate extends React.Component {
   checkWork() {
     switch (this.state.type) {
       case 'gov':
-        this.setState({ work: 'Government of Los Santos', img_frac: `${gov}` })
+        this.setState({ work: 'Government of San Andreas', img_frac: `${gov}` })
         break;
       case 'fib':
         this.setState({ work: 'Department of Investigations', img_frac: ` ${fib}` })
