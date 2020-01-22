@@ -10,6 +10,7 @@ import fib from "./img/fib.png"
 import lspd from "./img/lspd.png"
 import sheriff from "./img/sheff.png"
 import ems from "./img/ems.png"
+import EventManager from "../../EventManager";
 
 class Certificate extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class Certificate extends React.Component {
       work: '',
       player_info: {
         name: 'Olejka Pelmeshka',
-        sex: 'М',
+        sex: 'Мужской',
+        dep: 'Бюро',
         position: 'Специальный агент',
         dob: '01.01.1989',
         id: '25',
@@ -29,6 +31,21 @@ class Certificate extends React.Component {
     }
   }
   componentDidMount() {
+
+    EventManager.addHandler('license', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({player_info: value.info})
+        this.setState({type: value.typef})
+        this.setState({show: value.isShow})
+
+        this.checkSexandImg();
+        this.checkWork();
+      }
+      else return;
+    })
+
     this.checkSexandImg();
     this.checkWork();
   }
@@ -75,7 +92,7 @@ class Certificate extends React.Component {
   }
   checkSexandImg() {
     if (this.state.player_info.img === '') {
-      if (this.state.player_info.sex === 'М') {
+      if (this.state.player_info.sex === 'Мужской') {
         this.setState({ photo: img_man });
       } else {
         this.setState({ photo: img_woman });
@@ -105,6 +122,10 @@ class Certificate extends React.Component {
                 </div>
                 <div className="fib-second-inf">
                   <div className="fib-name">{this.state.player_info.name}</div>
+                  <div className="box-fib-inf-tt">
+                    <span className="fib-grow ff-rr-kk">Отдел</span>
+                    <span className="fib-black">{this.state.player_info.dep}</span>
+                  </div>
                   <div className="box-fib-inf-tt">
                     <span className="fib-grow ff-rr-kk">Должность</span>
                     <span className="fib-black">{this.state.player_info.position}</span>
