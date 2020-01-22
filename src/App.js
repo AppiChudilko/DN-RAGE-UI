@@ -11,7 +11,7 @@ import Phone from './components/phone/Phone';
 import Hud from './components/hud/Hud';
 import IDCard from './components/idcard/IDCard';
 import License from './components/license/License';
-import FibCertificate from './components/fibcertificate/FibCertificate';
+import Certificate from './components/certificate/Certificate';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Hud />
         <IDCard />
         <License />
-        <FibCertificate />
+        <Certificate />
     </React.Fragment>
   );
 }

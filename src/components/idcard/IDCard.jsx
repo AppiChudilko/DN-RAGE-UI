@@ -10,7 +10,8 @@ class IDCard extends React.Component {
     this.state = {
       show: false,
       player_info: {
-        name: 'Olejka Pelmeshka',
+        firstname: 'Olejka',
+        lastname: 'Pelmeshka',
         sex: 'Мужской',
         age: 30,
         nation: 'Американец',
@@ -44,44 +45,53 @@ class IDCard extends React.Component {
       <React.Fragment >
         <div className="idcard-main" id="box">
           <div className="idcard_box">
-            <div className="plash_left">
-              <div className="photo_player">
-                <img src={this.state.photo} className="img-size-card" alt=""/>
-              </div>
-              <div className="box-for-liner">
+            <div className="osn-idcard">
+              <div className="clm-1-idcard">IDENTIFICATION CARD</div>
+              <div className="clm-2-idcard">
+              <div className="plash_left">
+                <div className="photo_player">
+                  <img src={this.state.photo} className="img-size-card" alt="" />
+                </div>
+                {/* <div className="box-for-liner">
                 <div className="liner-shadow-card"></div>
+              </div> */}
               </div>
-            </div>
-            <div className="plash_right">
-              <div className="liner-right-card">
-                <span className="txt-lin">ID КАРТА</span>
-              </div>
-              <div className="player_name-card">{this.state.player_info.name}</div>
-              <div className="pl_inf">
-                <div className="pl-row">
-                  <div className="pl-sex">
-                    <span className="pl-grow row-tsp">Пол</span>
-                    <span className="pl-black">{this.state.player_info.sex}</span>
+              <div className="plash_right">
+               <div className="pl-clm-inf-n name-styl-id name-pff">
+                      <span className="pl-grow tsp-topname">Имя</span>
+                      <span className="pl-black">{this.state.player_info.firstname}</span>
+                </div>
+                <div className="pl-clm-inf-n name-styl-id name-pff btm-last">
+                      <span className="pl-grow tsp-topname">Фамилия</span>
+                      <span className="pl-black">{this.state.player_info.lastname}</span>
+                    </div>
+                <div className="pl_inf">
+                  <div className="pl-row">
+                    <div className="pl-sex">
+                      <span className="pl-grow row-tsp">Пол</span>
+                      <span className="pl-black">{this.state.player_info.sex}</span>
+                    </div>
+                    <div className="pl-age">
+                      <span className="pl-grow row-tsp">Возраст</span>
+                      <span className="pl-black">{this.state.player_info.age} лет</span>
+                    </div>
                   </div>
-                  <div className="pl-age">
-                    <span className="pl-grow row-tsp">Возраст</span>
-                    <span className="pl-black">{this.state.player_info.age} лет</span>
+                  <div className="pl-clm">
+                    <div className="pl-clm-inf">
+                      <span className="pl-grow pl-clm-f">Национальность</span>
+                      <span className="pl-black">{this.state.player_info.nation}</span>
+                    </div>
+                    <div className="pl-clm-inf">
+                      <span className="pl-grow pl-clm-f">Регистрация</span>
+                      <span className="pl-black">{this.state.player_info.regist === '' ? '--------------' : this.state.player_info.regist}</span>
+                    </div>
+                    <div className="pl-clm-inf">
+                      <span className="pl-grow pl-clm-f">№ Документа</span>
+                      <span className="pl-black">{this.state.player_info.idcard}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="pl-clm">
-                  <div className="pl-clm-inf">
-                    <span className="pl-grow pl-clm-f">Национальность</span>
-                    <span className="pl-black">{this.state.player_info.nation}</span>
-                  </div>
-                  <div className="pl-clm-inf">
-                    <span className="pl-grow pl-clm-f">Регистрация</span>
-                    <span className="pl-black">{this.state.player_info.regist === '' ? '--------------' : this.state.player_info.regist}</span>
-                  </div>
-                  <div className="pl-clm-inf">
-                    <span className="pl-grow pl-clm-f">№ Документа</span>
-                    <span className="pl-black">{this.state.player_info.idcard}</span>
-                  </div>
-                </div>
+              </div>
               </div>
             </div>
           </div>

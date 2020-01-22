@@ -7,31 +7,33 @@
     position: absolute;
 }
 .idcard_box {
-    width: 640px;
-    height: 402px;
+    width: 452px;
+    height: 309px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../img/bg-id.png") no-repeat;
+    outline: 2px dashed rgb(152, 152, 152,0.2);
+    border-width: 1.5px;
+    outline-offset: -10px;
 }
 .idcard_box .plash_left{
-    width: 238px;
-    background-color: rgb(45, 45, 45);
+    width: 144px;
     height: inherit;
     display: flex;
     justify-content: center;
-    align-items: center;   
-    border-left: 38px solid -webkit-linear-gradient( 0deg, rgba(47,47,47,0) 0%, rgb(25,25,25) 100%);;
-}
+    align-items: center;   }
 .idcard_box .plash_right{
-    width: 402px;
+    width: 265px;
     background: url(../img/bg-flag.png) no-repeat;
     background-position: 69px 31px;
-    background-color: rgb(255, 255, 255);
     height: inherit;
     display: flex;
     flex-direction: column;
 }
 .photo_player{
-    width: 113px;
-    height: 148px;
+    width: 90px;
+    height: 118px;
     z-index: 1;
     position: relative;
 }
@@ -79,13 +81,9 @@
     font-family: "RobotoLight";
     color: rgb(72, 185, 242);
     font-size: 24px;
-    margin-top: 72px;
-    margin-left: 35px;
-    margin-bottom: 21px;
 }
 .pl_inf{
-    width: 327px;
-    margin-left: 35px;
+    width: 265px;
     border-top: 1px solid rgb(232, 232, 232);
     display: flex;
     flex-direction: column;
@@ -94,31 +92,71 @@
  .pl_inf .pl-row {
     display: flex;
     flex-direction: row;
-    margin-top: 33px;
+    margin-top: 15px;
  } 
  .pl_inf .pl-clm {
     display: flex;
     flex-direction: column;
  }
  .pl-grow {
-    font-size: 13.55px;
+    font-size: 9px;
     color: rgb(173, 173, 173);
     text-transform: uppercase;
  }
  .pl-black {
-    font-size: 16.57px;
+    font-size: 11px;
     color: rgb(30, 30, 30);
  }
  .row-tsp {
-     margin-right: 28px;
+     margin-right: 19px;
  }
  .pl-sex {
-     margin-right: 51px;
+     margin-right: 33px;
  }
  .pl-clm-inf {
-     margin-top: 44px;
+     margin-top: 14px;
  }
  .pl-clm-f{
-     width: 175px;
+     width: 117px;
      display: inline-flex;
+ }
+ .osn-idcard {
+     width: 409px;
+     height: 258px;
+     background: #fff;
+     display: flex;
+     flex-direction: column;
+ }
+ .clm-1-idcard {
+     width: inherit;
+     height: 36px;
+     background: #48b9f2;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-family: "RobotoBold";
+     font-size: 16px;
+     color: rgb(255, 255, 255);
+     text-shadow: 0px 2px 3.8px rgba(0, 0, 0, 0.35);
+ }
+ .clm-2-idcard {
+     height: 222px;
+     width: inherit;
+     display: flex;
+     flex-direction: row;
+ } 
+ .name-styl-id {
+    font-family: 'RobotoLight', sans-serif;
+ }
+ .name-pff {
+    font-family: 'RobotoLight', sans-serif;
+ }
+ .tsp-topname{
+     margin-right: 13px;
+ }
+ .pl-clm-inf-n {
+     margin-top: 10px;
+ }
+ .btm-last {
+     margin-bottom: 10px;
  }
