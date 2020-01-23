@@ -36,6 +36,9 @@ class Inventory extends React.Component {
         { name: "Модифицировать", action: "put_on_gun", show: false, color: '#4CAF50' },
         { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
         { name: "Употребить", action: "consume", show: false, color: '#4CAF50' },
+        { name: "Рыбачить", action: "fish", show: false, color: '#4CAF50' },
+        { name: "Играть", action: "play", show: false, color: '#4CAF50' },
+        { name: "Выкурить", action: "smoke", show: false, color: '#4CAF50' },
         { name: "Съесть", action: "eat", show: false, color: '#4CAF50' },
         { name: "Выпить", action: "drink", show: false, color: '#4CAF50' },
         { name: "Экипировать", action: "equip", show: false, color: '#4CAF50' },
@@ -48,7 +51,7 @@ class Inventory extends React.Component {
         { name: "Взять 50гр.", action: "take50gr", show: false },
         { name: "Взвесить", action: "weightGr", show: false },
 
-        { name: "Взять 1гр.", action: "take1gr", show: false },
+        { name: "Взять 1шт.", action: "take1", show: false },
 
         { name: "Посчитать", action: "countItems", show: false },
         { name: "Посчитать", action: "countMoney", show: false },
@@ -107,10 +110,18 @@ class Inventory extends React.Component {
       ],
 
       itemsById: { // В массивах должны быть айди всех предметов разного типа
-        food: [1], // Можно "съесть"
-        drinks: [2], // Можно "выпить"
-        usable: [4], // Можно "использовать"
-        consumable: [3], // Можно "употребить"
+        countItems: [26], // Посчитать
+        weightGr: [142, 143, 144, 145, 154, 155, 156, 157, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180], // Взвесить
+        take1gr: [142, 143, 144, 145, 154, 155, 156, 157, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180], // Взять 1гр
+        take10gr: [142, 143, 144, 145, 156, 157, 163, 164, 165, 166, 167, 168, 169, 170, 176, 177, 178, 179, 180], // Взять 10гр
+        take50gr: [142, 143, 144, 145, 163, 164, 165, 166, 167, 168, 169, 170], // Взять 50гр
+        food: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 232, 233, 234, 235, 236, 237, 238, 239, 240], // Можно "съесть"
+        drinks: [241, 242, 243, 244, 245, 246, 247, 248, 249, 250], // Можно "выпить"
+        usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 0], // Можно "использовать"
+        fish: [251], // Можно "Рыбачить"
+        smoke: [26, 3], // Можно "курить"
+        play: [253], // Можно "Играть"
+        consumable: [2, 158, 159, 160, 161, 162], // Можно "употребить"
         bag: [264, 263], // Открыть сумку
         equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137], // Можно "экипировать"
         ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
@@ -521,11 +532,36 @@ class Inventory extends React.Component {
       if (source !== 'outfit')
         actions.push('put_on') // Надеть
     }
+
+    if (this.state.itemsById.countItems.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('countItems') // Посчитать
+    }
+    if (this.state.itemsById.weightGr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('weightGr') // Взвесить
+    }
+    if (this.state.itemsById.take1gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('take1gr')
+    }
+    if (this.state.itemsById.take10gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('take10gr')
+    }
+    if (this.state.itemsById.take50gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('take50gr')
+    }
     if (this.state.itemsById.drinks.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('drink') // Выпить
     }
     if (this.state.itemsById.consumable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('consume') // Употребить
+    }
+    if (this.state.itemsById.fish.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('fish') // Рыбачить
+    }
+    if (this.state.itemsById.smoke.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('smoke') // Курить
+    }
+    if (this.state.itemsById.play.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('play') // Играть
     }
     if (this.state.itemsById.usable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('use') // Использовать
@@ -639,16 +675,28 @@ class Inventory extends React.Component {
         this.moveToInventory(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "use": // Использовать
+      case "consume": // Употребить
+      case "fish": // Ловить
+      case "play": // Играть
+      case "smoke": // Курить
+      case "eat": // Съесть
+      case "drink": // Выпить
         this.itemUse(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
-      case "consume": // Употребить
-        this.itemConsume(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+      case "countItems": // Посчитать
+        this.itemCountItems(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
-      case "eat": // Съесть
-        this.itemEat(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+      case "weightGr": // Взвесить
+        this.itemWeightGr(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
-      case "drink": // Выпить
-        this.itemDrink(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+      case "take1gr": // Взвесить
+        this.itemTake1gr(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "take10gr": // Взвесить
+        this.itemTake10gr(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "take50gr": // Взвесить
+        this.itemTake50gr(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "openBag": // Открыть сумку
         this.itemOpenBag(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -788,74 +836,128 @@ class Inventory extends React.Component {
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
           this.setState({ items: this.arrayRemove(this.state.items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
-          // mp.call ... использовать предмет и удалить из инвентаря
+          mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
-          // mp.call ... использовать предмет и удалить из багажника
+          mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
         break;
     }
   }
-  itemConsume(item, source) {
+  itemCountItems(item, source) {
     switch (source) {
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... употребить и удалить из инвентаря
+          this.notifyToClient('~b~В пачке ' + item.counti + 'шт.');
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
-          this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
-          // mp.call ... употребить и удалить из багажника
+          this.notifyToClient('~b~В пачке ' + item.counti + 'шт.');
         }
         break;
       default:
         break;
     }
   }
-  itemEat(item, source) {
+  itemWeightGr(item, source) {
     switch (source) {
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... съесть и удалить из инвентаря
+          this.notifyToClient('~b~В пачке ' + item.counti + 'гр.');
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
-          this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
-          // mp.call ... съесть и удалить из багажника
+          this.notifyToClient('~b~В пачке ' + item.counti + 'гр.');
         }
         break;
       default:
         break;
     }
   }
-  itemDrink(item, source) {
+  itemTake1gr(item, source) {
     switch (source) {
       case 'inventory':
         if (this.checkItem(item, 'inventory') !== null) {
           item = this.checkItem(item, 'inventory')
-          this.setState({ items: this.arrayRemove(this.state.items, item) })
-          // mp.call ... выпить и удалить из инвентаря
+          if (item.counti < 1) {
+            this.notifyToClient('~r~Пачка уже пустая.');
+            return;
+          }
+          mp.trigger('client:inventory:take1gr', item.id, item.item_id, item.counti); // eslint-disable-line
         }
         break;
       case 'secondary_inv':
         if (this.checkItem(item, 'secondary_inv') !== null) {
           item = this.checkItem(item, 'secondary_inv')
-          this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
-          // mp.call ... выпить и удалить из багажника
+          if (item.counti < 1) {
+            this.notifyToClient('~r~Пачка уже пустая.');
+            return;
+          }
+          mp.trigger('client:inventory:take1gr', item.id, item.item_id, item.counti); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemTake10gr(item, source) {
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          if (item.counti < 10) {
+            this.notifyToClient('~r~Пачка пустая или в ней нет 10-ти грамм.');
+            return;
+          }
+          mp.trigger('client:inventory:take10gr', item.id, item.item_id, item.counti); // eslint-disable-line
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          if (item.counti < 10) {
+            this.notifyToClient('~r~Пачка пустая или в ней нет 10-ти грамм.');
+            return;
+          }
+          mp.trigger('client:inventory:take10gr', item.id, item.item_id, item.counti); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemTake50gr(item, source) {
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          if (item.counti < 50) {
+            this.notifyToClient('~r~Пачка пустая или в ней нет 50-ти грамм.');
+            return;
+          }
+          mp.trigger('client:inventory:take50gr', item.id, item.item_id, item.counti); // eslint-disable-line
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          if (item.counti < 50) {
+            this.notifyToClient('~r~Пачка пустая или в ней нет 50-ти грамм.');
+            return;
+          }
+          mp.trigger('client:inventory:take50gr', item.id, item.item_id, item.counti); // eslint-disable-line
         }
         break;
       default:
