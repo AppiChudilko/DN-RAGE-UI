@@ -22,9 +22,8 @@ class Certificate extends React.Component {
       player_info: {
         name: 'Olejka Pelmeshka',
         sex: 'Мужской',
-        dep: 'Бюро',
+        dep: 'AirSupport Division',
         position: 'Специальный агент',
-        dob: '01.01.1989',
         id: '25',
         img: '',//https://a.rsg.sc//n/lendstoun
       }
@@ -123,6 +122,10 @@ class Certificate extends React.Component {
                 <div className="fib-second-inf">
                   <div className="fib-name">{this.state.player_info.name}</div>
                   <div className="box-fib-inf-tt">
+                    <span className="fib-grow ff-rr-kk">№</span>
+                    <span className="fib-black">{this.state.player_info.id}</span>
+                  </div>
+                  <div className="box-fib-inf-tt">
                     <span className="fib-grow ff-rr-kk">Отдел</span>
                     <span className="fib-black">{this.state.player_info.dep}</span>
                   </div>
@@ -131,13 +134,8 @@ class Certificate extends React.Component {
                     <span className="fib-black">{this.state.player_info.position}</span>
                   </div>
                   <div className="box-fib-inf-tt">
-                    <span className="fib-grow ff-rr-kk">Дата рождения</span>
-                    <span className="fib-black">{this.state.player_info.dob}</span>
-                  </div>
-                  <div className="box-fib-inf-tt">
-                    <span className="fib-grow pp-aaa">Пол</span>
+                    <span className="fib-grow ff-rr-kk">Пол</span>
                     <span className="fib-black">{this.state.player_info.sex}</span>
-                    <span className="fib-black kk-ll-pp">№{this.state.player_info.id}</span>
                   </div>
                 </div>
               </div>
