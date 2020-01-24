@@ -10,7 +10,7 @@ class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: '/phone/android/umenu',
+      path: '/phone/android/defaultpage',
       rotate: false,
       top_bar: {
         time: '00:00',
