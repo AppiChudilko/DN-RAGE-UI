@@ -1,17 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-class Tablet extends React.Component {
+class DefaultPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
     }
   }
+
   render() {
     return (
       <React.Fragment >
-       
+        <div className="android-content">
+         
+        </div>
       </React.Fragment>
     )
   }
 }
-export default Tablet;
+export default DefaultPage;

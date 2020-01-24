@@ -10,7 +10,7 @@ class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: '/phone/android/defaultpage',
+      path: '/phone/android/umenu',
       rotate: false,
       top_bar: {
         time: '00:00',
@@ -36,31 +36,76 @@ class Android extends React.Component {
         title: 'Настройки',
         items: [
           {
-            title: "Nika Kondr",
-            text: "nika.kondr@ded.net",
-            type: 0,
-            value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-            params: { name: "null" }
+            title: 'Аккаунт',
+            umenu: [
+              {
+                title: "Nika Kondr",
+                text: "nika.kondr@ded.net",
+                type: 0,
+                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                params: { name: "null" }
+              }
+            ],
           },
           {
-            title: "Включить громкость",
-            text: "Oписание",
-            type: 1,
-            params: { name: "null" }
+            title: 'Звук',
+            umenu: [            
+              {
+                title: "Включить громкость",
+                text: "Oписание",
+                img: 'volume',
+                type: 2,
+                value: true,
+                params: { name: "null" }
+              },             
+            ],
           },
           {
-            title: "Включить громкость",
-            text: "Oписание",
-            type: 2,
-            value: true,
-            params: { name: "null" }
+            title: 'Беспроводная сеть',
+            umenu: [
+              {
+                title: "Wi-Fi",
+                text: "",
+                img: 'wifi',
+                type: 2,
+                value: true,
+                params: { name: "null" }
+              },
+              {
+                title: "Bluetooh",
+                text: "",
+                img: 'bluetooh',
+                type: 2,
+                value: false,
+                params: { name: "null" }
+              },              
+            ],
           },
           {
-            title: "Test громкость",
-            text: "",
-            type: 3,
-            value: false,
-            params: { name: "null" }
+            title: 'Устройство',
+            umenu: [
+              {
+                title: "Дисплей",
+                text: "",
+                img: 'display',
+                type: 1,
+                params: { name: "null" }
+              },
+              {
+                title: "Звук & Уведомления",
+                text: "",
+                img: 'sound',
+                type: 1,
+                params: { name: "null" }
+              },
+              {
+                title: "Приложения",
+                text: "",
+                img: 'apps',
+                type: 1,
+                params: { name: "null" }
+              },              
+            ],
           },
         ]
       },
@@ -86,14 +131,14 @@ class Android extends React.Component {
 
   rotateAndroid() {
     this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
-    mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
+    //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
   }
   clickApps(event, i) {
     if (event.link == "/phone/android/umenu") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     }
     console.log(event)
   }
@@ -107,27 +152,27 @@ class Android extends React.Component {
   }
   render() {
     return (
-        <React.Fragment >
-          <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
-            <div className="phone-bg bg-1">
-              <div className={this.state.rotate ? "rotate-components" : null}>
-                <TopBar umenu={this.state.topbar_color} data={this.state.top_bar} />
-                <Router>
-                  <Route exact path="/phone/android/defaultpage">
-                    <DefaultPage data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
-                  </Route>
-                  <Route exact path="/phone/android/umenu">
-                    <UMenu data={this.state.menu} clickBack={this.clickBack.bind(this)} rotateAndroid={this.rotateAndroid.bind(this)} />
-                  </Route>
-                  <Redirect to={this.state.path} push />
-                </Router>
-                <Router>
-                  <BottomBar clickBack={this.clickBack.bind(this)} clickHome={this.clickHome.bind(this)} rotateAndroid={this.rotateAndroid.bind(this)}/>
-                </Router>
-              </div>
+      <React.Fragment >
+        <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
+          <div className="phone-bg bg-1">
+            <div className={this.state.rotate ? "rotate-components" : null}>
+              <TopBar umenu={this.state.topbar_color} data={this.state.top_bar} />
+              <Router>
+                <Route exact path="/phone/android/defaultpage">
+                  <DefaultPage data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
+                </Route>
+                <Route exact path="/phone/android/umenu">
+                  <UMenu data={this.state.menu} clickBack={this.clickBack.bind(this)} rotateAndroid={this.rotateAndroid.bind(this)} />
+                </Route>
+                <Redirect to={this.state.path} push />
+              </Router>
+              <Router>
+                <BottomBar clickBack={this.clickBack.bind(this)} clickHome={this.clickHome.bind(this)} rotateAndroid={this.rotateAndroid.bind(this)} />
+              </Router>
             </div>
           </div>
-        </React.Fragment>
+        </div>
+      </React.Fragment>
     )
   }
 }

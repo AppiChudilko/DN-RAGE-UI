@@ -16,11 +16,11 @@ class UMenu extends React.Component {
                         data={this.props.data}
                     />
                 </div>
-                <div className="m_keys_bar">
+                {/* <div className="m_keys_bar">
                     <Link to="/phone/android/defaultpage"><div className="m-trngl-bar" onClick={() => this.props.clickBack()}></div></Link>
                     <Link to="/phone/android/defaultpage"><div className="m-crl-bar" onClick={() => this.props.clickBack()}></div></Link>
                     <div className="m-sqr-bar" onClick={() => this.props.rotateAndroid()}></div>
-                </div>
+                </div> */}
             </React.Fragment>
         )
     }

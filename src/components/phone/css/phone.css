@@ -78,13 +78,14 @@
     height: inherit !important;
 }
 .rotate-components .m_keys_bar {
-    width: 464px;
+    width: auto;
+    margin-top: -6px;
 }
 .rotate-components .uni-menu {
-    height: 222px;
+    height: 229px;
 }
 .rotate-components .u-li-menu {
-    height: 182px;
+    height: 183px;
 }
 
 .main-app-box{
@@ -241,7 +242,7 @@
     /* background: #2d72c1; */
 }
 .bg-blue-andr {
-    background: #2d72c1;
+    background: #000;
 }
 .topbar-andr .left-topbar {
     margin-left: auto;
@@ -274,13 +275,17 @@
 .uni-menu {
     width: inherit;
     height: 409px;
+    display: flex;
+    flex-direction: column;
     
 }
 .u-title {
     height: 40px;
     display: flex;
     align-items: center;
-    background: #4794eb;
+    background: #212121;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+    z-index: 1;
 }
 .menu-list {
     width: 13px;
@@ -297,27 +302,32 @@
 .u-li-menu {
     width: inherit;
     height: 370px;
-    background: #ffffffdb;
+    background: #F2F2F2;
     overflow: scroll;
 }
-.u-menu-l {
-    padding: 8px 17px;
+.umenu-family-box {
+    width: inherit;
+    margin-bottom: 8px;
+    overflow: scroll;
+    background: #fff;
+}
+.u-menu-l {    
     width: auto;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
     transition: 0.3s;
 }
 .u-menu-l.hoverable:hover {
     background: #4794eb26 !important;
 }
 .l-title {
-    /*padding-left: 30px;*/
+    padding-left: 10px;
     min-height: 27px;
     width: 246px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
 }
 .txt-title {
     font-family: "Roboto";
@@ -415,7 +425,7 @@ h4 {
 
 }
 .tgl-light:checked + .tgl-btn {
-    background: #4694eb;
+    background: #4db6ac;
 }
 .tgl-ios + .tgl-btn {
     background: #fbfbfb;
@@ -609,6 +619,7 @@ h4 {
     align-items: center;
     width: 276px;
     height: 60px;
+    margin-left: 10px;
 }
 .mobile-profile .m-player-photo {
     width: 50px;
@@ -652,4 +663,69 @@ h4 {
     background: url(../img/android/icons/trngl-bar.svg) no-repeat;
     width: 14px;
     height: 15px;
+}
+.umenu-icon {
+    width: 26px;
+    height: 24px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.umenu-rov {
+    display: flex;
+    flex-direction: column;
+}
+.s-wifi {
+    width: 21px;
+    height: 19px;
+    background: url(../img/android/icons/s-wifi.svg) no-repeat;
+}
+.s-display {
+    width: 24px;
+    height: 24px;
+    background: url(../img/android/icons/s-display.svg) no-repeat;
+}
+.s-sound {
+    width: 16px;
+    height: 20px;
+    background: url(../img/android/icons/s-sound.svg) no-repeat;
+}
+.s-apps {
+    width: 24px;
+    height: 24px;
+    background: url(../img/android/icons/s-apps.svg) no-repeat;
+}
+.s-volume {
+    width: 24px;
+    height: 24px;
+    background: url(../img/android/icons/s-volume.svg) no-repeat;
+    filter: invert(69%) sepia(25%) saturate(765%) hue-rotate(125deg) brightness(87%) contrast(93%);
+}
+.s-bluetooh {
+    width: 24px;
+    height: 24px;
+    background: url(../img/android/icons/s-bluetooh.svg) no-repeat;
+}
+.umenu-title-family {
+    margin-top: 11px;
+    margin-left: 16px;
+    font-family: "RobotoMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: #4DB6AC;
+    margin-bottom: 7px;
+}
+.umenu-liner {
+    width: 254px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.12);
+}
+.umenu-mini-box {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
 }

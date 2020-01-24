@@ -17,14 +17,23 @@ class UMenuContainer extends React.Component {
         <div className="u-li-menu">
           {this.props.data.items.map((e, i) => {
             return (
-              <UFrame
-                menu={this.props.data.UUID}
-                item={e}
-                key={i}
-                id={i}
-                type={e.type}
-                event={this.callback}
-              />
+              <React.Fragment>
+                <div className="umenu-family-box">
+                  <div className="umenu-title-family">{e.title}</div>
+                  {e.umenu.map((e, i) => {
+                    return (
+                      <UFrame
+                        menu={this.props.data.UUID}
+                        item={e}
+                        key={i}
+                        id={i}
+                        type={e.type}
+                        event={this.callback}
+                      />
+                    )
+                  })}
+                </div>
+              </React.Fragment>
             )
           })}
         </div>
