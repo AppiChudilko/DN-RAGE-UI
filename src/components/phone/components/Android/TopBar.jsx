@@ -98,9 +98,9 @@ class TopBar extends React.Component {
             <div className="elements-bar">
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">
-                  <path opacity="0.302" fill-rule="evenodd" clip-rule="evenodd" d="M11 0L0 11.0003L11 11V0Z" fill="white" />
+                  <path opacity="0.302" fillRule="evenodd" clipRule="evenodd" d="M11 0L0 11.0003L11 11V0Z" fill="white" />
                   <g clip-path="url(#clip1)">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d={this.state.path_network} fill="white" />
+                    <path fillRule="evenodd" clipRule="evenodd" d={this.state.path_network} fill="white" />
                   </g>
                 </g>
                 <defs>
