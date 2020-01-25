@@ -17,7 +17,7 @@ class Android extends React.Component {
         battery: 10,
         wifi: 10,
         network: 10,
-        temperature: '0',
+        temperature: '+21°C',
         date: '15 декабря'
 
       },

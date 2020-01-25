@@ -333,11 +333,17 @@
     font-family: "Roboto";
     margin-bottom: 2px;
     color: #3a3a3a;
-    font-size: 12px;
+    font-size: 14px;
 }
 .txt-lasttitle {
     font-family: "Roboto";
     color: #919191;
+    font-size: 12px;
+}
+.rotate-components  .txt-title {
+    font-size: 12px;
+}
+.rotate-components  .txt-lasttitle {
     font-size: 10px;
 }
 .u-l-arrow {
@@ -633,8 +639,11 @@ h4 {
     margin-left: 6%;
 }
 .mobile-profile .m-email-player {
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 2px;
+}
+.rotate-components .mobile-profile .m-email-player {
+    font-size: 10px;
 }
 .mobile-profile .m-name-player {
     font-family: 'RobotoBold';

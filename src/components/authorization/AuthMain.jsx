@@ -36,7 +36,7 @@ class AuthMain extends React.Component {
                         <Route exact path="/create" component={CreatePlayer} />
                         <Redirect to={this.state.path} push />
                     </Router>
-                    </div>
+                </div>
             </React.Fragment>
         )
     }
