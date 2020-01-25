@@ -28,6 +28,7 @@ class Car extends React.Component {
       else if(value.type === 'hide') { this.setState({show: false})}
       else if(value.type === 'updateValues') {
         this.setState({show: value.isShow});
+        this.setState({isShowSmall: value.isShowSmall});
         this.setState({light: value.light});
         this.setState({door: value.door});
         this.setState({engine: value.engine});
