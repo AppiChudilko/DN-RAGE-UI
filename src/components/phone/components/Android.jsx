@@ -5,6 +5,7 @@ import TopBar from './Android/TopBar';
 import BottomBar from './Android/BottomBar';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import EventManager from "../../../EventManager";
+import PhoneBook from './Android/PhoneBook/PhoneBook';
 
 class Android extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Android extends React.Component {
         { link: "/phone/android/umenu", action: 'invader', img: 'invader' },*/
         { link: "/phone/android/umenu", action: 'gps', img: 'gps' },
         //{ link: "/phone/android/umenu", action: 'settings', img: 'settings' },
-        { link: "/phone/android/umenu", action: 'cont', img: 'cont' },
+        { link: "/phone/android/phonebook", action: 'cont', img: 'cont' },
         { link: "/phone/android/umenu", action: 'sms', img: 'sms' },
       ],
       menu: {
@@ -107,7 +108,38 @@ class Android extends React.Component {
               },              
             ],
           },
-        ]
+        ],
+      },
+      phonebook: {
+        favorit: [
+          {
+            name: 'Godvil Moretti',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+          {
+            name: 'Nika Moretti',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+        ],
+        history: [
+          {
+            name: 'Godvil Moretti',
+            img: 'https://a.rsg.sc//n/socialclub',
+            icon: 'call_received',
+            color: '#FF2E58', // green - #00C853 , red - #FF2E58
+            data: '12.01.2019'
+          },
+        ],
+        contact: [
+          {
+            name: 'Godvil Moretti',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+          {
+            name: 'Nika Moretti',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+        ],
       },
       topbar_color: false,
     }
@@ -139,6 +171,11 @@ class Android extends React.Component {
       this.setState({ path: event.link })
 
       //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+    } else if (event.link === "/phone/android/phonebook") {
+      this.setState({ topbar_color: true })
+      this.setState({ path: event.link })
+
+      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     }
     console.log(event)
   }
@@ -162,7 +199,10 @@ class Android extends React.Component {
                   <DefaultPage data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                 </Route>
                 <Route exact path="/phone/android/umenu">
-                  <UMenu data={this.state.menu} clickBack={this.clickBack.bind(this)} rotateAndroid={this.rotateAndroid.bind(this)} />
+                  <UMenu data={this.state.menu} />
+                </Route>
+                <Route exact path="/phone/android/phonebook">
+                  <PhoneBook data={this.state.phonebook}/>
                 </Route>
                 <Redirect to={this.state.path} push />
               </Router>

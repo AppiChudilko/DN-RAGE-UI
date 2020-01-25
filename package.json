@@ -6,6 +6,7 @@
   "dependencies": {
     "@kiyasov/noty": "^1.1.4",
     "animate.css": "^3.7.2",
+    "material-icons-react": "^1.0.4",
     "noty": "^3.2.0-beta",
     "react": "^16.11.0",
     "react-animated-css": "^1.2.1",

@@ -4,8 +4,7 @@ class TopBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      battery: this.props.data.battery,
-      network: this.props.data.network
+      
     }
   }
   componentDidMount() {
@@ -13,17 +12,17 @@ class TopBar extends React.Component {
     this.network();
   }
   componentDidUpdate(prevProp, prevState) {
-    if (this.state.battery !== prevProp.data.battery) {
-      this.batteryCharge(); // не работает - не обновляется
+    if (this.props.data.battery !== prevProp.data.battery) {
+      this.batteryCharge(); // исправлено, нужно проверять
     }
-    if (this.state.network !== prevProp.data.network) {
-      this.network(); // не работает - не обновляется
+    if (this.props.data.network !== prevProp.data.network) {
+      this.network(); // исправлено, нужно проверять
     }
   }
   batteryCharge() {
-    // if (this.state.batteryTimeout) { return; }
-    // this.setState({ batteryTimeout: true })
-    switch (this.state.battery) {
+    if (this.state.batteryTimeout) { return; }
+    this.setState({ batteryTimeout: true })
+    switch (this.props.data.battery) {
       case 11:
         this.setState({ path_battery: 'M0.913043 11H6.08696C6.59126 11 7 10.6007 7 10.1081V1.78378C7 1.29116 6.59126 0.891892 6.08696 0.891892H5.17391V0H1.82609V0.891892H0.913043C0.408739 0.891892 0 1.29116 0 1.78378V10.1081C0 10.6007 0.408739 11 0.913043 11Z' })
         break;
@@ -63,10 +62,12 @@ class TopBar extends React.Component {
       default:
         break;
     }
-    // this.setState({ batteryTimeout: false })
+    this.setState({ batteryTimeout: false })
   }
   network() {
-    switch (this.state.network) {
+    if (this.state.networkTimeout) { return; }
+    this.setState({ networkTimeout: true })
+    switch (this.props.data.network) {
       case 5:
         this.setState({ path_network: 'M11 0L0 11.0005L11 11V0Z' })
         break;
@@ -88,6 +89,7 @@ class TopBar extends React.Component {
       default:
         break;
     }
+    this.setState({ networkTimeout: false })
   }
   render() {
     return (
@@ -97,9 +99,9 @@ class TopBar extends React.Component {
           <div className="left-topbar">
             <div className="elements-bar">
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
+                <g clipPath="url(#clip0)">
                   <path opacity="0.302" fillRule="evenodd" clipRule="evenodd" d="M11 0L0 11.0003L11 11V0Z" fill="white" />
-                  <g clip-path="url(#clip1)">
+                  <g clipPath="url(#clip1)">
                     <path fillRule="evenodd" clipRule="evenodd" d={this.state.path_network} fill="white" />
                   </g>
                 </g>
