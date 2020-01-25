@@ -14,9 +14,9 @@ class Android extends React.Component {
       rotate: false,
       top_bar: {
         time: '00:00',
-        battery: 10,
-        wifi: 10,
-        network: 10,
+        battery: 11, // max 11
+        wifi: 2,
+        network: 2, // max 5
         temperature: '+21°C',
         date: '15 декабря'
 
@@ -134,7 +134,7 @@ class Android extends React.Component {
     //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
   }
   clickApps(event, i) {
-    if (event.link == "/phone/android/umenu") {
+    if (event.link === "/phone/android/umenu") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
