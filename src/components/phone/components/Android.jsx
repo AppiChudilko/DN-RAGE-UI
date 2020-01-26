@@ -6,12 +6,14 @@ import BottomBar from './Android/BottomBar';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import EventManager from "../../../EventManager";
 import PhoneBook from './Android/PhoneBook/PhoneBook';
+import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
 
 class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       path: '/phone/android/defaultpage',
+      history: ['/phone/android/defaultpage'],
       rotate: false,
       top_bar: {
         time: '00:00',
@@ -20,7 +22,6 @@ class Android extends React.Component {
         network: 2, // max 5
         temperature: '+21°C',
         date: '15 декабря'
-
       },
       apps: [
         { link: "/phone/android/umenu", action: 'app', img: 'apps' },
@@ -111,6 +112,12 @@ class Android extends React.Component {
         ],
       },
       phonebook: {
+        selected_contact: {
+          name: 'Godvil Moretti',
+          numbers: ['222-2346837'],
+          mail: 'godvil.moretti@ded.net',
+          img: 'https://a.rsg.sc//n/socialclub',
+        },
         favorit: [
           {
             name: 'Godvil Moretti',
@@ -122,21 +129,55 @@ class Android extends React.Component {
           },
         ],
         history: [
+          
           {
-            name: 'Godvil Moretti',
+            number: '222-2346837',
             img: 'https://a.rsg.sc//n/socialclub',
-            icon: 'call_received',
-            color: '#FF2E58', // green - #00C853 , red - #FF2E58
-            data: '12.01.2019'
+            type: 'call_missed', // call_made - исходящий звонок \ call_received - принятый звонок
+            data: '20190212-1553'
+          },
+          {
+            number: '999-9999999',
+            img: 'https://a.rsg.sc//n/socialclub',
+            type: 'call_missed', // call_made - исходящий звонок \ call_received - принятый звонок
+            data: '20190212-1553'
+          },
+          {
+            number: '222-3567347',
+            img: 'https://a.rsg.sc//n/socialclub',
+            type: 'call_received',
+            data: '20190112-1453'
+          },
+          {
+            number: '222-9746753',
+            img: 'https://a.rsg.sc//n/socialclub',
+            type: 'call_made',
+            data: '20190212-1453'
           },
         ],
         contact: [
           {
+            name: 'Wika Aretti',
+            numbers: ['222-1234212', '555-6347544'],
+            mail: 'wika.aretti@ded.net',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+          {
             name: 'Godvil Moretti',
+            numbers: ['222-2346837'],
+            mail: 'godvil.moretti@ded.net',
             img: 'https://a.rsg.sc//n/socialclub',
           },
           {
             name: 'Nika Moretti',
+            numbers: ['222-9746753', '555-7653765'],
+            mail: 'nika.moretti@ded.net',
+            img: 'https://a.rsg.sc//n/socialclub',
+          },
+          {
+            name: 'Aika Aretti',
+            numbers: ['222-3567347', '555-5367433'],
+            mail: 'aika.aretti@ded.net',
             img: 'https://a.rsg.sc//n/socialclub',
           },
         ],
@@ -161,6 +202,26 @@ class Android extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProp, prevState){
+    if (this.state.path !== prevState.path) {
+      if(this.state.path !== this.state.history[this.state.history.length-1])
+        this.historyPush()
+    }
+  }
+
+  historyPush(){
+    this.setState({history: this.state.history.concat([this.state.path])})
+  }
+  historyClear(){
+    this.setState({history: ['/phone/android/defaultpage']})
+  }
+  historyGoBack(){
+    if(this.state.history.length > 1)
+      this.setState({
+        path: this.state.history[this.state.history.length-2],
+      }, () => this.setState({history: this.state.history.slice(0,-1)}))
+  }
+
   rotateAndroid() {
     this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
     //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
@@ -179,30 +240,68 @@ class Android extends React.Component {
     }
     console.log(event)
   }
+  getContactByNumber(number){
+    let data = null;
+    this.state.phonebook.contact.map((contact) => {
+      contact.numbers.forEach(function(el){
+        if(el === number) {
+          data = contact;
+        }
+      })
+    })
+    return data;
+  }
+  getContactByName(name){
+    let contact = this.state.phonebook.contact.filter(obj => {
+      return obj.name === name
+    })
+    if(contact.length > 0) return contact[0];
+    return null;
+  }
   clickBack() {
-    this.setState({ topbar_color: false });
-    this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
+    //this.setState({ topbar_color: false });
+    this.historyGoBack();
+    //this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
   }
   clickHome() {
     this.setState({ topbar_color: false });
     this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
+    this.historyClear();
+  }
+  clickContact(contact) {
+    let data = null;
+    if(contact.number !== undefined)
+      data = this.getContactByNumber(contact.number)
+    else
+      data = this.getContactByName(contact.name)
+    console.log(data)
+    if(data !== null) {
+      this.setState( prevState => ({ ...prevState.phonebook.selected_contact = data }))
+    } else {
+      this.setState( prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+      this.setState( prevState => ({ ...prevState.phonebook.selected_contact.numbers = [contact.number] }))
+    }
+    this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
   }
   render() {
     return (
       <React.Fragment >
         <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
           <div className="phone-bg bg-1">
-            <div className={this.state.rotate ? "rotate-components" : null}>
+            <div className={this.state.rotate ? "rotate-components" : 'main-phone-box-flex'}>
               <TopBar umenu={this.state.topbar_color} data={this.state.top_bar} />
               <Router>
                 <Route exact path="/phone/android/defaultpage">
-                  <DefaultPage data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
+                  <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                 </Route>
                 <Route exact path="/phone/android/umenu">
-                  <UMenu data={this.state.menu} />
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} />
                 </Route>
                 <Route exact path="/phone/android/phonebook">
-                  <PhoneBook data={this.state.phonebook}/>
+                  <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)}/>
+                </Route>
+                <Route exact path="/phone/android/phonebook/profilecontact">
+                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook}/>
                 </Route>
                 <Redirect to={this.state.path} push />
               </Router>

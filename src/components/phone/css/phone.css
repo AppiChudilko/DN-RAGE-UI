@@ -87,7 +87,12 @@
 .rotate-components .u-li-menu {
     height: 183px;
 }
-
+.main-phone-box-flex {
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    height: inherit;
+}
 .main-app-box{
     margin-top: auto;
     margin-bottom: 15px;
@@ -239,6 +244,7 @@
     width: inherit;
     height: 17px;
     display: flex;
+    z-index: 1;
     /* background: #2d72c1; */
 }
 .bg-blue-andr {
@@ -655,6 +661,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: auto;
 }
 .m-sqr-bar {
     background: url(../img/android/icons/sqr-bar.svg) no-repeat;
@@ -898,4 +905,87 @@ h4 {
 }
 .his {
     color: #000;
+}
+.p-box-img-player {
+   margin-top: -17px;
+}
+.box-img-pp {
+    position: relative;
+}
+figure {
+    width: 100%;
+    height: 224.5px;
+    margin: 0;
+    position: absolute;
+}
+figure img { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.p-topbar {
+    z-index: 1;
+    margin-left: auto;
+    margin-top: 12px;
+}
+.ff-style-tsp-p {
+    margin-right: 10px;
+}
+.p-topbar i.material-icons.md-dark{
+    margin-right: 15px;
+}
+.p-nameplayer-p {
+    margin-top: -42px;
+    margin-left: 12px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;   
+    color: #FFFFFF;
+}
+.p-info-player {
+    width: inherit;
+    height: 44%;
+    overflow: scroll;
+    background: #FFFFFF;
+    margin-top: 62%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.p-box-mob_email {
+    width: 84%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-top: 8px;
+}
+.p-box-num {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: 18px;
+}
+.p-num-num-p {
+    font-family: "Roboto";
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+}
+.p-num-num-p-info{
+    font-family: "Roboto";
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.543846);
+}
+.p-box-mob_email .number{
+    width: 100%;
+    height: 50px;
+    border-bottom: 0.77px solid rgba(0, 0, 0, 0.12);   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
