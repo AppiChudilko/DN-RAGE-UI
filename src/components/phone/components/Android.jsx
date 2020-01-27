@@ -235,6 +235,7 @@ class Android extends React.Component {
         try {
           this.setState({ menu: value.menu });
           //UMenu.forceUpdate();
+          window.scrollTo(0, 0); //TODO Не работает((
         }
         catch (e) {
           console.log(e);
