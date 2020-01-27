@@ -345,6 +345,7 @@
     font-family: "Roboto";
     color: #919191;
     font-size: 12px;
+    white-space: pre-line;
 }
 .rotate-components  .txt-title {
     font-size: 12px;
