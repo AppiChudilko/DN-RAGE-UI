@@ -192,7 +192,7 @@ class Android extends React.Component {
       if (value.type === 'updateMenu') {
         try {
           this.setState({ menu: value.menu });
-          UMenu.forceUpdate();
+          //UMenu.forceUpdate();
         }
         catch (e) {
           console.log(e);
