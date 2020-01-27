@@ -124,6 +124,15 @@ class UFrame extends React.Component {
               </div>
             </React.Fragment> : ''
           }
+          {(this.props.type === 4) ?
+              <React.Fragment>
+                <div className="umenu-mini-box">
+                  <div className="mobile-profile-1">
+                    <img className="m-player-photo-1" src={this.props.item.value} style={{height: this.props.item.height + 'px'}}  />
+                  </div>
+                </div>
+              </React.Fragment> : ''
+          }
 
         </div>
       </React.Fragment>

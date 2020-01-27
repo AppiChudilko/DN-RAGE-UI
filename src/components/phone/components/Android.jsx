@@ -46,6 +46,12 @@ class Android extends React.Component {
                 type: 0,
                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                 params: { name: "null" }
+              },
+              {
+                type: 4,
+                height: 150,
+                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                params: { name: "null" }
               }
             ],
           },
