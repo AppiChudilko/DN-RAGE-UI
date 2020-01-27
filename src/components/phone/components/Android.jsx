@@ -19,7 +19,7 @@ class Android extends React.Component {
         time: '00:00',
         battery: 11, // max 11
         wifi: 2,
-        network: 2, // max 5
+        network: 4, // max 5
         temperature: '+21°C',
         date: '15 декабря'
       },
@@ -35,7 +35,7 @@ class Android extends React.Component {
       ],
       menu: {
         UUID: '11223',
-        title: 'Настройки',
+        title: 'Ваши приложения',
         items: [
           {
             title: 'Аккаунт',
@@ -50,63 +50,64 @@ class Android extends React.Component {
             ],
           },
           {
-            title: 'Звук',
+            title: 'Приложения',
             umenu: [            
               {
-                title: "Включить громкость",
-                text: "Oписание",
-                img: 'volume',
-                type: 2,
-                value: true,
-                params: { name: "null" }
-              },             
-            ],
-          },
-          {
-            title: 'Беспроводная сеть',
-            umenu: [
-              {
-                title: "Wi-Fi",
-                text: "",
-                img: 'wifi',
-                type: 2,
-                value: true,
+                title: "UVehicle",
+                text: "Управление вашим транспортом",
+                img: 'car',
+                type: 1,
+                clickable: true,
                 params: { name: "null" }
               },
               {
-                title: "Bluetooh",
-                text: "",
-                img: 'bluetooh',
-                type: 2,
-                value: false,
-                params: { name: "null" }
-              },              
-            ],
-          },
-          {
-            title: 'Устройство',
-            umenu: [
-              {
-                title: "Дисплей",
-                text: "",
-                img: 'display',
+                title: "Life Invader",
+                text: "Приложение вашей организации",
+                img: 'community',
                 type: 1,
+                clickable: true,
                 params: { name: "null" }
               },
               {
-                title: "Звук & Уведомления",
-                text: "",
-                img: 'sound',
+                title: "Life Invader",
+                text: "Доступная и качественная реклама",
+                img: 'invader',
                 type: 1,
+                clickable: true,
                 params: { name: "null" }
               },
               {
-                title: "Приложения",
+                title: "Maze Bank",
                 text: "",
-                img: 'apps',
+                img: 'maze',
                 type: 1,
+                clickable: true,
                 params: { name: "null" }
-              },              
+              },
+              {
+                title: "Fleeca Bank",
+                text: "",
+                img: 'fleeca',
+                type: 1,
+                clickable: true,
+                params: { name: "null" }
+              },
+              {
+                title: "Pacific Standard Bank",
+                text: "",
+                img: 'pacific',
+                type: 1,
+                clickable: true,
+                params: { name: "null" }
+              },
+              {
+                title: "Blaine County Savings Bank",
+                text: "",
+                img: 'blaine',
+                type: 1,
+                clickable: true,
+                params: { name: "null" }
+              },
             ],
           },
         ],
@@ -224,19 +225,19 @@ class Android extends React.Component {
 
   rotateAndroid() {
     this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
-    //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
+    mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
   }
   clickApps(event, i) {
     if (event.link === "/phone/android/umenu") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     } else if (event.link === "/phone/android/phonebook") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     }
     console.log(event)
   }
