@@ -1,4 +1,5 @@
 import React from 'react';
+import MaterialIcon, { colorPalette } from 'material-icons-react';
 
 class UFrame extends React.Component {
   constructor(props) {
@@ -53,85 +54,113 @@ class UFrame extends React.Component {
           {(this.props.type === 0) ?
             <React.Fragment>
               <div className="umenu-mini-box">
-              <div className="mobile-profile">
-                <img className="m-player-photo" src={this.props.item.value} />
-                <div className="m-player-info">
-                  <div className="m-name-player">{this.props.item.title}</div>
-                  <div className="m-email-player">{this.props.item.text}</div>
+                <div className="mobile-profile">
+                  <img className="m-player-photo" src={this.props.item.value} />
+                  <div className="m-player-info">
+                    <div className="m-name-player">{this.props.item.title}</div>
+                    <div className="m-email-player">{this.props.item.text}</div>
+                  </div>
                 </div>
-              </div>
               </div>
             </React.Fragment> : ''
           }
           {(this.props.type === 1) ?
             <React.Fragment>
               <div className="umenu-mini-box" onClick={() => this.buttonClick(this.props.item.params)}>
-              <div className="l-title">
-                {this.props.item.img === '' || this.props.item.img === undefined ? null :
-                  <React.Fragment>
-                    <div className="umenu-icon">
-                      <div className={`s-${this.props.item.img}`}></div>
-                    </div>
-                  </React.Fragment>
-                }
-                <div className="umenu-rov">
-                  <div className="txt-title">{this.props.item.title}</div>
-                  <div className="txt-lasttitle">{this.props.item.text}</div>
+                <div className="l-title">
+                  {this.props.item.img === '' || this.props.item.img === undefined ? null :
+                    <React.Fragment>
+                      <div className="umenu-icon">
+                        <div className={`s-${this.props.item.img}`}></div>
+                      </div>
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title}</div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
+                  </div>
                 </div>
-              </div>
               </div>
             </React.Fragment> : ''
           }
           {(this.props.type === 2) ?
             <React.Fragment>
               <div className="umenu-mini-box">
-              <div className="l-title">
-                {this.props.item.img === '' ? null :
-                  <React.Fragment>
-                    <div className="umenu-icon">
-                      <div className={`s-${this.props.item.img}`}></div>
-                    </div>
-                  </React.Fragment>
-                }
-                <div className="umenu-rov">
-                  <div className="txt-title">{this.props.item.title}</div>
-                  <div className="txt-lasttitle">{this.props.item.text}</div>
+                <div className="l-title">
+                  {this.props.item.img === '' ? null :
+                    <React.Fragment>
+                      <div className="umenu-icon">
+                        <div className={`s-${this.props.item.img}`}></div>
+                      </div>
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title}</div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
+                  </div>
                 </div>
+                {this.getCheckbox(this.props.item.value, this.props.item.params)}
               </div>
-              {this.getCheckbox(this.props.item.value, this.props.item.params)}
-              </div>
-              
-              
+
+
             </React.Fragment> : ''
           }
           {(this.props.type === 3) ?
             <React.Fragment>
               <div className="umenu-mini-box">
-              <div className="l-title">
-                {this.props.item.img === '' ? null :
-                  <React.Fragment>
-                    <div className="umenu-icon">
-                      <div className={`s-${this.props.item.img}`}></div>
-                    </div>
-                  </React.Fragment>
-                }
-                <div className="umenu-rov">
-                  <div className="txt-title">{this.props.item.title}</div>
-                  <div className="txt-lasttitle">{this.props.item.text}</div>
+                <div className="l-title">
+                  {this.props.item.img === '' ? null :
+                    <React.Fragment>
+                      <div className="umenu-icon">
+                        <div className={`s-${this.props.item.img}`}></div>
+                      </div>
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title}</div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
+                  </div>
                 </div>
-              </div>
-              {this.getButtom('test2', this.props.item.params)}
+                {this.getButtom('test2', this.props.item.params)}
               </div>
             </React.Fragment> : ''
           }
           {(this.props.type === 4) ?
-              <React.Fragment>
-                <div className="umenu-mini-box">
-                  <div className="mobile-profile-1">
-                    <img className="m-player-photo-1" src={this.props.item.value} style={{height: this.props.item.height + 'px'}}  />
+            <React.Fragment>
+              <div className="umenu-mini-box" onClick={() => this.buttonClick(this.props.item.params)}>
+                <div className="l-title">
+                  {this.props.item.img === '' || this.props.item.img === undefined ? null :
+                    <React.Fragment>
+                      <div className="main-fraction-box">
+                        <img src={this.props.item.img} alt="" className="fraction-icon" />
+                        <div className={this.props.item.online ? "player-fraction-online p-f-on" : "player-fraction-online p-f-off"}></div>
+                      </div>
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title} </div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
                   </div>
                 </div>
-              </React.Fragment> : ''
+              </div>
+            </React.Fragment> : ''
+          }
+          {(this.props.type === 5) ?
+            <React.Fragment>
+              <div className="umenu-mini-box" onClick={() => { this.buttonClick(this.props.item.params); this.props.openScrollbar() }}>
+                <div className="l-title">
+                  {this.props.item.img === '' || this.props.item.img === undefined ? null :
+                    <React.Fragment>
+                      <MaterialIcon icon="trending_up" size={19} />
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title} </div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
+                  </div>
+                </div>
+              </div>
+            </React.Fragment> : ''
           }
 
         </div>

@@ -345,6 +345,7 @@
     font-family: "Roboto";
     color: #919191;
     font-size: 12px;
+    white-space: pre-line;
 }
 .rotate-components  .txt-title {
     font-size: 12px;
@@ -696,7 +697,6 @@ h4 {
 .umenu-icon {
     width: 26px;
     height: 24px;
-    margin-right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -704,6 +704,7 @@ h4 {
 .umenu-rov {
     display: flex;
     flex-direction: column;
+    margin-left: 15px;
 }
 .s-wifi {
     width: 21px;
@@ -1065,3 +1066,115 @@ figure img {
     flex-direction: row;
     align-items: center;
 }
+.fraction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.player-fraction-online {
+    width: 12px;
+    height: 12px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: -22px;
+    margin-left: 24px;
+}
+.p-f-on {
+    background: green;
+}
+.p-f-off {
+    background: red;
+}
+.main-fraction-box {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+.u-scrollable {
+    width: inherit;
+    height: inherit;
+    background: rgba(0, 0, 0, 0.38);
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.u-scrool-box {
+    width: 215px;
+    max-height: 264px;
+    background: #FFFFFF;
+    box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.3), 0px 0px 24px rgba(0, 0, 0, 0.22);
+    border-radius: 2px;
+}
+.u-scroll-title {
+    font-family: "RobotoMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-top: 16px;
+    padding-left: 18px
+}
+.u-selet-rang{
+    margin-top: 14px;
+    max-height: 162px;
+    overflow: scroll;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-left: 18px
+}
+.u-select-box {
+    width: inherit;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+}
+.u-select-input {
+    font-family: "RobotoMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    color: #673AB7;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.u-btn-w {
+    margin-right: 15px;
+}
+/*checkbox*/
+.u-checkbox-style  {
+    display: unset !important;
+}
+.checkbox {margin-right: 20px; position: relative; display: inline-block; line-height: 1; font-size: 0; vertical-align: middle; }
+.checkbox input[type="radio"] { position: absolute; top: 0; left: 0; margin: 0; padding: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; cursor: pointer; }
+.checkbox input[type="radio"] ~ .checkbox-icon { position: relative; display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(0, 0, 0, 0.54); border-radius: 5px; }
+.checkbox input[type="radio"]:hover ~ .checkbox-icon,
+.checkbox input[type="radio"]:focus ~ .checkbox-icon { border-color: #999;}
+.checkbox input[type="radio"]:checked ~ .checkbox-icon { background: #fff; border-color: #673AB7;; }
+.checkbox input[type="radio"]:checked ~ .checkbox-icon:after { content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -5px 0 0 -5px;
+  background: #673AB7;
+  border: 1px solid #673AB7;
+  border-radius: 50%;
+}
+.checkbox input[type="radio"]:disabled ~ .checkbox-icon { background-color: #eee; border-color: #ddd; cursor: default; }
+.checkbox input[type="radio"]:disabled ~ .checkbox-icon:after { border-color: #bbb; }
+
+.checkbox-2x input[type="radio"] ~ .checkbox-icon { width: 32px; height: 32px; border-radius: 10px; border-width: 2px; }
+.checkbox-2x input[type="radio"]:checked ~ .checkbox-icon:after { margin: -8px 0 0 -10px; width: 14px; height: 6px; border-width: 6px;  border-radius: 4px; }
+
+.checkbox-circle input[type="radio"] ~ .checkbox-icon { border-radius: 50%; }

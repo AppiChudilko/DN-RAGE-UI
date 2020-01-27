@@ -31,6 +31,7 @@ class UMenuContainer extends React.Component {
                         id={i}
                         type={e.type}
                         event={this.callback}
+                        openScrollbar={this.props.openScrollbar}
                       />
                     )
                   })}

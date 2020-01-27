@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import EventManager from "../../../EventManager";
 import PhoneBook from './Android/PhoneBook/PhoneBook';
 import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
+import Scrollbar from './apps/Scrollbar';
 
 class Android extends React.Component {
   constructor(props) {
@@ -46,21 +47,47 @@ class Android extends React.Component {
                 type: 0,
                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                 params: { name: "null" }
+              }              
+            ],
+          },
+          {
+            title: 'Новые типы блоков',
+            umenu: [
+              {
+                title: "Vasya Pupkin",
+                text: "Заместитель директора",
+                img: 'https://a.rsg.sc//n/socialclub',
+                online: false,
+                type: 4,
+                clickable: true,
+                params: { name: "null" }
               },
               {
+                title: "Kolya Livyn",
+                text: "Заместитель кипера",
+                img: 'https://a.rsg.sc//n/socialclub',
+                online: true,
                 type: 4,
-                height: 150,
-                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                clickable: true,
                 params: { name: "null" }
-              }
-            ],
+              },
+              ,
+              {
+                title: "Повысить",
+                img: 'https://a.rsg.sc//n/socialclub',
+                online: true,
+                type: 5,
+                clickable: true,
+                params: { name: "null" }
+              },
+            ]
           },
           {
             title: 'Приложения',
             umenu: [            
               {
                 title: "UVehicle",
-                text: "Управление вашим транспортом",
+                text: "Приложени \n перенос",
                 img: 'car',
                 type: 1,
                 clickable: true,
@@ -190,6 +217,15 @@ class Android extends React.Component {
         ],
       },
       topbar_color: false,
+      scrollbar: {
+        show: false,
+        title: 'Выберите ранг',
+        list: [
+          {title:'Ранг 1', params: { name: "null" }},
+          {title:'Ранг 2', params: { name: "null" }},
+          {title:'Ранг 3', params: { name: "null" }},
+      ],
+      }
     }
   }
 
@@ -231,19 +267,19 @@ class Android extends React.Component {
 
   rotateAndroid() {
     this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
-    mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
+    //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
   }
   clickApps(event, i) {
     if (event.link === "/phone/android/umenu") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     } else if (event.link === "/phone/android/phonebook") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
     }
     console.log(event)
   }
@@ -290,6 +326,12 @@ class Android extends React.Component {
     }
     this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
   }
+  closeScrollbar(){
+    this.setState(prevState => ({...prevState.scrollbar.show = false}))
+  }
+  openScrollbar(){
+    this.setState(prevState => ({...prevState.scrollbar.show = true}))
+  }
   render() {
     return (
       <React.Fragment >
@@ -301,8 +343,9 @@ class Android extends React.Component {
                 <Route exact path="/phone/android/defaultpage">
                   <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                 </Route>
+                <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)}/>
                 <Route exact path="/phone/android/umenu">
-                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} />
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openScrollbar={this.openScrollbar.bind(this)}/>
                 </Route>
                 <Route exact path="/phone/android/phonebook">
                   <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)}/>
