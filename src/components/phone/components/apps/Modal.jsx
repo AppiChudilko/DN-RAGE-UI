@@ -6,10 +6,10 @@ class Modal extends React.Component {
         this.state = {
         }
     }
-    callback = (action, ...args) => {
-        console.log(action, args)
+    callback = (action, params) => {
+        console.log(action, params)
         try {
-            mp.trigger('client:phone:callBack', action, ...args); // eslint-disable-line
+            mp.trigger('client:phone:callBack', action, params); // eslint-disable-line
         }
         catch (e) {
             console.log(e);
@@ -28,7 +28,7 @@ class Modal extends React.Component {
                         <div className="u-scroll-text">{this.props.data.text}</div>
                         <div className="u-select-input">
                             <div className="u-btn-w" onClick={this.props.closeModal}>{this.props.data.buttons[0]}</div>
-                            <div className="u-btn-w" onClick={() => {this.props.closeModal(); this.callback('modal', this.props.data.params)}}>{this.props.data.buttons[1]}</div>
+                            <div className="u-btn-w" onClick={() => {this.props.closeModal(); this.callback('modal', JSON.stringify(this.props.data.params))}}>{this.props.data.buttons[1]}</div>
                         </div>
                     </div>
                 </div>
