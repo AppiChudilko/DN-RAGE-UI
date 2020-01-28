@@ -375,12 +375,13 @@ class Android extends React.Component {
     this.setState(prevState => ({...prevState.modal.show = false}))
   }
 
-  openModal(title, text, buttons){
+  openModal(title, text, buttons, params){
 
     this.setState(prevState => ({...prevState.modal.show = true}));
     this.setState(prevState => ({...prevState.modal.title = title}));
     this.setState(prevState => ({...prevState.modal.text = text}));
     this.setState(prevState => ({...prevState.modal.buttons = buttons}));
+    this.setState(prevState => ({...prevState.modal.params = params}));
   }
 
   closeScrollbar(){
