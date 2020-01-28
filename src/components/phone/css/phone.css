@@ -1141,14 +1141,18 @@ figure img {
     font-weight: 500;
     font-size: 14px;
     text-align: center;
-    color: #673AB7;
+    color: #000000;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 .u-btn-w {
+    transition: 0.3s;
     margin-right: 15px;
+}
+.u-btn-w:hover {
+    color: #4DB6AC;
 }
 /*checkbox*/
 .u-checkbox-style  {
@@ -1159,7 +1163,7 @@ figure img {
 .checkbox input[type="radio"] ~ .checkbox-icon { position: relative; display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(0, 0, 0, 0.54); border-radius: 5px; }
 .checkbox input[type="radio"]:hover ~ .checkbox-icon,
 .checkbox input[type="radio"]:focus ~ .checkbox-icon { border-color: #999;}
-.checkbox input[type="radio"]:checked ~ .checkbox-icon { background: #fff; border-color: #673AB7;; }
+.checkbox input[type="radio"]:checked ~ .checkbox-icon { background: #fff; border-color: #000000;; }
 .checkbox input[type="radio"]:checked ~ .checkbox-icon:after { content: '';
   position: absolute;
   top: 50%;
@@ -1167,8 +1171,8 @@ figure img {
   width: 8px;
   height: 8px;
   margin: -5px 0 0 -5px;
-  background: #673AB7;
-  border: 1px solid #673AB7;
+  background: #000000;
+  border: 1px solid #000000;
   border-radius: 50%;
 }
 .checkbox input[type="radio"]:disabled ~ .checkbox-icon { background-color: #eee; border-color: #ddd; cursor: default; }

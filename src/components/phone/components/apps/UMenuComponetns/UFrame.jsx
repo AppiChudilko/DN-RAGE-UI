@@ -147,11 +147,14 @@ class UFrame extends React.Component {
           }
           {(this.props.type === 5) ?
             <React.Fragment>
-              <div className="umenu-mini-box" onClick={() => { this.buttonClick(this.props.item.params); this.props.openScrollbar() }}>
+              <div className="umenu-mini-box" onClick={() => {
+                  this.buttonClick(this.props.item.params);
+                  this.props.openScrollbar(this.props.item.scrollbarTitle, this.props.item.scrollbar)
+                }}>
                 <div className="l-title">
                   {this.props.item.img === '' || this.props.item.img === undefined ? null :
                     <React.Fragment>
-                      <MaterialIcon icon="trending_up" size={19} />
+                      <MaterialIcon icon={this.props.item.img} size={19} />
                     </React.Fragment>
                   }
                   <div className="umenu-rov">
@@ -161,6 +164,15 @@ class UFrame extends React.Component {
                 </div>
               </div>
             </React.Fragment> : ''
+          }
+          {(this.props.type === 6) ?
+              <React.Fragment>
+                <div className="umenu-mini-box">
+                  <div className="mobile-profile-1">
+                    <img className="m-player-photo-1" src={this.props.item.value} style={{height: this.props.item.height + 'px'}}  />
+                  </div>
+                </div>
+              </React.Fragment> : ''
           }
 
         </div>

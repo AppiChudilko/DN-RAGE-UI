@@ -71,11 +71,21 @@ class Android extends React.Component {
                 clickable: true,
                 params: { name: "null" }
               },
-              ,
               {
                 title: "Повысить",
-                img: 'https://a.rsg.sc//n/socialclub',
-                online: true,
+                text: "Заместитель кипера",
+                scrollbarTitle: 'Test 123',
+                scrollbar: [
+                  {title:'Ранг 1', checked: true, params: { name: "null" }},
+                  {title:'TEST', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                  {title:'Ранг 3', params: { name: "null" }},
+                ],
                 type: 5,
                 clickable: true,
                 params: { name: "null" }
@@ -217,14 +227,15 @@ class Android extends React.Component {
         ],
       },
       topbar_color: false,
+
       scrollbar: {
         show: false,
         title: 'Выберите ранг',
         list: [
-          {title:'Ранг 1', params: { name: "null" }},
+          {title:'Ранг 1', checked: true, params: { name: "null" }},
           {title:'Ранг 2', params: { name: "null" }},
           {title:'Ранг 3', params: { name: "null" }},
-      ],
+        ],
       }
     }
   }
@@ -268,19 +279,34 @@ class Android extends React.Component {
 
   rotateAndroid() {
     this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
-    //mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
+    try {
+      mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
   clickApps(event, i) {
     if (event.link === "/phone/android/umenu") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      try {
+        mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      }
+      catch (e) {
+        console.log(e);
+      }
     } else if (event.link === "/phone/android/phonebook") {
       this.setState({ topbar_color: true })
       this.setState({ path: event.link })
 
-      //mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      try {
+        mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      }
+      catch (e) {
+        console.log(e);
+      }
     }
     console.log(event)
   }
@@ -330,8 +356,14 @@ class Android extends React.Component {
   closeScrollbar(){
     this.setState(prevState => ({...prevState.scrollbar.show = false}))
   }
-  openScrollbar(){
-    this.setState(prevState => ({...prevState.scrollbar.show = true}))
+  openScrollbar(title, items) {
+    let data = {
+      show: true,
+      title: title,
+      list: items,
+    };
+
+    this.setState({ scrollbar: data });
   }
   render() {
     return (
