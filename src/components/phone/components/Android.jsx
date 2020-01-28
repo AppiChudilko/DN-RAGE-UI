@@ -8,6 +8,7 @@ import EventManager from "../../../EventManager";
 import PhoneBook from './Android/PhoneBook/PhoneBook';
 import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
 import Scrollbar from './apps/Scrollbar';
+import Modal from './apps/Modal';
 
 class Android extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class Android extends React.Component {
                 type: 0,
                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                 params: { name: "null" }
-              }              
+              }
             ],
           },
           {
@@ -90,11 +91,21 @@ class Android extends React.Component {
                 clickable: true,
                 params: { name: "null" }
               },
+              {
+                title: "Тест",
+                text: "Заместитель кипера",
+                modalTitle: 'Повысить?',
+                modalText: 'Повысить?',
+                modalButton: ['Нет', 'Да'],
+                type: 7,
+                clickable: true,
+                params: { name: "null" }
+              },
             ]
           },
           {
             title: 'Приложения',
-            umenu: [            
+            umenu: [
               {
                 title: "UVehicle",
                 text: "Приложени \n перенос",
@@ -173,7 +184,7 @@ class Android extends React.Component {
           },
         ],
         history: [
-          
+
           {
             number: '222-2346837',
             img: 'https://a.rsg.sc//n/socialclub',
@@ -236,6 +247,12 @@ class Android extends React.Component {
           {title:'Ранг 2', params: { name: "null" }},
           {title:'Ранг 3', params: { name: "null" }},
         ],
+      },
+      modal: {
+        show: false,
+        title: 'Выберите ранг',
+        text: 'Вы точно хотите всё это сделать? Обратной дороги нет, остановись',
+        buttons: ['Нет', 'Да'],
       }
     }
   }
@@ -353,9 +370,23 @@ class Android extends React.Component {
     }
     this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
   }
+
+  closeModal(){
+    this.setState(prevState => ({...prevState.modal.show = false}))
+  }
+
+  openModal(title, text, buttons){
+
+    this.setState(prevState => ({...prevState.modal.show = true}));
+    this.setState(prevState => ({...prevState.modal.title = title}));
+    this.setState(prevState => ({...prevState.modal.text = text}));
+    this.setState(prevState => ({...prevState.modal.buttons = buttons}));
+  }
+
   closeScrollbar(){
     this.setState(prevState => ({...prevState.scrollbar.show = false}))
   }
+
   openScrollbar(title, items) {
     let data = {
       show: true,
@@ -377,8 +408,9 @@ class Android extends React.Component {
                   <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                 </Route>
                 <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)}/>
+                <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)}/>
                 <Route exact path="/phone/android/umenu">
-                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openScrollbar={this.openScrollbar.bind(this)}/>
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)}/>
                 </Route>
                 <Route exact path="/phone/android/phonebook">
                   <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)}/>

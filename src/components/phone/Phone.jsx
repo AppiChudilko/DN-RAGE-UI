@@ -20,7 +20,12 @@ class Phone extends React.Component {
       else if (value.type === 'showOrHide') {
         let status = !this.state.show;
         this.setState({ show: status })
-        //mp.trigger('client:phone:status', status); // eslint-disable-line
+        try {
+          mp.trigger('client:phone:status', status); // eslint-disable-line
+        }
+        catch (e) {
+          console.log(e);
+        }
       }
       else return;
     })

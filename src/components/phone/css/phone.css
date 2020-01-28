@@ -1115,7 +1115,15 @@ figure img {
     font-size: 18px;
     color: rgba(0, 0, 0, 0.87);
     margin-top: 16px;
-    padding-left: 18px
+    padding: 0 18px;
+}
+.u-scroll-text {
+    font-family: "RobotoMedium";
+    font-style: normal;
+    font-size: 14px;
+    color: rgb(99, 99, 99);
+    margin: 16px 0;
+    padding: 0 18px;
 }
 .u-selet-rang{
     margin-top: 14px;
