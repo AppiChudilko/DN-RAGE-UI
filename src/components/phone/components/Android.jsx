@@ -9,6 +9,7 @@ import PhoneBook from './Android/PhoneBook/PhoneBook';
 import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
 import Scrollbar from './apps/Scrollbar';
 import Modal from './apps/Modal';
+import InputModal from './apps/InputModal';
 
 class Android extends React.Component {
   constructor(props) {
@@ -73,31 +74,42 @@ class Android extends React.Component {
                 params: { name: "null" }
               },
               {
+                show: false,
                 title: "Повысить",
                 text: "Заместитель кипера",
                 scrollbarTitle: 'Test 123',
                 scrollbar: [
-                  {title:'Ранг 1', checked: true, params: { name: "null" }},
-                  {title:'TEST', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
-                  {title:'Ранг 3', params: { name: "null" }},
+                  { title: 'Ранг 1', checked: true, params: { name: "null" } },
+                  { title: 'TEST', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
+                  { title: 'Ранг 3', params: { name: "null" } },
                 ],
                 type: 5,
                 clickable: true,
                 params: { name: "null" }
               },
               {
+                show: false,
                 title: "Тест",
                 text: "Заместитель кипера",
-                modalTitle: 'Повысить?',
+                modalTitle: 'Повысить?',// Не знаю зачем это, но можно просто передать title и text пример как в inputmodal
                 modalText: 'Повысить?',
                 modalButton: ['Нет', 'Да'],
                 type: 7,
+                clickable: true,
+                params: { name: "null" }
+              },
+              {
+                show: false,
+                title: "Инпут",
+                text: "Заместитель кипера",
+                modalButton: ['Нет', 'Да'],
+                type: 8,
                 clickable: true,
                 params: { name: "null" }
               },
@@ -238,14 +250,14 @@ class Android extends React.Component {
         ],
       },
       topbar_color: false,
-
+  // Все нижние массивы это временно для демонстрации работы
       scrollbar: {
         show: false,
         title: 'Выберите ранг',
         list: [
-          {title:'Ранг 1', checked: true, params: { name: "null" }},
-          {title:'Ранг 2', params: { name: "null" }},
-          {title:'Ранг 3', params: { name: "null" }},
+          { title: 'Ранг 1', checked: true, params: { name: "null" } },
+          { title: 'Ранг 2', params: { name: "null" } },
+          { title: 'Ранг 3', params: { name: "null" } },
         ],
       },
       modal: {
@@ -253,6 +265,13 @@ class Android extends React.Component {
         title: 'Выберите ранг',
         text: 'Вы точно хотите всё это сделать? Обратной дороги нет, остановись',
         buttons: ['Нет', 'Да'],
+      },
+      inputmodal: {
+        show: false,
+        title: 'Выберите ранг',
+        text: 'Вы точно хотите всё это сделать? Обратной дороги нет, остановись',
+        buttons: ['Нет', 'Да'],
+        params: { name: "null" },
       }
     }
   }
@@ -274,24 +293,24 @@ class Android extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProp, prevState){
+  componentDidUpdate(prevProp, prevState) {
     if (this.state.path !== prevState.path) {
-      if(this.state.path !== this.state.history[this.state.history.length-1])
+      if (this.state.path !== this.state.history[this.state.history.length - 1])
         this.historyPush()
     }
   }
 
-  historyPush(){
-    this.setState({history: this.state.history.concat([this.state.path])})
+  historyPush() {
+    this.setState({ history: this.state.history.concat([this.state.path]) })
   }
-  historyClear(){
-    this.setState({history: ['/phone/android/defaultpage']})
+  historyClear() {
+    this.setState({ history: ['/phone/android/defaultpage'] })
   }
-  historyGoBack(){
-    if(this.state.history.length > 1)
+  historyGoBack() {
+    if (this.state.history.length > 1)
       this.setState({
-        path: this.state.history[this.state.history.length-2],
-      }, () => this.setState({history: this.state.history.slice(0,-1)}))
+        path: this.state.history[this.state.history.length - 2],
+      }, () => this.setState({ history: this.state.history.slice(0, -1) }))
   }
 
   rotateAndroid() {
@@ -327,22 +346,22 @@ class Android extends React.Component {
     }
     console.log(event)
   }
-  getContactByNumber(number){
+  getContactByNumber(number) {
     let data = null;
     this.state.phonebook.contact.map((contact) => {
-      contact.numbers.forEach(function(el){
-        if(el === number) {
+      contact.numbers.forEach(function (el) {
+        if (el === number) {
           data = contact;
         }
       })
     })
     return data;
   }
-  getContactByName(name){
+  getContactByName(name) {
     let contact = this.state.phonebook.contact.filter(obj => {
       return obj.name === name
     })
-    if(contact.length > 0) return contact[0];
+    if (contact.length > 0) return contact[0];
     return null;
   }
   clickBack() {
@@ -357,36 +376,51 @@ class Android extends React.Component {
   }
   clickContact(contact) {
     let data = null;
-    if(contact.number !== undefined)
+    if (contact.number !== undefined)
       data = this.getContactByNumber(contact.number)
     else
       data = this.getContactByName(contact.name)
     console.log(data)
-    if(data !== null) {
-      this.setState( prevState => ({ ...prevState.phonebook.selected_contact = data }))
+    if (data !== null) {
+      this.setState(prevState => ({ ...prevState.phonebook.selected_contact = data }))
     } else {
-      this.setState( prevState => ({ ...prevState.phonebook.selected_contact = contact }))
-      this.setState( prevState => ({ ...prevState.phonebook.selected_contact.numbers = [contact.number] }))
+      this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+      this.setState(prevState => ({ ...prevState.phonebook.selected_contact.numbers = [contact.number] }))
     }
     this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
   }
 
-  closeModal(){
-    this.setState(prevState => ({...prevState.modal.show = false}))
+  closeModal() {
+    this.setState({ modal: { show: false } })
+  }
+  closeInputModal() {
+    this.setState({ inputmodal: { show: false } })
+  }
+  openModal(title, text, buttons, params) {
+    this.setState({
+      modal: {
+        show: true,
+        title: title,
+        text: text,
+        buttons: buttons,
+        params: params
+      }
+    });
+  }
+  openInputModal(title, buttons, params) {
+    this.setState({
+      inputmodal: {
+        show: true,
+        title: title,
+        buttons: buttons,
+        params: params
+      }
+    });
   }
 
-  openModal(title, text, buttons, params){
-
-    this.setState(prevState => ({...prevState.modal.show = true}));
-    this.setState(prevState => ({...prevState.modal.title = title}));
-    this.setState(prevState => ({...prevState.modal.text = text}));
-    this.setState(prevState => ({...prevState.modal.buttons = buttons}));
-    this.setState(prevState => ({...prevState.modal.params = params}));
-  }
-
-  closeScrollbar(){
-    this.setState(prevState => ({...prevState.scrollbar.show = false}))
-  }
+  closeScrollbar() {
+    this.setState({ scrollbar: { show: false } })
+    }
 
   openScrollbar(title, items) {
     let data = {
@@ -394,7 +428,6 @@ class Android extends React.Component {
       title: title,
       list: items,
     };
-
     this.setState({ scrollbar: data });
   }
   render() {
@@ -408,16 +441,17 @@ class Android extends React.Component {
                 <Route exact path="/phone/android/defaultpage">
                   <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                 </Route>
-                <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)}/>
-                <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)}/>
+                <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)} />
+                <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)} />
+                <InputModal data={this.state.inputmodal} closeInputModal={this.closeInputModal.bind(this)} />
                 <Route exact path="/phone/android/umenu">
-                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)}/>
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} />
                 </Route>
                 <Route exact path="/phone/android/phonebook">
-                  <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)}/>
+                  <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)} />
                 </Route>
                 <Route exact path="/phone/android/phonebook/profilecontact">
-                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook}/>
+                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} />
                 </Route>
                 <Redirect to={this.state.path} push />
               </Router>

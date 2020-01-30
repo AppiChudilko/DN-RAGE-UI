@@ -1108,6 +1108,13 @@ figure img {
     box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.3), 0px 0px 24px rgba(0, 0, 0, 0.22);
     border-radius: 2px;
 }
+.u-input-b-box {
+    width: 215px;
+    max-height: 264px;
+    background: #FFFFFF;
+    box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.3), 0px 0px 24px rgba(0, 0, 0, 0.22);
+    border-radius: 2px;
+}
 .u-scroll-title {
     font-family: "RobotoMedium";
     font-style: normal;
@@ -1117,6 +1124,11 @@ figure img {
     margin-top: 16px;
     padding: 0 18px;
 }
+.box-input-u {
+    width: inherit;
+    display: flex;
+    justify-content: center;
+}
 .u-scroll-text {
     font-family: "RobotoMedium";
     font-style: normal;
@@ -1124,6 +1136,15 @@ figure img {
     color: rgb(99, 99, 99);
     margin: 16px 0;
     padding: 0 18px;
+}
+.u-input-text {
+    font-family: "RobotoMedium";
+    font-style: normal;
+    font-size: 14px;
+    color: #000;
+    margin: 16px 0;
+    width: 174px;
+    border-bottom: 2px solid #673AB7 !important;
 }
 .u-selet-rang{
     margin-top: 14px;
@@ -1190,3 +1211,7 @@ figure img {
 .checkbox-2x input[type="radio"]:checked ~ .checkbox-icon:after { margin: -8px 0 0 -10px; width: 14px; height: 6px; border-width: 6px;  border-radius: 4px; }
 
 .checkbox-circle input[type="radio"] ~ .checkbox-icon { border-radius: 50%; }
+
+.u-clr-violet{
+    color: #673AB7;
+}

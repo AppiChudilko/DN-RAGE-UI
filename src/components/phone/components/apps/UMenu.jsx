@@ -12,7 +12,7 @@ class UMenu extends React.Component {
         return (
             <React.Fragment >
                 <div className="uni-menu">
-                    <UMenuContainer data={this.props.data} openScrollbar={this.props.openScrollbar} openModal={this.props.openModal}/>
+                    <UMenuContainer data={this.props.data} openScrollbar={this.props.openScrollbar} openModal={this.props.openModal} openInputModal={this.props.openInputModal}/>
                 </div>
             </React.Fragment>
         )
