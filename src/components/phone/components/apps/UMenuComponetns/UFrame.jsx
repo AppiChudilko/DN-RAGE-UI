@@ -66,7 +66,7 @@ class UFrame extends React.Component {
           }
           {(this.props.type === 1) ?
             <React.Fragment>
-              <div className="umenu-mini-box" onClick={() => this.buttonClick(this.props.item.params)}>
+              <div className="umenu-mini-box">
                 <div className="l-title">
                   {this.props.item.img === '' || this.props.item.img === undefined ? null :
                     <React.Fragment>
