@@ -35,6 +35,7 @@ class Inventory extends React.Component {
         { name: "Надеть", action: "put_on", show: false, color: '#4CAF50' },
         { name: "Модифицировать", action: "put_on_gun", show: false, color: '#4CAF50' },
         { name: "Использовать", action: "use", show: false, color: '#4CAF50' },
+        { name: "Использовать на игрока", action: "usePlayer", show: false, color: '#4CAF50' },
         { name: "Употребить", action: "consume", show: false, color: '#4CAF50' },
         { name: "Рыбачить", action: "fish", show: false, color: '#4CAF50' },
         { name: "Играть", action: "play", show: false, color: '#4CAF50' },
@@ -117,7 +118,8 @@ class Inventory extends React.Component {
         take50gr: [142, 143, 144, 145, 163, 164, 165, 166, 167, 168, 169, 170], // Взять 50гр
         food: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 232, 233, 234, 235, 236, 237, 238, 239, 240], // Можно "съесть"
         drinks: [241, 242, 243, 244, 245, 246, 247, 248, 249, 250], // Можно "выпить"
-        usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 0], // Можно "использовать"
+        usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 0, 277, 278, 215, 221], // Можно "использовать"
+        usablePlayer: [277, 278, 215, 221], // Можно "использовать"
         fish: [251], // Можно "Рыбачить"
         smoke: [26, 3], // Можно "курить"
         play: [253], // Можно "Играть"
@@ -566,6 +568,9 @@ class Inventory extends React.Component {
     if (this.state.itemsById.usable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('use') // Использовать
     }
+    if (this.state.itemsById.usablePlayer.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+      actions.push('usePlayer') // Использовать
+    }
     if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
       actions.push('equip') // Экипировать
     }
@@ -682,6 +687,9 @@ class Inventory extends React.Component {
       case "eat": // Съесть
       case "drink": // Выпить
         this.itemUse(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+        break;
+      case "usePlayer": // Выпить
+        this.itemUsePlayer(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
         break;
       case "countItems": // Посчитать
         this.itemCountItems(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -844,6 +852,26 @@ class Inventory extends React.Component {
           item = this.checkItem(item, 'secondary_inv')
           this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
           mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  itemUsePlayer(item, source) {
+    switch (source) {
+      case 'inventory':
+        if (this.checkItem(item, 'inventory') !== null) {
+          item = this.checkItem(item, 'inventory')
+          this.setState({ items: this.arrayRemove(this.state.items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
+          mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
+        }
+        break;
+      case 'secondary_inv':
+        if (this.checkItem(item, 'secondary_inv') !== null) {
+          item = this.checkItem(item, 'secondary_inv')
+          this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
+          mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
         }
         break;
       default:
