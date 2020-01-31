@@ -5,8 +5,8 @@ class Car extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false,
-      isShowSmall: true,
+      show: true,
+      isShowSmall: false,
       light: false,
       door: false,
       engine: false,
@@ -62,7 +62,7 @@ class Car extends React.Component {
     }
     return (
       <React.Fragment >
-        <div className={this.state.isShowSmall ? 'hide' : 'speedbox-main'}>
+        <div className={this.state.isShowSmall ? 'hide' : 'speedbox-main-small'}>
           <div className="speedbox">
             <div className="speedbox-score" style={speed_score}></div>
             <div className="speedbox-groove"></div>

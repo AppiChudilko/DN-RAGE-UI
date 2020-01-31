@@ -78,7 +78,7 @@
     text-align: left;
 }
 .player-hud .money {
-    width: 236px;
+    width: 188px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
     margin-left: 2px;
@@ -100,32 +100,32 @@
     width: 21px;
     height: 21px;
     margin-left: 12px;
-    margin-right: 14px;
+    margin-right: 10px;
 }
 .money-box .img-credit-card {
     background: url(../img/credit-card.png) no-repeat;
     width: 21px;
     height: 15px;
     margin-left: 12px;
-    margin-right: 14px;
+    margin-right: 10px;
 }
 .wallet-text {
-    font-size: 12.489px;
+    font-size: 15px;
     font-family: "RobotoLight";
     color: #48b9f2;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 59%;
+    width: calc(100% - 55px);
 }
 .credit-text {
-    font-size: 12.489px;
+    font-size: 15px;
     font-family: "RobotoLight";
     color: #fff;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 59%;
+    width: calc(100% - 55px);
 }
 .use-mic {
     filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
@@ -144,7 +144,7 @@
     align-items: center;
 }
 .bak-oil{
-    width: 236px;
+    width: 188px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
     display: flex;
@@ -174,11 +174,11 @@
     margin-left: 15px;
 }
 .oil-text {
-    margin-top: 7px;
+    margin-top: 6px;
     display: flex;
     width: inherit;
     font-family: "RobotoLight";
-    font-size: 13px;
+    font-size: 15px;
     color: #fff;
 }
 .oil-tt{
@@ -189,10 +189,10 @@
     margin-right: 11px;
 }
 .oil-liner {
-    width: 212.99px;
+    width: 166.99px;
     height: 6.99px;
     background:rgb(71, 71, 71);
-    margin-top: 8px;
+    margin-top: 6px;
     margin-left: 12px;
     overflow: hidden;
 }
@@ -208,11 +208,21 @@
     justify-content: center;
     position: relative;
 }
+.speedbox-main-small {
+    margin-bottom: 26px;
+    width: 432px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-right: 90px;
+    margin-left: auto;
+    zoom: 0.45;
+}
 
 .speedbox-small {
     font-family: "Roboto";
     margin-bottom: 2px;
-    width: 432px;
+    width: 384px;
     display: flex;
     justify-content: flex-end;
     font-size: 10px;
@@ -307,7 +317,7 @@
 }
 .watch-main {
     width: 153px;
-    height: 46px;
+    height: 48px;
     background: rgb(0, 0, 0, 0.502);
     margin-left: 323px;
     margin-bottom: 2px;
@@ -319,13 +329,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    font-family: "RobotoBold";
+    font-size: 20px;
+    font-family: "RobotoMedium";
     color: rgb(255, 255, 255);
     text-align: center;
 }
 .watch-main .time-box{
-    width: 52px;
+    width: 62px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -338,19 +348,20 @@
     display: flex;
     align-items: center;
     padding-bottom: 4px;
-    font-size: 12px;
+    font-size: 18px;
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
 }
 .time-img-watch {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     background: url(../img/clock.png) no-repeat;
-    margin-left: 11px
+    background-size: cover;
+    margin-left: 3px
 }
 .time-box .date {
     margin-top: 5px;
-    font-size: 10px;
+    font-size: 12.7px;
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
 }

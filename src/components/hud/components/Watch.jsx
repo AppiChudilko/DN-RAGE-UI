@@ -8,7 +8,7 @@ class Watch extends React.Component {
       show: true,
       time: '14:00',
       date: '13.01.2020',
-      temp: '20',
+      temp: '+20*C',
       color: '#48B9F2',
     }
   }
