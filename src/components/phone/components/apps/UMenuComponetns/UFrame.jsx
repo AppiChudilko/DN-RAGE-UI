@@ -212,6 +212,22 @@ class UFrame extends React.Component {
                 </div>
               </React.Fragment> : ''
           }
+           {(this.props.type === 9) ?
+              <React.Fragment>
+                <div className="umenu-mini-box">
+                  <div className="bank-card">
+                    <div className="bank-card__front bank-card__part" style={{backgroundColor: this.props.item.color}}>
+                      <h1 className="bank-title">{this.props.item.title}</h1>
+                      <p className="bank-card_numer">{this.props.item.text}</p>
+                      <div className="bank-card__space-75">
+                        <span className="bank-card__label">Card holder</span>
+                        <p className="bank-card__info">{this.props.item.name}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </React.Fragment> : ''
+          }
 
         </div>
       </React.Fragment>

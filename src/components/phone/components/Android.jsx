@@ -65,6 +65,15 @@ class Android extends React.Component {
                 params: { name: "null" }
               },
               {
+                title: "Fleeca Bank",
+                text: "5467 3526 2109 0919",
+                name: 'Looney Moretti',
+                color: '#4CAF50',
+                type: 9,
+                clickable: false,
+                params: { name: "null" }
+              },
+              {
                 title: "Kolya Livyn",
                 text: "Заместитель кипера",
                 img: 'https://a.rsg.sc//n/socialclub',
