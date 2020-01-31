@@ -30,7 +30,7 @@ class InputModal extends React.Component {
                     <div className="u-input-b-box">
                         <div className="u-scroll-title">{this.props.data.title}</div>
                         <div className="box-input-u">
-                        <input type="text" className="u-input-text" onChange={(e) => this.inputChange(e)}/>
+                        <input type="text" value={this.props.data.value} className="u-input-text" onChange={(e) => this.inputChange(e)}/>
                             </div>                        
                         <div className="u-select-input u-clr-violet">
                             <div className="u-btn-w" onClick={this.props.closeInputModal}>{this.props.data.buttons[0]}</div>

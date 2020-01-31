@@ -196,7 +196,7 @@ class UFrame extends React.Component {
            {(this.props.type === 8) ?
               <React.Fragment>
                 <div className="umenu-mini-box" onClick={() => {
-                  this.props.openInputModal(this.props.item.modalTitle, this.props.item.modalButton, this.props.item.params)
+                  this.props.openInputModal(this.props.item.modalTitle, this.props.item.modalButton, this.props.item.modalValue, this.props.item.params)
                 }}>
                   <div className="l-title">
                     {this.props.item.img === '' || this.props.item.img === undefined ? null :

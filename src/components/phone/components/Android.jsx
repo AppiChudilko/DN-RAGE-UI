@@ -109,6 +109,7 @@ class Android extends React.Component {
                 title: "Выдать розыск",
                 text: "Заместитель кипера",
                 modalTitle: 'Введите значение',
+                modalValue: 'value',
                 modalButton: ['Нет', 'Да'],
                 type: 8,
                 clickable: true,
@@ -271,6 +272,7 @@ class Android extends React.Component {
         show: false,
         title: 'Выберите ранг',
         text: 'Вы точно хотите всё это сделать? Обратной дороги нет, остановись',
+        value: '',
         buttons: ['Нет', 'Да'],
         params: { name: "null" },
       }
@@ -415,11 +417,12 @@ class Android extends React.Component {
       }
     });
   }
-  openInputModal(title, buttons, params) {
+  openInputModal(title, buttons, value, params) {
     this.setState({
       inputmodal: {
         show: true,
         title: title,
+        value: value,
         buttons: buttons,
         params: params
       }
