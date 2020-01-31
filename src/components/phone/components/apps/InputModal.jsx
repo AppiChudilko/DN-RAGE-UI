@@ -34,7 +34,10 @@ class InputModal extends React.Component {
                             </div>                        
                         <div className="u-select-input u-clr-violet">
                             <div className="u-btn-w" onClick={this.props.closeInputModal}>{this.props.data.buttons[0]}</div>
-                            <div className="u-btn-w" onClick={() => {this.props.closeInputModal(); this.callback('inputmodal', JSON.stringify(this.props.data.params),JSON.stringify(this.state.text))}}>{this.props.data.buttons[1]}</div>
+                            <div className="u-btn-w" onClick={() => {
+                                this.props.closeInputModal();
+                                this.callback('inputmodal', JSON.stringify(this.props.data.params), this.state.text)}
+                            }>{this.props.data.buttons[1]}</div>
                         </div>
                     </div>
                 </div>
