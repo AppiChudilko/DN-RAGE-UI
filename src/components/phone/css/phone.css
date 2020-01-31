@@ -1223,6 +1223,7 @@ BankCard
 */
 
 .bank-title {
+    font-family: "Roboto";
     text-align: end;
 }
 
@@ -1232,10 +1233,11 @@ BankCard
     -webkit-perspective: 600px;
     -moz-perspective: 600px;
     perspective:600px;
-
 }
 
 .bank-card__part{
+    font-family: "Roboto";
+
     box-shadow: 1px 1px #aaa3a3;
     top: 0;
     position: absolute;
@@ -1300,6 +1302,7 @@ BankCard
 }
 
 .bank-card_numer {
+    font-family: "Roboto";
     display: block;
     width: 100%;
     word-spacing: 4px;
@@ -1322,6 +1325,7 @@ BankCard
 }
 
 .bank-card__label {
+    font-family: "Roboto";
     font-size: 10px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.8);
@@ -1329,6 +1333,7 @@ BankCard
 }
 
 .bank-card__info {
+    font-family: "Roboto";
     margin-bottom: 0;
     margin-top: 5px;
     font-size: 16px;

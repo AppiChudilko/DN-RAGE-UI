@@ -6,7 +6,7 @@ class Car extends React.Component {
     super(props)
     this.state = {
       show: false,
-      isShowSmall: false,
+      isShowSmall: true,
       light: false,
       door: false,
       engine: false,
