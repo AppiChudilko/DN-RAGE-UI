@@ -97,7 +97,7 @@ class Android extends React.Component {
                 show: false,
                 title: "Тест",
                 text: "Заместитель кипера",
-                modalTitle: 'Повысить?',// Не знаю зачем это, но можно просто передать title и text пример как в inputmodal
+                modalTitle: 'Повысить?',// Есть инпуты, где я пишу отдельно заголовок модалки и название самой кнопки
                 modalText: 'Повысить?',
                 modalButton: ['Нет', 'Да'],
                 type: 7,
@@ -106,8 +106,9 @@ class Android extends React.Component {
               },
               {
                 show: false,
-                title: "Инпут",
+                title: "Выдать розыск",
                 text: "Заместитель кипера",
+                modalTitle: 'Введите значение',
                 modalButton: ['Нет', 'Да'],
                 type: 8,
                 clickable: true,
