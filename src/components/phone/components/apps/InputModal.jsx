@@ -4,20 +4,20 @@ class InputModal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            text:""
+            text: ""
         }
     }
     callback = (action, params, text) => {
         console.log(action, params, text)
         try {
-            mp.trigger('client:phone:callBack', action, params); // eslint-disable-line
+            mp.trigger('client:phone:callBack', action, params, text); // eslint-disable-line
         }
         catch (e) {
             console.log(e);
         }
     }
    inputChange(event){
-     this.setState({text:event.target.value})
+     this.setState({text: event.target.value})
     }
 
     render() {

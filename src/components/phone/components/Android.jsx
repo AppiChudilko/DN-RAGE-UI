@@ -396,6 +396,13 @@ class Android extends React.Component {
   }
   closeInputModal() {
     this.setState({ inputmodal: { show: false } })
+
+    try {
+      mp.trigger('client:phone:inputModal', false); // eslint-disable-line
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
   openModal(title, text, buttons, params) {
     this.setState({
@@ -417,6 +424,13 @@ class Android extends React.Component {
         params: params
       }
     });
+
+    try {
+      mp.trigger('client:phone:inputModal', true); // eslint-disable-line
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   closeScrollbar() {
