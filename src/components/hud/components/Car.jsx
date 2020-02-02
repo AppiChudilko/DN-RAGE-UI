@@ -5,7 +5,7 @@ class Car extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: true,
+      show: false,
       isShowSmall: false,
       light: false,
       door: false,
@@ -17,6 +17,7 @@ class Car extends React.Component {
 
       deg: -45,
       color: '#48B9F2',
+      background: 0.5,
     }
   }
 
@@ -36,6 +37,7 @@ class Car extends React.Component {
         this.setState({fuelType: value.fuelType});
         this.setState({max_fuel: value.max_fuel});
         this.setState({speed: value.speed});
+        this.setState({background: value.background});
       }
       else return;
     })
@@ -76,12 +78,12 @@ class Car extends React.Component {
           <div className="speed-txt">{this.state.speed}</div>MP/H
         </div>
         <div className="car-hud">
-          <div className="elements-auto">
+          <div className="elements-auto" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
             <div className={this.state.light ? 'light-auto use-mic' : 'light-auto'}></div>
             <div className={this.state.door ? 'on-door-auto' : 'off-door-auto'}></div>
             <div className={this.state.engine ? 'key-auto use-mic' : 'key-auto'}></div>
           </div>
-          <div className="bak-oil">
+          <div className="bak-oil" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
             <div className="oil-text">
               <div className="oil-tt">Топливо</div>
               <div className="oil-num">{this.state.fuel} {this.state.fuelType}</div>

@@ -12,6 +12,7 @@ class Player extends React.Component {
       wallet: "$98,999,550,381.45",
       card: "$98,999,550,381.45",
       color: '#48B9F2',
+      background: 0.5,
     }
   }
 
@@ -25,6 +26,7 @@ class Player extends React.Component {
         this.setState({eat: value.eat});
         this.setState({wallet: value.wallet});
         this.setState({card: value.card});
+        this.setState({background: value.background});
       }
       else return;
     })
@@ -40,10 +42,10 @@ class Player extends React.Component {
     return (
       <React.Fragment >
         <div className="player-hud">
-          <div className="mic">
+          <div className="mic" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
             <div className={this.state.microphone ? 'mic-img use-mic' : 'mic-img'}></div>
           </div>
-          <div className="needs">
+          <div className="needs" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
             <div className="needs-box">
               <div className="img-drink"></div>
               <div className="liner-needs">
@@ -59,7 +61,7 @@ class Player extends React.Component {
               <div className="needs-text">{this.state.eat}%</div>
             </div>
           </div>
-          <div className="money">
+          <div className="money" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
             <div className="money-box">
               <div className="img-wallet"></div>
               <div className="wallet-text" style={{ color: this.state.color }}>{this.state.wallet}</div>

@@ -386,9 +386,45 @@
 }
 .logo-main .logo-info {
     text-align: right;
-    font-size: 12px;
+    font-size: 13px;
+    margin-top: -3px;
     color: #fff;
     font-family: 'Roboto';
+}
+.logo-main .logo-ammo {
+    position: absolute;
+    display: flex;
+    top: 74px;
+    right: 24px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    padding: 8px;
+    background: rgb(0, 0, 0, 0.502);
+}
+.logo-main .logo-ammo-img {
+    width: 23px;
+    height: 17px;
+    margin-right: 2px;
+}
+.logo-main .logo-ammo-img.ammo-safe {
+    width: 23px;
+    background: url("../img/ammo-sf.png") no-repeat;
+    background-size: contain;
+}
+.logo-main .logo-ammo-img.ammo-single {
+    width: 11px;
+    background: url("../img/ammo-s.png") no-repeat;
+    background-size: contain;
+}
+.logo-main .logo-ammo-img.ammo-burst {
+    width: 18px;
+    background: url("../img/ammo-b.png") no-repeat;
+    background-size: contain;
+}
+.logo-main .logo-ammo-img.ammo-auto {
+    width: 23px;
+    background: url("../img/ammo.png") no-repeat;
+    background-size: contain;
 }
 .span-bold {
     font-family: 'RobotoBlack';

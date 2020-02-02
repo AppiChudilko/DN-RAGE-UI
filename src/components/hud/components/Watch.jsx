@@ -10,6 +10,7 @@ class Watch extends React.Component {
       date: '13.01.2020',
       temp: '+20*C',
       color: '#48B9F2',
+      background: 0.5,
     }
   }
 
@@ -22,6 +23,7 @@ class Watch extends React.Component {
         this.setState({time: value.time});
         this.setState({date: value.date});
         this.setState({temp: value.temp});
+        this.setState({background: value.background});
       }
       else return;
     })
@@ -33,7 +35,7 @@ class Watch extends React.Component {
     }
     return (
       <React.Fragment >
-        <div className="watch-main">
+        <div className="watch-main" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
           <div className="time-box">
             <div className="time">{this.state.time} <div className="time-img-watch"></div></div>
             <div className="date">{this.state.date}</div>

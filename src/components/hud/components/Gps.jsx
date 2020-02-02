@@ -9,6 +9,7 @@ class Gps extends React.Component {
       district: 'Район',
       street: 'Международная станция Якитики',
       color: '#48B9F2',
+      background: 0.5,
     }
   }
 
@@ -20,6 +21,7 @@ class Gps extends React.Component {
         this.setState({show: value.isShow});
         this.setState({district: value.district});
         this.setState({street: value.street});
+        this.setState({background: value.background});
       }
       else return;
     })
@@ -31,7 +33,7 @@ class Gps extends React.Component {
     }
     return (
       <React.Fragment >
-        <div className="gps-main">
+        <div className="gps-main" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
           <div className="gps-title" style={this.state}>{this.state.district}</div>
           <div className="gps-txt">{this.state.street}</div>
         </div>
