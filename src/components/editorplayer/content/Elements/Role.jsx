@@ -8,8 +8,7 @@ class Role extends React.Component {
     }
   }
   selectChar(index) {
-     mp.trigger('client:events:custom:choiceRole' // eslint-disable-line
-         , index)
+     mp.trigger('client:events:custom:choiceRole', index) // eslint-disable-line
   }
   
   render() {

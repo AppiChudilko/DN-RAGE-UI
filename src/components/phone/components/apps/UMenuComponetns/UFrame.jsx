@@ -1,5 +1,6 @@
 import React from 'react';
 import MaterialIcon, { colorPalette } from 'material-icons-react';
+import UTable from '../UTable';
 
 class UFrame extends React.Component {
   constructor(props) {
@@ -225,6 +226,13 @@ class UFrame extends React.Component {
                       </div>
                     </div>
                   </div>
+                </div>
+              </React.Fragment> : ''
+          }
+          {(this.props.type === 10) ?
+              <React.Fragment>
+                <div className="umenu-mini-table-box">
+                  <UTable data={this.props.item.table} />
                 </div>
               </React.Fragment> : ''
           }

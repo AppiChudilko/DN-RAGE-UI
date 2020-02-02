@@ -18,12 +18,14 @@ class ProfileContact extends React.Component {
   render() {
     return (
       <React.Fragment >
+        <div className="u-profilecontact">
         <div className="box-img-pp">
           <figure>
             <img src={this.state.contact.img !== undefined && this.state.contact.img !== '' ?
              this.state.contact.img : 'https://a.rsg.sc//n/socialclub'} alt="" className="p-box-img-player" />
             <div className="p-nameplayer-p">{this.state.contact.name}</div>
-          </figure></div>
+          </figure>
+          </div>
         <div className="p-topbar">
           <MaterialIcon icon="star_border" size={19} color="#fff" />
           <MaterialIcon icon="delete_forever" size={19} color="#fff" />
@@ -55,6 +57,7 @@ class ProfileContact extends React.Component {
           : null
           }
           </div>
+        </div>
         </div>
       </React.Fragment>
     )

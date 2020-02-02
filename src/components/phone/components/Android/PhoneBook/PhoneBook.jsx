@@ -39,10 +39,12 @@ class PhoneBook extends React.Component {
               <label htmlFor="b-radio-tabs3" className="b-tabs-radio"><MaterialIcon icon="group" size={19} /></label>
             </div>
           </div>
+          <div className="fix-phonebook">
           <div className="b-callhistory">
             {this.state.page === "favorit" ? <Favorit favorit={this.props.data.favorit} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} /> : null}
             {this.state.page === "history" ? <HistoryCall history={this.props.data.history} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} getContactByNumber={this.props.getContactByNumber.bind(this)} /> : null}
             {this.state.page === "contact" ? <Contact contact={this.props.data.contact} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} /> : null}
+          </div>
           </div>
         </div>
       </React.Fragment>

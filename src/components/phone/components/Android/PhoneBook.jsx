@@ -27,7 +27,7 @@ class PhoneBook extends React.Component {
               <label htmlFor="b-radio-tabs3" className="b-tabs-radio"><MaterialIcon icon="group" size={19} /></label>
             </div>
           </div>
-          <div className="b-callhistory">
+          <div className="fix-b-callhist">
             <div className="title-b-hist">История звонков</div>
             <div className="b-box-history">
               <div className="b-box-player">
@@ -37,8 +37,7 @@ class PhoneBook extends React.Component {
                   <div className="b-inf-data"><MaterialIcon icon="call_received" size={12} color="#FF2E58"/>Декабрь 3</div>
                 </div>
                 <div className="b-call"><MaterialIcon icon="call" size={19}/></div>
-              </div>
-              
+              </div>              
             </div>
           </div>
         </div>

@@ -53,6 +53,31 @@ class Android extends React.Component {
             ],
           },
           {
+            title: 'Таблица', //Массив работает внутри utable
+            umenu: [
+              {
+                type: 10,
+                table: {
+                  title: 'Погибшие сотрудники проекта DEDNET, вечная память',
+                  columns: [
+                    { title: 'Name', field: 'name' },
+                    { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
+                    { title: 'Birth Year', field: 'birthYear' },
+                    {
+                      title: 'Birth Place',
+                      field: 'birthCity',
+                      lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+                    },
+                  ],
+                  data: [
+                    { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+                    { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+                  ],
+                }
+              }
+            ]
+          },
+          {
             title: 'Новые типы блоков',
             umenu: [
               {
@@ -261,7 +286,7 @@ class Android extends React.Component {
         ],
       },
       topbar_color: false,
-  // Все нижние массивы это временно для демонстрации работы
+      // Все нижние массивы это временно для демонстрации работы
       scrollbar: {
         show: false,
         title: 'Выберите ранг',
@@ -447,7 +472,7 @@ class Android extends React.Component {
 
   closeScrollbar() {
     this.setState({ scrollbar: { show: false } })
-    }
+  }
 
   openScrollbar(title, items) {
     let data = {

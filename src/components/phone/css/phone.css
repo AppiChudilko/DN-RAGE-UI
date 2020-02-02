@@ -19,9 +19,11 @@
     transform: rotate(-90deg) translate(0px, -128%) scale(2);
 }
 .rotate-components {
-    transform: rotate(90deg) translate(116px, 70px);
-    width: 463px !important;
-    height: 230px !important;
+    transform: rotate(90deg) translate(-45px, 325px) scale(0.5);
+    width: 926px;
+    /* zoom: 0.5; */
+    /* width: 463px !important;
+    height: 230px !important; */
     transition: .5s;
 }
 .phone-bg {
@@ -75,23 +77,28 @@
 }
 .rotate-components .android-content {
     width: inherit !important;
-    height: inherit !important;
+    height: 502px;
 }
 .rotate-components .m_keys_bar {
     width: auto;
-    margin-top: -6px;
+    margin-top: -17px;
+    height: 45px;
+    z-index: 99999;
 }
 .rotate-components .uni-menu {
-    height: 229px;
+    height: 502px;
 }
 .rotate-components .u-li-menu {
-    height: 183px;
+    height: 436px;
 }
 .main-phone-box-flex {
     display: flex;
     flex-direction: column;
     width: inherit;
     height: inherit;
+}
+.rotate-components .main-app-box {
+    margin-bottom: 30px;
 }
 .main-app-box{
     margin-top: auto;
@@ -240,6 +247,9 @@
 }
 
 /*ANDROID*/
+.rotate-components .topbar-andr {
+    height: 23px;
+}
 .topbar-andr {
     width: inherit;
     height: 17px;
@@ -284,6 +294,9 @@
     display: flex;
     flex-direction: column;
     
+}
+.rotate-components .u-title{
+    height: 48px;
 }
 .u-title {
     height: 40px;
@@ -820,12 +833,21 @@ h4 {
     padding: 10px 0px;
     transition: 0.3s;
 }
+.umenu-mini-table-box {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px 0px; */
+    transition: 0.3s;
+}
 .hoverable .umenu-mini-box:hover {
     background: #4794eb26 !important;
 }
 .rotate-components .phonebook-content {
     width: inherit !important;
-    height: inherit !important;
+    height: 502px;
 }
 .phonebook-content {
     width: inherit;
@@ -841,6 +863,9 @@ h4 {
     align-items: center;
     flex-direction: column;
     z-index: 1;
+}
+.rotate-components .b-bar .b-search {
+    width: 99%;
 }
 .b-bar .b-search {
     width: 264.5px;
@@ -876,7 +901,7 @@ h4 {
     margin-top: 19.5px;
 }
 .b-tabsbar .b-tabs-radio {
-    width: 92.25px;
+    width: 100%;
     height: 24px;
     display: flex;
     justify-content: center;
@@ -891,6 +916,10 @@ h4 {
 .b-tabsbar input[type="radio"]:checked + label.b-tabs-radio {
     border-bottom: 2px solid #fff;
     color: #fff !important;
+}
+.rotate-components .b-callhistory {
+    height: 396px;
+    z-index: -1;
 }
 .b-callhistory {
     width: inherit;
@@ -914,7 +943,7 @@ h4 {
     flex-direction: column;
 }
 .b-box-player {
-    width: 264.5px;
+    width: 100%;
     height: 49px;
     margin-bottom: 6px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
@@ -984,6 +1013,9 @@ h4 {
 .his {
     color: #000;
 }
+.rotate-components .p-box-img-player {
+    margin-top: 0px;
+}
 .p-box-img-player {
    margin-top: -17px;
 }
@@ -1021,15 +1053,25 @@ figure img {
     font-size: 24px;   
     color: #FFFFFF;
 }
+.rotate-components .p-info-player {
+    height: 264px;
+    margin-top: 20%;
+}
 .p-info-player {
     width: inherit;
-    height: 44%;
+    height: 100%;
     overflow: scroll;
     background: #FFFFFF;
     margin-top: 62%;
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.rotate-components .p-box-mob_email {
+    margin-top: 15px;
+}
+.rotate-components .p-box-mob_email {
+    width: 94%;
 }
 .p-box-mob_email {
     width: 84%;
@@ -1418,3 +1460,113 @@ BankCard
         box-shadow: 0 0 0 0 rgba(0,0,0, 0);
     }
 }
+.rotate-components .u-profilecontact {
+    width: inherit;
+    height: 502px;
+}
+.u-profilecontact {
+    width: inherit;
+    height: 409px;
+    display: flex;
+    flex-direction: column;
+}
+/* TABLE */
+/* .rotate-components .table-wrapper{
+    zoom: 62%;
+    width: inherit;
+}
+.table-wrapper {
+    overflow-x: scroll;
+}
+.fl-table {
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+    font-family: "Roboto";
+}
+
+.fl-table td, .fl-table th {
+    text-align: left;
+    padding: 8px;
+}
+.fl-table td:first-child {
+    padding-left: 20px;
+}
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 14px;
+}
+.fl-table thead th:first-child {
+    padding-left: 20px;
+}
+.fl-table thead th {
+    color: #3a3a3a;
+    background: #fff;
+}
+.fl-table tr {
+    color: #3a3a3a;
+    background: #fff;
+    border-bottom: 1px solid #d3d3d3;
+} 
+/*checkbox*/
+/* .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .checkbox input[type=checkbox] {
+    display: none;
+  }
+  
+  .checkbox {
+    position: relative;
+    display: inline-block;
+    margin: 5px 0;
+  }
+  .checkbox .square {
+    border: 1px solid #ccc;
+    background-color: white;
+    width: 14px;
+    height: 14px;
+    border-radius: 0px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+  .checkbox .text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0 !important;
+  }
+  .checkbox:hover {
+    cursor: pointer;
+  }
+  .checkbox:hover .square {
+    background-color: white;
+  }
+  .checkbox input {
+    opacity: 0;
+  }
+  .checkbox input:checked + img {
+    opacity: 1;
+  }
+  .checkbox img {
+    opacity: 0;
+    font-size: 15px;
+    color: #eee;
+    position: absolute;
+    left: -3px;
+    top: 0px;
+  }
+  .checkbox.checkbox-xs .text {
+    color: #eee;
+    font-size: 10px;
+  } */
