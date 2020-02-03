@@ -21,7 +21,7 @@ class Android extends React.Component {
       top_bar: {
         time: '00:00',
         battery: 11, // max 11
-        wifi: 2,
+        wifi: false,
         network: 4, // max 5
         temperature: '+21°C',
         date: '15 декабря'

@@ -8,7 +8,7 @@ import './css/theme-noty.css';
 import "../node_modules/noty/lib/noty.css";
 import "animate.css"
 
-Noty.setMaxVisible(50);
+Noty.setMaxVisible(3);
 function notify(type, layout, message, time) {
     let types = ['information', 'error', 'success'];
     let layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];

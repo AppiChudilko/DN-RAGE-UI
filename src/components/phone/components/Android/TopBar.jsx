@@ -4,7 +4,7 @@ class TopBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
     }
   }
   componentDidMount() {
@@ -97,6 +97,21 @@ class TopBar extends React.Component {
         <div className={this.props.umenu ? "topbar-andr bg-blue-andr" : "topbar-andr"}>
           <div className="right-topbar"></div>
           <div className="left-topbar">
+            {this.props.data.wifi ?
+              <div className="elements-bar">
+                <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99975 0C4.40371 0 1.99432 0.729527 0 1.97896L7.00516 11L14 1.97896C12.0057 0.729963 9.5958 0 6.99975 0Z" fill="white" />
+                    <path opacity="0.302" fill-rule="evenodd" clip-rule="evenodd" d="M6.99365 0.00561523C4.39813 0.00561523 1.98828 0.707729 -0.00634766 1.90924L6.9977 11.0025L13.994 1.90924C11.9994 0.707729 9.58955 0.00561523 6.99365 0.00561523Z" fill="white" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <rect width="14" height="11" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              : null}
             <div className="elements-bar">
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0)">
