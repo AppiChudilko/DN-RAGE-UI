@@ -12,6 +12,7 @@ import Hud from './components/hud/Hud';
 import IDCard from './components/idcard/IDCard';
 import License from './components/license/License';
 import Certificate from './components/certificate/Certificate';
+import Walkietalkie from './components/walkietalkie/Walkietalkie';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <IDCard />
         <License />
         <Certificate />
+        <Walkietalkie />
     </React.Fragment>
   );
 }

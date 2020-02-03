@@ -8,25 +8,27 @@ import './css/theme-noty.css';
 import "../node_modules/noty/lib/noty.css";
 import "animate.css"
 
-Noty.setMaxVisible(3);
-// alt.on('noty', (type, layout, message, time) => {
-//     let types = ['information', 'error', 'success'];
-//     let layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];
-//     let icons = ['<i class="information"></i>', '<i class="exclamation"></i>', '<i class="exclamation"></i>']
-//     message = `<div class="text"><div class="icon">${icons[type]}</div><div class="message">${message}</div></div>`;
-//     new Noty({
-//         type: types[type],
-//         layout: layouts[layout],
-//         theme: 'dednet',
-//         text: message,
-//         timeout: time,
-//         progressBar: true,
-//         animation: {
-//             open: 'animated fadeInLeft',
-//             close: 'animated fadeOutLeft'
-//         }
-//     }).show();
-// })
+Noty.setMaxVisible(50);
+function notify(type, layout, message, time) {
+    let types = ['information', 'error', 'success'];
+    let layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];
+    message = `<div class="message">${message}</div>`;
+    new Noty({
+        type: types[type],
+        layout: layouts[layout],
+        theme: 'dednet',
+        text: message,
+        timeout: time,
+        progressBar: true,
+        animation: {
+            open: 'animated fadeInLeft',
+            close: 'animated fadeOutLeft'
+        }
+    }).show();
+}
+// notify(0, 1, 'Видимо произошла какая-то непредвиденная ошибка ', 5000)
+// notify(1, 1, 'Видимо произошла какая-то непредвиденная ошибка', 3000)
+// notify(2, 1, 'Видимо произошла какая-то непредвиденная ошибка', 2000)
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

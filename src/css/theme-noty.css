@@ -37,39 +37,32 @@
   margin: 0px 0 11px 0;
   overflow: hidden;
   position: relative;
-  background: rgba(31, 35, 38, 0.5);
-  width: 494px;
-  min-height: 50px;
+  background: rgba(0, 0, 0, 1);
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  width: 335px;
+  min-height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .noty_theme__dednet.noty_bar .noty_progressbar {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 2px;
+  height: 2px !important;
   width: 100%;
-  opacity: 1;
-}
-.noty_theme__dednet.noty_type__error.noty_bar .noty_progressbar {
-  background-color: #D12828;
+  opacity: 1 !important;
+  
 }
 .noty_theme__dednet.noty_type__information.noty_bar .noty_progressbar {
-  background-color: #fff;
+  background-color: #F1E14E;
+}
+.noty_theme__dednet.noty_type__error.noty_bar .noty_progressbar {
+  background-color: #F14E4E;
 }
 .noty_theme__dednet.noty_type__success.noty_bar .noty_progressbar {
- background-color: #28D12F;
-}
-.noty_body .exclamation {
-  /* width: 4px;
-  height: 19px;
-  background: url(../img/exclamation.svg); */
-}
-.noty_body .information {
-  /* width: 10px;
-  height: 20px;
-  background: url(../img/information.svg); */
+ background-color: #4EF172; /*либо #72A7CF;*/
 }
 .noty_body .icon {
   height: 20px;
@@ -77,10 +70,14 @@
   margin-right: 30px;
 }
 .noty_body .message{
-  width: 459px;
+  width: 335px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px 5px 10px 20px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
 }
 .noty_theme__dednet.noty_bar .noty_body {
   font-size: 15px;
@@ -88,23 +85,6 @@
 .noty_theme__dednet.noty_bar .noty_buttons {
   padding: 0 10px .5em 10px;
 }
-
-.noty_theme__dednet.noty_type__alert .text i,
-.noty_theme__dednet.noty_type__notification .text i {
-  color: #fff; }
-
-.noty_theme__dednet.noty_type__warning .text i {
-  color: #ff6a00; }
-
-.noty_theme__dednet.noty_type__error .text i {
-  color: #e41005; }
-
-.noty_theme__dednet.noty_type__info .text i,
-.noty_theme__dednet.noty_type__information .text i {
-  color: #00aaff; }
-
-.noty_theme__dednet.noty_type__success .text i {
-  color: #80ff00; }
 
 .noty_body .text{
   width: 494px;

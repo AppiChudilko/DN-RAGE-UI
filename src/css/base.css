@@ -48,4 +48,5 @@ input:focus::-webkit-input-placeholder { color:transparent; }
 .box{
 	width: -webkit-fill-available;
   height: -webkit-fill-available;
+  position: absolute;
 }
