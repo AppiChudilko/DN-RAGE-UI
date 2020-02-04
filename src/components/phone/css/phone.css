@@ -346,7 +346,7 @@
 .l-title {
     padding-left: 10px;
     min-height: 27px;
-    width: 246px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -364,10 +364,10 @@
     white-space: pre-line;
 }
 .rotate-components  .txt-title {
-    font-size: 12px;
+    font-size: 14px;
 }
 .rotate-components  .txt-lasttitle {
-    font-size: 10px;
+    font-size: 12px;
 }
 .u-l-arrow {
     width: 16px;
@@ -680,7 +680,7 @@ h4 {
     margin-top: 2px;
 }
 .rotate-components .mobile-profile .m-email-player {
-    font-size: 10px;
+    font-size: 12px;
 }
 .mobile-profile .m-name-player {
     font-family: 'RobotoBold';
@@ -1476,6 +1476,11 @@ BankCard
     display: flex;
     flex-direction: column;
 }
+
+.MuiTableCell-body {
+    white-space: pre-wrap;
+}
+
 /* TABLE */
 /* .rotate-components .table-wrapper{
     zoom: 62%;
