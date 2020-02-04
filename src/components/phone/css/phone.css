@@ -275,6 +275,9 @@
     align-items: center;
     margin-right: -4px
 }
+.rotate-components .left-topbar .battery-info {
+    margin-top: 1px;
+}
 .left-topbar .battery-info {
     font-size: 12px;
     margin-right: 3px;
@@ -1133,6 +1136,9 @@ figure img {
     position: relative;
     width: 40px;
     height: 40px;
+}
+.rotate-components .u-scrollable {
+    height: 100%;
 }
 .u-scrollable {
     width: inherit;
