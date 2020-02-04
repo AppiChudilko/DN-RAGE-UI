@@ -1470,6 +1470,11 @@ BankCard
     display: flex;
     flex-direction: column;
 }
+
+.MuiTableCell-body {
+    white-space: pre-wrap;
+}
+
 /* TABLE */
 /* .rotate-components .table-wrapper{
     zoom: 62%;

@@ -77,7 +77,7 @@ class Android extends React.Component {
                   },
                 ],
                 data: [
-                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test1', birthYear: 1987, birthCity: 63 },
+                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', surname: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', birthYear: 1987, birthCity: 63 },
                   { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test2', birthYear: 2017, birthCity: 34 },
                 ],
               }
