@@ -5,21 +5,77 @@ class UTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: 'Погибшие сотрудники проекта DEDNET, вечная память',
-      columns: [
-        { title: 'Имя', field: 'name' },
-        { title: 'Фамилия', field: 'surname', initialEditValue: 'initial edit value' },
-        { title: 'Год рождения', field: 'birthYear' },
-        {
-          title: 'Место рождения',
-          field: 'birthCity',
-          lookup: { 34: 'Москва', 63: 'Санкт-Петербург' },
-        },
-      ],
-      data: [
-        { name: 'Ахмед', surname: 'Баран', birthYear: 1987, birthCity: 63 },
-        { name: 'Мухаммед', surname: 'Баран', birthYear: 2017, birthCity: 34 },
-      ],
+      title: this.props.title,
+      columns:this.props.columns,
+      data: this.props.data,
+      readonly: this.props.readonly,
+      editable: {
+        onRowAdd: newData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.setState(prevState => {
+                  const data = [...prevState.data];
+                  data.push(newData);
+
+                  console.log('ADD', newData);
+
+                  try {
+                    mp.trigger('client:phone:table', 'add', newData); // eslint-disable-line
+                  }
+                  catch (e) {
+                    console.log(e);
+                  }
+
+                  return { ...prevState, data };
+                });
+              }, 600);
+            }),
+        onRowUpdate: (newData, oldData) =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                if (oldData) {
+                  this.setState(prevState => {
+                    const data = [...prevState.data];
+                    data[data.indexOf(oldData)] = newData;
+
+                    console.log('UPDATE', newData);
+
+                    try {
+                      mp.trigger('client:phone:table', 'update', newData); // eslint-disable-line
+                    }
+                    catch (e) {
+                      console.log(e);
+                    }
+
+                    return { ...prevState, data };
+                  });
+                }
+              }, 600);
+            }),
+        onRowDelete: oldData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                this.setState(prevState => {
+                  const data = [...prevState.data];
+                  data.splice(data.indexOf(oldData), 1);
+
+                  console.log('DELETE', oldData);
+
+                  try {
+                    mp.trigger('client:phone:table', 'delete', oldData); // eslint-disable-line
+                  }
+                  catch (e) {
+                    console.log(e);
+                  }
+
+                  return { ...prevState, data };
+                });
+              }, 600);
+            }),
+      },
       localization: {
         header: {
           actions: ' '
@@ -82,6 +138,7 @@ class UTable extends React.Component {
       :
       this.setState(prevState => ({ ...prevState.options.pageSize = 10 }))
   }
+
   componentDidUpdate(prevProp, prevState) {
     console.log(this.state.data.length)
     console.log(prevState.data.length)
@@ -95,49 +152,13 @@ class UTable extends React.Component {
 
   render() {
     return (
-      <MaterialTable style={{ width: '99%', align: 'center', whiteSpace: 'nowrap' }}
+      <MaterialTable style={{ width: '100%', align: 'center', whiteSpace: 'nowrap' }}
         title={this.state.title}
         columns={this.state.columns}
         data={this.state.data}
         options={this.state.options}
         localization={this.state.localization}
-        editable={{
-          onRowAdd: newData =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
-              }, 600);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                if (oldData) {
-                  this.setState(prevState => {
-                    const data = [...prevState.data];
-                    data[data.indexOf(oldData)] = newData;
-                    return { ...prevState, data };
-                  });
-                }
-              }, 600);
-            }),
-          onRowDelete: oldData =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                this.setState(prevState => {
-                  const data = [...prevState.data];
-                  data.splice(data.indexOf(oldData), 1);
-                  return { ...prevState, data };
-                });
-              }, 600);
-            }),
-        }}
+        editable={this.state.readonly ? null : this.state.editable}
       />
     )
   }

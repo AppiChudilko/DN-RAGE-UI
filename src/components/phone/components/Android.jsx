@@ -10,12 +10,13 @@ import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
 import Scrollbar from './apps/Scrollbar';
 import Modal from './apps/Modal';
 import InputModal from './apps/InputModal';
+import UTable from "./apps/UTable";
 
 class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: '/phone/android/defaultpage',
+      path: '/phone/android/umenu',
       history: ['/phone/android/defaultpage'],
       rotate: false,
       top_bar: {
@@ -57,23 +58,27 @@ class Android extends React.Component {
             umenu: [
               {
                 type: 10,
-                table: {
-                  title: 'Погибшие сотрудники проекта DEDNET, вечная память',
-                  columns: [
-                    { title: 'Name', field: 'name' },
-                    { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
-                    { title: 'Birth Year', field: 'birthYear' },
-                    {
-                      title: 'Birth Place',
-                      field: 'birthCity',
-                      lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-                    },
-                  ],
-                  data: [
-                    { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-                    { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-                  ],
-                }
+                title: 'TEst',
+                columns: [
+                  { title: 'Имя', field: 'name' },
+                  { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение'},
+                  { title: 'Год рождения', field: 'birthYear' },
+                  {
+                    title: 'Место рождения',
+                    field: 'birthCity',
+                    lookup: { 34: 'Москва', 63: 'Санкт-Петербург' },
+                  },
+                  {
+                    field: 'url',
+                    title: 'Фото',
+                    editable: false,
+                    render: rowData => <img src={rowData.url} style={{width: 50, borderRadius: '50%'}}/>
+                  },
+                ],
+                data: [
+                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test1', birthYear: 1987, birthCity: 63 },
+                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test2', birthYear: 2017, birthCity: 34 },
+                ],
               }
             ]
           },
@@ -498,6 +503,9 @@ class Android extends React.Component {
                 <InputModal data={this.state.inputmodal} closeInputModal={this.closeInputModal.bind(this)} />
                 <Route exact path="/phone/android/umenu">
                   <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} />
+                </Route>
+                <Route exact path="/phone/android/utable">
+                  <UTable historyPush={this.historyPush.bind(this)} />
                 </Route>
                 <Route exact path="/phone/android/phonebook">
                   <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)} />

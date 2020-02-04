@@ -361,10 +361,10 @@
     white-space: pre-line;
 }
 .rotate-components  .txt-title {
-    font-size: 12px;
+    font-size: 14px;
 }
 .rotate-components  .txt-lasttitle {
-    font-size: 10px;
+    font-size: 12px;
 }
 .u-l-arrow {
     width: 16px;
@@ -677,7 +677,7 @@ h4 {
     margin-top: 2px;
 }
 .rotate-components .mobile-profile .m-email-player {
-    font-size: 10px;
+    font-size: 12px;
 }
 .mobile-profile .m-name-player {
     font-family: 'RobotoBold';
