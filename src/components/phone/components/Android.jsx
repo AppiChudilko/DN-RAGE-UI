@@ -503,7 +503,7 @@ class Android extends React.Component {
                 <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)} />
                 <InputModal data={this.state.inputmodal} closeInputModal={this.closeInputModal.bind(this)} />
                 <Route exact path="/phone/android/umenu">
-                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} />
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate}/>
                 </Route>
                 <Route exact path="/phone/android/utable">
                   <UTable historyPush={this.historyPush.bind(this)} />

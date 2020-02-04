@@ -149,8 +149,8 @@ class UFrame extends React.Component {
           {(this.props.type === 5) ?
             <React.Fragment>
               <div className="umenu-mini-box" onClick={() => {
-                  this.props.openScrollbar(this.props.item.scrollbarTitle, this.props.item.scrollbar)
-                }}>
+                this.props.openScrollbar(this.props.item.scrollbarTitle, this.props.item.scrollbar)
+              }}>
                 <div className="l-title">
                   {this.props.item.img === '' || this.props.item.img === undefined ? null :
                     <React.Fragment>
@@ -166,75 +166,77 @@ class UFrame extends React.Component {
             </React.Fragment> : ''
           }
           {(this.props.type === 6) ?
-              <React.Fragment>
-                <div className="umenu-mini-box">
-                  <div className="mobile-profile-1">
-                    <img className="m-player-photo-1" src={this.props.item.value} style={{height: this.props.item.height + 'px'}}  />
-                  </div>
+            <React.Fragment>
+              <div className="umenu-mini-box">
+                <div className="mobile-profile-1">
+                  <img className="m-player-photo-1" src={this.props.item.value} style={{ height: this.props.item.height + 'px' }} />
                 </div>
-              </React.Fragment> : ''
+              </div>
+            </React.Fragment> : ''
           }
 
           {(this.props.type === 7) ?
-              <React.Fragment>
-                <div className="umenu-mini-box" onClick={() => {
-                  this.props.openModal(this.props.item.modalTitle, this.props.item.modalText, this.props.item.modalButton, this.props.item.params)
-                }}>
-                  <div className="l-title">
-                    {this.props.item.img === '' || this.props.item.img === undefined ? null :
-                        <React.Fragment>
-                          <MaterialIcon icon={this.props.item.img} size={19} />
-                        </React.Fragment>
-                    }
-                    <div className="umenu-rov">
-                      <div className="txt-title">{this.props.item.title} </div>
-                      <div className="txt-lasttitle">{this.props.item.text}</div>
-                    </div>
+            <React.Fragment>
+              <div className="umenu-mini-box" onClick={() => {
+                this.props.openModal(this.props.item.modalTitle, this.props.item.modalText, this.props.item.modalButton, this.props.item.params)
+              }}>
+                <div className="l-title">
+                  {this.props.item.img === '' || this.props.item.img === undefined ? null :
+                    <React.Fragment>
+                      <MaterialIcon icon={this.props.item.img} size={19} />
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title} </div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
                   </div>
                 </div>
-              </React.Fragment> : ''
+              </div>
+            </React.Fragment> : ''
           }
-           {(this.props.type === 8) ?
-              <React.Fragment>
-                <div className="umenu-mini-box" onClick={() => {
-                  this.props.openInputModal(this.props.item.modalTitle, this.props.item.modalButton, this.props.item.modalValue, this.props.item.params)
-                }}>
-                  <div className="l-title">
-                    {this.props.item.img === '' || this.props.item.img === undefined ? null :
-                        <React.Fragment>
-                          <MaterialIcon icon={this.props.item.img} size={19} />
-                        </React.Fragment>
-                    }
-                    <div className="umenu-rov">
-                      <div className="txt-title">{this.props.item.title} </div>
-                      <div className="txt-lasttitle">{this.props.item.text}</div>
-                    </div>
+          {(this.props.type === 8) ?
+            <React.Fragment>
+              <div className="umenu-mini-box" onClick={() => {
+                this.props.openInputModal(this.props.item.modalTitle, this.props.item.modalButton, this.props.item.modalValue, this.props.item.params)
+              }}>
+                <div className="l-title">
+                  {this.props.item.img === '' || this.props.item.img === undefined ? null :
+                    <React.Fragment>
+                      <MaterialIcon icon={this.props.item.img} size={19} />
+                    </React.Fragment>
+                  }
+                  <div className="umenu-rov">
+                    <div className="txt-title">{this.props.item.title} </div>
+                    <div className="txt-lasttitle">{this.props.item.text}</div>
                   </div>
                 </div>
-              </React.Fragment> : ''
+              </div>
+            </React.Fragment> : ''
           }
-           {(this.props.type === 9) ?
-              <React.Fragment>
-                <div className="umenu-mini-box">
-                  <div className="bank-card">
-                    <div className="bank-card__front bank-card__part" style={{backgroundColor: this.props.item.color}}>
-                      <h1 className="bank-title">{this.props.item.title}</h1>
-                      <p className="bank-card_numer">{this.props.item.text}</p>
-                      <div className="bank-card__space-75">
-                        <span className="bank-card__label">Card holder</span>
-                        <p className="bank-card__info">{this.props.item.name}</p>
-                      </div>
+          {(this.props.type === 9) ?
+            <React.Fragment>
+              <div className="umenu-mini-box">
+                <div className="bank-card">
+                  <div className="bank-card__front bank-card__part" style={{ backgroundColor: this.props.item.color }}>
+                    <h1 className="bank-title">{this.props.item.title}</h1>
+                    <p className="bank-card_numer">{this.props.item.text}</p>
+                    <div className="bank-card__space-75">
+                      <span className="bank-card__label">Card holder</span>
+                      <p className="bank-card__info">{this.props.item.name}</p>
                     </div>
                   </div>
                 </div>
-              </React.Fragment> : ''
+              </div>
+            </React.Fragment> : ''
           }
           {(this.props.type === 10) ?
-              <React.Fragment>
+            <React.Fragment>
+              {this.props.rotate ?
                 <div className="umenu-mini-table-box">
                   <UTable title={this.props.item.title} columns={this.props.item.columns} data={this.props.item.data} readonly={this.props.item.readonly} />
                 </div>
-              </React.Fragment> : ''
+                : <div className="umenu-title-box">Для просмотра таблицы переверните телефон.</div>}
+            </React.Fragment> : ''
           }
 
         </div>

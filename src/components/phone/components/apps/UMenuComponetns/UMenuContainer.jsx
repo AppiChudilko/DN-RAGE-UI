@@ -34,6 +34,7 @@ class UMenuContainer extends React.Component {
                         openScrollbar={this.props.openScrollbar}
                         openModal={this.props.openModal}
                         openInputModal={this.props.openInputModal}
+                        rotate={this.props.rotate}
                       />
                     )
                   })}

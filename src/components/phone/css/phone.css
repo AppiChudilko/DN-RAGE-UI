@@ -828,6 +828,19 @@ h4 {
     height: 1px;
     background: rgba(0, 0, 0, 0.12);
 }
+.umenu-title-box {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 5px 0px;
+    transition: 0.3s;
+    font-family: 'Roboto';
+    font-size: 14px;
+    color: #3a3a3a;
+    margin-left: 16px;
+}
 .umenu-mini-box {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -1480,104 +1493,3 @@ BankCard
 .MuiTableCell-body {
     white-space: pre-wrap;
 }
-
-/* TABLE */
-/* .rotate-components .table-wrapper{
-    zoom: 62%;
-    width: inherit;
-}
-.table-wrapper {
-    overflow-x: scroll;
-}
-.fl-table {
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-    font-family: "Roboto";
-}
-
-.fl-table td, .fl-table th {
-    text-align: left;
-    padding: 8px;
-}
-.fl-table td:first-child {
-    padding-left: 20px;
-}
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 14px;
-}
-.fl-table thead th:first-child {
-    padding-left: 20px;
-}
-.fl-table thead th {
-    color: #3a3a3a;
-    background: #fff;
-}
-.fl-table tr {
-    color: #3a3a3a;
-    background: #fff;
-    border-bottom: 1px solid #d3d3d3;
-} 
-/*checkbox*/
-/* .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .checkbox input[type=checkbox] {
-    display: none;
-  }
-  
-  .checkbox {
-    position: relative;
-    display: inline-block;
-    margin: 5px 0;
-  }
-  .checkbox .square {
-    border: 1px solid #ccc;
-    background-color: white;
-    width: 14px;
-    height: 14px;
-    border-radius: 0px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 4px;
-  }
-  .checkbox .text {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 0 !important;
-  }
-  .checkbox:hover {
-    cursor: pointer;
-  }
-  .checkbox:hover .square {
-    background-color: white;
-  }
-  .checkbox input {
-    opacity: 0;
-  }
-  .checkbox input:checked + img {
-    opacity: 1;
-  }
-  .checkbox img {
-    opacity: 0;
-    font-size: 15px;
-    color: #eee;
-    position: absolute;
-    left: -3px;
-    top: 0px;
-  }
-  .checkbox.checkbox-xs .text {
-    color: #eee;
-    font-size: 10px;
-  } */
