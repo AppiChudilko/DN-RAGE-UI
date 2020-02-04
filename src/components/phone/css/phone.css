@@ -80,10 +80,11 @@
     height: 502px;
 }
 .rotate-components .m_keys_bar {
-    width: auto;
+    width: 101%;
     margin-top: -17px;
     height: 45px;
     z-index: 99999;
+    box-shadow: 1px 2px 0px #000000;
 }
 .rotate-components .uni-menu {
     height: 502px;
@@ -256,6 +257,8 @@
     display: flex;
     z-index: 1;
     /* background: #2d72c1; */
+    margin-top: -2px;
+    width: 100%;
 }
 .bg-blue-andr {
     background: #000;
@@ -296,6 +299,9 @@
     height: 409px;
     display: flex;
     flex-direction: column;
+    margin-top: -1px;
+    width: 101%;
+    margin-left: -1px;
     
 }
 .rotate-components .u-title{
@@ -862,14 +868,18 @@ h4 {
     background: #4794eb26 !important;
 }
 .rotate-components .phonebook-content {
-    width: inherit !important;
+    width: 101%;
     height: 502px;
+    margin-left: 2px;
 }
 .phonebook-content {
     width: inherit;
     height: 409px;
     display: flex;
     flex-direction: column;
+}
+.rotate-components .phonebook-content .b-bar {
+    width: 99.3%;
 }
 .phonebook-content .b-bar {
     width: inherit;
@@ -881,7 +891,7 @@ h4 {
     z-index: 1;
 }
 .rotate-components .b-bar .b-search {
-    width: 99%;
+    width: 98%;
 }
 .b-bar .b-search {
     width: 264.5px;
@@ -934,8 +944,9 @@ h4 {
     color: #fff !important;
 }
 .rotate-components .b-callhistory {
-    height: 396px;
+    height: 398px;
     z-index: -1;
+    width: 99.3%;
 }
 .b-callhistory {
     width: inherit;
@@ -1072,6 +1083,7 @@ figure img {
 .rotate-components .p-info-player {
     height: 264px;
     margin-top: 20%;
+    width: 100%;
 }
 .p-info-player {
     width: inherit;
@@ -1480,7 +1492,7 @@ BankCard
     }
 }
 .rotate-components .u-profilecontact {
-    width: inherit;
+    width: 101%;
     height: 502px;
 }
 .u-profilecontact {

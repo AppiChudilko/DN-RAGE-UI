@@ -19,13 +19,15 @@ class Android extends React.Component {
       path: '/phone/android/defaultpage',
       history: ['/phone/android/defaultpage'],
       rotate: false,
+      bg_color: '',
       top_bar: {
         time: '00:00',
         battery: 11, // max 11
         wifi: false,
         network: 4, // max 5
         temperature: '+21°C',
-        date: '15 декабря'
+        date: '15 декабря',
+        color_bar: ''
       },
       apps: [
         { link: "/phone/android/umenu", action: 'app', img: 'apps' },
@@ -291,7 +293,7 @@ class Android extends React.Component {
           },
         ],
       },
-      topbar_color: false,
+      // topbar_color: false,
       // Все нижние массивы это временно для демонстрации работы
       scrollbar: {
         show: false,
@@ -334,16 +336,29 @@ class Android extends React.Component {
       else if (value.type === 'updateTopBar') { this.setState({ top_bar: value.bar }) }
       else return;
     })
+
   }
 
   componentDidUpdate(prevProp, prevState) {
     if (this.state.path !== prevState.path) {
       if (this.state.path !== this.state.history[this.state.history.length - 1])
         this.historyPush()
-    }
+    }    
   }
 
   historyPush() {
+    if (this.state.path === '/phone/android/defaultpage') {
+      this.setState( prevState => ({ ...prevState.top_bar.color_bar= ''}))
+      this.setState({ bg_color: '' })
+    }
+    if (this.state.path === '/phone/android/phonebook/profilecontact') {
+      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#000'}))
+      this.setState({ bg_color: '#000' })
+    }
+    if (this.state.path === '/phone/android/phonebook') {
+      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#1C3AA9'}))
+      this.setState({ bg_color: '#1C3AA9' })
+    }
     this.setState({ history: this.state.history.concat([this.state.path]) })
   }
   historyClear() {
@@ -367,7 +382,8 @@ class Android extends React.Component {
   }
   clickApps(event, i) {
     if (event.link === "/phone/android/umenu") {
-      this.setState({ topbar_color: true })
+      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#000'}))
+      this.setState({ bg_color: '#000' })
       this.setState({ path: event.link })
 
       try {
@@ -375,9 +391,11 @@ class Android extends React.Component {
       }
       catch (e) {
         console.log(e);
+        //#1C3AA9
       }
     } else if (event.link === "/phone/android/phonebook") {
-      this.setState({ topbar_color: true })
+      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#1C3AA9'}))
+      this.setState({ bg_color: '#1C3AA9' })
       this.setState({ path: event.link })
 
       try {
@@ -413,7 +431,8 @@ class Android extends React.Component {
     //this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
   }
   clickHome() {
-    this.setState({ topbar_color: false });
+    this.setState( prevState => ({ ...prevState.top_bar.color_bar= ''}))
+      this.setState({ bg_color: '' })
     this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
     this.historyClear();
   }
@@ -489,12 +508,15 @@ class Android extends React.Component {
     this.setState({ scrollbar: data });
   }
   render() {
+    const bg = {
+      background: this.state.bg_color
+    }
     return (
       <React.Fragment >
         <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
-          <div className="phone-bg bg-1">
+          <div className="phone-bg bg-1" style={bg}>
             <div className={this.state.rotate ? "rotate-components" : 'main-phone-box-flex'}>
-              <TopBar umenu={this.state.topbar_color} data={this.state.top_bar} />
+              <TopBar data={this.state.top_bar} />
               <Router>
                 <Route exact path="/phone/android/defaultpage">
                   <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps} clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />

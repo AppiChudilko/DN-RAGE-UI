@@ -4,7 +4,6 @@ class TopBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
   }
   componentDidMount() {
@@ -88,13 +87,18 @@ class TopBar extends React.Component {
         break;
       default:
         break;
+        // style={this.props.umenu ? `{{backgroundColor: '#000'}}` : ''}
+        //style={{backgroundColor: '#000'}} 
     }
     this.setState({ networkTimeout: false })
   }
   render() {
+    const style = {
+      backgroundColor: this.props.data.color_bar
+    }
     return (
       <React.Fragment >
-        <div className={this.props.umenu ? "topbar-andr bg-blue-andr" : "topbar-andr"}>
+        <div className="topbar-andr" style={style}>
           <div className="right-topbar"></div>
           <div className="left-topbar">
             {this.props.data.wifi ?
