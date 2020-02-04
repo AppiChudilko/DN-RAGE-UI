@@ -343,7 +343,7 @@
 .l-title {
     padding-left: 10px;
     min-height: 27px;
-    width: 246px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;

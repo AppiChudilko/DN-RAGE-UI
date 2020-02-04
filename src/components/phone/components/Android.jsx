@@ -105,8 +105,8 @@ class Android extends React.Component {
                 params: { name: "null" }
               },
               {
-                title: "Kolya Livyn",
-                text: "Заместитель кипера",
+                title: " I found i still had this issues sometimes when I had certain divs set to height or min-height: 100%. I had to remove and either wrap it in a parent or move further into the tree where it could still scroll",
+                text: " I found i still had this issues sometimes when I had certain divs set to height or min-height: 100%. I had to remove and either wrap it in a parent or move further into the tree where it could still scroll",
                 img: 'https://a.rsg.sc//n/socialclub',
                 online: true,
                 type: 4,
