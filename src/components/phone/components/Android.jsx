@@ -59,6 +59,7 @@ class Android extends React.Component {
               {
                 type: 10,
                 title: 'TEst',
+                readonly: true,
                 columns: [
                   { title: 'Имя', field: 'name' },
                   { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение'},

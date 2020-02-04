@@ -232,7 +232,7 @@ class UFrame extends React.Component {
           {(this.props.type === 10) ?
               <React.Fragment>
                 <div className="umenu-mini-table-box">
-                  <UTable title={this.props.item.title} columns={this.props.item.columns} data={this.props.item.data} />
+                  <UTable title={this.props.item.title} columns={this.props.item.columns} data={this.props.item.data} readonly={this.props.item.readonly} />
                 </div>
               </React.Fragment> : ''
           }
