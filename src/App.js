@@ -14,6 +14,7 @@ import License from './components/license/License';
 import Certificate from './components/certificate/Certificate';
 import Walkietalkie from './components/walkietalkie/Walkietalkie';
 import WorkID from './components/workid/WorkID';
+import ModalInput from './components/modalinput/ModalInput';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <License />
         <Certificate />
         <Walkietalkie />
+        <ModalInput />
     </React.Fragment>
   );
 }
