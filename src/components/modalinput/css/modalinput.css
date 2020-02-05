@@ -64,4 +64,5 @@
     color: #FFFFFF;
     outline: none;
     margin-bottom: 18px !important;
+    resize: none;
 }

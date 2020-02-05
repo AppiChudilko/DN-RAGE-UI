@@ -8,6 +8,14 @@ import './css/theme-noty.css';
 import "../node_modules/noty/lib/noty.css";
 import "animate.css"
 
+import EventManager from "./EventManager";
+
+EventManager.addHandler('notify', value => {
+    if (value.type === 'send') {
+        notify(value.type, value.layout, value.text, value.time)
+    }
+});
+
 Noty.setMaxVisible(3);
 function notify(type, layout, message, time) {
     let types = ['information', 'error', 'success'];
