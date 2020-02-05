@@ -5,9 +5,13 @@ class ModalInput extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      show: false,
     }
   }
   render() {
+    if (!this.state.show) {
+      return null;
+    }
     return (
       <React.Fragment >
         <div className="position-modal" id="box">

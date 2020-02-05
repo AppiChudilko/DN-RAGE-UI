@@ -274,14 +274,15 @@
     transition: transform 0.3s ease;
 }
 .backg-speed {
-    background: url(../img/speed.png) no-repeat;
-    width: 343px;
-    height: 190px;
+    background: url(../img/speed.svg) no-repeat;
+    width: 426px;
+    height: 231px;
     position: absolute;
-    left: 45px;
-    top: 27px;
+    left: 57px;
+    top: 30px;
     display: flex;
     justify-content: center;
+    zoom: 0.8;
 }
 .backg-speed .speed-txt {
     font-family: "RobotoBold";
