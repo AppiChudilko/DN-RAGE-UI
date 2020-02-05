@@ -13,6 +13,7 @@ import IDCard from './components/idcard/IDCard';
 import License from './components/license/License';
 import Certificate from './components/certificate/Certificate';
 import Walkietalkie from './components/walkietalkie/Walkietalkie';
+import WorkID from './components/workid/WorkID';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <EditorMain />
         <Hud />
         <IDCard />
+        <WorkID />
         <License />
         <Certificate />
         <Walkietalkie />
