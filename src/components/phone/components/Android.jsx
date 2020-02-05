@@ -11,6 +11,8 @@ import Scrollbar from './apps/Scrollbar';
 import Modal from './apps/Modal';
 import InputModal from './apps/InputModal';
 import UTable from "./apps/UTable";
+import Messenger from './apps/Messenger';
+import Chat from './apps/Chat';
 
 class Android extends React.Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class Android extends React.Component {
         { link: "/phone/android/umenu", action: 'gps', img: 'gps' },
         //{ link: "/phone/android/umenu", action: 'settings', img: 'settings' },
         { link: "/phone/android/phonebook", action: 'cont', img: 'cont' },
-        { link: "/phone/android/umenu", action: 'sms', img: 'sms' },
+        { link: "/phone/android/messenger", action: 'sms', img: 'sms' },
       ],
       menu: {
         UUID: '11223',
@@ -64,7 +66,7 @@ class Android extends React.Component {
                 readonly: true,
                 columns: [
                   { title: 'Имя', field: 'name' },
-                  { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение'},
+                  { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение' },
                   { title: 'Год рождения', field: 'birthYear' },
                   {
                     title: 'Место рождения',
@@ -75,12 +77,12 @@ class Android extends React.Component {
                     field: 'url',
                     title: 'Фото',
                     editable: false,
-                    render: rowData => <img src={rowData.url} style={{width: 50, borderRadius: '50%'}}/>
+                    render: rowData => <img src={rowData.url} style={{ width: 50, borderRadius: '50%' }} />
                   },
                 ],
                 data: [
-                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', surname: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', birthYear: 1987, birthCity: 63 },
-                  { params: {name: "none"}, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test2', birthYear: 2017, birthCity: 34 },
+                  { params: { name: "none" }, url: 'https://a.rsg.sc//n/socialclub', name: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', surname: 'Выдал "Лицензия на оружие" гражданину Looney Moretti', birthYear: 1987, birthCity: 63 },
+                  { params: { name: "none" }, url: 'https://a.rsg.sc//n/socialclub', name: 'Test', surname: 'Test2', birthYear: 2017, birthCity: 34 },
                 ],
               }
             ]
@@ -293,6 +295,37 @@ class Android extends React.Component {
           },
         ],
       },
+      messenger: {
+        current_chat: '222-3567347'
+      },
+      chats: [{
+        phone_number: '222-3567347',
+        is_online: true, // был(а) в сети 12.01.2019
+        last_login: '12.01.2019',
+        message: [
+          { type: 2, text: 'Все хорошо, а у тебя как?', time: '12:01' },
+          { type: 1, text: 'Привет, как дела?', time: '12:00' },
+          { type: 0, text: '1 января' },
+        ]
+      },
+      {
+        phone_number: '222-9746753',
+        is_online: true, // был(а) в сети 12.01.2019
+        last_login: '12.01.2019',
+        message: [
+          { type: 2, text: 'Все хорошо, а у тебя как?', time: '12:01' },
+          { type: 1, text: 'Привет, как дела?', time: '12:00' },
+          { type: 0, text: '1 января' },
+        ]
+      },
+      {
+        phone_number: '222-9746456',
+        is_online: true, // был(а) в сети 12.01.2019
+        last_login: '29.01.2019',
+        message: [
+          { type: 2, text: 'Товар на месте?', time: '12:01' },
+        ]
+      }],
       // topbar_color: false,
       // Все нижние массивы это временно для демонстрации работы
       scrollbar: {
@@ -343,21 +376,25 @@ class Android extends React.Component {
     if (this.state.path !== prevState.path) {
       if (this.state.path !== this.state.history[this.state.history.length - 1])
         this.historyPush()
-    }    
+    }
   }
 
   historyPush() {
     if (this.state.path === '/phone/android/defaultpage') {
-      this.setState( prevState => ({ ...prevState.top_bar.color_bar= ''}))
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '' }))
       this.setState({ bg_color: '' })
     }
     if (this.state.path === '/phone/android/phonebook/profilecontact') {
-      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#000'}))
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
       this.setState({ bg_color: '#000' })
     }
     if (this.state.path === '/phone/android/phonebook') {
-      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#1C3AA9'}))
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
       this.setState({ bg_color: '#1C3AA9' })
+    }
+    if (this.state.path === '/phone/android/messenger') {
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+      this.setState({ bg_color: '#000' })
     }
     this.setState({ history: this.state.history.concat([this.state.path]) })
   }
@@ -382,7 +419,7 @@ class Android extends React.Component {
   }
   clickApps(event, i) {
     if (event.link === "/phone/android/umenu") {
-      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#000'}))
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
       this.setState({ bg_color: '#000' })
       this.setState({ path: event.link })
 
@@ -394,10 +431,18 @@ class Android extends React.Component {
         //#1C3AA9
       }
     } else if (event.link === "/phone/android/phonebook") {
-      this.setState( prevState => ({ ...prevState.top_bar.color_bar= '#1C3AA9'}))
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
       this.setState({ bg_color: '#1C3AA9' })
       this.setState({ path: event.link })
 
+      try {
+        mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+      }
+      catch (e) {
+        console.log(e);
+      }
+    } else if (event.link === "/phone/android/messenger") {
+      this.setState({ path: event.link })
       try {
         mp.trigger('client:phone:apps', event.action); // eslint-disable-line
       }
@@ -431,8 +476,8 @@ class Android extends React.Component {
     //this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
   }
   clickHome() {
-    this.setState( prevState => ({ ...prevState.top_bar.color_bar= ''}))
-      this.setState({ bg_color: '' })
+    this.setState(prevState => ({ ...prevState.top_bar.color_bar = '' }))
+    this.setState({ bg_color: '' })
     this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
     this.historyClear();
   }
@@ -507,6 +552,32 @@ class Android extends React.Component {
     };
     this.setState({ scrollbar: data });
   }
+  // CHAT
+  sendMessage(current_chat, chat) {
+    let ind = -1;
+    this.state.chats.forEach((e, i) => {
+      if (e.phone_number === current_chat) {
+        ind = i;
+      }
+    })
+    console.log(chat)
+    if (ind !== -1) {
+      let chats = this.state.chats;
+      chats[ind] = chat;
+      this.setState({ chats: chats })
+    } else {
+      //console.log(chat)
+      this.setState({ chats: [...this.state.chats, chat] })
+    }
+  }
+
+  selectChat(phone_number) {
+    this.setState(prevState => ({ ...prevState.messenger.current_chat = phone_number }), () => { this.setState({ path: "/phone/android/messenger/chat" }) })
+  }
+
+  setLink(link) {
+    this.setState({ path: link })
+  }
   render() {
     const bg = {
       background: this.state.bg_color
@@ -525,7 +596,7 @@ class Android extends React.Component {
                 <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)} />
                 <InputModal data={this.state.inputmodal} closeInputModal={this.closeInputModal.bind(this)} />
                 <Route exact path="/phone/android/umenu">
-                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate}/>
+                  <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu} openModal={this.openModal.bind(this)} openInputModal={this.openInputModal.bind(this)} openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate} />
                 </Route>
                 <Route exact path="/phone/android/utable">
                   <UTable historyPush={this.historyPush.bind(this)} />
@@ -534,7 +605,13 @@ class Android extends React.Component {
                   <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)} />
                 </Route>
                 <Route exact path="/phone/android/phonebook/profilecontact">
-                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} />
+                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} selectChat={this.selectChat.bind(this)} />
+                </Route>
+                <Route exact path="/phone/android/messenger">
+                  <Messenger data={this.state.chats} getContactByNumber={this.getContactByNumber.bind(this)} selectChat={this.selectChat.bind(this)} />
+                </Route>
+                <Route exact path="/phone/android/messenger/chat">
+                  <Chat data={this.state.chats} messenger={this.state.messenger} sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} getContactByNumber={this.getContactByNumber.bind(this)} setLink={this.setLink.bind(this)} />
                 </Route>
                 <Redirect to={this.state.path} push />
               </Router>
