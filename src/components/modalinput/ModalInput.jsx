@@ -1,4 +1,5 @@
 import React from 'react';
+import Autosize from 'autosize';
 import './css/modalinput.css'
 
 class ModalInput extends React.Component {
@@ -7,6 +8,12 @@ class ModalInput extends React.Component {
     this.state = {
     }
   }
+
+  componentDidMount(){
+    this.textarea.focus();
+    Autosize(this.textarea);
+  }
+
   render() {
     return (
       <React.Fragment >
@@ -17,7 +24,7 @@ class ModalInput extends React.Component {
           <div className="linear-input-modal-bottom-small"></div>
           <div className="modal-box-m">
             <div className="modal-b-title">Введите данные</div>
-            <textarea type="text" className="modal-b-input"/>
+            <textarea ref={c => (this.textarea = c)} type="text" className="modal-b-input"/>
           </div>
           </div>
         </div>
