@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    z-index: -1;
 }
 .idcard_box {
     width: 452px;
@@ -24,9 +25,7 @@
     justify-content: center;
     align-items: center;   }
 .idcard_box .plash_right{
-    width: 265px;
-    background: url(../img/bg-flag.png) no-repeat;
-    background-position: 69px 31px;
+    width: 265px;    
     height: inherit;
     display: flex;
     flex-direction: column;
@@ -144,6 +143,8 @@
      width: inherit;
      display: flex;
      flex-direction: row;
+     background: url(../img/bg-flag.png) no-repeat;
+     background-position: 53px -138px;
  } 
  .name-styl-id {
     font-family: 'RobotoLight', sans-serif;
