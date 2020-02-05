@@ -250,6 +250,7 @@
 /*ANDROID*/
 .rotate-components .topbar-andr {
     height: 23px;
+    margin-left: 5px;
 }
 .topbar-andr {
     width: inherit;
@@ -1505,6 +1506,9 @@ BankCard
 .MuiTableCell-body {
     white-space: pre-wrap;
 }
+.rotate-components .messenger-main {
+    height: 85.3%;
+}
 .messenger-main {
     width: 100%;
     height: 100%;
@@ -1515,8 +1519,14 @@ BankCard
     padding-top: 8px;
     flex-direction: column;
 }
+.rotate-components .clm-reverse-chat {
+    height: 78.2%;
+}
 .clm-reverse-chat {
     flex-direction: column-reverse;
+}
+.rotate-components .m-box-messeng {
+    width: 100%;
 }
 .m-box-messeng {
     width: 77%;
@@ -1527,6 +1537,9 @@ BankCard
     flex-direction: row;
     padding-bottom: 10px;
     border-bottom: 0.5px solid #0D1117;
+}
+.rotate-components .m-box-clm-mes {
+    width: 95%;
 }
 .m-box-clm-mes {
     width: 81%;
@@ -1592,10 +1605,17 @@ BankCard
     margin-top: auto;
     margin-left:  auto;
 }
+.rotate-components .m-box-clm-info {
+    width: 4px;
+}
 .m-box-clm-info {
     display: flex;
     flex-direction: column;
     width: 14%;
+}
+.rotate-components .dedbit-menu {
+    height: 502px;
+    margin-left: 2px;
 }
 .dedbit-menu {
     width: inherit;
@@ -1654,6 +1674,9 @@ BankCard
     
     
 }
+.rotate-components .ded-vxod {
+    margin-left: 10px;
+}
 .ded-vxod {
     background: #212D3B;
     margin-left: 6px;
@@ -1681,6 +1704,9 @@ BankCard
    font-family: 'SF Compact Display Thin';
    position: absolute;
     bottom: 3px;
+}
+.rotate-components .isxod-left {
+    margin-right: 10px;
 }
 .isxod-left {
     margin-left: auto;
@@ -1726,6 +1752,9 @@ BankCard
     display: flex;
     align-items: center;
     padding-left: 6px;
+}
+.rotate-components .ded-text-ipn {
+    width: 92%;
 }
 .ded-text-ipn {
     color:#e0e0e0;
