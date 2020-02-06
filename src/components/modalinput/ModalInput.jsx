@@ -23,14 +23,14 @@ class ModalInput extends React.Component {
   componentDidMount() {
 
     EventManager.addHandler('modalinput', value => {
-      if(value.type === 'show') { this.setState({show: true})}
-      else if(value.type === 'hide') { this.setState({show: false})}
-      else if(value.type === 'updateValues') {
+      if (value.type === 'show') { this.setState({ show: true }) }
+      else if (value.type === 'hide') { this.setState({ show: false }) }
+      else if (value.type === 'updateValues') {
 
-        this.setState({show: value.isShow});
-        this.setState({title: value.title});
-        this.setState({defaultText: value.text});
-        this.setState({maxLength: value.maxLength});
+        this.setState({ show: value.isShow });
+        this.setState({ title: value.title });
+        this.setState({ defaultText: value.text });
+        this.setState({ maxLength: value.maxLength });
 
         this.textarea.focus();
         Autosize(this.textarea);
@@ -66,7 +66,7 @@ class ModalInput extends React.Component {
   }
 
   handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
+    if (event.key === 'Enter') {
       try {
         mp.trigger('client:modalinput:callBack', this.state.text);// eslint-disable-line
         this.setState({ show: false })
@@ -85,12 +85,12 @@ class ModalInput extends React.Component {
       <React.Fragment >
         <div className="position-modal" id="box">
           <div className="main-input-modal">
-            <div className="linear-input-modal-left"></div>
-            <div className="linear-input-modal-bottom"></div>
-            <div className="linear-input-modal-bottom-small"></div>
+            <div className="linear-input-modal-top1"></div>
+            <div className="linear-input-modal-top2"></div>
             <div className="modal-box-m">
               <div className="modal-b-title">{this.state.title}</div>
               <textarea ref={c => (this.textarea = c)} maxLength={this.state.maxLength} defaultValue={this.state.defaultText} onKeyPress={this.handleKeyPress} className="modal-b-input" onChange={(e => this.textChange(e))} />
+              <div className="input-meta-text">{this.state.text.length}/{this.state.maxLength}</div>
             </div>
           </div>
           <div className="modal-box-input">

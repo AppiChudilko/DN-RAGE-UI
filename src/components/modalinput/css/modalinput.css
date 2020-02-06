@@ -17,29 +17,21 @@
     position: relative;
     display: flex;
 }
-.linear-input-modal-left {
-    width: 4px;
-    height: 51px;
-    background: #48B9F2;
+.linear-input-modal-top1 {
+    width: 170px;
+    height: 6px;
+    background: #fff;
     position: absolute;
-    left: -2px;
-    bottom: 9px;
+    right: 0px;
+    top: -4px;
 }
-.linear-input-modal-bottom {
-    width: 121px;
-    height: 4px;
-    background: #48B9F2;
+.linear-input-modal-top2 {
+    width: 15px;
+    height: 6px;
+    background: #fff;
     position: absolute;
-    left: 9px;
-    bottom: -2px;
-}
-.linear-input-modal-bottom-small {
-    width: 9px;
-    height: 4px;
-    background: #48B9F2;
-    position: absolute;
-    left: 141px;
-    bottom: -2px;
+    right: 174px;
+    top: -4px;
 }
 .modal-b-title {
     font-family: "Roboto";
@@ -69,7 +61,7 @@
     font-size: 14px;
     color: #FFFFFF;
     outline: none;
-    margin-bottom: 18px !important;
+    margin-bottom: 0px !important;
     resize: none;
 }
 .modal-box-input {
@@ -91,4 +83,13 @@
     font-size: 18px;
     color: #000000;
     margin-left: 2px;
+}
+.input-meta-text {
+    width: 540px;
+    display: flex;
+    margin-left: 14px;
+    justify-content: flex-end;
+    font-family: 'Roboto';
+    margin-bottom: 7px;
+    font-size: 13px;
 }
