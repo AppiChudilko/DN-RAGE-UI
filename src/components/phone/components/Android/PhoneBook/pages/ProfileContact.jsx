@@ -27,8 +27,11 @@ class ProfileContact extends React.Component {
             </figure>
           </div>
           <div className="p-topbar">
+            <div className="posit-icon-topbar">
             <MaterialIcon icon="star_border" size={19} color="#fff" />
             <MaterialIcon icon="delete_forever" size={19} color="#fff" />
+            <MaterialIcon icon="create" size={19} color="#fff" />
+            </div>            
           </div>
           <div className="p-info-player">
             <div className="p-box-mob_email">

@@ -13,6 +13,7 @@ import InputModal from './apps/InputModal';
 import UTable from "./apps/UTable";
 import Messenger from './apps/Messenger';
 import Chat from './apps/Chat';
+import EditContact from './Android/PhoneBook/pages/EditContact';
 
 class Android extends React.Component {
   constructor(props) {
@@ -606,6 +607,9 @@ class Android extends React.Component {
                 </Route>
                 <Route exact path="/phone/android/phonebook/profilecontact">
                   <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} selectChat={this.selectChat.bind(this)} />
+                </Route>
+                <Route exact path="/phone/android/phonebook/profilecontact/editcontact">
+                 <EditContact />
                 </Route>
                 <Route exact path="/phone/android/messenger">
                   <Messenger data={this.state.chats} getContactByNumber={this.getContactByNumber.bind(this)} selectChat={this.selectChat.bind(this)} />

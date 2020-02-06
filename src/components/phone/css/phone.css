@@ -1064,12 +1064,26 @@ figure img {
 .p-topbar {
     z-index: 1;
     margin-left: auto;
-    margin-top: 12px;
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 109.43%);
+}
+.posit-icon-topbar {
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 .ff-style-tsp-p {
     margin-right: 10px;
 }
 .p-topbar i.material-icons.md-dark{
+    margin-right: 10px;
+}
+.rotate-components .p-topbar i.material-icons.md-dark:last-child{
+    margin-right: 20px;
+}
+.p-topbar i.material-icons.md-dark:last-child{
     margin-right: 15px;
 }
 .p-nameplayer-p {
@@ -1766,4 +1780,79 @@ BankCard
 }
 .ded-text-ipn::-webkit-input-placeholder {
     color:#7D8B97;
+}
+.rotate-components .editcontact-box {
+    height: 502px;
+    margin-left: 2px;
+}
+.editcontact-box {
+    width: inherit;
+    height: 412px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    width: 101%;
+    margin-left: -1px;    
+}
+.rotate-components .editcontact-main {
+    height: 85.3%;
+}
+.editcontact-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: 0.3s;
+    background: #F5F5F5;
+    overflow: scroll;
+    flex-direction: column;
+}
+.box-img-e {
+    width: inherit;
+    height: 41%;
+    margin: 0;
+}
+.img-profileeditconatact {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.editcontact-box-e{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+.e-boxeditor {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.e-clmn-ed {
+    display: flex;
+    flex-direction: column;
+}
+.text-filed{
+    margin-bottom: 10px !important;
+}
+.text_width {
+    width: 85%;
+}
+.MuiInputBase-input {
+    font-size: 14px !important;
+}
+.box-im-st {
+    margin-top: 8px;
+    margin-left: 15px;
+    margin-right: 20px;
+}
+.row-clm-e {
+    display: flex;
+    flex-direction: row;
+}
+.add-posit-btn {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
 }
