@@ -1,6 +1,7 @@
 import React from 'react';
 import Autosize from 'autosize';
 import './css/modalinput.css'
+import EventManager from "../../EventManager";
 
 class ModalInput extends React.Component {
   constructor(props) {
@@ -8,9 +9,11 @@ class ModalInput extends React.Component {
     this.state = {
       show: false,
       title: 'А может и не может',
-      value: ['yes', 'no', 'maybe'],
+      value: ['Закрыть'],
       params: { name: null },
       text: '',
+      defaultText: '',
+      maxLength: 20,
     }
   }
   callback = (action, ...args) => {
@@ -18,6 +21,23 @@ class ModalInput extends React.Component {
     mp.trigger('client:modalinput:callBack', action, ...args); // eslint-disable-line
   }
   componentDidMount() {
+
+    EventManager.addHandler('modalinput', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+
+        this.setState({show: value.isShow});
+        this.setState({title: value.title});
+        this.setState({defaultText: value.text});
+        this.setState({maxLength: value.maxLength});
+
+        this.textarea.focus();
+        Autosize(this.textarea);
+      }
+      else return;
+    })
+
     if (this.state.show) {
       this.textarea.focus();
       Autosize(this.textarea);
@@ -31,12 +51,32 @@ class ModalInput extends React.Component {
     try {
       console.log(e, text);
       this.setState({ show: false })
-      this.callback('button', JSON.stringify(e), JSON.stringify(text));
+
+      try {
+        mp.trigger('client:modalinput:callBack', '');// eslint-disable-line
+        this.setState({ show: false })
+      }
+      catch (e) {
+        console.log(e);
+      }
     }
     catch (e) {
       console.log(e);
     }
   }
+
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      try {
+        mp.trigger('client:modalinput:callBack', this.state.text);// eslint-disable-line
+        this.setState({ show: false })
+      }
+      catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   render() {
     if (!this.state.show) {
       return null;
@@ -50,7 +90,7 @@ class ModalInput extends React.Component {
             <div className="linear-input-modal-bottom-small"></div>
             <div className="modal-box-m">
               <div className="modal-b-title">{this.state.title}</div>
-              <textarea ref={c => (this.textarea = c)} type="text" className="modal-b-input" onChange={(e => this.textChange(e))} />
+              <textarea ref={c => (this.textarea = c)} maxLength={this.state.maxLength} defaultValue={this.state.defaultText} onKeyPress={this.handleKeyPress} className="modal-b-input" onChange={(e => this.textChange(e))} />
             </div>
           </div>
           <div className="modal-box-input">
