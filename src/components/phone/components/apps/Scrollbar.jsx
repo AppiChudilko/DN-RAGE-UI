@@ -10,7 +10,7 @@ class Scrollbar extends React.Component {
     }
   }
   callback = (action, ...args) => {
-    if (this.state.checked == false)
+    if (this.state.checked === false)
       return;
     console.log(action, args)
     try {

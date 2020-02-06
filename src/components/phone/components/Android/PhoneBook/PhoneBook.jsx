@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MaterialIcon, { colorPalette } from 'material-icons-react';
+import MaterialIcon from 'material-icons-react';
 import HistoryCall from './pages/HistoryCall';
 import Favorit from './pages/Favorit';
 import Contact from './pages/Contact';
@@ -41,9 +41,9 @@ class PhoneBook extends React.Component {
           </div>
           <div className="fix-phonebook">
           <div className="b-callhistory">
-            {this.state.page === "favorit" ? <Favorit favorit={this.props.data.favorit} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} /> : null}
+            {this.state.page === "favorit" ? <Favorit contact={this.props.data.contact} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} /> : null}
             {this.state.page === "history" ? <HistoryCall history={this.props.data.history} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} getContactByNumber={this.props.getContactByNumber.bind(this)} /> : null}
-            {this.state.page === "contact" ? <Contact contact={this.props.data.contact} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} /> : null}
+            {this.state.page === "contact" ? <Contact contact={this.props.data.contact} filter={this.state.search} clickContact={this.props.clickContact.bind(this)} setLink={this.props.setLink.bind(this)}/> : null}
           </div>
           </div>
         </div>

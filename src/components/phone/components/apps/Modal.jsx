@@ -27,8 +27,8 @@ class Modal extends React.Component {
                         <div className="u-scroll-title">{this.props.data.title}</div>
                         <div className="u-scroll-text">{this.props.data.text}</div>
                         <div className="u-select-input">
-                            <div className="u-btn-w" onClick={this.props.closeModal}>{this.props.data.buttons[0]}</div>
-                            <div className="u-btn-w" onClick={() => {this.props.closeModal(); this.callback('modal', JSON.stringify(this.props.data.params))}}>{this.props.data.buttons[1]}</div>
+                            <div className="u-btn-w" onClick={() => this.props.closeModal(false)}>{this.props.data.buttons[0]}</div>
+                            <div className="u-btn-w" onClick={() => {this.props.closeModal(true); this.callback('modal', JSON.stringify(this.props.data.params))}}>{this.props.data.buttons[1]}</div>
                         </div>
                     </div>
                 </div>

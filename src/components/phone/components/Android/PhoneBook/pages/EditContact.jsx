@@ -1,44 +1,74 @@
 import React from 'react';
 
-import MaterialIcon, { colorPalette } from 'material-icons-react';
-import { makeStyles } from '@material-ui/core/styles';
+import MaterialIcon from 'material-icons-react';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SaveIcon from '@material-ui/icons/Save'
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 class EditContact extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      first_name: '',
-      last_name: '',
-      phone_number: '',
-      email: ''
+      contact: {}
     }
   }
-  changeName(e, type) {
-    console.log(e.target.valueAsNumber)    
+
+  componentWillMount() {
+    if (this.props.editing_contact) {
+      this.setState({ contact: {...this.props.selected_contact} })
+    } else {
+      this.setState({ contact: { name: '', numbers: [''], mail: '', img: '', isFavorite: false } })
+    }
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      contact: { name: '', numbers: [''], mail: '', img: '', isFavorite: false }
+    })
+  }
+
+  changeName(e, type, index) {
+    e.persist()
+    console.log(e.target.value.slice(-1))
     switch (type) {
       case 'firstname':
-        this.setState({ first_name: e.target.value })
-        break;
-      case 'lastname':
-        this.setState({ last_name: e.target.value })
+        this.setState(prevState => ({ ...prevState.contact.name = e.target.value }))
         break;
       case 'number':
-        this.setState({ phone_number: e.target.value })
+        if(!isNaN(parseInt(e.target.value.slice(-1))) || e.target.value.slice(-1) === '-'){
+          this.setState(prevState => ({ ...prevState.contact.numbers[index] = e.target.value }))
+        } else {
+          return;
+        }
         break;
       case 'email':
-        this.setState({ email: e.target.value })
-        break;      
+        this.setState(prevState => ({ ...prevState.contact.mail = e.target.value }))
+        break;
       default:
         break;
     }
-  }
+  } 
   addNumber() {
-    return (
-      <React.Fragment>
-        <TextField id="standard-basic" label="" placeholder="Номер телефона" className="text_width" onChange={(e) => this.changeName(e, 'number')}/>
-      </React.Fragment>
-    )
+    this.setState(
+      prevState => ({ ...prevState.contact.numbers = [...this.state.contact.numbers].concat(['']) })     
+      )
+  }
+  backBtn() {
+    if(this.props.editing_contact){
+      /* if(this.state.contact !== this.props.selected_contact){
+        // Вы точно хотите отменить изменения?
+      } */
+    }
+    this.props.historyGoBack();
+  }
+  saveBtn(){
+    if(this.props.editing_contact){
+      this.props.saveContact(this.state.contact, this.props.selected_contact)
+    } else {
+      this.props.addContact(this.state.contact)
+    }
+    this.props.historyGoBack();
   }
   render() {
     return (
@@ -46,8 +76,13 @@ class EditContact extends React.Component {
         <div className="editcontact-box">
           <div className="u-title" style={{ background: "#2A56C6" }}>
             <div className="dedbit-u-texttittle">
-              <MaterialIcon icon="arrow_back" size={18} color="#fff" />
+              <MaterialIcon icon="arrow_back" size={18} color="#fff" onClick={() => this.backBtn()}/>
               <span className="u-texttittle">Редактирование контакта</span>
+              <div className="edit-btn-save-position">
+                <IconButton aria-label="save" onClick={() => this.saveBtn()}>
+                  <SaveIcon />
+                </IconButton>
+              </div>
             </div>
           </div>
           <div className="editcontact-main">
@@ -60,7 +95,7 @@ class EditContact extends React.Component {
                   <MaterialIcon icon="person" size={20} color="#7F7F7F" />
                 </div>
                 <div className="e-clmn-ed">
-                  <TextField id="standard-basic" label="" value={this.state.first_name} placeholder="Имя Фамилия" className="text-filed" onChange={(e) => this.changeName(e, 'firstname')} />                  
+                  <TextField id="standard-basic1" label="" value={this.state.contact.name} placeholder="Имя Фамилия" className="text-filed" onChange={(e) => this.changeName(e, 'firstname')} />
                 </div>
               </div>
               <div className="e-boxeditor">
@@ -68,12 +103,21 @@ class EditContact extends React.Component {
                   <MaterialIcon icon="phone" size={20} color="#7F7F7F" />
                 </div>
                 <div className="e-clmn-ed">
-                  <div className="row-clm-e">
-                    <TextField id="standard-basic" label="" type="number" value={this.state.phone_number} placeholder="Номер телефона" className="text-filed" onChange={(e) => this.changeName(e, 'number')} />
-                    <div className="add-posit-btn">
-                      <MaterialIcon icon="add_circle" size={20} color="#7F7F7F" onClick={() => this.addNumber()} />
-                    </div>
-                  </div>
+                  {this.state.contact.numbers.map((e, i) => {
+                    let index = `phoneedit${i}`;
+                    return (
+                      <div className="row-clm-e" key={index}>
+                        <TextField id={index} label=""  value={e} placeholder="Номер телефона" className="text-filed" onChange={(e) => this.changeName(e, 'number', i)} />
+                        {i === this.state.contact.numbers.length - 1 && this.state.contact.numbers[i].length > 0 ?
+                          <div className="add-posit-btn">
+                            <IconButton aria-label="add" onClick={() => this.addNumber()}>
+                              <AddCircleIcon/>
+                            </IconButton>                            
+                          </div>
+                          : null}
+                      </div>
+                    )
+                  })}
                   {/* {this.addNumber()} */}
                 </div>
               </div>
@@ -82,7 +126,7 @@ class EditContact extends React.Component {
                   <MaterialIcon icon="mail" size={20} color="#7F7F7F" />
                 </div>
                 <div className="e-clmn-ed">
-                  <TextField id="standard-basic" label="" value={this.state.email} placeholder="E-Mail" className="text-filed" onChange={(e) => this.changeName(e, 'email')}/>
+                  <TextField id="standard-basic3" label="" value={this.state.contact.mail} placeholder="E-Mail" className="text-filed" onChange={(e) => this.changeName(e, 'email')} />
                 </div>
               </div>
             </div>

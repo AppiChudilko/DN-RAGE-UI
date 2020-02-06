@@ -19,7 +19,7 @@ class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: '/phone/android/defaultpage',
+      path: '/phone/android/phonebook/profilecontact/editcontact',
       history: ['/phone/android/defaultpage'],
       rotate: false,
       bg_color: '',
@@ -78,7 +78,7 @@ class Android extends React.Component {
                     field: 'url',
                     title: 'Фото',
                     editable: false,
-                    render: rowData => <img src={rowData.url} style={{ width: 50, borderRadius: '50%' }} />
+                    render: rowData => <img src={rowData.url} alt="" style={{ width: 50, borderRadius: '50%' }} />
                   },
                 ],
                 data: [
@@ -214,7 +214,7 @@ class Android extends React.Component {
                 params: { name: "null" }
               },
               {
-                title: "Blaine County Savings Bank",
+                title: "Blaine Country Savings Bank",
                 text: "",
                 img: 'blaine',
                 type: 1,
@@ -226,22 +226,13 @@ class Android extends React.Component {
         ],
       },
       phonebook: {
+        editing_contact: false,
         selected_contact: {
           name: 'Godvil Moretti',
           numbers: ['222-2346837'],
           mail: 'godvil.moretti@ded.net',
           img: 'https://a.rsg.sc//n/socialclub',
         },
-        favorit: [
-          {
-            name: 'Godvil Moretti',
-            img: 'https://a.rsg.sc//n/socialclub',
-          },
-          {
-            name: 'Nika Moretti',
-            img: 'https://a.rsg.sc//n/socialclub',
-          },
-        ],
         history: [
 
           {
@@ -274,26 +265,31 @@ class Android extends React.Component {
             name: 'Wika Aretti',
             numbers: ['222-1234212', '555-6347544'],
             mail: 'wika.aretti@ded.net',
+            isFavorite: false,
             img: 'https://a.rsg.sc//n/socialclub',
           },
           {
             name: 'Godvil Moretti',
             numbers: ['222-2346837'],
             mail: 'godvil.moretti@ded.net',
+            isFavorite: true,
             img: 'https://a.rsg.sc//n/socialclub',
           },
           {
             name: 'Nika Moretti',
             numbers: ['222-9746753', '555-7653765'],
             mail: 'nika.moretti@ded.net',
+            isFavorite: true,
             img: 'https://a.rsg.sc//n/socialclub',
           },
           {
             name: 'Aika Aretti',
             numbers: ['222-3567347', '555-5367433'],
             mail: 'aika.aretti@ded.net',
+            isFavorite: false,
             img: 'https://a.rsg.sc//n/socialclub',
           },
+          
         ],
       },
       messenger: {
@@ -377,6 +373,9 @@ class Android extends React.Component {
     if (this.state.path !== prevState.path) {
       if (this.state.path !== this.state.history[this.state.history.length - 1])
         this.historyPush()
+      if(this.state.path !== '/phone/android/phonebook/profilecontact/editcontact' && this.state.phonebook.editing_contact){
+        this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
+      }
     }
   }
 
@@ -397,16 +396,24 @@ class Android extends React.Component {
       this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
       this.setState({ bg_color: '#000' })
     }
+    if (this.state.path === '/phone/android/phonebook/profilecontact/editcontact') {
+      this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+      this.setState({ bg_color: '#1C3AA9' })
+    }
     this.setState({ history: this.state.history.concat([this.state.path]) })
   }
   historyClear() {
     this.setState({ history: ['/phone/android/defaultpage'] })
   }
   historyGoBack() {
-    if (this.state.history.length > 1)
+    if (this.state.history.length > 1){
+      if(this.state.history[this.state.history.length - 2] === '/phone/android/phonebook/profilecontact/editcontact'){
+        this.setState({ history: this.state.history.slice(0, -1) })
+      }
       this.setState({
         path: this.state.history[this.state.history.length - 2],
       }, () => this.setState({ history: this.state.history.slice(0, -1) }))
+    }
   }
 
   rotateAndroid() {
@@ -453,6 +460,27 @@ class Android extends React.Component {
     }
     console.log(event)
   }
+  saveContact(contact, selected_contact){
+    let index = this.state.phonebook.contact.findIndex(e => e === selected_contact);
+    if(index !== -1){
+      this.setState(prevState => ({
+        ...prevState.phonebook.contact[index] = contact
+      }))
+    } else {
+      this.addContact(contact)
+    }
+    this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+    this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
+  }
+  addContact(contact){
+    contact.numbers = contact.numbers.filter(Boolean) // Удаляет пустые элементы массива
+    if(contact.img === '' || contact.img === undefined) contact.img = 'https://a.rsg.sc//n/socialclub';
+    this.setState(prevState => ({
+      ...prevState.phonebook.contact = [...this.state.phonebook.contact].concat([contact])
+    }))
+    this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+    this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
+  }
   getContactByNumber(number) {
     let data = null;
     this.state.phonebook.contact.map((contact) => {
@@ -471,6 +499,10 @@ class Android extends React.Component {
     if (contact.length > 0) return contact[0];
     return null;
   }
+  editContact(){
+    this.setState(prevState => ({ ...prevState.phonebook.editing_contact = true }))
+    this.setState({ path: '/phone/android/phonebook/profilecontact/editcontact' });
+  }
   clickBack() {
     //this.setState({ topbar_color: false });
     this.historyGoBack();
@@ -483,6 +515,7 @@ class Android extends React.Component {
     this.historyClear();
   }
   clickContact(contact) {
+    console.log(contact)
     let data = null;
     if (contact.number !== undefined)
       data = this.getContactByNumber(contact.number)
@@ -498,8 +531,14 @@ class Android extends React.Component {
     this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
   }
 
-  closeModal() {
+  closeModal(boolean) {
     this.setState({ modal: { show: false } })
+    if (this.state.path === "/phone/android/phonebook/profilecontact") {
+      if(boolean){
+        this.historyGoBack();
+        this.deleteContact(this.state.phonebook.selected_contact);
+      }
+    }
   }
   closeInputModal() {
     this.setState({ inputmodal: { show: false } })
@@ -575,6 +614,27 @@ class Android extends React.Component {
   selectChat(phone_number) {
     this.setState(prevState => ({ ...prevState.messenger.current_chat = phone_number }), () => { this.setState({ path: "/phone/android/messenger/chat" }) })
   }
+  favoriteContact(contact){
+    let index = this.state.phonebook.contact.findIndex(e => e === contact);
+    if(index !== -1){
+      this.setState(prevState => ({...prevState.phonebook.contact[index].isFavorite = !this.state.phonebook.contact[index].isFavorite}))
+      this.setState(prevState => ({...prevState.phonebook.selected_contact = this.state.phonebook.contact[index]}))
+    }
+  }
+  deleteContact(contact){
+    
+    this.historyGoBack()
+    let newContacts = [...this.state.phonebook.contact]
+    let index = newContacts.findIndex(e => e === contact);
+    if(index !== -1){
+      newContacts.splice(index,1)
+      console.log(newContacts)
+      this.setState(prevState => ({
+        ...prevState.phonebook.contact = newContacts
+      }))
+    }
+  
+  }
 
   setLink(link) {
     this.setState({ path: link })
@@ -603,13 +663,13 @@ class Android extends React.Component {
                   <UTable historyPush={this.historyPush.bind(this)} />
                 </Route>
                 <Route exact path="/phone/android/phonebook">
-                  <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)} />
+                  <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook} clickContact={this.clickContact.bind(this)} getContactByNumber={this.getContactByNumber.bind(this)} setLink={this.setLink.bind(this)}/>
                 </Route>
                 <Route exact path="/phone/android/phonebook/profilecontact">
-                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} selectChat={this.selectChat.bind(this)} />
+                  <ProfileContact historyPush={this.historyPush.bind(this)} data={this.state.phonebook} deleteContact={this.deleteContact.bind(this)} favoriteContact={this.favoriteContact.bind(this)} selectChat={this.selectChat.bind(this)} editContact={this.editContact.bind(this)} openModal={this.openModal.bind(this)} profile_contact_btn={this.state.profile_contact_btn}/>
                 </Route>
                 <Route exact path="/phone/android/phonebook/profilecontact/editcontact">
-                 <EditContact />
+                 <EditContact historyGoBack={this.historyGoBack.bind(this)} setLink={this.setLink.bind(this)} addContact={this.addContact.bind(this)} saveContact={this.saveContact.bind(this)} selected_contact={this.state.phonebook.selected_contact} editing_contact={this.state.phonebook.editing_contact} clickContact={this.clickContact.bind(this)}/>
                 </Route>
                 <Route exact path="/phone/android/messenger">
                   <Messenger data={this.state.chats} getContactByNumber={this.getContactByNumber.bind(this)} selectChat={this.selectChat.bind(this)} />

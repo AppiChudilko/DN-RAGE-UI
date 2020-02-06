@@ -1016,20 +1016,30 @@ h4 {
     align-items: center;
     flex-direction: column;
     margin-top: 24px;
+    height: 92%;
+}
+.c-contact-box .MuiFab-primary {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgb(28, 58, 169);
 }
 .c-contact-box .c-player-contact {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 94%;
-    margin-bottom: 16px;
-    margin-left: 18px;
+    width: 100%;
+    height: 19%;
+}
+.c-contact-box .c-player-contact:hover{
+    background: #0000000f;
 }
 .c-player-contact .c-imgplayer {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 8px;
+    margin-left: 18px;
 }
 .c-player-contact .c-nameplayer {
     font-family: "Roboto";
@@ -1071,8 +1081,8 @@ figure img {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 109.43%);
 }
 .posit-icon-topbar {
-    margin-top: 8px;
-    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
 }
 .ff-style-tsp-p {
     margin-right: 10px;
@@ -1657,6 +1667,7 @@ BankCard
     flex-direction: row;
     align-items: center;
     margin-left: 10px;
+    width: 100%;
 }
 .ded-messenge {
     max-width: 229px;
@@ -1795,7 +1806,8 @@ BankCard
     margin-left: -1px;    
 }
 .rotate-components .editcontact-main {
-    height: 85.3%;
+    height: 87.3%;
+    flex-direction: row;
 }
 .editcontact-main {
     width: 100%;
@@ -1805,6 +1817,9 @@ BankCard
     background: #F5F5F5;
     overflow: scroll;
     flex-direction: column;
+}
+.rotate-components .box-img-e {
+    height: 100%;
 }
 .box-img-e {
     width: inherit;
@@ -1816,6 +1831,12 @@ BankCard
     height: 100%;
     object-fit: cover;
 }
+.rotate-components .editcontact-box-e {
+    padding-top: 24px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
 .editcontact-box-e{
     width: 100%;
     height: 100%;
@@ -1825,11 +1846,14 @@ BankCard
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 .e-clmn-ed {
     display: flex;
     flex-direction: column;
+}
+.rotate-components .e-clmn-ed {
+    width: 100%;
 }
 .text-filed{
     margin-bottom: 10px !important;
@@ -1845,14 +1869,63 @@ BankCard
     margin-left: 15px;
     margin-right: 20px;
 }
+.rotate-components .row-clm-e .text-filed {
+    width: 88%;
+}
+.rotate-components .e-clmn-ed .text-filed {
+    width: 88%;
+}
 .row-clm-e {
     display: flex;
     flex-direction: row;
 }
 .add-posit-btn {
-    margin-left: 10px;
+    margin-left: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
+}
+.edit-btn-save-position {
+    display: flex;
+    margin-left: auto;
+    margin-right: 5px;
+}
+.edit-btn-save-position .MuiSvgIcon-root {
+    color: #FFFFFF;
+}
+.edit-btn-save-position .MuiIconButton-root {
+    padding: 6px;
+}
+.add-posit-btn .MuiIconButton-root {
+    padding: 6px;
+}
+.posit-icon-topbar .MuiIconButton-root {
+    padding: 6px;
+}
+.position-btn-icon .MuiSvgIcon-root {
+    color: #FFFFFF;
+}
+.position-btn-icon {
+    margin-right: 10px;
+}
+.fix-phonebook {
+    position: relative;
+}
+.rotate-components .c-contact-box .MuiFab-primary {
+    right: 20px;
+}
+.fill-cub {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+}
+.nonfill-cub {
+    width: 10px;
+    height: 10px;
+    background: #000;
+}
+.material-icons.favorite-img-style{
+    font-size: 19px;
+    margin-right: 10px;
 }

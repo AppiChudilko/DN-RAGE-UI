@@ -1,6 +1,5 @@
 import React from 'react';
 import UMenuContainer from './UMenuComponetns/UMenuContainer';
-import { Link } from 'react-router-dom';
 
 class UMenu extends React.Component {
     constructor(props) {

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import MaterialIcon, { colorPalette } from 'material-icons-react';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -13,19 +14,21 @@ class Contact extends React.Component {
     return (
       <React.Fragment >
         <div className="c-contact-box">
-        {this.props.contact
-        .filter(user => user.name.toString().toLowerCase().includes(this.props.filter.toString().toLowerCase()))
-        .sort((a, b) => (a.name > b.name) ? 1 : -1)
-        .map((e, i) => {
-            let index = `contact${i}`
-            return (
-          <div className="c-player-contact" key={index} onClick={() => this.props.clickContact(e)}>
-            <img src={e.img} alt="" className="c-imgplayer"/>
-            <span className="c-nameplayer">{e.name}</span>
-            <div className="b-call"><MaterialIcon icon="call" size={19} /></div>
-          </div>
-           )
-          })}
+          {this.props.contact
+            .filter(user => user.name.toString().toLowerCase().includes(this.props.filter.toString().toLowerCase()))
+            .sort((a, b) => (a.name > b.name) ? 1 : -1)
+            .map((e, i) => {
+              let index = `contact${i}`
+              return (
+                <div className="c-player-contact" key={index} onClick={() => this.props.clickContact(e)}>
+                  <img src={e.img} alt="" className="c-imgplayer" />
+                  <span className="c-nameplayer">{e.name}</span>
+                </div>
+              )
+            })}
+          <Fab color="primary" aria-label="add" onClick={() => this.props.setLink('/phone/android/phonebook/profilecontact/editcontact')}>
+            <AddIcon />
+          </Fab>
         </div>
       </React.Fragment>
     )

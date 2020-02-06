@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialIcon, { colorPalette } from 'material-icons-react';
+import MaterialIcon from 'material-icons-react';
 
 
 import Avatar from '@material-ui/core/Avatar';
@@ -41,8 +41,7 @@ class Chat extends React.Component {
     this.setState({ text: message.target.value })
   }
   sendMessage() {
-    if (this.state.text === "") return;
-    let text = this.state.text;
+    if (this.state.text === "") return;    
     this.setState(prev => ({
       ...prev.chat.message = [{
         type: 2,

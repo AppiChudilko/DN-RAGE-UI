@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialIcon, { colorPalette } from 'material-icons-react';
+import MaterialIcon from 'material-icons-react';
 import UTable from '../UTable';
 
 class UFrame extends React.Component {
@@ -56,7 +56,7 @@ class UFrame extends React.Component {
             <React.Fragment>
               <div className="umenu-mini-box">
                 <div className="mobile-profile">
-                  <img className="m-player-photo" src={this.props.item.value} />
+                  <img className="m-player-photo" alt="" src={this.props.item.value} />
                   <div className="m-player-info">
                     <div className="m-name-player">{this.props.item.title}</div>
                     <div className="m-email-player">{this.props.item.text}</div>
@@ -169,7 +169,7 @@ class UFrame extends React.Component {
             <React.Fragment>
               <div className="umenu-mini-box">
                 <div className="mobile-profile-1">
-                  <img className="m-player-photo-1" src={this.props.item.value} style={{ height: this.props.item.height + 'px' }} />
+                  <img className="m-player-photo-1" alt="" src={this.props.item.value} style={{ height: this.props.item.height + 'px' }} />
                 </div>
               </div>
             </React.Fragment> : ''
