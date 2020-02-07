@@ -9,13 +9,23 @@ class NameCharacter extends React.Component {
   }
 
   changeAge(val) {
-    mp.trigger('client:events:custom:updateAge', // eslint-disable-line
-        val);
+    try {
+      mp.trigger('client:events:custom:updateAge', // eslint-disable-line
+          val);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   registerPlayer() {
-    mp.trigger('client:events:custom:register', // eslint-disable-line
-        this.props.first_name, this.props.last_name, this.props.old_input, this.props.nationality[this.props.index_help]);
+    try {
+      mp.trigger('client:events:custom:register', // eslint-disable-line
+          this.props.first_name, this.props.last_name, this.props.old_input, this.props.promocode, this.props.referer, this.props.nationality[this.props.index_help]);
+    }
+    catch (e) {
+      console.log();
+    }
   }
 
   render() {
@@ -29,6 +39,9 @@ class NameCharacter extends React.Component {
             <input type="text" placeholder="Имя" name="firstname-create" pattern="[a-zA-Z]*" className="auth-input-style" value={this.props.first_name} onChange={this.props.valueFirstName.bind(this)} />
             <input type="text" placeholder="Фамилия" name="lastname-create" pattern="[a-zA-Z]*" className="auth-input-style" value={this.props.last_name} onChange={this.props.valueLastName.bind(this)} />
             <input type="text" placeholder="Возраст" min="18" max="60" pattern="[0-9]*" onInput={this.props.onCheckNumber.bind(this)} onChange={this.changeAge(this.props.old_input)} value={this.props.old_input} name="old-create" className="auth-input-style" />
+
+            <input type="text" placeholder="Промокод" name="lastname-create" pattern="[a-zA-Z]*" className="auth-input-style" value={this.props.promocode} onChange={this.props.valuePromocode.bind(this)} />
+            <input type="text" placeholder="Ник пригласившего" name="lastname-create" pattern="[a-zA-Z]*" className="auth-input-style" value={this.props.referer} onChange={this.props.valueReferer.bind(this)} />
           </div>
           <SliderEditor
             index={0}
@@ -49,7 +62,7 @@ class NameCharacter extends React.Component {
           </div>
           {/*<Link to="/editor/family-character">*/}
             <div className="next-button-menu">
-              <div className="box-next-btn" onClick={this.registerPlayer()}>Далее</div>
+              <div className="box-next-btn" onClick={this.registerPlayer.bind(this)}>Далее</div>
             </div>
           {/*</Link>*/}
         </div>

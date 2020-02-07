@@ -11,9 +11,7 @@ import "animate.css"
 import EventManager from "./EventManager";
 
 EventManager.addHandler('notify', value => {
-    if (value.type === 'send') {
-        notify(value.type, value.layout, value.text, value.time)
-    }
+    notify(value.type, value.layout, value.text, value.time)
 });
 
 Noty.setMaxVisible(3);
