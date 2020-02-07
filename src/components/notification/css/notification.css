@@ -1,0 +1,196 @@
+/*Position*/
+.notifi-position-leftTop {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.notifi-position-left {
+    justify-content: flex-start;
+    align-items: center;
+}
+.notifi-position-leftBottom {
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.notifi-position-centerTop {
+    justify-content: center;
+    align-items: flex-start;
+}
+.notifi-position-center {
+    justify-content: center;
+    align-items: center;
+}
+.notifi-position-centerBottom {
+    justify-content: center;
+    align-items: flex-end;
+}
+.notifi-position-rightTop {
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.notifi-position-right {
+    justify-content: flex-end;
+    align-items: center;
+}
+.notifi-position-rightBottom {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.notifi-type{
+    display: flex;    
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    position: absolute;
+}
+.notifi-first-box{
+    width: 382px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.notifi-f-main{
+        background-color: rgb(28, 28, 28);
+        width: 100%;
+        height: 194px;
+        display: flex;
+        flex-direction: column;  
+        position: relative; 
+}
+.notifi-close{
+    background: url(../img/close.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    margin-left: auto;
+    margin-right: 8px;
+    margin-top: 9px;
+}
+.notifi-text-box {
+    width: 320px;
+    margin-left: 32px;
+    margin-top: 0px;
+    height: 79%;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #fff;
+}
+.notifi-btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    align-items: center;
+    font-family: "Choujikuu Yousai - Macross";
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+
+}
+.n-btn-box {
+    background: #fff;
+    width: 127px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1px;
+}
+.n-btn-box:last-child {
+    margin-left: 0px;
+}
+.n-btn-box:hover {
+    background: #000;
+    color: #fff;
+}
+.notifi-head {
+    display: flex;
+    margin-top: 8px;
+}
+.notifi-title {
+    width: 175px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    font-family: "Choujikuu Yousai - Macross";
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+}
+.notifi-head .notifi-close{
+    margin-top: 0px;
+}
+.notifi-linear-left {
+    position: absolute;
+    width: 6px;
+    height: 120px;
+    background: rgb(72, 185, 242);
+    left: -4px;
+    top: 5px;
+}
+.notifi-linear-rightbottom {
+    position: absolute;
+    width: 6px;
+    height: 120px;
+    background: rgb(72, 185, 242);
+    right: -4px;
+    bottom: 0px;
+}
+.notifi-linear-left-two {
+    position: absolute;
+    width: 6px;
+    height: 120px;
+    background: rgb(72, 185, 242);
+    left: -4px;
+    bottom: 11px;
+}
+.notifi-linear-bottom {
+    position: absolute;
+    width: 108px;
+    height: 6px;
+    background: rgb(72, 185, 242);
+    left: 10px;
+    bottom: -4px;
+}
+ .notifi-linear-bottom-littel {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgb(72, 185, 242);
+    left: 123px;
+    bottom: -4px;
+ }
+ .notifi-title-text {
+    font-family: "Choujikuu Yousai - Macross";
+    color: #fff;
+    font-size: 46px;
+    margin-top: -5px;
+}
+.notifi-text-box-last {
+    width: 320px;
+    margin-left: 32px;
+    margin-top: 0px;
+    height: 61%;
+    overflow: scroll;
+    display: flex;
+    font-family: 'Roboto';
+    font-size: 16px;
+    color: #fff;
+}
+.notifi-icons{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding-right: 5px;
+}
+/*Пример*/ 
+.notifi-icons .icons-unicorm {
+    background: url(../img/blips/blip_121.png) no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    margin-top: -1px;
+}

@@ -19,7 +19,7 @@ class Android extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: '/phone/android/phonebook/profilecontact/editcontact',
+      path: '/phone/android/defaultpage',
       history: ['/phone/android/defaultpage'],
       rotate: false,
       bg_color: '',

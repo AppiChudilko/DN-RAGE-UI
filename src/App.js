@@ -15,6 +15,7 @@ import Certificate from './components/certificate/Certificate';
 import Walkietalkie from './components/walkietalkie/Walkietalkie';
 import WorkID from './components/workid/WorkID';
 import ModalInput from './components/modalinput/ModalInput';
+import Notification from './components/notification/Notification';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Certificate />
         <Walkietalkie />
         <ModalInput />
+        <Notification />
     </React.Fragment>
   );
 }
