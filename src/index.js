@@ -19,7 +19,7 @@ function notify(type, layout, message, time) {
     let types = ['information', 'error', 'success'];
     let layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];
     message = `<div class="message">${message}</div>`;
-    new Noty({
+    let ntf = new Noty({
         type: types[type],
         layout: layouts[layout],
         theme: 'dednet',
@@ -30,7 +30,11 @@ function notify(type, layout, message, time) {
             open: 'animated fadeInLeft',
             close: 'animated fadeOutLeft'
         }
-    }).show();
+    });
+    ntf.show();
+    ntf.onClose((id, type) => {
+
+    });
 }
 // notify(0, 1, 'Видимо произошла какая-то непредвиденная ошибка ', 5000)
 // notify(1, 1, 'Видимо произошла какая-то непредвиденная ошибка', 3000)

@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/notification.css'
+import EventManager from "../../EventManager";
 
 class Notification extends React.Component {
   constructor(props) {
@@ -11,13 +12,53 @@ class Notification extends React.Component {
       position: 'center', //leftTop,left,leftBottom,centerTop,center,centerBottom,rightTop,right,rightBottom
       icon: 'unicorm', //unicorm
       title: 'Уведомление', //Для type 2 title: '!'
-      text: 'Пробный текст',
-      value: ['Да', 'Нет']
+      text: 'Test',
+      isShowClose: true,
+      value: ['Далее']
     }
   }
+
+  componentDidMount() {
+
+    EventManager.addHandler('dialog', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({show: value.isShow});
+        this.setState({type: value.dtype});
+        this.setState({position: value.position});
+        this.setState({icon: value.icon});
+        this.setState({title: value.title});
+        this.setState({text: value.text});
+        this.setState({value: value.buttons});
+      }
+      else return;
+    })
+  }
+
+  closeBtn() {
+    this.setState({ show: false });
+
+    try {
+      mp.trigger('client:events:dialog:onClose'); // eslint-disable-line
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+  clickBtn() {
+    try {
+      mp.trigger('client:events:dialog:click'); // eslint-disable-line
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
   render() {
-    const styleNotifi = `notifi-type notifi-position-${this.state.position}`
-    const styleIcons = `icons-${this.state.icon}`
+    const styleNotifi = `notifi-type notifi-position-${this.state.position}`;
+    const styleIcons = `icons-${this.state.icon}`;
     if (!this.state.show) {
       return null;
     }
@@ -34,7 +75,7 @@ class Notification extends React.Component {
                 {this.state.value.map((e, i) => {
                   let index = `notifibtnt${i}`
                   return (
-                    <div className="n-btn-box" key={index}>{e}</div>
+                    <div onClick={this.clickBtn.bind(this)} className="n-btn-box" key={index}>{e}</div>
                   )
                 })}
               </div>
@@ -56,7 +97,7 @@ class Notification extends React.Component {
                       {this.state.title}
                     </div>
                     : null}
-                  <div className="notifi-close"></div>
+                  {this.state.isShowClose ? <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null }
                 </div>
                 <div className="notifi-text-box">{this.state.text}</div>
               </div>
@@ -64,7 +105,7 @@ class Notification extends React.Component {
                 {this.state.value.map((e, i) => {
                   let index = `notifibtnt${i}`
                   return (
-                    <div className="n-btn-box" key={index}>{e}</div>
+                    <div onClick={this.clickBtn.bind(this)} className="n-btn-box" key={index}>{e}</div>
                   )
                 })}
               </div>
@@ -80,7 +121,7 @@ class Notification extends React.Component {
                   {this.state.title !== "" ?
                     <div className="notifi-title-text">{this.state.title}</div>
                     : null}
-                  <div className="notifi-close"></div>
+                  {this.state.isShowClose ? <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null }
                 </div>
                 <div className="notifi-text-box-last">{this.state.text}</div>
               </div>
@@ -88,7 +129,7 @@ class Notification extends React.Component {
                 {this.state.value.map((e, i) => {
                   let index = `notifibtnt${i}`
                   return (
-                    <div className="n-btn-box" key={index}>{e}</div>
+                    <div onClick={this.clickBtn.bind(this)} className="n-btn-box" key={index}>{e}</div>
                   )
                 })}
               </div>

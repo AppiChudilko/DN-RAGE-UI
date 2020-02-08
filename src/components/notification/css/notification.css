@@ -44,17 +44,19 @@
 }
 .notifi-first-box{
     width: 382px;
+    max-height: 800px;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 .notifi-f-main{
-        background-color: rgb(28, 28, 28);
-        width: 100%;
-        height: 194px;
-        display: flex;
-        flex-direction: column;  
-        position: relative; 
+    background-color: rgb(28, 28, 28);
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 .notifi-close{
     background: url(../img/close.png) no-repeat;
@@ -65,10 +67,9 @@
     margin-top: 9px;
 }
 .notifi-text-box {
-    width: 320px;
-    margin-left: 32px;
-    margin-top: 0px;
-    height: 79%;
+    width: calc(100% - 24px);
+    height: calc(79% - 24px);
+    padding: 12px;
     overflow: scroll;
     display: flex;
     align-items: center;
