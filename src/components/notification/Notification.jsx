@@ -49,6 +49,7 @@ class Notification extends React.Component {
 
   clickBtn() {
     try {
+      this.setState({ show: false });
       mp.trigger('client:events:dialog:click'); // eslint-disable-line
     }
     catch (e) {

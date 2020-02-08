@@ -84,10 +84,10 @@
     src: url(flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
   }
   @font-face {
-    font-family: 'Choujikuu Yousai - Macross';
+    font-family: 'Choujikuu';
     font-style: normal;
     font-weight: normal;
-    src: url(17808.otf) format('otf');
+    src: url(17808.otf) format('opentype');
   }
   
   .material-icons {

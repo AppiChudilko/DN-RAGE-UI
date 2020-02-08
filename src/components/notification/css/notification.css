@@ -85,9 +85,9 @@
     justify-content: flex-start;
     flex-direction: row-reverse;
     align-items: center;
-    font-family: "Choujikuu Yousai - Macross";
+    font-family: "Choujikuu";
     color: rgb(0, 0, 0);
-    font-size: 18px;
+    font-size: 14px;
 
 }
 .n-btn-box {
@@ -111,15 +111,17 @@
     margin-top: 8px;
 }
 .notifi-title {
-    width: 175px;
+    width: auto;
     height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    font-family: "Choujikuu Yousai - Macross";
+    font-family: "Choujikuu";
     color: rgb(0, 0, 0);
     font-size: 12px;
+    padding-right: 8px;
+    max-width: 340px;
 }
 .notifi-head .notifi-close{
     margin-top: 0px;
@@ -131,6 +133,7 @@
     background: rgb(72, 185, 242);
     left: -4px;
     top: 5px;
+    z-index: 1;
 }
 .notifi-linear-rightbottom {
     position: absolute;
@@ -139,6 +142,7 @@
     background: rgb(72, 185, 242);
     right: -4px;
     bottom: 0px;
+    z-index: 1;
 }
 .notifi-linear-left-two {
     position: absolute;
@@ -165,7 +169,7 @@
     bottom: -4px;
  }
  .notifi-title-text {
-    font-family: "Choujikuu Yousai - Macross";
+    font-family: "Choujikuu";
     color: #fff;
     font-size: 46px;
     margin-top: -5px;
