@@ -22,14 +22,19 @@ class Notification extends React.Component {
 
     EventManager.addHandler('dialog', value => {
       if(value.type === 'show') { this.setState({show: true})}
-      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'hide') {
+        if (this.state.show)
+          this.closeBtn.bind(this);
+
+        this.setState({show: false})
+      }
       else if(value.type === 'updateValues') {
         this.setState({show: value.isShow});
         this.setState({type: value.dtype});
         this.setState({position: value.position});
         this.setState({icon: value.icon});
         this.setState({title: value.title});
-        this.setState({text: value.text});
+        this.setState({text: value.text.toString().replace('<br>', '\n')});
         this.setState({value: value.buttons});
       }
       else return;
