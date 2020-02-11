@@ -14,13 +14,13 @@ class WorkID extends React.Component {
         firstname: 'Olejka',
         lastname: 'Pelmeshka',
         sex: 'Мужской',
-        age: 30,
+        age: '25.01.1996',
         first_work: 'Строитель',
         second_work: 'Таксист',
         lvl_work: '10',
         experience: '2',
         data: '05.02.2020',
-        idwork: '00252',
+        idwork: 'WID10-79292724055',
         img: '',//https://a.rsg.sc//n/lendstoun
       },
       photo: '',
@@ -87,7 +87,7 @@ class WorkID extends React.Component {
                       </div>
                       <div className="pl-age">
                         <span className="pl-grow row-tsp otsp_work">Возраст</span>
-                        <span className="pl-black">{this.state.player_info.age} лет</span>
+                        <span className="pl-black">{this.state.player_info.age}</span>
                       </div>
                     </div>
                     <div className="pl-row">
@@ -97,7 +97,7 @@ class WorkID extends React.Component {
                       </div>
                       <div className="pl-work2">
                         <span className="pl-grow row-tsp otsp_work">Вторая работа</span>
-                        <span className="pl-black">{this.state.player_info.second_work} лет</span>
+                        <span className="pl-black">{this.state.player_info.second_work}</span>
                       </div>
                     </div>
                     <div className="pl-row">
@@ -107,7 +107,7 @@ class WorkID extends React.Component {
                       </div>
                       <div className="pl-work2">
                         <span className="pl-grow row-tsp otsp_work">Опыт рабочего</span>
-                        <span className="pl-black">{this.state.player_info.experience} лет</span>
+                        <span className="pl-black">{this.state.player_info.experience}</span>
                       </div>
                     </div>
                     <div className="pl-row">
@@ -117,7 +117,7 @@ class WorkID extends React.Component {
                       </div>
                       <div className="pl-work2">
                         <span className="pl-grow row-tsp otsp_work">№ Документа</span>
-                        <span className="pl-black">{this.state.player_info.idwork} лет</span>
+                        <span className="pl-black">{this.state.player_info.idwork}</span>
                       </div>
                     </div>
                     {/* <div className="pl-clm">

@@ -14,7 +14,7 @@ class IDCard extends React.Component {
         firstname: 'Olejka',
         lastname: 'Pelmeshka',
         sex: 'Мужской',
-        age: 30,
+        age: '25.01.1996',
         nation: 'Американец',
         regist: '',
         idcard: '00252',
@@ -87,7 +87,7 @@ class IDCard extends React.Component {
                     </div>
                     <div className="pl-age">
                       <span className="pl-grow row-tsp">Возраст</span>
-                      <span className="pl-black">{this.state.player_info.age} лет</span>
+                      <span className="pl-black">{this.state.player_info.age}</span>
                     </div>
                   </div>
                   <div className="pl-clm">
