@@ -30,20 +30,19 @@ class EditContact extends React.Component {
 
   changeName(e, type, index) {
     e.persist()
-    console.log(e.target.value.slice(-1))
     switch (type) {
       case 'firstname':
         this.setState(prevState => ({ ...prevState.contact.name = e.target.value }))
         break;
       case 'number':
-        if(!isNaN(parseInt(e.target.value.slice(-1))) || e.target.value.slice(-1) === '-'){
+        if(!isNaN(parseInt(e.target.value.slice(-1)))){
           this.setState(prevState => ({ ...prevState.contact.numbers[index] = e.target.value }))
         } else {
           return;
         }
         break;
       case 'email':
-        this.setState(prevState => ({ ...prevState.contact.mail = e.target.value }))
+        //this.setState(prevState => ({ ...prevState.contact.mail = e.target.value }))
         break;
       default:
         break;
@@ -65,8 +64,14 @@ class EditContact extends React.Component {
   saveBtn(){
     if(this.props.editing_contact){
       this.props.saveContact(this.state.contact, this.props.selected_contact)
+      mp.trigger('client:phone:editContact', JSON.stringify(this.state.contact), JSON.stringify(this.props.selected_contact)); // eslint-disable-line
     } else {
-      this.props.addContact(this.state.contact)
+      //this.props.addContact(this.state.contact);
+      try {
+        mp.trigger('client:phone:addContact', JSON.stringify(this.state.contact)); // eslint-disable-line
+      }
+      catch (e) {
+      }
     }
     this.props.historyGoBack();
   }
@@ -107,7 +112,7 @@ class EditContact extends React.Component {
                     let index = `phoneedit${i}`;
                     return (
                       <div className="row-clm-e" key={index}>
-                        <TextField id={index} label=""  value={e} placeholder="Номер телефона" className="text-filed" onChange={(e) => this.changeName(e, 'number', i)} />
+                        <TextField id={index} label=""  value={e} placeholder="Номер телефона" maxLength="11" className="text-filed" onChange={(e) => this.changeName(e, 'number', i)} />
                         {i === this.state.contact.numbers.length - 1 && this.state.contact.numbers[i].length > 0 ?
                           <div className="add-posit-btn">
                             <IconButton aria-label="add" onClick={() => this.addNumber()}>

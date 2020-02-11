@@ -3,6 +3,7 @@ import React from 'react';
 import "./css/idcard.css"
 import img_woman from "./img/woman.png"
 import img_man from "./img/man.png"
+import EventManager from "../../EventManager";
 
 class IDCard extends React.Component {
   constructor(props) {
@@ -23,6 +24,19 @@ class IDCard extends React.Component {
     }
   }
   componentDidMount() {
+
+    EventManager.addHandler('cardid', value => {
+      if(value.type === 'show') { this.setState({show: true})}
+      else if(value.type === 'hide') { this.setState({show: false})}
+      else if(value.type === 'updateValues') {
+        this.setState({player_info: value.info});
+        this.setState({show: value.isShow});
+
+        this.checkSexandImg();
+      }
+      else return;
+    });
+
     this.checkSexandImg();
   }
   checkSexandImg() {

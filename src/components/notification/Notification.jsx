@@ -30,6 +30,7 @@ class Notification extends React.Component {
       }
       else if(value.type === 'updateValues') {
         this.setState({show: value.isShow});
+        this.setState({isShowClose: value.isShowClose});
         this.setState({type: value.dtype});
         this.setState({position: value.position});
         this.setState({icon: value.icon});
@@ -74,7 +75,7 @@ class Notification extends React.Component {
           {this.state.type === 0 ?
             <div className="notifi-first-box">
               <div className="notifi-f-main">
-                <div className="notifi-close"></div>
+                {this.state.isShowClose ? <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null }
                 <div className="notifi-text-box">{this.state.text}</div>
               </div>
               <div className="notifi-btn">

@@ -12,9 +12,13 @@ class ProfileContact extends React.Component {
   }
   deleteContact(contact){
     // Вы точно хотите навсегда удплить выбранный контакт?
-    this.props.openModal("Вы уверены, что хотите удалить?", "",['Нет', 'Да'], "");
-    
-    // this.props.deleteContact(contact)
+    //this.props.openModal("Вы уверены, что хотите удалить?", "",['Нет', 'Да'], "");
+    try {
+      mp.trigger('client:phone:deleteContact', JSON.stringify(contact)); // eslint-disable-line
+    }
+    catch (e) {
+    }
+    this.props.deleteContact(contact)
   }
 
   render() {

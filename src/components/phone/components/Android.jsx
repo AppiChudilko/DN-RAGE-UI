@@ -363,6 +363,14 @@ class Android extends React.Component {
           console.log(e);
         }
       }
+      if (value.type === 'updatePhonebook') {
+        try {
+          this.setState({ phonebook: value.phonebook });
+        }
+        catch (e) {
+          console.log(e);
+        }
+      }
       else if (value.type === 'updateTopBar') { this.setState({ top_bar: value.bar }) }
       else return;
     })
@@ -619,6 +627,12 @@ class Android extends React.Component {
     if(index !== -1){
       this.setState(prevState => ({...prevState.phonebook.contact[index].isFavorite = !this.state.phonebook.contact[index].isFavorite}))
       this.setState(prevState => ({...prevState.phonebook.selected_contact = this.state.phonebook.contact[index]}))
+
+      try {
+        mp.trigger('client:phone:favoriteContact', JSON.stringify(contact)); // eslint-disable-line
+      }
+      catch (e) {
+      }
     }
   }
   deleteContact(contact){
