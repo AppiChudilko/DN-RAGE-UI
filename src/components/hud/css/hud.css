@@ -361,6 +361,24 @@
     background-size: cover;
     margin-left: 3px
 }
+.zone-box {
+    margin-left: 323px;
+    margin-bottom: 8px;
+    display: flex;
+}
+.time-img-greenzone {
+    width: 60px;
+    height: 60px;
+    background: url(../img/GreenZone.png) no-repeat;
+    background-size: cover;
+}
+.time-img-yellowzone {
+    width: 60px;
+    height: 60px;
+    background: url(../img/YellowZone.png) no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+}
 .time-box .date {
     margin-top: 5px;
     font-size: 12.7px;
