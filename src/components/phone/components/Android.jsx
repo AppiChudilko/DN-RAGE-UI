@@ -24,7 +24,7 @@ class Android extends React.Component {
       rotate: false,
       bg_color: '',
       top_bar: {
-        time: '00:00',
+        time: '00:00', // Сервер должен регулировать время на телефоне/обновлять раз в минуту (скорее всего)
         battery: 11, // max 11
         wifi: false,
         network: 4, // max 5
@@ -289,7 +289,7 @@ class Android extends React.Component {
             isFavorite: false,
             img: 'https://a.rsg.sc//n/socialclub',
           },
-          
+
         ],
       },
       messenger: {
@@ -298,29 +298,34 @@ class Android extends React.Component {
       chats: [{
         phone_number: '222-3567347',
         is_online: true, // был(а) в сети 12.01.2019
-        last_login: '12.01.2019',
+        last_login: '12.01.2020',
+        new_messages: 1,
         message: [
-          { type: 2, text: 'Все хорошо, а у тебя как?', time: '12:01' },
-          { type: 1, text: 'Привет, как дела?', time: '12:00' },
+          { type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '12:00:02' },
+          { type: 1, text: 'Привет, как дела?', date: '10.01.2020', time: '12:00:02' },
           { type: 0, text: '1 января' },
         ]
       },
       {
         phone_number: '222-9746753',
         is_online: true, // был(а) в сети 12.01.2019
-        last_login: '12.01.2019',
+        last_login: '12.01.2020',
+        new_messages: 3,
         message: [
-          { type: 2, text: 'Все хорошо, а у тебя как?', time: '12:01' },
-          { type: 1, text: 'Привет, как дела?', time: '12:00' },
-          { type: 0, text: '1 января' },
+          { type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '02:01:00' },
+          { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '03:00:00' },
+          { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '10.01.2020', time: '01:00:01' },
+          { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '13.01.2020', time: '05:00:03' },
+          { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '04:00:02' },
         ]
       },
       {
         phone_number: '222-9746456',
         is_online: true, // был(а) в сети 12.01.2019
-        last_login: '29.01.2019',
+        last_login: '29.01.2020',
+        new_messages: 1,
         message: [
-          { type: 2, text: 'Товар на месте?', time: '12:01' },
+          { type: 2, text: 'Товар на месте?', date: '10.01.2020', time: '12:00:02' },
         ]
       }],
       // topbar_color: false,
@@ -618,8 +623,46 @@ class Android extends React.Component {
       this.setState({ chats: [...this.state.chats, chat] })
     }
   }
+  newMessage(phone_number, text, date, time){
+    // {
+    //   phone_number: '222-3567347',
+    //   is_online: true, // был(а) в сети 12.01.2019
+    //   last_login: '12.01.2020',
+    //   new_messages: 1,
+    //   message: [
+    //     { type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '12:00:02' },
+    //     { type: 1, text: 'Привет, как дела?', date: '10.01.2020', time: '12:00:02' },
+    //     { type: 0, text: '1 января' },
+    //   ]
+    // }
+    let index = this.state.chats.findIndex(e => e.phone_number === phone_number);
+    if(index !== -1){
+      this.setState(prevState => ({...prevState.chats[index].message = [...this.state.chats[index].message]
+        .concat([{ type: 1, text: text, date: date, time: time}])
+      }));
+      this.setState(prevState => ({...prevState.chats[index].new_messages = this.state.chats[index].new_messages++}));
+    } else {
+      this.setState(prevState => ({...prevState.chats = [...this.state.chats]
+        .concat([
+          {
+            phone_number: phone_number,
+            is_online: false, // был(а) в сети 12.01.2019
+            last_login: date,
+            new_messages: 1,
+            message: [
+              { type: 1, text: text, date: date, time: time },
+            ]
+          }
+        ])
+      }));
+    }
+  }
 
   selectChat(phone_number) {
+    let index = this.state.chats.findIndex(e => e.phone_number === phone_number);
+    if(index !== -1){
+      this.setState(prevState => ({...prevState.chats[index].new_messages = 0}))
+    }
     this.setState(prevState => ({ ...prevState.messenger.current_chat = phone_number }), () => { this.setState({ path: "/phone/android/messenger/chat" }) })
   }
   favoriteContact(contact){
@@ -636,7 +679,7 @@ class Android extends React.Component {
     }
   }
   deleteContact(contact){
-    
+
     this.historyGoBack()
     let newContacts = [...this.state.phonebook.contact]
     let index = newContacts.findIndex(e => e === contact);
@@ -647,7 +690,7 @@ class Android extends React.Component {
         ...prevState.phonebook.contact = newContacts
       }))
     }
-  
+
   }
 
   setLink(link) {

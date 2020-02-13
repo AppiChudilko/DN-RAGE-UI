@@ -9,6 +9,7 @@ class Chat extends React.Component {
     super(props)
     this.state = {
       text: '',
+      message_timeout: false,
       render: false
     }
   }
@@ -20,8 +21,20 @@ class Chat extends React.Component {
       }
     })
     if (chat != null) {
-      this.setState({ chat: chat, render: true, contact: this.props.getContactByNumber(chat.phone_number) })
-    } else {
+      this.setState({
+          chat: chat,
+          render: true,
+          contact: this.props.getContactByNumber(chat.phone_number)
+        }, () => this.setState(prevState => ({ ...prevState.chat.message = [...this.state.chat.message]
+          .sort(
+          function(a, b) {
+            if (a.date === b.date) {
+              return b.time > a.time;
+            }
+            return a.date < b.date ? 1 : -1;
+          })
+        })))
+        } else {
       this.setState({
         chat: {
           phone_number: this.props.messenger.current_chat,
@@ -38,10 +51,15 @@ class Chat extends React.Component {
     this.setState({ chat: {}, render: false, contact: null })
   }
   inputChange(message) {
+    if(this.state.text.length >= 600) return; // Макс длинна сообщения 600 символов
     this.setState({ text: message.target.value })
   }
   sendMessage() {
-    if (this.state.text === "") return;    
+    if(this.state.message_timeout) return; // Нельзя отправлять сообщения так часто
+    this.setState({message_timeout: true});
+    setTimeout(function() {this.setState({message_timeout: false})}.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
+    if(this.state.text.length >= 600) this.setState({ text: this.state.text.substr(0,599) }) // Макс длинна сообщения 600 символов
+    if (this.state.text === "") return;
     this.setState(prev => ({
       ...prev.chat.message = [{
         type: 2,
@@ -73,18 +91,15 @@ class Chat extends React.Component {
             </div>
           </div>
           <div className="messenger-main clm-reverse-chat">
-            {this.state.chat.message.map((e, i) => {
+          {this.state.chat.message.map((e, i) => {
               let index = `dedchat${i}`
               return (
                 <React.Fragment key={index}>
-                  {e.type === 0 ?
-                    <div className="ded-meta-center"> <div className="dedmeta-text">{e.text}</div> </div>
-                    : null}
                   {e.type === 1 ?
                     <div className="ded-messenge">
                       <div className="testmes ded-vxod">
                         <div className="block-sms-ded">{e.text}<div className="hide-time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{e.time}</div></div>
-                        <div className="block-sms-info-time">{e.time}</div>
+                        <div className="block-sms-info-time">{e.time.substr(0, 5)}</div>
                       </div>
                     </div>
                     : null}
@@ -92,10 +107,16 @@ class Chat extends React.Component {
                     <div className="ded-messenge isxod-left">
                       <div className="testmes ded-isxod">
                         <div className="block-sms-ded">{e.text}<div className="hide-time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{e.time}</div></div>
-                        <div className="block-sms-info-time">{e.time}</div>
+                        <div className="block-sms-info-time">{e.time.substr(0, 5)}</div>
                       </div>
                     </div>
                     : null}
+                  {i === this.state.chat.message.length-1 ?
+                    <div className="ded-meta-center"> <div className="dedmeta-text">{e.date}</div> </div>
+                    : null}
+                  {i < this.state.chat.message.length-1 && e.date > this.state.chat.message[i+1].date ?
+                  <div className="ded-meta-center"> <div className="dedmeta-text">{e.date}</div> </div>
+                  : null}
                 </React.Fragment>
               )
             })}
