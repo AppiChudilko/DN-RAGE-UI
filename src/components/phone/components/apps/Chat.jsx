@@ -55,8 +55,15 @@ class Chat extends React.Component {
     }
 
     inputChange(message) {
-        if (this.state.text.length >= 600) return; // Макс длинна сообщения 600 символов
+        if (this.state.text.length >= 500) return; // Макс длинна сообщения 600 символов
         this.setState({text: message.target.value})
+    }
+
+    inputFocus(focus) {
+        try {
+            mp.trigger('client:phone:focusInput', focus); // eslint-disable-line
+        } catch (e) {
+        }
     }
 
     sendMessage() {
@@ -66,17 +73,26 @@ class Chat extends React.Component {
             this.setState({message_timeout: false})
         }.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
         if (this.state.text.length >= 600)
-            this.setState({text: this.state.text.substr(0, 599)}); // Макс длинна сообщения 600 символов
-        if (this.state.text === "") return;
+            this.setState({text: this.state.text.substr(0, 500)}); // Макс длинна сообщения 500 символов
+        if (this.state.text === "")
+            return;
+
+        let text = this.state.text;
+
         this.setState(prev => ({
             ...prev.chat.message = [{
                 type: 2,
-                text: this.state.text,
+                text: text,
                 time: this.props.time,
                 date: this.props.date,
             }].concat(this.state.chat.message)
         }), () => {
-            this.props.sendMessage(this.props.messenger.current_chat, this.state.chat);
+            this.props.sendMessage(this.props.messenger.current_chat, this.state.chat, text);
+
+            try {
+                mp.trigger('client:phone:sendMessage', this.props.messenger.current_chat, this.state.chat, text); // eslint-disable-line
+            } catch (e) {
+            }
         });
         this.setState({text: ''});
     }
@@ -149,7 +165,7 @@ class Chat extends React.Component {
                     <div className="ded-input-text">
                         <MaterialIcon icon="insert_emoticon" size={22} color="#7D8B97"/>
                         <input type="text" placeholder="Введите сообщение..." className="ded-text-ipn"
-                               value={this.state.text} onChange={(e) => this.inputChange(e)}/>
+                               value={this.state.text} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)}/>
                         <MaterialIcon icon="send" size={22} color="#67B1F8" onClick={() => this.sendMessage()}/>
                     </div>
                 </div>

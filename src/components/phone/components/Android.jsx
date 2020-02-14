@@ -399,6 +399,13 @@ class Android extends React.Component {
                     console.log(e);
                 }
             }
+            if (value.type === 'updateMessengerChat') {
+                try {
+                    this.setState(prevState => ({...prevState.chats[value.idx].message = value.messages}))
+                } catch (e) {
+                    console.log(e);
+                }
+            }
             if (value.type === 'addMessengerMessage') {
                 try {
                     this.newMessage(value.phone, value.text, value.date, value.time);
@@ -662,11 +669,6 @@ class Android extends React.Component {
             //console.log(chat)
             this.setState({chats: [...this.state.chats, chat]})
         }
-
-        try {
-            mp.trigger('client:phone:sendMessage', current_chat, chat); // eslint-disable-line
-        } catch (e) {
-        }
     }
 
     newMessage(phone_number, text, date, time) {
@@ -710,15 +712,15 @@ class Android extends React.Component {
         let index = this.state.chats.findIndex(e => e.phone_number === phone_number);
         if (index !== -1) {
             this.setState(prevState => ({...prevState.chats[index].new_messages = 0}))
+
+            try {
+                mp.trigger('client:phone:selectChat', phone_number, index); // eslint-disable-line
+            } catch (e) {
+            }
         }
         this.setState(prevState => ({...prevState.messenger.current_chat = phone_number}), () => {
             this.setState({path: "/phone/android/messenger/chat"})
         });
-
-        try {
-            mp.trigger('client:phone:selectChat', phone_number); // eslint-disable-line
-        } catch (e) {
-        }
     }
 
     favoriteContact(contact) {
