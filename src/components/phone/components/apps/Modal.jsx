@@ -3,15 +3,14 @@ import React from 'react';
 class Modal extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-        }
+        this.state = {}
     }
+
     callback = (action, params) => {
         console.log(action, params)
         try {
             mp.trigger('client:phone:callBack', action, params); // eslint-disable-line
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -21,14 +20,18 @@ class Modal extends React.Component {
             return null;
         }
         return (
-            <React.Fragment >
+            <React.Fragment>
                 <div className="u-scrollable">
                     <div className="u-scrool-box">
                         <div className="u-scroll-title">{this.props.data.title}</div>
                         <div className="u-scroll-text">{this.props.data.text}</div>
                         <div className="u-select-input">
-                            <div className="u-btn-w" onClick={() => this.props.closeModal(false)}>{this.props.data.buttons[0]}</div>
-                            <div className="u-btn-w" onClick={() => {this.props.closeModal(true); this.callback('modal', JSON.stringify(this.props.data.params))}}>{this.props.data.buttons[1]}</div>
+                            <div className="u-btn-w"
+                                 onClick={() => this.props.closeModal(false)}>{this.props.data.buttons[0]}</div>
+                            <div className="u-btn-w" onClick={() => {
+                                this.props.closeModal(true);
+                                this.callback('modal', JSON.stringify(this.props.data.params))
+                            }}>{this.props.data.buttons[1]}</div>
                         </div>
                     </div>
                 </div>
@@ -36,4 +39,5 @@ class Modal extends React.Component {
         )
     }
 }
+
 export default Modal;

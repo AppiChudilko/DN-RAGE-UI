@@ -1,8 +1,9 @@
 .inter-menu {
     background: #fff;
     width: 200px;
-    position: absolute;    
+    position: absolute;
 }
+
 .inter-box {
     height: 40px;
     display: flex;
@@ -12,7 +13,8 @@
     font-size: 16px;
     color: #000;
 }
-.inter-box:hover{
+
+.inter-box:hover {
     background: rgb(72, 185, 242);
     color: #fff !important;
 }

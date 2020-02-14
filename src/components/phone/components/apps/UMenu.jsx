@@ -4,17 +4,20 @@ import UMenuContainer from './UMenuComponetns/UMenuContainer';
 class UMenu extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-        }
+        this.state = {}
     }
+
     render() {
         return (
-            <React.Fragment >
+            <React.Fragment>
                 <div className="uni-menu">
-                    <UMenuContainer data={this.props.data} openScrollbar={this.props.openScrollbar} openModal={this.props.openModal} openInputModal={this.props.openInputModal} rotate={this.props.rotate}/>
+                    <UMenuContainer data={this.props.data} openScrollbar={this.props.openScrollbar}
+                                    openModal={this.props.openModal} openInputModal={this.props.openInputModal}
+                                    rotate={this.props.rotate}/>
                 </div>
             </React.Fragment>
         )
     }
 }
+
 export default UMenu;

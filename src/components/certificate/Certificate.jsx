@@ -13,140 +13,147 @@ import ems from "./img/ems.png"
 import EventManager from "../../EventManager";
 
 class Certificate extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      show: false,
-      type: 'ems',
-      work: '',
-      player_info: {
-        name: 'Olejka Pelmeshka',
-        sex: 'Мужской',
-        dep: 'AirSupport Division',
-        position: 'Специальный агент',
-        id: '25',
-        img: '',//https://a.rsg.sc//n/lendstoun
-      }
+    constructor(props) {
+        super(props)
+        this.state = {
+            show: false,
+            type: 'ems',
+            work: '',
+            player_info: {
+                name: 'Olejka Pelmeshka',
+                sex: 'Мужской',
+                dep: 'AirSupport Division',
+                position: 'Специальный агент',
+                id: '25',
+                img: '',//https://a.rsg.sc//n/lendstoun
+            }
+        }
     }
-  }
-  componentDidMount() {
 
-    EventManager.addHandler('certificate', value => {
-      if(value.type === 'show') { this.setState({show: true})}
-      else if(value.type === 'hide') { this.setState({show: false})}
-      else if(value.type === 'updateValues') {
-        this.setState({player_info: value.info})
-        this.setState({type: value.typef})
-        this.setState({show: value.isShow})
+    componentDidMount() {
+
+        EventManager.addHandler('certificate', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({player_info: value.info})
+                this.setState({type: value.typef})
+                this.setState({show: value.isShow})
+
+                this.checkSexandImg();
+                this.checkWork();
+            } else return;
+        })
 
         this.checkSexandImg();
         this.checkWork();
-      }
-      else return;
-    })
-
-    this.checkSexandImg();
-    this.checkWork();
-  }
-  checkWork() {
-    switch (this.state.type) {
-      case 'gov':
-        this.setState({ work: 'Government of San Andreas', img_frac: `${gov}` })
-        break;
-      case 'fib':
-        this.setState({ work: 'Department of Investigations', img_frac: ` ${fib}` })
-        break;
-      case 'lspd':
-        this.setState({ work: 'LOS SANTOS POLICE DEPARTMENT', img_frac: ` ${lspd}` })
-        break;
-      case 'sheriff':
-        this.setState({ work: 'SHERIFF`S DEPARTMENT', img_frac: ` ${sheriff}` })
-        break;
-      case 'ems':
-        this.setState({ work: 'emergency medical services', img_frac: ` ${ems}` })
-        break;
-      default:
-        break;
     }
-  }
-  labelBottom() {
-    switch (this.state.type) {
-      case 'gov':
+
+    checkWork() {
+        switch (this.state.type) {
+            case 'gov':
+                this.setState({work: 'Government of San Andreas', img_frac: `${gov}`})
+                break;
+            case 'fib':
+                this.setState({work: 'Department of Investigations', img_frac: ` ${fib}`})
+                break;
+            case 'lspd':
+                this.setState({work: 'LOS SANTOS POLICE DEPARTMENT', img_frac: ` ${lspd}`})
+                break;
+            case 'sheriff':
+                this.setState({work: 'SHERIFF`S DEPARTMENT', img_frac: ` ${sheriff}`})
+                break;
+            case 'ems':
+                this.setState({work: 'emergency medical services', img_frac: ` ${ems}`})
+                break;
+            default:
+                break;
+        }
+    }
+
+    labelBottom() {
+        switch (this.state.type) {
+            case 'gov':
+                return (
+                    <React.Fragment>
+                        <div className="gov-lic">
+                            <div className="lic-gov-log"></div>
+                        </div>
+                    </React.Fragment>
+                )
+                break;
+            default:
+                return (
+                    <React.Fragment>
+                        <div className={this.state.type}></div>
+                    </React.Fragment>
+                )
+                break;
+        }
+    }
+
+    checkSexandImg() {
+        if (this.state.player_info.img === '') {
+            if (this.state.player_info.sex === 'Мужской') {
+                this.setState({photo: img_man});
+            } else {
+                this.setState({photo: img_woman});
+            }
+        } else {
+            this.setState({photo: this.state.player_info.img})
+        }
+
+    }
+
+    render() {
+        if (!this.state.show) {
+            return null;
+        }
+
         return (
-          <React.Fragment>
-            <div className="gov-lic">
-              <div className="lic-gov-log"></div>
-            </div>
-          </React.Fragment>
-        )
-        break;
-      default:
-        return (
-          <React.Fragment>
-            <div className={this.state.type}></div>
-          </React.Fragment>
-        )
-        break;
-    }
-  }
-  checkSexandImg() {
-    if (this.state.player_info.img === '') {
-      if (this.state.player_info.sex === 'Мужской') {
-        this.setState({ photo: img_man });
-      } else {
-        this.setState({ photo: img_woman });
-      }
-    } else {
-      this.setState({ photo: this.state.player_info.img })
-    }
-
-  }
-  render() {
-    if (!this.state.show) {
-      return null;
-    }
-
-    return (
-      <React.Fragment >
-        <div className="fibcertificate-main" id="box">
-          <div className="fib-box">
-            <div className='fib-cert' style={{
-              background: `url(${this.state.img_frac}) no-repeat top 30px right, 
+            <React.Fragment>
+                <div className="fibcertificate-main" id="box">
+                    <div className="fib-box">
+                        <div className='fib-cert' style={{
+                            background: `url(${this.state.img_frac}) no-repeat top 30px right, 
                 #fff  url(${flag}) no-repeat -11% bottom`
-            }}>
-              <div className="fib-title-lic">{this.state.work}</div>
-              <div className="fib-pl-inf">
-                <div className="fib-img">
-                  <img src={this.state.photo} className="style-img-fib" alt="" />
+                        }}>
+                            <div className="fib-title-lic">{this.state.work}</div>
+                            <div className="fib-pl-inf">
+                                <div className="fib-img">
+                                    <img src={this.state.photo} className="style-img-fib" alt=""/>
+                                </div>
+                                <div className="fib-second-inf">
+                                    <div className="fib-name">{this.state.player_info.name}</div>
+                                    <div className="box-fib-inf-tt">
+                                        <span className="fib-grow ff-rr-kk">№</span>
+                                        <span className="fib-black">{this.state.player_info.id}</span>
+                                    </div>
+                                    <div className="box-fib-inf-tt">
+                                        <span className="fib-grow ff-rr-kk">Отдел</span>
+                                        <span className="fib-black">{this.state.player_info.dep}</span>
+                                    </div>
+                                    <div className="box-fib-inf-tt">
+                                        <span className="fib-grow ff-rr-kk">Должность</span>
+                                        <span className="fib-black">{this.state.player_info.position}</span>
+                                    </div>
+                                    <div className="box-fib-inf-tt">
+                                        <span className="fib-grow ff-rr-kk">Пол</span>
+                                        <span className="fib-black">{this.state.player_info.sex}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="fib-btn">
+                            {this.labelBottom()}
+                        </div>
+                    </div>
                 </div>
-                <div className="fib-second-inf">
-                  <div className="fib-name">{this.state.player_info.name}</div>
-                  <div className="box-fib-inf-tt">
-                    <span className="fib-grow ff-rr-kk">№</span>
-                    <span className="fib-black">{this.state.player_info.id}</span>
-                  </div>
-                  <div className="box-fib-inf-tt">
-                    <span className="fib-grow ff-rr-kk">Отдел</span>
-                    <span className="fib-black">{this.state.player_info.dep}</span>
-                  </div>
-                  <div className="box-fib-inf-tt">
-                    <span className="fib-grow ff-rr-kk">Должность</span>
-                    <span className="fib-black">{this.state.player_info.position}</span>
-                  </div>
-                  <div className="box-fib-inf-tt">
-                    <span className="fib-grow ff-rr-kk">Пол</span>
-                    <span className="fib-black">{this.state.player_info.sex}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="fib-btn">
-              {this.labelBottom()}
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
-    )
-  }
+            </React.Fragment>
+        )
+    }
 }
+
 export default Certificate;

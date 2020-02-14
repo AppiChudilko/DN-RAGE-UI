@@ -18,22 +18,22 @@ import ModalInput from './components/modalinput/ModalInput';
 import Notification from './components/notification/Notification';
 
 function App() {
-  return (
-    <React.Fragment>
-        <AuthMain />
-        <Inventory />
-        <Phone />  
-        <EditorMain />
-        <Hud />
-        <IDCard />
-        <WorkID />
-        <License />
-        <Certificate />
-        <Walkietalkie />
-        <ModalInput />
-        <Notification />
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <AuthMain/>
+            <Inventory/>
+            <Phone/>
+            <EditorMain/>
+            <Hud/>
+            <IDCard/>
+            <WorkID/>
+            <License/>
+            <Certificate/>
+            <Walkietalkie/>
+            <ModalInput/>
+            <Notification/>
+        </React.Fragment>
+    );
 }
 
 export default App;
