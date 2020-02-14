@@ -25,6 +25,7 @@ class Android extends React.Component {
             bg_color: '',
             top_bar: {
                 time: '00:00', // Сервер должен регулировать время на телефоне/обновлять раз в минуту (скорее всего)
+                dateFull: '01.01.1990',
                 battery: 11, // max 11
                 wifi: false,
                 network: 4, // max 5
@@ -319,7 +320,7 @@ class Android extends React.Component {
                     message: [
                         {type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '12:00:02'},
                         {type: 1, text: 'Привет, как дела?', date: '10.01.2020', time: '12:00:02'},
-                        {type: 0, text: '1 января'},
+                        //{type: 0, text: '1 января'},
                     ]
                 },
                 {
@@ -390,7 +391,22 @@ class Android extends React.Component {
                 } catch (e) {
                     console.log(e);
                 }
-            } else if (value.type === 'updateTopBar') {
+            }
+            if (value.type === 'updateMessenger') {
+                try {
+                    this.setState({chats: value.chats});
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'addMessengerMessage') {
+                try {
+                    this.newMessage(value.phone, value.text, value.date, value.time);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updateTopBar') {
                 this.setState({top_bar: value.bar})
             } else return;
         })
@@ -637,7 +653,7 @@ class Android extends React.Component {
                 ind = i;
             }
         })
-        console.log(chat)
+        console.log(chat);
         if (ind !== -1) {
             let chats = this.state.chats;
             chats[ind] = chat;
@@ -645,6 +661,11 @@ class Android extends React.Component {
         } else {
             //console.log(chat)
             this.setState({chats: [...this.state.chats, chat]})
+        }
+
+        try {
+            mp.trigger('client:phone:sendMessage', current_chat, chat); // eslint-disable-line
+        } catch (e) {
         }
     }
 
@@ -692,7 +713,12 @@ class Android extends React.Component {
         }
         this.setState(prevState => ({...prevState.messenger.current_chat = phone_number}), () => {
             this.setState({path: "/phone/android/messenger/chat"})
-        })
+        });
+
+        try {
+            mp.trigger('client:phone:selectChat', phone_number); // eslint-disable-line
+        } catch (e) {
+        }
     }
 
     favoriteContact(contact) {
@@ -787,7 +813,7 @@ class Android extends React.Component {
                                 </Route>
                                 <Route exact path="/phone/android/messenger/chat">
                                     <Chat data={this.state.chats} messenger={this.state.messenger}
-                                          sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time}
+                                          sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} date={this.state.top_bar.dateFull}
                                           getContactByNumber={this.getContactByNumber.bind(this)}
                                           setLink={this.setLink.bind(this)}/>
                                 </Route>

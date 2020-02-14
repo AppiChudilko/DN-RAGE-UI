@@ -65,17 +65,19 @@ class Chat extends React.Component {
         setTimeout(function () {
             this.setState({message_timeout: false})
         }.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
-        if (this.state.text.length >= 600) this.setState({text: this.state.text.substr(0, 599)}) // Макс длинна сообщения 600 символов
+        if (this.state.text.length >= 600)
+            this.setState({text: this.state.text.substr(0, 599)}); // Макс длинна сообщения 600 символов
         if (this.state.text === "") return;
         this.setState(prev => ({
             ...prev.chat.message = [{
                 type: 2,
                 text: this.state.text,
-                time: this.props.time
+                time: this.props.time,
+                date: this.props.date,
             }].concat(this.state.chat.message)
         }), () => {
             this.props.sendMessage(this.props.messenger.current_chat, this.state.chat);
-        })
+        });
         this.setState({text: ''});
     }
 

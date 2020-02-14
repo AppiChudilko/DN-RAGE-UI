@@ -45,7 +45,7 @@ class Messenger extends React.Component {
             <React.Fragment>
                 <div className="dedbit-menu">
                     <div className="u-title" style={{background: "#212D3B"}}>
-                        <span className="u-texttittle">Dedbit</span>
+                        <span className="u-texttittle">Onion Messenger</span>
                     </div>
                     <div className="messenger-main">
                         {this.state.chats.map((e, i) => {
