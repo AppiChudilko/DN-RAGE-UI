@@ -299,7 +299,7 @@ class Inventory extends React.Component {
             }
             if (value.type === 'updateItemIdCount') {
                 this.state.items.forEach((item) => {
-                    if (value.itemId == item.id) { //TODO мб не правильно сделал
+                    if (value.itemId == item.id) {
                         let newItem = item;
                         this.setState({items: this.arrayRemove(this.state.items, item)});
                         newItem.counti = value.count;
@@ -308,11 +308,11 @@ class Inventory extends React.Component {
                 });
             }
             if (value.type === 'updateWeaponParams') {
-                this.state.equipment_weapon.forEach((item, i) => { //TODO мб не правильно сделал
+                this.state.equipment_weapon.forEach((item, i) => {
                     if (value.itemId == item.id) {
                         let newItem = item;
                         this.setState({equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item)});
-                        newItem.params = value.params; //TODO обвесы не обновляются почему-то сами иокнки
+                        newItem.params = value.params;
                         this.setState({equipment_weapon: this.state.equipment_weapon.concat(newItem)});
                     }
                 });
@@ -1395,6 +1395,28 @@ class Inventory extends React.Component {
         }
     }
 
+    itemUnequipWeapon(item, slot) {
+        /*try {
+            if (slot === 1)
+                this.setState(prevState => ({...prevState.equipment_weapon[this.state.selected_weapon_id].params.slot1 = false}));
+            else if (slot === 2)
+                this.setState(prevState => ({...prevState.equipment_weapon[this.state.selected_weapon_id].params.slot2 = false}));
+            else if (slot === 3)
+                this.setState(prevState => ({...prevState.equipment_weapon[this.state.selected_weapon_id].params.slot3 = false}));
+            else if (slot === 4)
+                this.setState(prevState => ({...prevState.equipment_weapon[this.state.selected_weapon_id].params.slot4 = false}));
+        }
+        catch (e) {
+            console.log(e);
+        }*/
+        try {
+            mp.trigger('client:inventory:unEquipWeaponUpgrade', item.id, item.item_id, JSON.stringify(item.params), slot); // eslint-disable-line
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
     selectWeapon(item) {
         if (this.checkItem(item, 'weapon') !== null) {
             item = this.checkItem(item, 'weapon')
@@ -1690,19 +1712,19 @@ class Inventory extends React.Component {
                                                     </div>
                                                     <div className="main-box-craft-weapon">
                                                         <div className="square-box-craft-weapon sqr-wp-top">
-                                                            <div
+                                                            <div onClick={() => { this.itemUnequipWeapon(this.getSelectedWeaponById(), 1) }}
                                                                 className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot1 ? "weapon-mod-active weapon-supressor" : "weapon-mod weapon-supressor" : ""}/>
                                                         </div>
                                                         <div className="square-box-craft-weapon sqr-wp-top">
-                                                            <div
+                                                            <div onClick={() => { this.itemUnequipWeapon(this.getSelectedWeaponById(), 2) }}
                                                                 className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot2 ? "weapon-mod-active weapon-flashlight" : "weapon-mod weapon-flashlight" : ""}/>
                                                         </div>
                                                         <div className="square-box-craft-weapon sqr-wp-top">
-                                                            <div
+                                                            <div onClick={() => { this.itemUnequipWeapon(this.getSelectedWeaponById(), 3) }}
                                                                 className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot3 ? "weapon-mod-active weapon-grip" : "weapon-mod weapon-grip" : ""}/>
                                                         </div>
                                                         <div className="square-box-craft-weapon sqr-wp-top">
-                                                            <div
+                                                            <div onClick={() => { this.itemUnequipWeapon(this.getSelectedWeaponById(), 4) }}
                                                                 className={this.getSelectedWeaponById().item_id !== 0 ? this.getSelectedWeaponById().params.slot4 ? "weapon-mod-active weapon-scope" : "weapon-mod weapon-scope" : ""}/>
                                                         </div>
                                                         {/* <div className="square-box-craft-weapon sqr-wp-left"></div>
