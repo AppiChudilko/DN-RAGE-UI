@@ -227,6 +227,11 @@ class Inventory extends React.Component {
             if (value.type === 'show') {
                 this.setState({show: true})
             }
+            if (value.type === 'hide') {
+                this.setState({show: false})
+                mp.trigger('client:inventory:status', false); // eslint-disable-line
+                this.closeInterMenu(null, {action: null});
+            }
             if (value.type === 'showOrHide') {
                 let status = !this.state.show;
                 if (!status) this.closeInterMenu(null, {action: null});
@@ -1170,6 +1175,8 @@ class Inventory extends React.Component {
                     this.setState({items: this.arrayRemove(this.state.items, item)})
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
                     // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+
+                    mp.trigger('client:inventory:giveItem', item.id, item.item_id, trade_player_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
@@ -1178,19 +1185,22 @@ class Inventory extends React.Component {
                     this.setState({secondary_items: this.arrayRemove(this.state.secondary_items, item)})
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
                     // mp.call ... передать и удалить из багажника (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+                    mp.trigger('client:inventory:giveItem', item.id, item.item_id, trade_player_id); // eslint-disable-line
                 }
                 break;
             case 'outfit':
-                item = this.getOutfitByType(item.type)[0]
+                this.notifyToClient('~r~Для начала уберите с экипировки');
+                /*item = this.getOutfitByType(item.type)[0]
                 if (this.checkItem(item, 'outfit') !== null) {
                     item = this.checkItem(item, 'outfit')
                     this.setState({equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item)})
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
                     // mp.call ... передать и удалить с персонажа (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
-                }
+                }*/
                 break;
             case 'weapon':
-                if (this.checkItem(item, 'weapon') !== null) {
+                this.notifyToClient('~r~Для начала уберите с экипировки');
+                /*if (this.checkItem(item, 'weapon') !== null) {
                     item = this.checkItem(item, 'weapon')
                     this.setState({equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item)}, () => {
                         if (item.id === this.state.selected_weapon_id) {
@@ -1203,7 +1213,7 @@ class Inventory extends React.Component {
                     })
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
                     // mp.call ... передать оружие и удалить из экипировки (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
-                }
+                }*/
                 break;
             default:
                 break;

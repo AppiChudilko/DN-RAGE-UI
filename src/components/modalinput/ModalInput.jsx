@@ -34,6 +34,7 @@ class ModalInput extends React.Component {
                 this.setState({show: value.isShow});
                 this.setState({title: value.title});
                 this.setState({defaultText: value.text});
+                this.setState({text: value.text});
                 this.setState({maxLength: value.maxLength});
 
                 this.textarea.focus();

@@ -20,8 +20,8 @@ class EditorPlayer extends React.Component {
                 {name: 'Ширина челюсти', value: 0},
                 {name: 'Форма челюсти', value: 0},
                 {name: 'Высота подбородка', value: 0},
-                {name: 'Глубина подбородка', value: 0},
                 {name: 'Ширина подбородка', value: 0},
+                {name: 'Глубина подбородка', value: 0},
                 {name: 'Подбородочный отступ', value: 0},
                 {name: 'Обхват шеи', value: 0},
             ],
@@ -58,7 +58,7 @@ class EditorPlayer extends React.Component {
                 },
                 {
                     title: "Отец",
-                    parents: ["Бенджамин", "Бенджамин", "Эдвард", "Ной", "Андре", "Джоан", "Алекс", "Исаак", "Эвон", "Итон", "Винсент", "Анжел", "Диего", "Адриан", "Габриель", "Майкл", "Сантьяго", "Кевин", "Луис", "Самюэль", "Энтони", "Клайд", "Нико", "Джон"],
+                    parents: ["Бенджамин", "Эллиот", "Эдвард", "Ной", "Андре", "Джоан", "Алекс", "Исаак", "Эвон", "Итон", "Винсент", "Анжел", "Диего", "Адриан", "Габриель", "Майкл", "Сантьяго", "Кевин", "Луис", "Самюэль", "Энтони", "Клайд", "Нико", "Джон"],
                     index_help: 0
                 },
                 {title: "Сходство", index_help: 10},
@@ -232,9 +232,13 @@ class EditorPlayer extends React.Component {
         }
         this.setState(prev => ({...prev.input_editor_face_last[index].index_help = currentIndex}));
 
-        //console.log(index, currentIndex, this.state.input_editor_face_last[index].index_help);
-
-        this.setCustomization();
+        setTimeout(
+            function() {
+                this.setCustomization();
+            }
+                .bind(this),
+            100
+        );
     }
 
     clickRightArrowEditorCharacter(index) {
@@ -245,7 +249,14 @@ class EditorPlayer extends React.Component {
             currentIndex++;
         }
         this.setState(prev => ({...prev.input_editor_face_last[index].index_help = currentIndex}));
-        this.setCustomization();
+
+        setTimeout(
+            function() {
+                this.setCustomization();
+            }
+                .bind(this),
+            100
+        );
     }
 
     updateStatsFamilyCharacter() {
