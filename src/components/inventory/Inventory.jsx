@@ -229,7 +229,6 @@ class Inventory extends React.Component {
             }
             if (value.type === 'hide') {
                 this.setState({show: false})
-                mp.trigger('client:inventory:status', false); // eslint-disable-line
                 this.closeInterMenu(null, {action: null});
             }
             if (value.type === 'showOrHide') {
