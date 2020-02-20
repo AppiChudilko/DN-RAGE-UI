@@ -14,6 +14,7 @@ class Car extends React.Component {
             fuelType: 'L',
             max_fuel: 200,// Максимальная вместимость топливного бака
             speed: 40,
+            speedLabel: 'MP/H',
 
             deg: -45,
             color: '#48B9F2',
@@ -39,6 +40,7 @@ class Car extends React.Component {
                 this.setState({fuelType: value.fuelType});
                 this.setState({max_fuel: value.max_fuel});
                 this.setState({speed: value.speed});
+                this.setState({speedLabel: value.speedLabel});
                 this.setState({background: value.background});
             } else return;
         })
@@ -84,7 +86,7 @@ class Car extends React.Component {
                 </div>
                 <div className={this.state.isShowSmall ? 'speedbox-small' : 'hide'}>
                     <div className="speed-txt">{this.state.speed}</div>
-                    MP/H
+                    {this.state.speedLabel}
                 </div>
                 <div className="car-hud">
                     <div className="elements-auto"
