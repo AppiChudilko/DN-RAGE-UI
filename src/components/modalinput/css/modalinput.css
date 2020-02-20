@@ -1,15 +1,16 @@
 /* body {
     background-color: #9a3f3f;
 } */
-.position-modal{
+.position-modal {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
-    position: absolute;    
+    position: absolute;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 .main-input-modal {
     width: 579px;
     min-height: 66px;
@@ -17,6 +18,7 @@
     position: relative;
     display: flex;
 }
+
 .linear-input-modal-top1 {
     width: 170px;
     height: 6px;
@@ -25,6 +27,7 @@
     right: 0px;
     top: -4px;
 }
+
 .linear-input-modal-top2 {
     width: 15px;
     height: 6px;
@@ -33,6 +36,7 @@
     right: 174px;
     top: -4px;
 }
+
 .modal-b-title {
     font-family: "Roboto";
     font-style: normal;
@@ -42,6 +46,7 @@
     margin-top: 9px;
     margin-left: 20px;
 }
+
 .modal-b-input {
     max-width: 540px;
     max-height: 795px;
@@ -64,12 +69,14 @@
     margin-bottom: 0px !important;
     resize: none;
 }
+
 .modal-box-input {
     width: 579px;
     display: flex;
     align-items: flex-end;
     flex-direction: row-reverse;
 }
+
 .modal-btn {
     width: 109.02px;
     height: 24.37px;
@@ -84,6 +91,7 @@
     color: #000000;
     margin-left: 2px;
 }
+
 .input-meta-text {
     width: 540px;
     display: flex;

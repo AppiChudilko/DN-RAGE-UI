@@ -15,11 +15,12 @@ EventManager.addHandler('notify', value => {
 });
 
 Noty.setMaxVisible(3);
+
 function notify(type, layout, message, time) {
     let types = ['information', 'error', 'success'];
     let layouts = ['top', 'topLeft', 'topCenter', 'topRight', 'center', 'centerLeft', 'centerRight', 'bottom', 'bottomLeft', 'bottomCenter', 'bottomRight'];
     message = `<div class="message">${message}</div>`;
-    new Noty({
+    let ntf = new Noty({
         type: types[type],
         layout: layouts[layout],
         theme: 'dednet',
@@ -30,13 +31,26 @@ function notify(type, layout, message, time) {
             open: 'animated fadeInLeft',
             close: 'animated fadeOutLeft'
         }
-    }).show();
+    });
+    ntf.show();
+    ntf.onClose((id, type) => {
+
+    });
 }
+
+setInterval(function () {
+    try {
+        mp.trigger('client:ui:checker'); // eslint-disable-line
+    }
+    catch (e) {
+    }
+}, 1000);
+
 // notify(0, 1, 'Видимо произошла какая-то непредвиденная ошибка ', 5000)
 // notify(1, 1, 'Видимо произошла какая-то непредвиденная ошибка', 3000)
 // notify(2, 1, 'Видимо произошла какая-то непредвиденная ошибка', 2000)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -44,12 +58,12 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 
 if (window.outerWidth > 1900)
-    document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth**2 +window.outerHeight**2) / 2202.9071700822983).toFixed(3);
+    document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth ** 2 + window.outerHeight ** 2) / 2202.9071700822983).toFixed(3);
 else
     document.getElementsByTagName('body')[0].style.zoom = 1;
 window.onresize = () => {
     if (window.outerWidth > 1900)
-        document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth**2 +window.outerHeight**2) / 2202.9071700822983).toFixed(3);
+        document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth ** 2 + window.outerHeight ** 2) / 2202.9071700822983).toFixed(3);
     else
         document.getElementsByTagName('body')[0].style.zoom = 1;
 };

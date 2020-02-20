@@ -1,47 +1,60 @@
 body {
-	margin: 0 auto;
-	color: #fff;
-  user-select: none;
+    margin: 0 auto;
+    color: #fff;
+    user-select: none;
 }
-li{
-  list-style: none;
+
+li {
+    list-style: none;
 }
+
 input[type=range] {
-  -webkit-appearance: none;
-  outline: none;
+    -webkit-appearance: none;
+    outline: none;
 }
-input[type="radio"]{
-	display: none;
+
+input[type="radio"] {
+    display: none;
 }
-input[type="checkbox"]{
-	display: none;
+
+input[type="checkbox"] {
+    display: none;
 }
-input[type="text"], input[type="password"]  {
-  background: none;
-  border: none;
-  outline: none;
+
+input[type="text"], input[type="password"] {
+    background: none;
+    border: none;
+    outline: none;
 }
+
 button, a {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
 }
+
 input {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 ::-webkit-scrollbar {
     width: 0;
 }
-input:focus::-webkit-input-placeholder { color:transparent; }
-.container {
-	width: auto;
-	height: auto;
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
 }
+
+.container {
+    width: auto;
+    height: auto;
+}
+
 .hide {
     display: none !important;
 }

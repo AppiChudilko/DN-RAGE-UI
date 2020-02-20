@@ -1,16 +1,15 @@
 const EventManager = window.EventManager || {
     events: {},
 
-    addHandler: function(eventName, handler) {
+    addHandler: function (eventName, handler) {
         if (eventName in this.events) {
             this.events[eventName].push(handler);
-        }
-        else {
+        } else {
             this.events[eventName] = [handler];
         }
     },
 
-    removeHandler: function(eventName, handler) {
+    removeHandler: function (eventName, handler) {
         if (eventName in this.events) {
             var index = this.events[eventName].indexOf(handler);
             this.events[eventName].splice(index, 1);

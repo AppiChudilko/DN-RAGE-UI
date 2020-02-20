@@ -19,23 +19,38 @@ class Authorization extends React.Component {
     };
 
     handleChange(value) {
-        this.setState({ showAuto: value });
+        this.setState({showAuto: value});
     };
-    valueLogin(event) { this.setState({ login: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
-    valuePassword(event) { this.setState({ password: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
 
-    valueMailReg(event) { this.setState({ mailReg: event.target.value }) };
-    valueLoginReg(event) { this.setState({ loginReg: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
+    valueLogin(event) {
+        this.setState({login: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
+    };
 
-    valuePasswordReg(event) { this.setState({ passwordReg: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
-    valuePasswordRegCheck(event) { this.setState({ passwordRegCheck: event.target.value.replace(/[^a-zA-Z0-9]+/g,'') }) };
+    valuePassword(event) {
+        this.setState({password: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
+    };
+
+    valueMailReg(event) {
+        this.setState({mailReg: event.target.value})
+    };
+
+    valueLoginReg(event) {
+        this.setState({loginReg: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
+    };
+
+    valuePasswordReg(event) {
+        this.setState({passwordReg: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
+    };
+
+    valuePasswordRegCheck(event) {
+        this.setState({passwordRegCheck: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
+    };
 
     clickLogin() {
         try {
             mp.trigger('client:user:auth:login', // eslint-disable-line
                 this.state.login, this.state.password);
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     };
@@ -46,8 +61,7 @@ class Authorization extends React.Component {
                 this.state.mailReg, this.state.loginReg,
                 this.state.passwordReg, this.state.passwordRegCheck,
                 this.state.acceptRules);
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     };
@@ -97,16 +111,22 @@ class Authorization extends React.Component {
                     <div className="content-main">
                         <div className="content-auth">
                             <div className="button-main">
-                                <input type="radio" id="btn-radio-auth1" name="btn-radio-auth" defaultChecked="true" onChange={() => this.handleChange(true)} />
+                                <input type="radio" id="btn-radio-auth1" name="btn-radio-auth" defaultChecked="true"
+                                       onChange={() => this.handleChange(true)}/>
                                 <label htmlFor="btn-radio-auth1" className="button-auth">Авторизация</label>
-                                <input type="radio" id="btn-radio-auth2" name="btn-radio-auth" onChange={() => this.handleChange(false)} />
+                                <input type="radio" id="btn-radio-auth2" name="btn-radio-auth"
+                                       onChange={() => this.handleChange(false)}/>
                                 <label htmlFor="btn-radio-auth2" className="button-auth">Регистрация</label>
                             </div>
                             {this.state.showAuto ?
                                 <React.Fragment>
                                     <div className="auth-input">
-                                        <input type="text" pattern="[a-zA-Z0-9]*" placeholder="введите логин" name="login-auth" className="auth-input-style" value={this.state.login} onChange={this.valueLogin.bind(this)} />
-                                        <input type="password" pattern="[a-zA-Z0-9]*" placeholder="введите пароль" name="password-auth" className="auth-input-style"  value={this.state.password} onChange={this.valuePassword.bind(this)} />
+                                        <input type="text" pattern="[a-zA-Z0-9]*" placeholder="введите логин"
+                                               name="login-auth" className="auth-input-style" value={this.state.login}
+                                               onChange={this.valueLogin.bind(this)}/>
+                                        <input type="password" pattern="[a-zA-Z0-9]*" placeholder="введите пароль"
+                                               name="password-auth" className="auth-input-style"
+                                               value={this.state.password} onChange={this.valuePassword.bind(this)}/>
                                     </div>
                                     <div className="button-auth-click" onClick={this.clickLogin.bind(this)}>Войти</div>
                                 </React.Fragment>
@@ -114,16 +134,27 @@ class Authorization extends React.Component {
                                 <React.Fragment>
                                     <div className="auth-input">
                                         <div className="reg-bloc">
-                                            <input type="text" pattern="[a-zA-Z0-9]*" placeholder="Придумайте логин" name="create-login" className="reg-input-style" value={this.state.loginReg} onChange={this.valueLoginReg.bind(this)} />
-                                            <input type="text" placeholder="Введите свой E-mail" name="create-email" className="reg-input-style" onChange={this.valueMailReg.bind(this)} />
+                                            <input type="text" pattern="[a-zA-Z0-9]*" placeholder="Придумайте логин"
+                                                   name="create-login" className="reg-input-style"
+                                                   value={this.state.loginReg}
+                                                   onChange={this.valueLoginReg.bind(this)}/>
+                                            <input type="text" placeholder="Введите свой E-mail" name="create-email"
+                                                   className="reg-input-style" onChange={this.valueMailReg.bind(this)}/>
 
                                         </div>
                                         <div className="reg-bloc">
-                                            <input type="password" pattern="[a-zA-Z0-9]*" placeholder="Придумайте пароль" value={this.state.passwordReg} name="create-password" className="reg-input-style" onChange={this.valuePasswordReg.bind(this)} />
-                                            <input type="password" pattern="[a-zA-Z0-9]*" placeholder="Повторите пароль" value={this.state.passwordRegCheck} name="create-password-repeat" className="reg-input-style" onChange={this.valuePasswordRegCheck.bind(this)} />
+                                            <input type="password" pattern="[a-zA-Z0-9]*"
+                                                   placeholder="Придумайте пароль" value={this.state.passwordReg}
+                                                   name="create-password" className="reg-input-style"
+                                                   onChange={this.valuePasswordReg.bind(this)}/>
+                                            <input type="password" pattern="[a-zA-Z0-9]*" placeholder="Повторите пароль"
+                                                   value={this.state.passwordRegCheck} name="create-password-repeat"
+                                                   className="reg-input-style"
+                                                   onChange={this.valuePasswordRegCheck.bind(this)}/>
                                         </div>
                                         <div className="reg-checkbox">
-                                            <input type="checkbox" name="chek1" id="chk1" className="chk-reg-inpt" defaultChecked={this.state.acceptRules} onChange={this.acceptRules} />
+                                            <input type="checkbox" name="chek1" id="chk1" className="chk-reg-inpt"
+                                                   defaultChecked={this.state.acceptRules} onChange={this.acceptRules}/>
                                             <label className="chk_reg" htmlFor="chk1">
                                                 <div className="chk-circle"></div>
                                                 <span>Согласен с правилами проекта и принимаю условия</span>
@@ -140,4 +171,5 @@ class Authorization extends React.Component {
         )
     }
 }
+
 export default Authorization;

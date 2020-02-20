@@ -5,18 +5,22 @@
     position: absolute;
     z-index: -1;
 }
+
 .hud-position-rightbottom {
     margin-left: auto;
     margin-top: auto;
 }
+
 .hud-position-leftbottom {
     margin-right: auto;
     margin-top: auto;
 }
+
 .player-hud {
     display: flex;
     margin-bottom: 32px;
 }
+
 .player-hud .mic {
     width: 48px;
     height: 48px;
@@ -26,11 +30,13 @@
     align-items: center;
     justify-content: center;
 }
+
 .player-hud .mic .mic-img {
     background: url(../img/mic-off.png) no-repeat;
     width: 21px;
     height: 36px;
 }
+
 .player-hud .needs {
     width: 144px;
     height: 47.99px;
@@ -40,13 +46,16 @@
     align-items: center;
     flex-direction: column;
 }
+
 .needs-box {
     display: flex;
     align-items: center;
 }
+
 .needs-box:last-child {
     margin-top: 10px;
 }
+
 .needs-box .img-drink {
     background: url(../img/drink.png) no-repeat;
     width: 12px;
@@ -54,23 +63,27 @@
     margin-right: 9px;
     margin-left: 4px;
 }
+
 .needs-box .img-eat {
     background: url(../img/eat.png) no-repeat;
     width: 19px;
     height: 15px;
     margin-right: 6px;
 }
+
 .liner-needs {
     width: 84px;
     height: 7px;
-    background:rgb(71, 71, 71);
+    background: rgb(71, 71, 71);
 }
+
 .color-liner {
     background: #48b9f2;
     height: inherit;
     transition-duration: 0.2s;
 }
-.needs-text{
+
+.needs-text {
     font-family: "RobotoLight";
     font-size: 9px;
     color: #fff;
@@ -78,6 +91,7 @@
     width: 22px;
     text-align: left;
 }
+
 .player-hud .money {
     width: 188px;
     height: 48px;
@@ -89,13 +103,16 @@
     flex-direction: column;
     overflow: hidden;
 }
+
 .money-box {
     display: flex;
     align-items: center;
 }
-.money-box:last-child{
+
+.money-box:last-child {
     margin-top: 6px;
 }
+
 .money-box .img-wallet {
     background: url(../img/wallet.png) no-repeat;
     width: 21px;
@@ -103,6 +120,7 @@
     margin-left: 12px;
     margin-right: 10px;
 }
+
 .money-box .img-credit-card {
     background: url(../img/credit-card.png) no-repeat;
     width: 21px;
@@ -110,6 +128,7 @@
     margin-left: 12px;
     margin-right: 10px;
 }
+
 .wallet-text {
     font-size: 15px;
     font-family: "RobotoLight";
@@ -119,6 +138,7 @@
     text-overflow: ellipsis;
     width: calc(100% - 55px);
 }
+
 .credit-text {
     font-size: 15px;
     font-family: "RobotoLight";
@@ -128,13 +148,16 @@
     text-overflow: ellipsis;
     width: calc(100% - 55px);
 }
+
 .use-mic {
     filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
 }
-.car-hud{
+
+.car-hud {
     display: flex;
     margin-bottom: 2px;
 }
+
 .elements-auto {
     width: 194px;
     height: 48px;
@@ -144,36 +167,42 @@
     justify-content: center;
     align-items: center;
 }
-.bak-oil{
+
+.bak-oil {
     width: 188px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
     display: flex;
     flex-direction: column;
 }
+
 .light-auto {
     background: url(../img/light.png) no-repeat;
     width: 50px;
     height: 29px;
 }
+
 .off-door-auto {
     background: url(../img/off-door.png) no-repeat;
     width: 48px;
     height: 36px;
     margin-left: 20px;
 }
+
 .on-door-auto {
     background: url(../img/on-door.png) no-repeat;
     width: 48px;
     height: 29px;
     margin-left: 20px;
 }
+
 .key-auto {
     background: url(../img/key.png) no-repeat;
     width: 48px;
     height: 24px;
     margin-left: 15px;
 }
+
 .oil-text {
     margin-top: 6px;
     display: flex;
@@ -182,33 +211,39 @@
     font-size: 15px;
     color: #fff;
 }
-.oil-tt{
+
+.oil-tt {
     margin-left: 12px;
 }
-.oil-num{
+
+.oil-num {
     margin-left: auto;
     margin-right: 11px;
 }
+
 .oil-liner {
     width: 166.99px;
     height: 6.99px;
-    background:rgb(71, 71, 71);
+    background: rgb(71, 71, 71);
     margin-top: 6px;
     margin-left: 12px;
     overflow: hidden;
 }
-.full-liner{
+
+.full-liner {
     background: #48b9f2;
     height: inherit;
     transition-duration: 0.2s;
 }
-.speedbox-main{
+
+.speedbox-main {
     margin-bottom: 26px;
     width: 432px;
     display: flex;
     justify-content: center;
     position: relative;
 }
+
 .speedbox-main-small {
     margin-bottom: 26px;
     width: 432px;
@@ -244,19 +279,21 @@
     overflow: hidden;
     height: 195px;
 }
+
 .speedbox-groove {
     width: 390px;
     height: 195px;
     background: transparent;
     border-top-left-radius: 195px;
     border-top-right-radius: 195px;
-    border: 14.69px solid rgb(0, 0, 0,0.302);
+    border: 14.69px solid rgb(0, 0, 0, 0.302);
     border-bottom: 0;
     box-sizing: border-box;
     position: absolute;
     left: 0;
     top: 0;
 }
+
 .speedbox-score {
     position: absolute;
     left: 0;
@@ -273,6 +310,7 @@
     z-index: 1;
     transition: transform 0.3s ease;
 }
+
 .backg-speed {
     background: url(../img/speed.svg) no-repeat;
     width: 426px;
@@ -284,6 +322,7 @@
     justify-content: center;
     zoom: 0.8;
 }
+
 .backg-speed .speed-txt {
     font-family: "RobotoBold";
     font-size: 48px;
@@ -292,6 +331,21 @@
     margin-top: auto;
     margin-bottom: 40px;
 }
+
+.gang-war-info {
+    width: 260px;
+    height: 114px;
+    background: rgb(0, 0, 0, 0.502);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 19px;
+    padding-right: 19px;
+    position: absolute;
+    bottom: 30px;
+    left: 12px;
+}
+
 .gps-main {
     /*width: 386px;*/
     height: 64px;
@@ -304,6 +358,7 @@
     padding-left: 19px;
     padding-right: 19px;
 }
+
 .gps-title {
     font-family: "Roboto";
     color: rgb(72, 185, 242);
@@ -311,12 +366,14 @@
     text-align: left;
     margin-bottom: 5px;
 }
+
 .gps-txt {
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
     font-size: 14px;
     text-align: left;
 }
+
 .watch-main {
     width: 153px;
     height: 48px;
@@ -326,6 +383,7 @@
     display: flex;
     flex-direction: row;
 }
+
 .watch-main .degrees {
     width: 82px;
     display: flex;
@@ -336,13 +394,15 @@
     color: rgb(255, 255, 255);
     text-align: center;
 }
-.watch-main .time-box{
+
+.watch-main .time-box {
     width: 62px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 19px;
 }
+
 .time-box .time {
     width: inherit;
     height: 14px;
@@ -354,6 +414,7 @@
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
 }
+
 .time-img-watch {
     width: 12px;
     height: 12px;
@@ -361,23 +422,48 @@
     background-size: cover;
     margin-left: 3px
 }
+
+.zone-box {
+    margin-left: 323px;
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.time-img-greenzone {
+    width: 60px;
+    height: 60px;
+    background: url(../img/GreenZone.png) no-repeat;
+    background-size: cover;
+}
+
+.time-img-yellowzone {
+    width: 60px;
+    height: 60px;
+    background: url(../img/YellowZone.png) no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+}
+
 .time-box .date {
     margin-top: 5px;
     font-size: 12.7px;
     font-family: "RobotoLight";
     color: rgb(255, 255, 255);
 }
+
 .hud-position-righttop {
     width: inherit;
     display: flex;
     position: absolute;
 }
+
 .logo-main {
     margin-top: 18px;
     margin-right: 37px;
     display: flex;
-    margin-left:  auto;
+    margin-left: auto;
 }
+
 .logo-main .logo-img {
     background: url('../img/dnlogo.gif') no-repeat;
     background-size: cover;
@@ -386,6 +472,7 @@
     width: 82px;
     height: 82px;
 }
+
 .logo-main .logo-info {
     text-align: right;
     font-size: 13px;
@@ -393,6 +480,7 @@
     color: #fff;
     font-family: 'Roboto';
 }
+
 .logo-main .logo-ammo {
     position: absolute;
     display: flex;
@@ -403,31 +491,37 @@
     padding: 8px;
     background: rgb(0, 0, 0, 0.502);
 }
+
 .logo-main .logo-ammo-img {
     width: 23px;
     height: 17px;
     margin-right: 2px;
 }
+
 .logo-main .logo-ammo-img.ammo-safe {
     width: 23px;
     background: url("../img/ammo-sf.png") no-repeat;
     background-size: contain;
 }
+
 .logo-main .logo-ammo-img.ammo-single {
     width: 11px;
     background: url("../img/ammo-s.png") no-repeat;
     background-size: contain;
 }
+
 .logo-main .logo-ammo-img.ammo-burst {
     width: 18px;
     background: url("../img/ammo-b.png") no-repeat;
     background-size: contain;
 }
+
 .logo-main .logo-ammo-img.ammo-auto {
     width: 23px;
     background: url("../img/ammo.png") no-repeat;
     background-size: contain;
 }
+
 .span-bold {
     font-family: 'RobotoBlack';
 }
