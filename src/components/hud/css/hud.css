@@ -332,6 +332,20 @@
     margin-bottom: 40px;
 }
 
+.gang-war-info {
+    width: 260px;
+    height: 114px;
+    background: rgb(0, 0, 0, 0.502);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 19px;
+    padding-right: 19px;
+    position: absolute;
+    bottom: 30px;
+    left: 12px;
+}
+
 .gps-main {
     /*width: 386px;*/
     height: 64px;
