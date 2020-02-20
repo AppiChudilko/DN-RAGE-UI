@@ -35,7 +35,7 @@ input {
   cursor: pointer;
 }
 ::-webkit-scrollbar {
-    display: none;
+    width: 0;
 }
 input:focus::-webkit-input-placeholder { color:transparent; }
 .container {
@@ -45,6 +45,7 @@ input:focus::-webkit-input-placeholder { color:transparent; }
 .hide {
     display: none !important;
 }
+img { pointer-events: none; }
 .box{
 	width: -webkit-fill-available;
   height: -webkit-fill-available;

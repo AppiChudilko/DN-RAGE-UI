@@ -16,6 +16,7 @@ import Walkietalkie from './components/walkietalkie/Walkietalkie';
 import WorkID from './components/workid/WorkID';
 import ModalInput from './components/modalinput/ModalInput';
 import Notification from './components/notification/Notification';
+import CarShop from './components/carshop/CarShop';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Walkietalkie />
         <ModalInput />
         <Notification />
+        <CarShop />
     </React.Fragment>
   );
 }

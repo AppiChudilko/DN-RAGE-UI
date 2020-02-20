@@ -5,6 +5,8 @@
 	height: -webkit-fill-available;
     display: flex;
     flex-direction: row;
+    position: absolute;
+    z-index: 1;
 }
 .background-auth {
     width: inherit;
