@@ -38,6 +38,14 @@ function notify(type, layout, message, time) {
     });
 }
 
+setInterval(function () {
+    try {
+        mp.trigger('client:ui:checker'); // eslint-disable-line
+    }
+    catch (e) {
+    }
+}, 1000);
+
 // notify(0, 1, 'Видимо произошла какая-то непредвиденная ошибка ', 5000)
 // notify(1, 1, 'Видимо произошла какая-то непредвиденная ошибка', 3000)
 // notify(2, 1, 'Видимо произошла какая-то непредвиденная ошибка', 2000)
