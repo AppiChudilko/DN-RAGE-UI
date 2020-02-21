@@ -49,8 +49,31 @@ class ChangePlayer extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'ChangePlayer.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('ChangePlayer', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'switch') {
+                this.setState({show: !this.state.show})
+            } else if (value.type === 'updatePlayers') {
+                this.setState({first_character_create: value.isShow1});
+                this.setState({second_character_create: value.isShow2});
+                this.setState({third_character_create: value.isShow3});
+                this.setState({info_player: value.players});
+
+                //this.props.changeImg(); TODO надо тут обновить картинку, но чет не работает
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('ChangePlayer', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

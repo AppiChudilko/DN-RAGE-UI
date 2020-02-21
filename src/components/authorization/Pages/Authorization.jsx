@@ -18,6 +18,25 @@ class Authorization extends React.Component {
         }
     };
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Authorization.jsx', error, errorInfo); // eslint-disable-line
+    }
+
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            if(this.state.showAuto) this.clickLogin();
+            else this.clickReg();
+        }
+    }
+
+    componentDidMount(){
+        document.addEventListener("keydown", this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+    }
+
     handleChange(value) {
         this.setState({showAuto: value});
     };
@@ -45,6 +64,8 @@ class Authorization extends React.Component {
     valuePasswordRegCheck(event) {
         this.setState({passwordRegCheck: event.target.value.replace(/[^a-zA-Z0-9]+/g, '')})
     };
+
+    
 
     clickLogin() {
         try {
@@ -123,10 +144,12 @@ class Authorization extends React.Component {
                                     <div className="auth-input">
                                         <input type="text" pattern="[a-zA-Z0-9]*" placeholder="введите логин"
                                                name="login-auth" className="auth-input-style" value={this.state.login}
-                                               onChange={this.valueLogin.bind(this)}/>
+                                               onChange={this.valueLogin.bind(this)}
+                                               />
                                         <input type="password" pattern="[a-zA-Z0-9]*" placeholder="введите пароль"
                                                name="password-auth" className="auth-input-style"
-                                               value={this.state.password} onChange={this.valuePassword.bind(this)}/>
+                                               value={this.state.password} onChange={this.valuePassword.bind(this)}
+                                               />
                                     </div>
                                     <div className="button-auth-click" onClick={this.clickLogin.bind(this)}>Войти</div>
                                 </React.Fragment>
@@ -137,24 +160,29 @@ class Authorization extends React.Component {
                                             <input type="text" pattern="[a-zA-Z0-9]*" placeholder="Придумайте логин"
                                                    name="create-login" className="reg-input-style"
                                                    value={this.state.loginReg}
-                                                   onChange={this.valueLoginReg.bind(this)}/>
+                                                   onChange={this.valueLoginReg.bind(this)}
+                                                   />
                                             <input type="text" placeholder="Введите свой E-mail" name="create-email"
-                                                   className="reg-input-style" onChange={this.valueMailReg.bind(this)}/>
+                                                   className="reg-input-style" onChange={this.valueMailReg.bind(this)}
+                                                   />
 
                                         </div>
                                         <div className="reg-bloc">
                                             <input type="password" pattern="[a-zA-Z0-9]*"
                                                    placeholder="Придумайте пароль" value={this.state.passwordReg}
                                                    name="create-password" className="reg-input-style"
-                                                   onChange={this.valuePasswordReg.bind(this)}/>
+                                                   onChange={this.valuePasswordReg.bind(this)}
+                                                   />
                                             <input type="password" pattern="[a-zA-Z0-9]*" placeholder="Повторите пароль"
                                                    value={this.state.passwordRegCheck} name="create-password-repeat"
                                                    className="reg-input-style"
-                                                   onChange={this.valuePasswordRegCheck.bind(this)}/>
+                                                   onChange={this.valuePasswordRegCheck.bind(this)}
+                                                   />
                                         </div>
                                         <div className="reg-checkbox">
                                             <input type="checkbox" name="chek1" id="chk1" className="chk-reg-inpt"
-                                                   defaultChecked={this.state.acceptRules} onChange={this.acceptRules}/>
+                                                   defaultChecked={this.state.acceptRules} onChange={this.acceptRules}
+                                                   />
                                             <label className="chk_reg" htmlFor="chk1">
                                                 <div className="chk-circle"></div>
                                                 <span>Согласен с правилами проекта и принимаю условия</span>

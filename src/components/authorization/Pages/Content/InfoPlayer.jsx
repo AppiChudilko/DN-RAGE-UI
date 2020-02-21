@@ -35,6 +35,10 @@ class InfoPlayer extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'InfoPlayer.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         return (
             <React.Fragment>

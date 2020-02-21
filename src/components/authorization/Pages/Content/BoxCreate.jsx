@@ -6,6 +6,10 @@ class BoxCreate extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'BoxCreate.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     clickCreatePlayer() {
         mp.trigger('client:events:createNewPlayer'); // eslint-disable-line
     };
