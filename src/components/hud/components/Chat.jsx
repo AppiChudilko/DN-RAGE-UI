@@ -284,32 +284,6 @@ class Chat extends React.Component {
             $(".ui_element").show();
             chatAPI.push("Добро пожаловать на DEDNET 💀");
             chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
-            chatAPI.push("Желаем приятной игры ;]");
 
             $("body").keydown(function (event) {
                 if (event.which == 84 && chat.input == null
