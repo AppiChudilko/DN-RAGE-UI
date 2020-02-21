@@ -8,6 +8,10 @@ class FaceSecond extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'FaceSecond.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         return (
             <React.Fragment>

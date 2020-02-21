@@ -215,6 +215,10 @@ export default class CarShop extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Carshop.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
 
         EventManager.addHandler('carShop', value => {
@@ -229,6 +233,21 @@ export default class CarShop extends React.Component {
         })
 
         this.setState({change_car: this.state.car_list[0]}, () => console.log(this.state.change_car.color_car_main.indexOf(this.state.change_car.current_main_color)))
+    }
+
+    componentWillUnmount() {
+
+        EventManager.removeHandler('carShop', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({show: value.isShow});
+                this.setState({car_list: value.list});
+            } else return;
+        })
+
     }
 
     componentDidUpdate(prevProp, prevState) {

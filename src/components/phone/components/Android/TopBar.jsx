@@ -6,6 +6,10 @@ class TopBar extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'TopBar.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         this.batteryCharge();
         this.network();

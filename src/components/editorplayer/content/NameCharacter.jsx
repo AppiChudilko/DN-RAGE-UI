@@ -7,6 +7,10 @@ class NameCharacter extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'NameCharacter.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     changeAge(val) {
         try {
             mp.trigger('client:events:custom:updateAge', // eslint-disable-line

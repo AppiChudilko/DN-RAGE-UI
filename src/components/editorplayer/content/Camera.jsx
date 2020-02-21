@@ -11,6 +11,10 @@ class Camera extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Camera.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     changeCam() {
         mp.trigger('client:events:custom:camera' // eslint-disable-line
             , this.state.value, this.state.value2, this.state.value3)

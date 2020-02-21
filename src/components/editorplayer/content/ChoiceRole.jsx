@@ -29,6 +29,10 @@ class ChoiceRole extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'ChoiceRole.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         return (
             <React.Fragment>

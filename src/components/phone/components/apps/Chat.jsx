@@ -14,6 +14,10 @@ class Chat extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Chat.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentWillMount() {
         let chat = null;
         this.props.data.forEach((e) => {

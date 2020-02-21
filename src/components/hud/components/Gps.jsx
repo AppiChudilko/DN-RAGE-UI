@@ -17,8 +17,38 @@ class Gps extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Gps.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('hudg', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({show: value.isShow});
+                this.setState({district: value.district});
+                this.setState({street: value.street});
+                this.setState({background: value.background});
+            }
+            else if (value.type === 'updateGangInfo') {
+                this.setState({att: value.top1});
+                this.setState({def: value.top2});
+                this.setState({timer: value.timerCounter});
+            }
+            else if (value.type === 'showGangInfo') {
+                this.setState({showGang: true});
+            }
+            else if (value.type === 'hideGangInfo') {
+                this.setState({showGang: false});
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('hudg', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

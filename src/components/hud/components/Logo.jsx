@@ -19,8 +19,32 @@ class Logo extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Logo.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('hudl', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({date: value.date});
+                this.setState({time: value.time});
+                this.setState({online: value.online});
+                this.setState({max_player: value.max_player});
+                this.setState({id: value.id});
+                this.setState({showAmmo: value.showAmmo});
+                this.setState({ammoCount: value.ammoCount});
+                this.setState({ammoMode: value.ammoMode});
+                this.setState({background: value.background});
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('hudl', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

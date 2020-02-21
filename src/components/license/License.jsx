@@ -23,6 +23,10 @@ class License extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'License.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
 
         EventManager.addHandler('license', value => {
@@ -38,6 +42,20 @@ class License extends React.Component {
         })
 
         this.checkSexandImg();
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('license', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({player_info: value.info})
+                this.setState({show: value.isShow})
+                this.checkSexandImg();
+            } else return;
+        })
     }
 
     checkSexandImg() {

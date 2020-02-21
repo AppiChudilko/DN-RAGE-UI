@@ -18,9 +18,35 @@ class Notification extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Notification.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
 
         EventManager.addHandler('dialog', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                if (this.state.show)
+                    this.closeBtn.bind(this);
+
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({show: value.isShow});
+                this.setState({isShowClose: value.isShowClose});
+                this.setState({type: value.dtype});
+                this.setState({position: value.position});
+                this.setState({icon: value.icon});
+                this.setState({title: value.title});
+                this.setState({text: value.text.toString().replace('<br>', '\n')});
+                this.setState({value: value.buttons});
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('dialog', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

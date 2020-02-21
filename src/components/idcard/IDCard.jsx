@@ -24,6 +24,10 @@ class IDCard extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'IDCard.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
 
         EventManager.addHandler('cardid', value => {
@@ -40,6 +44,21 @@ class IDCard extends React.Component {
         });
 
         this.checkSexandImg();
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('cardid', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({player_info: value.info});
+                this.setState({show: value.isShow});
+
+                this.checkSexandImg();
+            } else return;
+        });
     }
 
     checkSexandImg() {

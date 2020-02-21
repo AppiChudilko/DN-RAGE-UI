@@ -7,6 +7,10 @@ class InteractionMenu extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'InteractionMenu.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         if (!this.props.show) {
             return null;

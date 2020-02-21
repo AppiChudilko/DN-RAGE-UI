@@ -374,6 +374,10 @@ class Android extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Android.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('phone3', value => {
             if (value.type === 'updateMenu') {
@@ -418,6 +422,51 @@ class Android extends React.Component {
             } else return;
         })
 
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('phone3', value => {
+            if (value.type === 'updateMenu') {
+                try {
+                    this.setState({menu: value.menu});
+                    //UMenu.forceUpdate();
+                    window.scrollTo(0, 0); //TODO Не работает((
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updatePhonebook') {
+                try {
+                    this.setState({phonebook: value.phonebook});
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updateMessenger') {
+                try {
+                    this.setState({chats: value.chats});
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updateMessengerChat') {
+                try {
+                    this.setState(prevState => ({...prevState.chats[value.idx].message = value.messages}))
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'addMessengerMessage') {
+                try {
+                    this.newMessage(value.phone, value.text, value.date, value.time);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updateTopBar') {
+                this.setState({top_bar: value.bar})
+            } else return;
+        })
     }
 
     componentDidUpdate(prevProp, prevState) {

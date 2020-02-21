@@ -13,6 +13,10 @@ class Walkietalkie extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Walkietalkie.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         if (!this.state.show) {
             return null;

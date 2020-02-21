@@ -10,6 +10,10 @@ class ProfileContact extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'ProfileContact.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     deleteContact(contact) {
         // Вы точно хотите навсегда удплить выбранный контакт?
         //this.props.openModal("Вы уверены, что хотите удалить?", "",['Нет', 'Да'], "");

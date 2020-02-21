@@ -14,6 +14,10 @@ class PhoneBook extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'PhoneBook.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     handleChange(value) {
         this.setState({page: value});
     }

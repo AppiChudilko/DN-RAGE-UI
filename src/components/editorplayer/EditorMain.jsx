@@ -15,8 +15,28 @@ class EditorMain extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'EditorMain.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('customization', value => { // Скрыть/Показать кастомку, переходы по страницам
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'switch') {
+                this.setState({show: !this.state.show})
+            } else if (value.type === 'choicerole') {
+                this.setState({path: "/choicerole"})
+            } else if (value.type === 'showFamilyPage') {
+                this.setState({path: "/editor/family-character"})
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('customization', value => { // Скрыть/Показать кастомку, переходы по страницам
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

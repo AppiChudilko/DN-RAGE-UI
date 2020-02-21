@@ -14,6 +14,10 @@ class EditContact extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'EditContact.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentWillMount() {
         if (this.props.editing_contact) {
             this.setState({contact: {...this.props.selected_contact}})

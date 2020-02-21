@@ -6,6 +6,10 @@ class Modal extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Modal.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     callback = (action, params) => {
         console.log(action, params)
         try {

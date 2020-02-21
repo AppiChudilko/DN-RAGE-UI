@@ -22,6 +22,10 @@ class ModalInput extends React.Component {
         mp.trigger('client:modalinput:callBack', action, ...args); // eslint-disable-line
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'ModalInput.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
 
         EventManager.addHandler('modalinput', value => {
@@ -46,6 +50,26 @@ class ModalInput extends React.Component {
             this.textarea.focus();
             Autosize(this.textarea);
         } else return;
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('modalinput', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+
+                this.setState({show: value.isShow});
+                this.setState({title: value.title});
+                this.setState({defaultText: value.text});
+                this.setState({text: value.text});
+                this.setState({maxLength: value.maxLength});
+
+                this.textarea.focus();
+                Autosize(this.textarea);
+            } else return;
+        })
     }
 
     textChange(e) {

@@ -6,6 +6,10 @@ class SliderEditor extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'SliderEditor.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     render() {
         return (
             <React.Fragment>

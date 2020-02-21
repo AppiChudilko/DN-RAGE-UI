@@ -8,6 +8,10 @@ class Role extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Role.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     selectChar(index) {
         mp.trigger('client:events:custom:choiceRole', index) // eslint-disable-line
     }

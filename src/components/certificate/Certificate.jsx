@@ -51,6 +51,30 @@ class Certificate extends React.Component {
         this.checkWork();
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Certificate.jsx', error, errorInfo); // eslint-disable-line
+    }
+
+    componentWillUnmount() {
+
+        EventManager.removeHandler('certificate', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({player_info: value.info})
+                this.setState({type: value.typef})
+                this.setState({show: value.isShow})
+
+                this.checkSexandImg();
+                this.checkWork();
+            } else return;
+        })
+
+    }
+
+
     checkWork() {
         switch (this.state.type) {
             case 'gov':

@@ -9,6 +9,10 @@ class UFrame extends React.Component {
         this.checkboxChange = this.checkboxChange.bind(this)
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'UFrame.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     callback = (action, ...args) => {
         console.log(action, this.props.menu, this.props.id, ...args)
         mp.trigger('client:phone:callBack', action, this.props.menu, this.props.id, ...args); // eslint-disable-line

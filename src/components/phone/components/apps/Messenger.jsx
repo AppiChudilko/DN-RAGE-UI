@@ -6,6 +6,10 @@ class Messenger extends React.Component {
         this.state = {}
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Messenger.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentWillMount() {
         this.setState({chats: this.props.data}, () => {
             for (let i = 0; i < this.state.chats.length; i++) {

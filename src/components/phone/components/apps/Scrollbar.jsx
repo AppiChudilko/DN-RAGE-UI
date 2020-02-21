@@ -10,6 +10,10 @@ class Scrollbar extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Scrollbar.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     callback = (action, ...args) => {
         if (this.state.checked === false)
             return;

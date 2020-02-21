@@ -8,6 +8,10 @@ class InputModal extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'InputModal.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     callback = (action, params, text) => {
         console.log(action, params, text)
         try {

@@ -1,11 +1,14 @@
 import React from 'react';
 import './css/hud.css'
+import './css/main.css'
+import './css/checkbox.css'
 import Player from './components/Player';
 import Car from './components/Car';
 import Gps from './components/Gps';
 import Watch from './components/Watch';
 import Logo from './components/Logo';
 import EventManager from "../../EventManager";
+import Chat from './components/Chat';
 
 class Hud extends React.Component {
     constructor(props) {
@@ -15,8 +18,22 @@ class Hud extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Hud.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('hud', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('hud', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {
@@ -32,6 +49,9 @@ class Hud extends React.Component {
         return (
             <React.Fragment>
                 <div className="hud-main" id="box">
+                <div className='hud-position-lefttop'>
+                        <Chat/>
+                    </div>
                     <div className='hud-position-righttop'>
                         <Logo/>
                     </div>

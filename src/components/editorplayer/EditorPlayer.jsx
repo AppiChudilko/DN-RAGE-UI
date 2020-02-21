@@ -184,6 +184,10 @@ class EditorPlayer extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'EditorPlayer.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         this.updateStatsFamilyCharacter();
     }

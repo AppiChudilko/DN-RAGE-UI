@@ -22,6 +22,9 @@ class Car extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Car.jsx', error, errorInfo); // eslint-disable-line
+    }
 
     componentDidMount() {
 
@@ -46,6 +49,30 @@ class Car extends React.Component {
         })
 
         this.speed();
+    }
+
+    componentWillUnmount() {
+
+        EventManager.removeHandler('hudc', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({show: value.isShow});
+                this.setState({isShowSmall: value.isShowSmall});
+                this.setState({light: value.light});
+                this.setState({door: value.door});
+                this.setState({engine: value.engine});
+                this.setState({fuel: value.fuel});
+                this.setState({fuelType: value.fuelType});
+                this.setState({max_fuel: value.max_fuel});
+                this.setState({speed: value.speed});
+                this.setState({speedLabel: value.speedLabel});
+                this.setState({background: value.background});
+            } else return;
+        })
+
     }
 
     componentDidUpdate(prevProp, prevState) {

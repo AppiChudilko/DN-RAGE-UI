@@ -16,8 +16,30 @@ class Watch extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'Watch.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentDidMount() {
         EventManager.addHandler('hudw', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateValues') {
+                this.setState({show: value.isShow});
+                this.setState({time: value.time});
+                this.setState({date: value.date});
+                this.setState({temp: value.temp});
+                this.setState({showGreen: value.showGreen});
+                this.setState({showYellow: value.showYellow});
+                this.setState({background: value.background});
+            } else return;
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('hudw', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
             } else if (value.type === 'hide') {

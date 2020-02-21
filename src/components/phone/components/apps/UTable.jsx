@@ -128,6 +128,10 @@ class UTable extends React.Component {
         }
     }
 
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'UTable.jsx', error, errorInfo); // eslint-disable-line
+    }
+
     componentWillMount() {
         this.state.data.length <= 10 ?
             this.setState(prevState => ({...prevState.options.pageSize = this.state.data.length}))
