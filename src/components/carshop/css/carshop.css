@@ -8,9 +8,8 @@
 .car-leftmenu {
     margin-right:auto;
     width: 405px;
-    height: 1042px;
+    height: 100%;
     background: rgb(28, 28, 28, 0.3);
-    margin-left: 2px;
     overflow: hidden;
 }
 .left-title-car {
@@ -28,8 +27,7 @@
 }
 .left-list-menu-car {
     width: 100%;
-    height: 90.5%;
-    margin-top: 37px;
+    height: calc(100% - 65px);
     overflow: scroll;    
 }
 .left-list-menu-car::-webkit-scrollbar { width: 7px; height: 0px;}
@@ -97,7 +95,7 @@ input[type="radio"]:checked + label .car-img-settings  {
     margin-left: auto;
     margin-right: 61px;
     margin-bottom: auto;
-    margin-top: 263px;
+    margin-top: 170px;
 }
 .m-linear-r {
     width: 100%;
@@ -227,7 +225,8 @@ input[type="radio"]:checked + .ccslider-box {
     font-family: 'HACKED';
     font-size: 60px;
     color: #fff;
-    margin-bottom: 34px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 .b-l-btn-box {
     width: 164px;
@@ -248,7 +247,13 @@ input[type="radio"]:checked + .ccslider-box {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 100px;
+    margin-top: 120px;
+}
+.rent-list-c-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
 }
 .slick-slide div {
     display: flex;
