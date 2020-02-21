@@ -8,9 +8,9 @@ class Watch extends React.Component {
             show: true,
             showGreen: false,
             showYellow: false,
-            time: '14:00',
-            date: '13.01.2020',
-            temp: '+20*C',
+            time: '00:00',
+            date: '01.01.1990',
+            temp: '',
             color: '#48B9F2',
             background: 0.5,
         }

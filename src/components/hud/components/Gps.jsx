@@ -6,8 +6,8 @@ class Gps extends React.Component {
         super(props)
         this.state = {
             show: true,
-            district: 'Район',
-            street: 'Международная станция Якитики',
+            district: 'Загрузка...',
+            street: 'Загрузка...',
             showGang: false,
             att: 0,
             def: 0,

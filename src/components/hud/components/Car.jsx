@@ -12,8 +12,8 @@ class Car extends React.Component {
             engine: false,
             fuel: 100,
             fuelType: 'L',
-            max_fuel: 200,// Максимальная вместимость топливного бака
-            speed: 40,
+            max_fuel: 100,// Максимальная вместимость топливного бака
+            speed: 0,
             speedLabel: 'MP/H',
 
             deg: -45,

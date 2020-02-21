@@ -11,8 +11,10 @@ const EventManager = window.EventManager || {
 
     removeHandler: function (eventName, handler) {
         if (eventName in this.events) {
-            var index = this.events[eventName].indexOf(handler);
-            this.events[eventName].splice(index, 1);
+            this.events[eventName] = null;
+            delete this.events[eventName];
+            //var index = this.events[eventName].indexOf(handler);
+            //this.events[eventName].splice(index, 1);
         }
     },
 };

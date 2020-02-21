@@ -1,6 +1,6 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
-import $ from 'jquery'; 
+import $ from 'jquery';
 
 class Chat extends React.Component {
     constructor(props) {
@@ -8,8 +8,16 @@ class Chat extends React.Component {
         this.state = {
             show: true,
             fontFamily: 'Roboto',
-            fontsize: 13,
-            opacity: 1,
+            fontSize: 12,
+            fontWeight: 400,
+            fontOutline: true,
+            bgState: 2,
+            bgOpacity: 0.5,
+            opacity: 5,
+            width: 30,
+            height: 30,
+            timeoutHidden: 99999000,
+            //timeoutHidden: 5000,
         }
     }
 
@@ -18,26 +26,24 @@ class Chat extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('chat', value => {
-            if (value.type == 'hideHud') {
-                document.getElementById('chat').style.display = 'none';
-            }
-            if (value.type == 'showHud') {
-                document.getElementById('chat').style.display = 'block';
-            } else return;
-        });
+        EventManager.removeHandler('chat');
     }
 
     componentDidMount() {
         let chat =
         {
             size: 0,
-            history_limit: 15,  //Change this if you want to hold more/less chat history
+            history_limit: 50,  //Change this if you want to hold more/less chat history
             container: null,
             input: null,
             enabled: false,
             active: true
         };
+
+        let closeTimeout = null;
+
+        if (this.state.bgState === 2)
+            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + this.state.bgOpacity + ")");
 
         EventManager.addHandler('chat', value => {
             if (value.type == 'hideHud') {
@@ -45,11 +51,65 @@ class Chat extends React.Component {
             }
             if (value.type == 'showHud') {
                 document.getElementById('chat').style.display = 'block';
-            } else return;
+            }
+            if (value.type == 'updateSettings') {
+                this.setState({
+                    fontFamily: value.fontFamily,
+                    fontSize: value.fontSize,
+                    fontWeight: value.fontWeight,
+                    fontOutline: value.fontOutline,
+                    bgState: value.bgState,
+                    bgOpacity: value.bgOpacity,
+                    opacity: value.opacity,
+                    width: value.width,
+                    height: value.height,
+                    timeoutHidden: value.timeoutHidden,
+                })
+            }
+            if (value.type == 'push') {
+                chatAPI.push(value.message);
+            }
+            if (value.type == 'activate') {
+                chatAPI.activate(value.enable);
+            }
+            if (value.type == 'show') {
+                chatAPI.show(value.toggle);
+            }
+            if (value.type == 'clear') {
+                chatAPI.clear();
+            }
+            else return;
         });
 
         function enableChatInput(enable) {
-            mp.trigger("chatEnabled", enable); // eslint-disable-line
+            try {
+                mp.trigger("chatEnabled", enable); // eslint-disable-line
+            }
+            catch (e) {
+                console.log(e);
+            }
+
+            let ReactChat = new Chat();
+
+            if (enable) {
+                if (closeTimeout) {
+                    clearTimeout(closeTimeout);
+                    closeTimeout = null;
+                }
+                $("#chat_messages").fadeIn('fast');
+            }
+            else {
+                $("#chat_messages").fadeIn('fast');
+                if (closeTimeout) {
+                    clearTimeout(closeTimeout);
+                    closeTimeout = null;
+                }
+                if (ReactChat.state.timeoutHidden < 99999000) {
+                    closeTimeout = setTimeout(function () {
+                        $("#chat_messages").fadeOut('slow')
+                    }, ReactChat.state.timeoutHidden);
+                }
+            }
 
             if (chat.active == false
                 && enable == true)
@@ -58,19 +118,36 @@ class Chat extends React.Component {
             if (enable != (chat.input != null)) {
                 //chat_printing = enable;
 
-                mp.invoke("focus", enable); // eslint-disable-line
+                try {
+                    mp.invoke("focus", enable); // eslint-disable-line
+                }
+                catch (e) {
+                    console.log(e);
+                }
 
                 if (enable) {
                     chat.input = $("#chat").append('<div><input onkeyup="chatOnKeyUp()" id="chat_msg" type="text" /></div>').children(":last");
                     chat.input.children("input").focus();
-                    $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0.5)");
+
+                    if (ReactChat.state.bgState === 1)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
+                    else if (ReactChat.state.bgState === 2)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
+                    else
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
                 }
                 else {
                     chat.input.fadeOut('fast', function () {
                         chat.input.remove();
                         chat.input = null;
                     });
-                    $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0.0)");
+
+                    if (ReactChat.state.bgState === 1)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                    else if (ReactChat.state.bgState === 2)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
+                    else
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
                 }
             }
         }
@@ -147,6 +224,18 @@ class Chat extends React.Component {
                 if (chat.size >= chat.history_limit) {
                     chat.container.children(":last").remove();
                 }
+
+                $("#chat_messages").fadeIn('fast');
+                let ReactChat = new Chat();
+                if (closeTimeout) {
+                    clearTimeout(closeTimeout);
+                    closeTimeout = null;
+                }
+                if (ReactChat.state.timeoutHidden < 99999000) {
+                    closeTimeout = setTimeout(function () {
+                        $("#chat_messages").fadeOut('slow')
+                    }, ReactChat.state.timeoutHidden);
+                }
             },
 
             clear: () => {
@@ -168,6 +257,7 @@ class Chat extends React.Component {
                     $("#chat").hide();
 
                 chat.active = toggle;
+                this.setState({show: toggle});
             }
         };
 
@@ -193,8 +283,33 @@ class Chat extends React.Component {
 
             $(".ui_element").show();
             chatAPI.push("Добро пожаловать на DEDNET 💀");
-            chatAPI.push("Желаем приятной игры ; ]");
-            chatAPI.push("Если очень долго грузит, лучше перезайдите");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
+            chatAPI.push("Желаем приятной игры ;]");
 
             $("body").keydown(function (event) {
                 if (event.which == 84 && chat.input == null
@@ -210,10 +325,22 @@ class Chat extends React.Component {
                             value = value.substr(1);
 
                             if (value.length > 0)
-                                mp.invoke("command", value); // eslint-disable-line
+                            {
+                                try {
+                                    mp.invoke("command", value); // eslint-disable-line
+                                }
+                                catch (e) {
+                                    console.log(e);
+                                }
+                            }
                         }
                         else {
-                            mp.invoke("chatMessage", value); // eslint-disable-line
+                            try {
+                                mp.invoke("chatMessage", value); // eslint-disable-line
+                            }
+                            catch (e) {
+                                console.log(e);
+                            }
                         }
                     }
 
@@ -229,7 +356,16 @@ class Chat extends React.Component {
         }
         return (
             <React.Fragment>
-                <div id="chat" style={{ opacity: this.state.opacity, fontWeight: 400 + 'px', fontFamily: this.state.fontFamily, fontSize: this.state.fontsize + "px" }} className="ui_element">
+                <div id="chat" style={
+                    {
+                        width: this.state.width + '%',
+                        height: this.state.height + '%',
+                        opacity: this.state.opacity,
+                        fontWeight: this.state.fontWeight + 'px',
+                        fontFamily: this.state.fontFamily,
+                        fontSize: this.state.fontSize + "px"
+                    }
+                } className="ui_element chatBox">
                     <ul id="chat_messages"></ul>
                 </div>
             </React.Fragment>
