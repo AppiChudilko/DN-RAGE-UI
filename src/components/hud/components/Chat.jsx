@@ -7,17 +7,20 @@ class Chat extends React.Component {
         super(props)
         this.state = {
             show: true,
+
             fontFamily: 'Roboto',
             fontSize: 12,
+            lineHeight: 14,
             fontWeight: 400,
             fontOutline: true,
-            bgState: 2,
+            bgState: 1,
             bgOpacity: 0.5,
-            opacity: 5,
+            opacity: 1,
             width: 30,
             height: 30,
-            timeoutHidden: 99999000,
-            //timeoutHidden: 5000,
+            //timeoutHidden: 99999000,
+
+            timeoutHidden: 5000,
         }
     }
 
@@ -37,13 +40,16 @@ class Chat extends React.Component {
             container: null,
             input: null,
             enabled: false,
-            active: true
+            active: true,
+            bgState: this.state.bgState,
+            bgOpacity: this.state.bgOpacity,
+            timeoutHidden: this.state.timeoutHidden,
         };
 
         let closeTimeout = null;
 
-        if (this.state.bgState === 2)
-            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + this.state.bgOpacity + ")");
+        if (chat.bgState === 2)
+            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
 
         EventManager.addHandler('chat', value => {
             if (value.type == 'hideHud') {
@@ -56,6 +62,7 @@ class Chat extends React.Component {
                 this.setState({
                     fontFamily: value.fontFamily,
                     fontSize: value.fontSize,
+                    lineHeight: value.lineHeight,
                     fontWeight: value.fontWeight,
                     fontOutline: value.fontOutline,
                     bgState: value.bgState,
@@ -64,7 +71,18 @@ class Chat extends React.Component {
                     width: value.width,
                     height: value.height,
                     timeoutHidden: value.timeoutHidden,
-                })
+                });
+
+                console.log(this.state);
+
+                chat.bgState = value.bgState;
+                chat.bgOpacity = value.bgOpacity;
+                chat.timeoutHidden = value.timeoutHidden;
+
+                if (chat.bgState === 2)
+                    $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
+                else
+                    $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
             }
             if (value.type == 'push') {
                 chatAPI.push(value.message);
@@ -89,8 +107,6 @@ class Chat extends React.Component {
                 console.log(e);
             }
 
-            let ReactChat = new Chat();
-
             if (enable) {
                 if (closeTimeout) {
                     clearTimeout(closeTimeout);
@@ -104,10 +120,10 @@ class Chat extends React.Component {
                     clearTimeout(closeTimeout);
                     closeTimeout = null;
                 }
-                if (ReactChat.state.timeoutHidden < 99999000) {
+                if (chat.timeoutHidden < 99999000) {
                     closeTimeout = setTimeout(function () {
                         $("#chat_messages").fadeOut('slow')
-                    }, ReactChat.state.timeoutHidden);
+                    }, chat.timeoutHidden);
                 }
             }
 
@@ -129,10 +145,10 @@ class Chat extends React.Component {
                     chat.input = $("#chat").append('<div><input onkeyup="chatOnKeyUp()" id="chat_msg" type="text" /></div>').children(":last");
                     chat.input.children("input").focus();
 
-                    if (ReactChat.state.bgState === 1)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
-                    else if (ReactChat.state.bgState === 2)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
+                    if (chat.bgState === 1)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
+                    else if (chat.bgState === 2)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
                     else
                         $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
                 }
@@ -142,10 +158,10 @@ class Chat extends React.Component {
                         chat.input = null;
                     });
 
-                    if (ReactChat.state.bgState === 1)
+                    if (chat.bgState === 1)
                         $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
-                    else if (ReactChat.state.bgState === 2)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + ReactChat.state.bgOpacity + ")");
+                    else if (chat.bgState === 2)
+                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
                     else
                         $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
                 }
@@ -226,15 +242,14 @@ class Chat extends React.Component {
                 }
 
                 $("#chat_messages").fadeIn('fast');
-                let ReactChat = new Chat();
                 if (closeTimeout) {
                     clearTimeout(closeTimeout);
                     closeTimeout = null;
                 }
-                if (ReactChat.state.timeoutHidden < 99999000) {
+                if (chat.timeoutHidden < 99999000) {
                     closeTimeout = setTimeout(function () {
                         $("#chat_messages").fadeOut('slow')
-                    }, ReactChat.state.timeoutHidden);
+                    }, chat.timeoutHidden);
                 }
             },
 
@@ -337,9 +352,10 @@ class Chat extends React.Component {
                         opacity: this.state.opacity,
                         fontWeight: this.state.fontWeight + 'px',
                         fontFamily: this.state.fontFamily,
-                        fontSize: this.state.fontSize + "px"
+                        fontSize: this.state.fontSize + 'px',
+                        lineHeight: this.state.lineHeight + 'px'
                     }
-                } className="ui_element chatBox">
+                } className="ui_element">
                     <ul id="chat_messages"></ul>
                 </div>
             </React.Fragment>

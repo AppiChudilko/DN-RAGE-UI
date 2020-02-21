@@ -32,12 +32,7 @@ a{
     letter-spacing:.4px;
     margin-left:0px
 }
-@media screen and (min-height:1080px){
-    #chat{
-        font-size:18px!important;
-        font-weight:700
-    }
-}
+
 #chat ul#chat_messages{
     overflow-y:auto;
     transition: 0.3s;
