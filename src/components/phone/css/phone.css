@@ -8,6 +8,7 @@
     position: absolute;
     top: 23%;
     right: 25px;
+    z-index: 1;
 }
 
 .android-phone {
