@@ -412,6 +412,7 @@ class Android extends React.Component {
             }
             if (value.type === 'addMessengerMessage') {
                 try {
+                    console.log(value.phone, value.text, value.date, value.time);
                     this.newMessage(value.phone, value.text, value.date, value.time);
                 } catch (e) {
                     console.log(e);

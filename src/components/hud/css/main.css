@@ -21,11 +21,12 @@ a
 .ui_element
 {
 	display: none;
-	/* height: 100vh; */
-	position: absolute;
-	/* width: 100vw; */
-	/* z-index: 2; */
+	position: fixed;
+	/*height: 100vh;
+	width: 100vw;
+	z-index: 2;*/
 }
+
 #chat
 {
 	display: block;
@@ -38,25 +39,15 @@ a
 	text-shadow: 1px 1px 0 #333,-1px -1px 0 #333,1px -1px 0 #333,-1px 1px 0 #333,1px 1px 0 #333;
 	z-index: 0;
 }
-@media screen and (min-height:1080px)
-{
-	#chat
-	{
-		font-size: 18px!important;
-		font-weight: 700;
-	}
-}
 #chat ul#chat_messages
 {
-	height: 278px;
 	list-style-type: none;
-	margin-top: 2vh;
-	overflow-y: hidden;
+	overflow-y: auto;
 	padding: 10px 20px;
 	transform: rotate(180deg);
 	transition: 0.3s;
-    width: 28vw;
-    overflow: scroll;
+    width: 100%;
+	height: 100%;
 }
 #chat ul#chat_messages>li
 {
@@ -72,8 +63,8 @@ a
 	font-size: 13px;
 	line-height: 35px;
 	outline: 0;
-	padding: 5px 5px 5px 15px;
-	width: calc(30vw + 2px);
+	padding: 5px 20px;
+	width: 100%;
 }
 #chat::-webkit-scrollbar{
     width:5px

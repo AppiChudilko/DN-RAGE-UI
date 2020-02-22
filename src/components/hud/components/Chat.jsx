@@ -19,7 +19,6 @@ class Chat extends React.Component {
             width: 30,
             height: 30,
             //timeoutHidden: 99999000,
-
             timeoutHidden: 5000,
         }
     }
@@ -73,8 +72,6 @@ class Chat extends React.Component {
                     timeoutHidden: value.timeoutHidden,
                 });
 
-                console.log(this.state);
-
                 chat.bgState = value.bgState;
                 chat.bgOpacity = value.bgOpacity;
                 chat.timeoutHidden = value.timeoutHidden;
@@ -83,6 +80,18 @@ class Chat extends React.Component {
                     $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
                 else
                     $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+
+
+                $("#chat_messages").fadeIn('fast');
+                if (closeTimeout) {
+                    clearTimeout(closeTimeout);
+                    closeTimeout = null;
+                }
+                if (chat.timeoutHidden < 99999000) {
+                    closeTimeout = setTimeout(function () {
+                        $("#chat_messages").fadeOut('slow')
+                    }, chat.timeoutHidden);
+                }
             }
             if (value.type == 'push') {
                 chatAPI.push(value.message);
