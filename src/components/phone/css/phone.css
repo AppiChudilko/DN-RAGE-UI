@@ -1,10 +1,13 @@
 .phone-position {
-    width: -webkit-fill-available;
+    /* width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 50px;
+    padding-right: 50px; */
+    position: absolute;
+    top: 23%;
+    right: 25px;
 }
 
 .android-phone {
@@ -109,7 +112,9 @@
 .rotate-components .u-li-menu {
     height: 436px;
 }
-
+.u-li-menu::-webkit-scrollbar {
+    display: none;
+}
 .main-phone-box-flex {
     display: flex;
     flex-direction: column;
@@ -398,7 +403,13 @@
     overflow: scroll;
     background: #fff;
 }
-
+.umenu-family-box::-webkit-scrollbar {
+    display: none;
+}
+.rotate-components .u-menu-l {
+    width: 97%;
+    margin-left: 6px;
+}
 .u-menu-l {
     width: auto;
     display: flex;
@@ -860,8 +871,11 @@ h4 {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
+    width: 77%;
 }
-
+.rotate-components .umenu-rov {
+    width: 92%;
+}
 .s-wifi {
     width: 21px;
     height: 19px;
@@ -996,6 +1010,9 @@ h4 {
     color: #3a3a3a;
     margin-left: 16px;
 }
+.u-menu-l:last-child .umenu-title-box {
+    border-bottom: none;
+}
 
 .umenu-mini-box {
     width: 100%;
@@ -1005,10 +1022,15 @@ h4 {
     padding: 10px 0px;
     transition: 0.3s;
 }
-
+.u-menu-l:last-child .umenu-mini-box {
+    border-bottom: none;
+}
+.umenu-mini-table-box .MuiPaper-elevation2 {
+    box-shadow: none;
+}
 .umenu-mini-table-box {
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.12); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1334,7 +1356,7 @@ figure img {
     align-items: center;
     padding-left: 14px;
     padding-right: 14px;
-    margin-top: 8px;
+    margin-top: 22px;
 }
 
 .p-box-num {
@@ -1396,7 +1418,8 @@ figure img {
 }
 
 .rotate-components .u-scrollable {
-    height: 100%;
+    height: 88%;
+    width: 101%;
 }
 
 .u-scrollable {
@@ -2145,7 +2168,7 @@ BankCard
     display: flex;
     transition: 0.3s;
     background: #F5F5F5;
-    overflow: scroll;
+    /* overflow: scroll; */
     flex-direction: column;
 }
 
@@ -2170,6 +2193,7 @@ BankCard
     margin-left: 20px;
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 
 .editcontact-box-e {

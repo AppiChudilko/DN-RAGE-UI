@@ -33,17 +33,7 @@ class AuthMain extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('authMain', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'switch') {
-                this.setState({show: !this.state.show})
-            } else if (value.type === 'showCreatePage') {
-                this.setState({path: '/create'})
-            } else return;
-        })
+        EventManager.removeHandler('authMain');
     }
 
     render() {
@@ -52,13 +42,11 @@ class AuthMain extends React.Component {
         }
         return (
             <React.Fragment>
-                <div id="box">
                     <Router>
                         <Route exact path="/" component={Authorization}/>
                         <Route exact path="/create" component={CreatePlayer}/>
                         <Redirect to={this.state.path} push/>
                     </Router>
-                </div>
             </React.Fragment>
         )
     }

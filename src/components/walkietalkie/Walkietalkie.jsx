@@ -23,7 +23,7 @@ class Walkietalkie extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="adaptive position" id="box">
+                <div className="adaptive position">
                     <div className="radioset-box">
                         <div className="position-window">
                             <div className="window-radioset">

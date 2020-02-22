@@ -36,19 +36,7 @@ class EditorMain extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('customization', value => { // Скрыть/Показать кастомку, переходы по страницам
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'switch') {
-                this.setState({show: !this.state.show})
-            } else if (value.type === 'choicerole') {
-                this.setState({path: "/choicerole"})
-            } else if (value.type === 'showFamilyPage') {
-                this.setState({path: "/editor/family-character"})
-            } else return;
-        })
+        EventManager.removeHandler('customization');
     }
 
     render() {
@@ -57,7 +45,6 @@ class EditorMain extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="adaptive_editor">
                     <Router>
                         <Route path="/editor">
                             <EditorPlayer/>
@@ -67,7 +54,6 @@ class EditorMain extends React.Component {
                         </Route>
                         <Redirect to={this.state.path} push/>
                     </Router>
-                </div>
             </React.Fragment>
         )
     }

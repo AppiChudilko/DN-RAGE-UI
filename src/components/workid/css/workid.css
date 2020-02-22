@@ -1,4 +1,4 @@
-.idcard-main {
+/* .idcard-main {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     position: absolute;
     z-index: -1;
-}
+} */
 
 .idcard_box {
     width: 452px;

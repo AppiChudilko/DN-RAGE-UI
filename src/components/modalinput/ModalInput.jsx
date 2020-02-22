@@ -53,23 +53,7 @@ class ModalInput extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('modalinput', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-
-                this.setState({show: value.isShow});
-                this.setState({title: value.title});
-                this.setState({defaultText: value.text});
-                this.setState({text: value.text});
-                this.setState({maxLength: value.maxLength});
-
-                this.textarea.focus();
-                Autosize(this.textarea);
-            } else return;
-        })
+        EventManager.removeHandler('modalinput');
     }
 
     textChange(e) {
@@ -109,7 +93,7 @@ class ModalInput extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="position-modal" id="box">
+                <div className="position-modal">
                     <div className="main-input-modal">
                         <div className="linear-input-modal-top1"></div>
                         <div className="linear-input-modal-top2"></div>

@@ -47,18 +47,7 @@ class IDCard extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('cardid', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({player_info: value.info});
-                this.setState({show: value.isShow});
-
-                this.checkSexandImg();
-            } else return;
-        });
+        EventManager.removeHandler('cardid');
     }
 
     checkSexandImg() {
@@ -80,7 +69,7 @@ class IDCard extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="idcard-main" id="box">
+                <div className="idcard-main">
                     <div className="idcard_box">
                         <div className="osn-idcard">
                             <div className="clm-1-idcard">IDENTIFICATION CARD</div>

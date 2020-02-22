@@ -50,18 +50,7 @@ class WorkID extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('workid', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({player_info: value.info});
-                this.setState({show: value.isShow});
-
-                this.checkSexandImg();
-            } else return;
-        });
+        EventManager.removeHandler('workid');
     }
 
     checkSexandImg() {
@@ -83,7 +72,7 @@ class WorkID extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="idcard-main" id="box">
+                <div className="idcard-main">
                     <div className="idcard_box">
                         <div className="osn-idcard">
                             <div className="clm-1-idcard">WORK CARD</div>

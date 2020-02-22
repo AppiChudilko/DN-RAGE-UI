@@ -73,7 +73,7 @@ class EditContact extends React.Component {
             this.props.saveContact(this.state.contact, this.props.selected_contact)
             mp.trigger('client:phone:editContact', JSON.stringify(this.state.contact), JSON.stringify(this.props.selected_contact)); // eslint-disable-line
         } else {
-            //this.props.addContact(this.state.contact);
+            this.props.addContact(this.state.contact);
             try {
                 mp.trigger('client:phone:addContact', JSON.stringify(this.state.contact)); // eslint-disable-line
             } catch (e) {

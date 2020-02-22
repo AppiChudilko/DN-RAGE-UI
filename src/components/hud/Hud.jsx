@@ -33,13 +33,7 @@ class Hud extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('hud', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else return;
-        })
+        EventManager.removeHandler('hud');
     }
 
     render() {
@@ -48,8 +42,8 @@ class Hud extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="hud-main" id="box">
-                <div className='hud-position-lefttop'>
+                <div className="hud-main">
+                <div className='hud-position-leftop'>
                         <Chat/>
                     </div>
                     <div className='hud-position-righttop'>

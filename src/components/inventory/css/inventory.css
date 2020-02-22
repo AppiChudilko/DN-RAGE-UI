@@ -2,14 +2,20 @@
     background: #352929;
 }*/
 .inv-box {
-    width: -webkit-fill-available;
+    /* width: -webkit-fill-available;
     height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     flex-direction: row-reverse;
-    z-index: -1;
+    z-index: -1; */
+    flex-direction: row-reverse;
+    margin-left: auto;
+    margin-top: auto;
+    position: relative;
+    margin-right: auto;
+    margin-bottom: auto;
 }
 
 .inventory-main {

@@ -57,20 +57,7 @@ class Certificate extends React.Component {
 
     componentWillUnmount() {
 
-        EventManager.removeHandler('certificate', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({player_info: value.info})
-                this.setState({type: value.typef})
-                this.setState({show: value.isShow})
-
-                this.checkSexandImg();
-                this.checkWork();
-            } else return;
-        })
+        EventManager.removeHandler('certificate');
 
     }
 
@@ -138,7 +125,7 @@ class Certificate extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="fibcertificate-main" id="box">
+                <div className="fibcertificate-main">
                     <div className="fib-box">
                         <div className='fib-cert' style={{
                             background: `url(${this.state.img_frac}) no-repeat top 30px right, 

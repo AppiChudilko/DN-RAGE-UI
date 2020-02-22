@@ -346,113 +346,7 @@ class Inventory extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('inventory', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            }
-            if (value.type === 'hide') {
-                this.setState({show: false})
-                this.closeInterMenu(null, {action: null});
-            }
-            if (value.type === 'showOrHide') {
-                let status = !this.state.show;
-                if (!status) this.closeInterMenu(null, {action: null});
-                mp.trigger('client:inventory:status', status); // eslint-disable-line
-                this.setState({show: status})
-
-                if (status == false) {
-                    this.setState({secondary_inv_open: false});
-                    this.setState({secondary_items: []});
-                    this.setState({secondary_items_owner_id: 0});
-                    this.setState({secondary_items_owner_type: 0});
-                }
-            }
-            if (value.type === 'updateEquip') {
-                this.setState({outfit: value.outfit})
-            }
-            if (value.type === 'updateItems') {
-                console.log(value.items);
-                this.setState({items: value.items})
-            }
-            if (value.type === 'updateEquipItems') {
-                this.setState({equipment_outfit: value.items})
-            }
-            if (value.type === 'updateSubItems') {
-                this.setState({secondary_inv_open: true});
-                this.setState({secondary_items: value.items});
-                this.setState({secondary_items_owner_id: value.ownerId});
-                this.setState({secondary_items_owner_type: value.ownerType});
-            }
-            if (value.type === 'updateWeaponItems') {
-                this.setState({equipment_weapon: value.items});
-
-                if (this.state.selected_weapon_id == 0) {
-                    this.setState({craft: false});
-                    this.setState({selected_weapon_id: this.state.equipment_weapon[0].id});
-                }
-            }
-            if (value.type === 'updateLabel') {
-                this.setState({player_name: value.uname});
-                this.setState({player_id: value.uid});
-            }
-            if (value.type === 'updateMaxW') {
-                this.setState({weight_max: value.val})
-            }
-            if (value.type === 'updateSubMax') {
-                this.setState({secondary_weight_max: value.maxSum})
-            }
-            if (value.type === 'updateTrade') {
-                this.setState({trade_ids: value.idList})
-            }
-            if (value.type === 'updateSelectWeapon') {
-                if (value.selectId > 0)
-                    this.setState({craft: false});
-                this.setState({selected_weapon_id: value.selectId});
-            }
-            if (value.type === 'weaponToInventory') {
-                this.state.equipment_weapon.forEach((item) => {
-                    if (value.itemId == item.id) {
-                        this.setState({equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item)})
-                        this.setState({items: this.state.items.concat(item)})
-                    }
-                });
-            }
-            if (value.type === 'removeItemId') {
-                this.state.items.forEach((item) => {
-                    if (value.itemId == item.id) {
-                        this.setState({items: this.arrayRemove(this.state.items, item)})
-                    }
-                });
-            }
-            if (value.type === 'updateItemIdCount') {
-                this.state.items.forEach((item) => {
-                    if (value.itemId == item.id) {
-                        let newItem = item;
-                        this.setState({items: this.arrayRemove(this.state.items, item)});
-                        newItem.counti = value.count;
-                        this.setState({items: this.state.items.concat(newItem)});
-                    }
-                });
-            }
-            if (value.type === 'updateWeaponParams') {
-                this.state.equipment_weapon.forEach((item, i) => {
-                    if (value.itemId == item.id) {
-                        let newItem = item;
-                        this.setState({equipment_weapon: this.arrayRemove(this.state.equipment_weapon, item)});
-                        newItem.params = value.params;
-                        this.setState({equipment_weapon: this.state.equipment_weapon.concat(newItem)});
-                    }
-                });
-            }
-            if (value.type === 'secondary_inv') {
-                this.setState({
-                    secondary_inv_open: true,
-                    secondary_items: value.items, // Массив с предметами вторичного инвентаря (багажник, склад и тд.)
-                    secondary_items_owner_id: value.owner_id, // ID владельца
-                    secondary_items_owner_type: value.owner_type, // Тип владельца
-                })
-            } else return;
-        })
+        EventManager.removeHandler('inventory');
     }
 
     componentDidUpdate(prevProp, prevState) {
@@ -1667,8 +1561,8 @@ class Inventory extends React.Component {
             return null;
         }
         return (
-            <React.Fragment>
-                <div id="box" onContextMenu={(e) => e.preventDefault()}>
+            <React.Fragment onContextMenu={(e) => e.preventDefault()}>
+                
                     <InteractionMenu
                         x={this.state.x}
                         y={this.state.y}
@@ -1897,7 +1791,6 @@ class Inventory extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
             </React.Fragment>
         )
     }

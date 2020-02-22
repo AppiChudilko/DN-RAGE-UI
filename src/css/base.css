@@ -62,5 +62,6 @@ img { pointer-events: none; }
 .box{
 	width: -webkit-fill-available;
   height: -webkit-fill-available;
+  display: flex;
   position: absolute;
 }

@@ -237,16 +237,7 @@ export default class CarShop extends React.Component {
 
     componentWillUnmount() {
 
-        EventManager.removeHandler('carShop', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({show: value.isShow});
-                this.setState({car_list: value.list});
-            } else return;
-        })
+        EventManager.removeHandler('carShop');
 
     }
 
@@ -309,7 +300,7 @@ export default class CarShop extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="carshop-position" id="box">
+                <div className="carshop-position">
                     <div className="car-leftmenu">
                         <div className="left-title-car"><span className="title-car-tt">Покупка ТС</span></div>
                         <div className="left-list-menu-car">

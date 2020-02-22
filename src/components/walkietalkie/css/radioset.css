@@ -9,8 +9,8 @@
     display: none !important;
 } */
 .adaptive {
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
+    width: 100%;
+    height: 100%;
     position: absolute;
     /*background: url(../img/image14.png) no-repeat;*/
 }

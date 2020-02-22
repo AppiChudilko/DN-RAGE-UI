@@ -45,17 +45,7 @@ class License extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('license', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({player_info: value.info})
-                this.setState({show: value.isShow})
-                this.checkSexandImg();
-            } else return;
-        })
+        EventManager.removeHandler('license');
     }
 
     checkSexandImg() {
@@ -77,7 +67,7 @@ class License extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="license-main" id="box">
+                <div className="license-main">
                     <div className="lic-box">
                         <div className="lic-in-box">
                             <div className="lic-left">

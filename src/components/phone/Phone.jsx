@@ -36,21 +36,7 @@ class Phone extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('phone', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'showOrHide') {
-                let status = !this.state.show;
-                this.setState({show: status})
-                try {
-                    mp.trigger('client:phone:status', status); // eslint-disable-line
-                } catch (e) {
-                    console.log(e);
-                }
-            } else return;
-        })
+        EventManager.removeHandler('phone');
     }
 
     render() {
@@ -59,11 +45,9 @@ class Phone extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="box" id="box">
                     <div className="phone-position">
                         <Android/>
                     </div>
-                </div>
             </React.Fragment>
         )
     }

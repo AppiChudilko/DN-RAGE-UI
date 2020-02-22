@@ -21,6 +21,7 @@ import CarShop from './components/carshop/CarShop';
 function App() {
   return (
     <React.Fragment>
+      <div className="box" id="box">
         <AuthMain />
         <Inventory />
         <Phone />  
@@ -34,6 +35,7 @@ function App() {
         <ModalInput />
         <Notification />
         <CarShop />
+        </div>
     </React.Fragment>
   );
 }
