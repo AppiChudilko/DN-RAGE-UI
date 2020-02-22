@@ -9,8 +9,8 @@ class Player extends React.Component {
             microphone: false,
             drink: 100,
             eat: 100,
-            wallet: "$98,999,550,381.45",
-            card: "$98,999,550,381.45",
+            wallet: "Идёт загрузка...",
+            card: "Идёт загрузка...",
             color: '#48B9F2',
             background: 0.5,
         }
