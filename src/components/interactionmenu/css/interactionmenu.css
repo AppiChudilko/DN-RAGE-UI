@@ -2,6 +2,7 @@
     background: #fff;
     width: 200px;
     position: absolute;
+    z-index: 1;
 }
 
 .inter-box {

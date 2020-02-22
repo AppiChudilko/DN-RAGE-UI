@@ -1561,7 +1561,7 @@ class Inventory extends React.Component {
             return null;
         }
         return (
-            <React.Fragment onContextMenu={(e) => e.preventDefault()}>
+            <React.Fragment >
                 
                     <InteractionMenu
                         x={this.state.x}
@@ -1570,7 +1570,7 @@ class Inventory extends React.Component {
                         inter_menu={this.state.inter_menu}
                         closeInterMenu={this.closeInterMenu.bind(this)}
                     />
-                    <div className="inv-box animated fadeIn">
+                    <div className="inv-box animated fadeIn" onContextMenu={(e) => e.preventDefault()}>
                         <div className="content-inventory">
                             <div className="inventory-main">
                                 <div className="inv-row-main">
