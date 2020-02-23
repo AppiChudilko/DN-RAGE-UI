@@ -64,6 +64,7 @@
 .car-img-settings {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     background-size: cover; 
     filter: grayscale(100%); 
 }
@@ -95,7 +96,7 @@ input[type="radio"]:checked + label .car-img-settings  {
     margin-left: auto;
     margin-right: 61px;
     margin-bottom: auto;
-    margin-top: 170px;
+    margin-top: 120px;
 }
 .m-linear-r {
     width: 100%;

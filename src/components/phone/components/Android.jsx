@@ -422,7 +422,6 @@ class Android extends React.Component {
                 this.setState({top_bar: value.bar})
             } else return;
         })
-
     }
 
     componentWillUnmount() {
