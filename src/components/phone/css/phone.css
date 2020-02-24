@@ -1317,6 +1317,7 @@ figure {
     width: 100%;
     height: 224.5px;
     margin: 0;
+    margin-top: 17px;
     position: absolute;
 }
 
@@ -1330,6 +1331,7 @@ figure img {
     z-index: 1;
     margin-left: auto;
     width: 100%;
+    height: 60px;
     justify-content: flex-end;
     display: flex;
     align-items: center;
@@ -1358,7 +1360,7 @@ figure img {
 }
 
 .p-nameplayer-p {
-    margin-top: -42px;
+    margin-top: -64px;
     margin-left: 12px;
     font-family: "Roboto";
     font-style: normal;
@@ -1382,6 +1384,7 @@ figure img {
     display: flex;
     align-items: center;
     flex-direction: column;
+    z-index: 1;
 }
 
 .rotate-components .p-box-mob_email {
@@ -2054,19 +2057,21 @@ BankCard
     /* min-height: 20px; */
     font-family: "Roboto"; /* либо "SF Compact Display Medium"*/
     font-size: 14px;
-    display: flex;
     margin-bottom: 4px;
     position: relative;
+    display: block;
 }
 
 .testmes {
+    width: fit-content;
     min-height: 20px;
     padding-left: 6px;
     padding-top: 8px;
-    display: flex;
+    /*display: flex;*/
     flex-direction: row;
     position: relative;
     box-sizing: border-box;
+    display: flex;
 }
 
 .block-sms-ded {

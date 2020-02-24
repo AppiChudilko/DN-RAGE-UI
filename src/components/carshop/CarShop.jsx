@@ -192,8 +192,8 @@ export default class CarShop extends React.Component {
                     model: 'Elegy',
                     name: 'elegy',
                     count: 0,
-                    price: '1.500.000$',
-                    rent: '1.500$',
+                    price: '$1,500,000',
+                    rent: '$1,500',
                     img: 'https://i.yapx.ru/GakPT.png',
                     character_car: [
                         {title: 'Класс', info: 'SUVs'},
@@ -317,7 +317,7 @@ export default class CarShop extends React.Component {
                                         <label htmlFor={listindex} className="label-carradio">
                                             <div className="l-c-info-car">
                                                 <div className="t-c-txt">{e.make}</div>
-                                                <div>{e.model} ({e.count} шт.)</div>
+                                                <div>{e.price} ({e.count} шт.)</div>
                                             </div>
                                             <div className="l-c-img-car">
                                                 <img src={e.img} alt="" className="car-img-settings"/>
@@ -437,7 +437,7 @@ export default class CarShop extends React.Component {
                                     <div className="b-l-btn-box" onClick={() => this.buyCar()}>Купить</div>
                                 </div>
                                 <div className="rent-list-c-btn">
-                                    <div className="b-l-btn-title">{this.state.change_car.rent}</div>
+                                    <div className="b-l-btn-title" style={{fontSize: '35px', color: '#c1c1c1'}}>{this.state.change_car.rent}</div>
                                     <div className="b-l-btn-box" onClick={() => this.rentCar()}>Аренда</div>
                                 </div>
                                 <div className="rent-list-c-btn">
