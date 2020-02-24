@@ -17,6 +17,7 @@ import WorkID from './components/workid/WorkID';
 import ModalInput from './components/modalinput/ModalInput';
 import Notification from './components/notification/Notification';
 import CarShop from './components/carshop/CarShop';
+import Quickmenu from './components/quickmenu/Quickmenu';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <ModalInput />
         <Notification />
         <CarShop />
+        <Quickmenu />
         </div>
     </React.Fragment>
   );

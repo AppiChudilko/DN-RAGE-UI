@@ -18,7 +18,15 @@ class Chat extends React.Component {
         mp.trigger('client:ui:debug', 'Chat.jsx', error, errorInfo); // eslint-disable-line
     }
 
+    handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            this.sendMessage();
+        }
+    }
+
     componentWillMount() {
+        document.addEventListener("keydown", this.handleKeyPress);
+
         let chat = null;
         this.props.data.forEach((e) => {
             if (e.phone_number === this.props.messenger.current_chat) {
@@ -55,12 +63,13 @@ class Chat extends React.Component {
     }
 
     componentWillUnmount() {
-        this.setState({chat: {}, render: false, contact: null})
+        document.removeEventListener("keydown", this.handleKeyPress);
+        this.setState({ chat: {}, render: false, contact: null })
     }
 
     inputChange(message) {
         if (this.state.text.length >= 500) return; // Макс длинна сообщения 600 символов
-        this.setState({text: message.target.value})
+        this.setState({ text: message.target.value })
     }
 
     inputFocus(focus) {
@@ -72,12 +81,12 @@ class Chat extends React.Component {
 
     sendMessage() {
         if (this.state.message_timeout) return; // Нельзя отправлять сообщения так часто
-        this.setState({message_timeout: true});
+        this.setState({ message_timeout: true });
         setTimeout(function () {
-            this.setState({message_timeout: false})
+            this.setState({ message_timeout: false })
         }.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
         if (this.state.text.length >= 600)
-            this.setState({text: this.state.text.substr(0, 500)}); // Макс длинна сообщения 500 символов
+            this.setState({ text: this.state.text.substr(0, 500) }); // Макс длинна сообщения 500 символов
         if (this.state.text === "")
             return;
 
@@ -98,7 +107,7 @@ class Chat extends React.Component {
             } catch (e) {
             }
         });
-        this.setState({text: ''});
+        this.setState({ text: '' });
     }
 
     render() {
@@ -106,17 +115,17 @@ class Chat extends React.Component {
         return (
             <React.Fragment>
                 <div className="dedbit-menu">
-                    <div className="u-title" style={{background: "#212D3B", height: 50 + 'px'}}>
+                    <div className="u-title" style={{ background: "#212D3B", height: 50 + 'px' }}>
                         <div className="dedbit-u-texttittle">
                             <MaterialIcon icon="arrow_back" size={18} color="#fff"
-                                          onClick={() => this.props.setLink("/phone/android/messenger")}/>
+                                onClick={() => this.props.setLink("/phone/android/messenger")} />
                             {this.state.contact === null ?
                                 <Avatar alt="" src={'https://a.rsg.sc//n/socialclub'}
-                                        className="m-img-sms-title"></Avatar>
+                                    className="m-img-sms-title"></Avatar>
                                 :
                                 <Avatar alt=""
-                                        src={this.state.contact.img === '' || this.state.contact.img === undefined ? "" : this.state.contact.img}
-                                        className="m-img-sms-title">{this.state.contact.name.substring(0, 1)}</Avatar>
+                                    src={this.state.contact.img === '' || this.state.contact.img === undefined ? "" : this.state.contact.img}
+                                    className="m-img-sms-title">{this.state.contact.name.substring(0, 1)}</Avatar>
                             }
                             <div className="u-title-row">
                                 <div
@@ -167,10 +176,10 @@ class Chat extends React.Component {
                         })}
                     </div>
                     <div className="ded-input-text">
-                        <MaterialIcon icon="insert_emoticon" size={22} color="#7D8B97"/>
+                        <MaterialIcon icon="insert_emoticon" size={22} color="#7D8B97" />
                         <input type="text" placeholder="Введите сообщение..." className="ded-text-ipn"
-                               value={this.state.text} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)}/>
-                        <MaterialIcon icon="send" size={22} color="#67B1F8" onClick={() => this.sendMessage()}/>
+                            value={this.state.text} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)} />
+                        <MaterialIcon icon="send" size={22} color="#67B1F8" onClick={() => this.sendMessage()} />
                     </div>
                 </div>
             </React.Fragment>

@@ -3,7 +3,7 @@ import UMenu from './apps/UMenu';
 import DefaultPage from './Android/DefaultPage';
 import TopBar from './Android/TopBar';
 import BottomBar from './Android/BottomBar';
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import EventManager from "../../../EventManager";
 import PhoneBook from './Android/PhoneBook/PhoneBook';
 import ProfileContact from './Android/PhoneBook/pages/ProfileContact';
@@ -14,6 +14,7 @@ import UTable from "./apps/UTable";
 import Messenger from './apps/Messenger';
 import Chat from './apps/Chat';
 import EditContact from './Android/PhoneBook/pages/EditContact';
+import Console from './Android/Console';
 
 class Android extends React.Component {
     constructor(props) {
@@ -34,14 +35,23 @@ class Android extends React.Component {
                 color_bar: ''
             },
             apps: [
-                {link: "/phone/android/umenu", action: 'app', img: 'apps'},
-                /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },
-                { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
-                { link: "/phone/android/umenu", action: 'invader', img: 'invader' },*/
-                {link: "/phone/android/umenu", action: 'gps', img: 'gps'},
-                //{ link: "/phone/android/umenu", action: 'settings', img: 'settings' },
-                {link: "/phone/android/phonebook", action: 'cont', img: 'cont'},
-                {link: "/phone/android/messenger", action: 'sms', img: 'sms'},
+                { link: "/phone/android/umenu", action: 'app', img: 'apps' },
+                { link: "/phone/android/umenu", action: 'gps', img: 'gps' },
+                { link: "/phone/android/phonebook", action: 'cont', img: 'cont' },
+                { link: "/phone/android/messenger", action: 'sms', img: 'sms' },
+                { link: "/phone/android/console", action: 'hack', img: 'hack2' },
+                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
+                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
+                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
+                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' }, 
+                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
+                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
+                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
+                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' },   
+                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
+                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
+                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
+                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' }, 
             ],
             menu: {
                 UUID: '11223',
@@ -55,7 +65,7 @@ class Android extends React.Component {
                                 text: "nika.kondr@ded.net",
                                 type: 0,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: {name: "null"}
+                                params: { name: "null" }
                             }
                         ],
                     },
@@ -67,25 +77,25 @@ class Android extends React.Component {
                                 title: 'TEst',
                                 readonly: true,
                                 columns: [
-                                    {title: 'Имя', field: 'name'},
-                                    {title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение'},
-                                    {title: 'Год рождения', field: 'birthYear'},
+                                    { title: 'Имя', field: 'name' },
+                                    { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение' },
+                                    { title: 'Год рождения', field: 'birthYear' },
                                     {
                                         title: 'Место рождения',
                                         field: 'birthCity',
-                                        lookup: {34: 'Москва', 63: 'Санкт-Петербург'},
+                                        lookup: { 34: 'Москва', 63: 'Санкт-Петербург' },
                                     },
                                     {
                                         field: 'url',
                                         title: 'Фото',
                                         editable: false,
                                         render: rowData => <img src={rowData.url} alt=""
-                                                                style={{width: 50, borderRadius: '50%'}}/>
+                                            style={{ width: 50, borderRadius: '50%' }} />
                                     },
                                 ],
                                 data: [
                                     {
-                                        params: {name: "none"},
+                                        params: { name: "none" },
                                         url: 'https://a.rsg.sc//n/socialclub',
                                         name: 'Выдал "Лицензия на оружие" гражданину Looney Moretti',
                                         surname: 'Выдал "Лицензия на оружие" гражданину Looney Moretti',
@@ -93,7 +103,7 @@ class Android extends React.Component {
                                         birthCity: 63
                                     },
                                     {
-                                        params: {name: "none"},
+                                        params: { name: "none" },
                                         url: 'https://a.rsg.sc//n/socialclub',
                                         name: 'Test',
                                         surname: 'Test2',
@@ -114,7 +124,7 @@ class Android extends React.Component {
                                 online: false,
                                 type: 4,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Fleeca Bank",
@@ -123,7 +133,7 @@ class Android extends React.Component {
                                 color: '#4CAF50',
                                 type: 9,
                                 clickable: false,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: " I found i still had this issues sometimes when I had certain divs set to height or min-height: 100%. I had to remove and either wrap it in a parent or move further into the tree where it could still scroll",
@@ -132,7 +142,7 @@ class Android extends React.Component {
                                 online: true,
                                 type: 4,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 show: false,
@@ -140,19 +150,19 @@ class Android extends React.Component {
                                 text: "Заместитель кипера",
                                 scrollbarTitle: 'Test 123',
                                 scrollbar: [
-                                    {title: 'Ранг 1', checked: true, params: {name: "null"}},
-                                    {title: 'TEST', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
-                                    {title: 'Ранг 3', params: {name: "null"}},
+                                    { title: 'Ранг 1', checked: true, params: { name: "null" } },
+                                    { title: 'TEST', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
+                                    { title: 'Ранг 3', params: { name: "null" } },
                                 ],
                                 type: 5,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 show: false,
@@ -163,7 +173,7 @@ class Android extends React.Component {
                                 modalButton: ['Нет', 'Да'],
                                 type: 7,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 show: false,
@@ -174,7 +184,7 @@ class Android extends React.Component {
                                 modalButton: ['Нет', 'Да'],
                                 type: 8,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                         ]
                     },
@@ -187,7 +197,7 @@ class Android extends React.Component {
                                 img: 'car',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Life Invader",
@@ -195,7 +205,7 @@ class Android extends React.Component {
                                 img: 'community',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Life Invader",
@@ -203,7 +213,7 @@ class Android extends React.Component {
                                 img: 'invader',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Maze Bank",
@@ -211,7 +221,7 @@ class Android extends React.Component {
                                 img: 'maze',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Fleeca Bank",
@@ -219,7 +229,7 @@ class Android extends React.Component {
                                 img: 'fleeca',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Pacific Standard Bank",
@@ -227,7 +237,7 @@ class Android extends React.Component {
                                 img: 'pacific',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                             {
                                 title: "Blaine Country Savings Bank",
@@ -235,7 +245,7 @@ class Android extends React.Component {
                                 img: 'blaine',
                                 type: 1,
                                 clickable: true,
-                                params: {name: "null"}
+                                params: { name: "null" }
                             },
                         ],
                     },
@@ -318,8 +328,8 @@ class Android extends React.Component {
                     last_login: '12.01.2020',
                     new_messages: 1,
                     message: [
-                        {type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '12:00:02'},
-                        {type: 1, text: 'Привет, как дела?', date: '10.01.2020', time: '12:00:02'},
+                        { type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '12:00:02' },
+                        { type: 1, text: 'Привет, как дела?', date: '10.01.2020', time: '12:00:02' },
                         //{type: 0, text: '1 января'},
                     ]
                 },
@@ -329,11 +339,11 @@ class Android extends React.Component {
                     last_login: '12.01.2020',
                     new_messages: 3,
                     message: [
-                        {type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '02:01:00'},
-                        {type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '03:00:00'},
-                        {type: 1, text: 'Привет, как дела? Привет, как дела?', date: '10.01.2020', time: '01:00:01'},
-                        {type: 1, text: 'Привет, как дела? Привет, как дела?', date: '13.01.2020', time: '05:00:03'},
-                        {type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '04:00:02'},
+                        { type: 2, text: 'Все хорошо, а у тебя как?', date: '10.01.2020', time: '02:01:00' },
+                        { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '03:00:00' },
+                        { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '10.01.2020', time: '01:00:01' },
+                        { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '13.01.2020', time: '05:00:03' },
+                        { type: 1, text: 'Привет, как дела? Привет, как дела?', date: '11.01.2020', time: '04:00:02' },
                     ]
                 },
                 {
@@ -342,19 +352,20 @@ class Android extends React.Component {
                     last_login: '29.01.2020',
                     new_messages: 1,
                     message: [
-                        {type: 2, text: 'Товар на месте?', date: '10.01.2020', time: '12:00:02'},
+                        { type: 2, text: 'Товар на месте?', date: '10.01.2020', time: '12:00:02' },
                     ]
                 }
             ],
+            console_message: ['- npm install group6 start...', '@root: - npm build'],
             // topbar_color: false,
             // Все нижние массивы это временно для демонстрации работы
             scrollbar: {
                 show: false,
                 title: 'Выберите ранг',
                 list: [
-                    {title: 'Ранг 1', checked: true, params: {name: "null"}},
-                    {title: 'Ранг 2', params: {name: "null"}},
-                    {title: 'Ранг 3', params: {name: "null"}},
+                    { title: 'Ранг 1', checked: true, params: { name: "null" } },
+                    { title: 'Ранг 2', params: { name: "null" } },
+                    { title: 'Ранг 3', params: { name: "null" } },
                 ],
             },
             modal: {
@@ -369,7 +380,7 @@ class Android extends React.Component {
                 text: 'Вы точно хотите всё это сделать? Обратной дороги нет, остановись',
                 value: '',
                 buttons: ['Нет', 'Да'],
-                params: {name: "null"},
+                params: { name: "null" },
             }
         }
     }
@@ -382,7 +393,7 @@ class Android extends React.Component {
         EventManager.addHandler('phone3', value => {
             if (value.type === 'updateMenu') {
                 try {
-                    this.setState({menu: value.menu});
+                    this.setState({ menu: value.menu });
                     //UMenu.forceUpdate();
                     window.scrollTo(0, 0); //TODO Не работает((
                 } catch (e) {
@@ -391,21 +402,21 @@ class Android extends React.Component {
             }
             if (value.type === 'updatePhonebook') {
                 try {
-                    this.setState({phonebook: value.phonebook});
+                    this.setState({ phonebook: value.phonebook });
                 } catch (e) {
                     console.log(e);
                 }
             }
             if (value.type === 'updateMessenger') {
                 try {
-                    this.setState({chats: value.chats});
+                    this.setState({ chats: value.chats });
                 } catch (e) {
                     console.log(e);
                 }
             }
             if (value.type === 'updateMessengerChat') {
                 try {
-                    this.setState(prevState => ({...prevState.chats[value.idx].message = value.messages}))
+                    this.setState(prevState => ({ ...prevState.chats[value.idx].message = value.messages }))
                 } catch (e) {
                     console.log(e);
                 }
@@ -419,7 +430,7 @@ class Android extends React.Component {
                 }
             }
             if (value.type === 'updateTopBar') {
-                this.setState({top_bar: value.bar})
+                this.setState({ top_bar: value.bar })
             } else return;
         })
 
@@ -434,52 +445,57 @@ class Android extends React.Component {
             if (this.state.path !== this.state.history[this.state.history.length - 1])
                 this.historyPush()
             if (this.state.path !== '/phone/android/phonebook/profilecontact/editcontact' && this.state.phonebook.editing_contact) {
-                this.setState(prevState => ({...prevState.phonebook.editing_contact = false}))
+                this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
             }
         }
     }
 
     historyPush() {
         if (this.state.path === '/phone/android/defaultpage') {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = ''}))
-            this.setState({bg_color: ''})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '' }))
+            this.setState({ bg_color: '' })
         }
         if (this.state.path === '/phone/android/phonebook/profilecontact') {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#000'}))
-            this.setState({bg_color: '#000'})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+            this.setState({ bg_color: '#000' })
         }
         if (this.state.path === '/phone/android/phonebook') {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#1C3AA9'}))
-            this.setState({bg_color: '#1C3AA9'})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+            this.setState({ bg_color: '#1C3AA9' })
         }
         if (this.state.path === '/phone/android/messenger') {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#000'}))
-            this.setState({bg_color: '#000'})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+            this.setState({ bg_color: '#000' })
         }
         if (this.state.path === '/phone/android/phonebook/profilecontact/editcontact') {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#1C3AA9'}))
-            this.setState({bg_color: '#1C3AA9'})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+            this.setState({ bg_color: '#1C3AA9' })
         }
-        this.setState({history: this.state.history.concat([this.state.path])})
+        if (this.state.path === '/phone/android/console') {
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+            this.setState({ bg_color: '#000' })
+        }
+
+        this.setState({ history: this.state.history.concat([this.state.path]) })
     }
 
     historyClear() {
-        this.setState({history: ['/phone/android/defaultpage']})
+        this.setState({ history: ['/phone/android/defaultpage'] })
     }
 
     historyGoBack() {
         if (this.state.history.length > 1) {
             if (this.state.history[this.state.history.length - 2] === '/phone/android/phonebook/profilecontact/editcontact') {
-                this.setState({history: this.state.history.slice(0, -1)})
+                this.setState({ history: this.state.history.slice(0, -1) })
             }
             this.setState({
                 path: this.state.history[this.state.history.length - 2],
-            }, () => this.setState({history: this.state.history.slice(0, -1)}))
+            }, () => this.setState({ history: this.state.history.slice(0, -1) }))
         }
     }
 
     rotateAndroid() {
-        this.setState({rotate: !this.state.rotate}) //нужно придумать на какое действие перевернуть телефон
+        this.setState({ rotate: !this.state.rotate }) //нужно придумать на какое действие перевернуть телефон
         try {
             mp.trigger('client:phone:rotate', this.state.rotate); // eslint-disable-line
         } catch (e) {
@@ -489,9 +505,9 @@ class Android extends React.Component {
 
     clickApps(event, i) {
         if (event.link === "/phone/android/umenu") {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#000'}))
-            this.setState({bg_color: '#000'})
-            this.setState({path: event.link})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+            this.setState({ bg_color: '#000' })
+            this.setState({ path: event.link })
 
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
@@ -500,9 +516,9 @@ class Android extends React.Component {
                 //#1C3AA9
             }
         } else if (event.link === "/phone/android/phonebook") {
-            this.setState(prevState => ({...prevState.top_bar.color_bar = '#1C3AA9'}))
-            this.setState({bg_color: '#1C3AA9'})
-            this.setState({path: event.link})
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+            this.setState({ bg_color: '#1C3AA9' })
+            this.setState({ path: event.link })
 
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
@@ -510,7 +526,15 @@ class Android extends React.Component {
                 console.log(e);
             }
         } else if (event.link === "/phone/android/messenger") {
-            this.setState({path: event.link})
+            this.setState({ path: event.link })
+            try {
+                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        else if (event.link === "/phone/android/console") {
+            this.setState({ path: event.link })
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
             } catch (e) {
@@ -529,8 +553,8 @@ class Android extends React.Component {
         } else {
             this.addContact(contact)
         }
-        this.setState(prevState => ({...prevState.phonebook.selected_contact = contact}))
-        this.setState(prevState => ({...prevState.phonebook.editing_contact = false}))
+        this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+        this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
     }
 
     addContact(contact) {
@@ -539,8 +563,8 @@ class Android extends React.Component {
         this.setState(prevState => ({
             ...prevState.phonebook.contact = [...this.state.phonebook.contact].concat([contact])
         }))
-        this.setState(prevState => ({...prevState.phonebook.selected_contact = contact}))
-        this.setState(prevState => ({...prevState.phonebook.editing_contact = false}))
+        this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+        this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
     }
 
     getContactByNumber(number) {
@@ -564,8 +588,8 @@ class Android extends React.Component {
     }
 
     editContact() {
-        this.setState(prevState => ({...prevState.phonebook.editing_contact = true}))
-        this.setState({path: '/phone/android/phonebook/profilecontact/editcontact'});
+        this.setState(prevState => ({ ...prevState.phonebook.editing_contact = true }))
+        this.setState({ path: '/phone/android/phonebook/profilecontact/editcontact' });
     }
 
     clickBack() {
@@ -575,9 +599,9 @@ class Android extends React.Component {
     }
 
     clickHome() {
-        this.setState(prevState => ({...prevState.top_bar.color_bar = ''}))
-        this.setState({bg_color: ''})
-        this.setState({path: '/phone/android/defaultpage'}); //TODO Чет не работает
+        this.setState(prevState => ({ ...prevState.top_bar.color_bar = '' }))
+        this.setState({ bg_color: '' })
+        this.setState({ path: '/phone/android/defaultpage' }); //TODO Чет не работает
         this.historyClear();
     }
 
@@ -590,16 +614,16 @@ class Android extends React.Component {
             data = this.getContactByName(contact.name)
         console.log(data)
         if (data !== null) {
-            this.setState(prevState => ({...prevState.phonebook.selected_contact = data}))
+            this.setState(prevState => ({ ...prevState.phonebook.selected_contact = data }))
         } else {
-            this.setState(prevState => ({...prevState.phonebook.selected_contact = contact}))
-            this.setState(prevState => ({...prevState.phonebook.selected_contact.numbers = [contact.number]}))
+            this.setState(prevState => ({ ...prevState.phonebook.selected_contact = contact }))
+            this.setState(prevState => ({ ...prevState.phonebook.selected_contact.numbers = [contact.number] }))
         }
-        this.setState({path: '/phone/android/phonebook/profilecontact'}); //TODO Чет не работает
+        this.setState({ path: '/phone/android/phonebook/profilecontact' }); //TODO Чет не работает
     }
 
     closeModal(boolean) {
-        this.setState({modal: {show: false}})
+        this.setState({ modal: { show: false } })
         if (this.state.path === "/phone/android/phonebook/profilecontact") {
             if (boolean) {
                 this.historyGoBack();
@@ -609,7 +633,7 @@ class Android extends React.Component {
     }
 
     closeInputModal() {
-        this.setState({inputmodal: {show: false}})
+        this.setState({ inputmodal: { show: false } })
 
         try {
             mp.trigger('client:phone:inputModal', false); // eslint-disable-line
@@ -649,7 +673,7 @@ class Android extends React.Component {
     }
 
     closeScrollbar() {
-        this.setState({scrollbar: {show: false}})
+        this.setState({ scrollbar: { show: false } })
     }
 
     openScrollbar(title, items) {
@@ -658,7 +682,16 @@ class Android extends React.Component {
             title: title,
             list: items,
         };
-        this.setState({scrollbar: data});
+        this.setState({ scrollbar: data });
+    }
+
+    // Console
+    consoleCommand(command) {
+        let console_messages = [...this.state.console_message];
+        console_messages = [command].concat(console_messages)
+        console.log(console_messages)
+        if (console_messages.length > 99) console_messages.splice(-1, 1);
+        this.setState({ console_message: console_messages });
     }
 
     // CHAT
@@ -673,10 +706,10 @@ class Android extends React.Component {
         if (ind !== -1) {
             let chats = this.state.chats;
             chats[ind] = chat;
-            this.setState({chats: chats})
+            this.setState({ chats: chats })
         } else {
             //console.log(chat)
-            this.setState({chats: [...this.state.chats, chat]})
+            this.setState({ chats: [...this.state.chats, chat] })
         }
     }
 
@@ -696,9 +729,9 @@ class Android extends React.Component {
         if (index !== -1) {
             this.setState(prevState => ({
                 ...prevState.chats[index].message = [...this.state.chats[index].message]
-                    .concat([{type: 1, text: text, date: date, time: time}])
+                    .concat([{ type: 1, text: text, date: date, time: time }])
             }));
-            this.setState(prevState => ({...prevState.chats[index].new_messages = this.state.chats[index].new_messages++}));
+            this.setState(prevState => ({ ...prevState.chats[index].new_messages = this.state.chats[index].new_messages++ }));
         } else {
             this.setState(prevState => ({
                 ...prevState.chats = [...this.state.chats]
@@ -709,7 +742,7 @@ class Android extends React.Component {
                             last_login: date,
                             new_messages: 1,
                             message: [
-                                {type: 1, text: text, date: date, time: time},
+                                { type: 1, text: text, date: date, time: time },
                             ]
                         }
                     ])
@@ -720,23 +753,23 @@ class Android extends React.Component {
     selectChat(phone_number) {
         let index = this.state.chats.findIndex(e => e.phone_number === phone_number);
         if (index !== -1) {
-            this.setState(prevState => ({...prevState.chats[index].new_messages = 0}))
+            this.setState(prevState => ({ ...prevState.chats[index].new_messages = 0 }))
 
             try {
                 mp.trigger('client:phone:selectChat', phone_number, index); // eslint-disable-line
             } catch (e) {
             }
         }
-        this.setState(prevState => ({...prevState.messenger.current_chat = phone_number}), () => {
-            this.setState({path: "/phone/android/messenger/chat"})
+        this.setState(prevState => ({ ...prevState.messenger.current_chat = phone_number }), () => {
+            this.setState({ path: "/phone/android/messenger/chat" })
         });
     }
 
     favoriteContact(contact) {
         let index = this.state.phonebook.contact.findIndex(e => e === contact);
         if (index !== -1) {
-            this.setState(prevState => ({...prevState.phonebook.contact[index].isFavorite = !this.state.phonebook.contact[index].isFavorite}))
-            this.setState(prevState => ({...prevState.phonebook.selected_contact = this.state.phonebook.contact[index]}))
+            this.setState(prevState => ({ ...prevState.phonebook.contact[index].isFavorite = !this.state.phonebook.contact[index].isFavorite }))
+            this.setState(prevState => ({ ...prevState.phonebook.selected_contact = this.state.phonebook.contact[index] }))
 
             try {
                 mp.trigger('client:phone:favoriteContact', JSON.stringify(contact)); // eslint-disable-line
@@ -761,7 +794,7 @@ class Android extends React.Component {
     }
 
     setLink(link) {
-        this.setState({path: link})
+        this.setState({ path: link })
     }
 
     render() {
@@ -773,66 +806,69 @@ class Android extends React.Component {
                 <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
                     <div className="phone-bg bg-1" style={bg}>
                         <div className={this.state.rotate ? "rotate-components" : 'main-phone-box-flex'}>
-                            <TopBar data={this.state.top_bar}/>
+                            <TopBar data={this.state.top_bar} />
                             <Router>
                                 <Route exact path="/phone/android/defaultpage">
                                     <DefaultPage historyPush={this.historyPush.bind(this)} data={this.state.apps}
-                                                 clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar}/>
+                                        clickApps={this.clickApps.bind(this)} top_bar={this.state.top_bar} />
                                 </Route>
-                                <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)}/>
-                                <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)}/>
+                                <Scrollbar data={this.state.scrollbar} closeScrollbar={this.closeScrollbar.bind(this)} />
+                                <Modal data={this.state.modal} closeModal={this.closeModal.bind(this)} />
                                 <InputModal data={this.state.inputmodal}
-                                            closeInputModal={this.closeInputModal.bind(this)}/>
+                                    closeInputModal={this.closeInputModal.bind(this)} />
                                 <Route exact path="/phone/android/umenu">
                                     <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu}
-                                           openModal={this.openModal.bind(this)}
-                                           openInputModal={this.openInputModal.bind(this)}
-                                           openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate}/>
+                                        openModal={this.openModal.bind(this)}
+                                        openInputModal={this.openInputModal.bind(this)}
+                                        openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate} />
                                 </Route>
                                 <Route exact path="/phone/android/utable">
-                                    <UTable historyPush={this.historyPush.bind(this)}/>
+                                    <UTable historyPush={this.historyPush.bind(this)} />
+                                </Route>
+                                <Route exact path="/phone/android/console">
+                                    <Console console_message={this.state.console_message} consoleCommand={this.consoleCommand.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/phonebook">
                                     <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook}
-                                               clickContact={this.clickContact.bind(this)}
-                                               getContactByNumber={this.getContactByNumber.bind(this)}
-                                               setLink={this.setLink.bind(this)}/>
+                                        clickContact={this.clickContact.bind(this)}
+                                        getContactByNumber={this.getContactByNumber.bind(this)}
+                                        setLink={this.setLink.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/phonebook/profilecontact">
                                     <ProfileContact historyPush={this.historyPush.bind(this)}
-                                                    data={this.state.phonebook}
-                                                    deleteContact={this.deleteContact.bind(this)}
-                                                    favoriteContact={this.favoriteContact.bind(this)}
-                                                    selectChat={this.selectChat.bind(this)}
-                                                    editContact={this.editContact.bind(this)}
-                                                    openModal={this.openModal.bind(this)}
-                                                    profile_contact_btn={this.state.profile_contact_btn}/>
+                                        data={this.state.phonebook}
+                                        deleteContact={this.deleteContact.bind(this)}
+                                        favoriteContact={this.favoriteContact.bind(this)}
+                                        selectChat={this.selectChat.bind(this)}
+                                        editContact={this.editContact.bind(this)}
+                                        openModal={this.openModal.bind(this)}
+                                        profile_contact_btn={this.state.profile_contact_btn} />
                                 </Route>
                                 <Route exact path="/phone/android/phonebook/profilecontact/editcontact">
                                     <EditContact historyGoBack={this.historyGoBack.bind(this)}
-                                                 setLink={this.setLink.bind(this)}
-                                                 addContact={this.addContact.bind(this)}
-                                                 saveContact={this.saveContact.bind(this)}
-                                                 selected_contact={this.state.phonebook.selected_contact}
-                                                 editing_contact={this.state.phonebook.editing_contact}
-                                                 clickContact={this.clickContact.bind(this)}/>
+                                        setLink={this.setLink.bind(this)}
+                                        addContact={this.addContact.bind(this)}
+                                        saveContact={this.saveContact.bind(this)}
+                                        selected_contact={this.state.phonebook.selected_contact}
+                                        editing_contact={this.state.phonebook.editing_contact}
+                                        clickContact={this.clickContact.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/messenger">
                                     <Messenger data={this.state.chats}
-                                               getContactByNumber={this.getContactByNumber.bind(this)}
-                                               selectChat={this.selectChat.bind(this)}/>
+                                        getContactByNumber={this.getContactByNumber.bind(this)}
+                                        selectChat={this.selectChat.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/messenger/chat">
                                     <Chat data={this.state.chats} messenger={this.state.messenger}
-                                          sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} date={this.state.top_bar.dateFull}
-                                          getContactByNumber={this.getContactByNumber.bind(this)}
-                                          setLink={this.setLink.bind(this)}/>
+                                        sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} date={this.state.top_bar.dateFull}
+                                        getContactByNumber={this.getContactByNumber.bind(this)}
+                                        setLink={this.setLink.bind(this)} />
                                 </Route>
-                                <Redirect to={this.state.path} push/>
+                                <Redirect to={this.state.path} push />
                             </Router>
                             <Router>
                                 <BottomBar clickBack={this.clickBack.bind(this)} clickHome={this.clickHome.bind(this)}
-                                           rotateAndroid={this.rotateAndroid.bind(this)}/>
+                                    rotateAndroid={this.rotateAndroid.bind(this)} />
                             </Router>
                         </div>
                     </div>

@@ -122,20 +122,39 @@
     width: inherit;
     height: inherit;
 }
+/* .main-app-box a:first-child.app-box:nth-last-child(5) ~ .rotate-components .main-app-box {
+    justify-content: center;
+} */
+/* .main-app-box a:nth-last-child(n+10) ~ .main-app-box {
+    justify-content: unset;
+} */
+
+/* .main-app-box a:nth-last-child(n+10),
+ .rotate-components .main-app-box{
+    justify-content: unset !important;
+} */
+
+.main-app-box  > *:nth-last-child(n+10) ~ .main-app-box{
+    justify-content: unset !important;
+}
 
 .rotate-components .main-app-box {
     margin-bottom: 30px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
 }
 
 .main-app-box {
     margin-top: auto;
-    margin-bottom: 15px;
-    margin-left: 14px;
-    margin-right: 15px;
-    width: inherit;
+    margin-bottom: -5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 244px;
     display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    flex-flow: wrap-reverse;
+    /* flex-flow: row wrap;
+    align-content: stretch; */
 }
 
 .app-box {
@@ -154,12 +173,29 @@
 .app-box:hover {
     background-color: rgb(0, 0, 0, 0.80);
 }
-
+.rotate-components .android-content .app-box:nth-child(n-4), .android-content .app-box:last-child {
+    margin-top: 20px;
+}
 .android-content .app-box:nth-child(4), .android-content .app-box:last-child {
     margin-right: 0px;
 }
+.android-content .app-box:nth-child(8), .android-content .app-box:last-child {
+    margin-right: 0px;
+}
+.android-content .app-box:nth-child(12), .android-content .app-box:last-child {
+    margin-right: 0px;
+}
+.android-content .app-box:nth-child(16), .android-content .app-box:last-child {
+    margin-right: 0px;
+}
+/* .android-content .app-box:nth-child(9), .android-content .app-box:last-child {
+    margin-top: 20px;
+} */
 
-.android-content .app-box:nth-child(-n+4) {
+/* .android-content .app-box:nth-child(-n+4) {
+    margin-bottom: 20px;
+} */
+.android-content .app-box {
     margin-bottom: 20px;
 }
 
@@ -184,8 +220,17 @@
     background-size: 24px 24px;
     width: 24px;
     height: 24px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
+.icons-hack2{
+    background: url(../img/android/icons/console2.svg) no-repeat;
+    background-size: 32px;
+}
+.icons-hack{
+    background: url(../img/android/icons/hack.png) no-repeat;
+    background-size: 32px;
+}
 .icons-settings {
     background: url(../img/android/icons/settings.png) no-repeat;
     background-size: 32px;
@@ -2311,4 +2356,67 @@ BankCard
 .material-icons.favorite-img-style {
     font-size: 19px;
     margin-right: 10px;
+}
+.rotate-components .console-main {
+    height: 85.4%;
+}
+
+.console-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: 0.3s;
+    background: #1D2733;
+    overflow: scroll;
+    padding-top: 8px;
+    flex-direction: column;
+}
+.console-input {
+    width: 100%;
+    margin-top: auto;
+    width: 100%;
+    max-height: 25%;
+    min-height: 26px;
+    /* background: #212D3B; */
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+    font-family: "Inconsolata";
+    font-size: 16px;
+}
+.console-main::-webkit-scrollbar, .console-chat-ul::-webkit-scrollbar {
+    display: none;
+}
+.console-chat-ul {
+    height: 93%;
+    overflow: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    font-family: "Inconsolata";
+    font-size: 14px;
+    user-select: text;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+.rotate-components .c-i-style {
+    width: 95.5%;
+}
+
+.c-i-style {
+    color: #fff;
+    font-size: 16px;
+    font-family: "Inconsolata";
+    width: 85.5%;
+    max-height: 96%;
+    min-height: 17px !important;
+    outline: none;
+    background: none;
+    border: none;
+    resize: none;
+    margin-left: 5px;
 }
