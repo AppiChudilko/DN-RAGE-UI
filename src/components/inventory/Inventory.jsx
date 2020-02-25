@@ -5,7 +5,6 @@ import './css/img-items.css';
 import { Animated } from 'react-animated-css';
 import InteractionMenu from '../interactionmenu/InteractionMenu';
 import EventManager from "../../EventManager";
-import ModalInventory from './ModalInventory';
 
 class Inventory extends React.Component {
     constructor(props) {
@@ -1723,7 +1722,6 @@ class Inventory extends React.Component {
         }
         return (
             <React.Fragment >
-
                 <InteractionMenu
                     x={this.state.x}
                     y={this.state.y}
@@ -1731,7 +1729,6 @@ class Inventory extends React.Component {
                     inter_menu={this.state.inter_menu}
                     closeInterMenu={this.closeInterMenu.bind(this)}
                 />
-                <ModalInventory />
                 <div className="inv-box animated fadeIn" onContextMenu={(e) => e.preventDefault()}>
                     <div className="content-inventory">
                         <div className="inventory-main">
