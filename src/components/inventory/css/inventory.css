@@ -1,6 +1,6 @@
 /* body {
     background: #352929;
-}*/
+} */
 .inv-box {
     /* width: -webkit-fill-available;
     height: -webkit-fill-available;
@@ -61,6 +61,7 @@
     font-size: 30px;
     color: #000000;
     text-transform: uppercase;
+    position: relative;
 }
 
 .title-secondary-inv {
@@ -75,6 +76,7 @@
     font-size: 18px;
     color: #000000;
     text-transform: uppercase;
+    position: relative;
 }
 
 .liner-secondary-inv {
@@ -450,6 +452,9 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     height: 62px;
     background: rgb(255, 255, 255, 0.051);
     margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .weapon-mod-active {
@@ -534,16 +539,17 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 
 .crafting-object-main {
     width: inherit;
-    margin-top: 46px;
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
 }
 
 .liner-crafting-obj {
-    width: 20.5%;
+    width: 0%;
     margin-right: auto;
     height: 8px;
     background: #48b9f2;
+    transition: 2s;
 }
 
 .sqr-wp-bottom {
@@ -551,7 +557,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 }
 
 .craft-btn-obj {
-    width: 300px;
+    width: 100%;
     height: 47px;
     background: rgb(255, 255, 255);
     margin-top: 30px;
@@ -599,6 +605,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     margin-top: -29px;
     transition: 0.1s ease-out;
     cursor: pointer;
+    z-index: 9;
 }
 
 .close-window-craft:hover {
@@ -699,9 +706,87 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 }
 
 .weight-title-inv {
-    width: inherit;
+    right: 0px;
     display: flex;
     justify-content: flex-end;
     position: absolute;
     font-size: 22px;
+}
+.moveall_left {
+    background: url(../img/moveall.svg) no-repeat;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    transform: rotate(-180deg);
+    position: absolute;
+    left: 10px;
+}
+.moveall_right{
+    background: url(../img/moveall.svg) no-repeat;
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    position: absolute;
+    right: 5px;
+}
+.moveall_right:hover, .moveall_left:hover {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);
+}
+.craft-player-sp {
+    height: 543px;
+    width: inherit;
+    margin-top: 27px;
+    font-family: "RobotoBold";
+    font-size: 20px;
+    color: #fff;
+    overflow: auto;
+}
+.craft-one-sp {
+    height: 235px;
+    width: inherit;
+    font-family: "RobotoBold";
+    font-size: 20px;
+    color: #fff;
+    overflow: auto;
+
+}
+.style-for-craft-btn {
+    margin-top: 0px;
+}
+.style-recipes-txt-craft {
+    margin-bottom: 33px;
+    padding-left: 9px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 9px;
+}
+.text-dd-ss-kk {
+    font-family: "RobotoBold";
+    font-size: 20px;
+    color: #fff;
+    margin-top: 27px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.style-serial-recipes {
+    font-family: "RobotoLight";
+    color: rgb(202, 202, 202);
+    font-size: 12px;
+    margin-top: 6px;    
+    white-space: pre-line;
+}
+.style-serial-rec-o{
+    font-family: "RobotoLight";
+    color: rgb(202, 202, 202);
+    font-size: 12px;
+    margin-top: 6px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.select-craft {
+    filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%) !important;
 }
