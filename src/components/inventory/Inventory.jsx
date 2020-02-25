@@ -219,6 +219,7 @@ class Inventory extends React.Component {
             ],
 
             equipment_weapon: [ // Экипированное оружие
+                { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
             ],
             selected_weapon_id: 0,
             selected_weapon_item_id: 0,
@@ -229,10 +230,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                {
+                /*{
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
                     craft: ['1', '2', '3'],
-                },
+                },*/
             ],
         }
     }
@@ -880,18 +881,34 @@ class Inventory extends React.Component {
             items_copy = [...this.state.items]
         }
         if (items_copy === null || items_copy.length === 0) return;
-        for (let i = 0; i < items_copy.length; i++) {
-            if (this.checkItem(items_copy[i], 'inventory') !== null) {
-                let item = this.checkItem(items_copy[i], 'inventory', true)
-                if (this.state.secondary_weight_now + item.volume > this.state.secondary_weight_max) {
-                    this.notifyToClient('~r~Хранилище переполнено ;c');
-                    return;
+
+        if (all_items) {
+            for (let i = 0; i < items_copy.length; i++) {
+                if (this.checkItem(items_copy[i], 'inventory') !== null) {
+                    let item = this.checkItem(items_copy[i], 'inventory', true)
+                    setTimeout(() => {
+                        this.setState({ items: this.arrayRemove(this.state.items, item) })
+                        this.setState({ secondary_items: this.state.secondary_items.concat(item) })
+                        //mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
+                    }, 20);
                 }
-                setTimeout(() => {
-                    this.setState({ items: this.arrayRemove(this.state.items, item) })
-                    this.setState({ secondary_items: this.state.secondary_items.concat(item) })
-                    mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
-                }, 20);
+            }
+            mp.trigger('client:inventory:moveToAll', this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
+        }
+        else {
+            for (let i = 0; i < items_copy.length; i++) {
+                if (this.checkItem(items_copy[i], 'inventory') !== null) {
+                    let item = this.checkItem(items_copy[i], 'inventory', true)
+                    if (this.state.secondary_weight_now + item.volume > this.state.secondary_weight_max) {
+                        this.notifyToClient('~r~Хранилище переполнено ;c');
+                        return;
+                    }
+                    setTimeout(() => {
+                        this.setState({ items: this.arrayRemove(this.state.items, item) })
+                        this.setState({ secondary_items: this.state.secondary_items.concat(item) })
+                        mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
+                    }, 20);
+                }
             }
         }
     }

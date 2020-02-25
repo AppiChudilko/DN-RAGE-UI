@@ -116,80 +116,90 @@ class Chat extends React.Component {
                 console.log(e);
             }
 
-            if (enable) {
-                if (closeTimeout) {
-                    clearTimeout(closeTimeout);
-                    closeTimeout = null;
-                }
-                $("#chat_messages").fadeIn('fast');
-            }
-            else {
-                $("#chat_messages").fadeIn('fast');
-                if (closeTimeout) {
-                    clearTimeout(closeTimeout);
-                    closeTimeout = null;
-                }
-                if (chat.timeoutHidden < 99999000) {
-                    closeTimeout = setTimeout(function () {
-                        $("#chat_messages").fadeOut('slow')
-                    }, chat.timeoutHidden);
-                }
-            }
-
-            if (chat.active == false
-                && enable == true)
-                return;
-
-            if (enable != (chat.input != null)) {
-                //chat_printing = enable;
-
-                try {
-                    mp.invoke("focus", enable); // eslint-disable-line
-                }
-                catch (e) {
-                    console.log(e);
-                }
-
+            try {
                 if (enable) {
-                    chat.input = $("#chat").append('<div><input onkeyup="chatOnKeyUp()" id="chat_msg" type="text" /></div>').children(":last");
-                    chat.input.children("input").focus();
-
-                    if (chat.bgState === 1)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
-                    else if (chat.bgState === 2)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
-                    else
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                    if (closeTimeout) {
+                        clearTimeout(closeTimeout);
+                        closeTimeout = null;
+                    }
+                    $("#chat_messages").fadeIn('fast');
                 }
                 else {
-                    chat.input.fadeOut('fast', function () {
-                        chat.input.remove();
-                        chat.input = null;
-                    });
-
-                    if (chat.bgState === 1)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
-                    else if (chat.bgState === 2)
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
-                    else
-                        $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                    $("#chat_messages").fadeIn('fast');
+                    if (closeTimeout) {
+                        clearTimeout(closeTimeout);
+                        closeTimeout = null;
+                    }
+                    if (chat.timeoutHidden < 99999000) {
+                        closeTimeout = setTimeout(function () {
+                            $("#chat_messages").fadeOut('slow')
+                        }, chat.timeoutHidden);
+                    }
                 }
+
+                if (chat.active == false
+                    && enable == true)
+                    return;
+
+                if (enable != (chat.input != null)) {
+                    //chat_printing = enable;
+
+                    try {
+                        mp.invoke("focus", enable); // eslint-disable-line
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+
+                    if (enable) {
+                        chat.input = $("#chat").append('<div><input onkeyup="chatOnKeyUp()" id="chat_msg" type="text" /></div>').children(":last");
+                        chat.input.children("input").focus();
+
+                        if (chat.bgState === 1)
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
+                        else if (chat.bgState === 2)
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
+                        else
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                    }
+                    else {
+                        chat.input.fadeOut('fast', function () {
+                            chat.input.remove();
+                            chat.input = null;
+                        });
+
+                        if (chat.bgState === 1)
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                        else if (chat.bgState === 2)
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, " + chat.bgOpacity + ")");
+                        else
+                            $('#chat_messages').css("background-color", "rgba(0, 0, 0, 0)");
+                    }
+                }
+            }
+            catch (e) {
+                console.log(e);
             }
         }
 
         var timeOut = null;
         function chatOnKeyUp() {
-            if (timeOut) {
-                clearTimeout(timeOut);
-                timeOut = null;
-            }
-            else
-                mp.trigger('client:chatTyping', true); // eslint-disable-line
+            try {
+                if (timeOut) {
+                    clearTimeout(timeOut);
+                    timeOut = null;
+                }
+                else
+                    mp.trigger('client:chatTyping', true); // eslint-disable-line
 
-            timeOut = setTimeout(function () {
-                mp.trigger('client:chatTyping', false); // eslint-disable-line
-                timeOut = null;
-            }, 1000);
+                timeOut = setTimeout(function () {
+                    mp.trigger('client:chatTyping', false); // eslint-disable-line
+                    timeOut = null;
+                }, 1000);
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
 
         function getIndicesOf(searchStr, str, caseSensitive) {
@@ -212,76 +222,95 @@ class Chat extends React.Component {
         var chatAPI =
         {
             push: (text) => {
-                let textResult = escapeHtml(text);
+                try {
+                    let textResult = escapeHtml(text);
 
-                var matchColors = /!\{#\w*\}/gi;
-                var match = textResult.match(matchColors);
-                if (match !== null) {
+                    var matchColors = /!\{#\w*\}/gi;
+                    var match = textResult.match(matchColors);
+                    if (match !== null) {
 
-                    for (let i = 0; i < match.length; i++) {
-                        let clr = match[i].replace(match[i], match[i].replace('!{', '').replace('}', ''));
-                        textResult = textResult.replace(match[i], '<span style="color: ' + clr + '">');
+                        for (let i = 0; i < match.length; i++) {
+                            let clr = match[i].replace(match[i], match[i].replace('!{', '').replace('}', ''));
+                            textResult = textResult.replace(match[i], '<span style="color: ' + clr + '">');
+                        }
+
+                        for (let i = 0; i < match.length; i++) {
+                            textResult += '</span>';
+                        }
                     }
 
-                    for (let i = 0; i < match.length; i++) {
-                        textResult += '</span>';
+                    matchColors = /!\{\w*\}/gi;
+                    match = textResult.match(matchColors);
+                    if (match !== null) {
+
+                        for (let i = 0; i < match.length; i++) {
+                            let clr = match[i].replace(match[i], match[i].replace('!{', '').replace('}', ''));
+                            textResult = textResult.replace(match[i], '<span style="color: #' + clr + '">');
+                        }
+
+                        for (let i = 0; i < match.length; i++) {
+                            textResult += '</span>';
+                        }
+                    }
+
+                    chat.container.prepend("<li>" + textResult + "</li>");
+
+                    chat.size++;
+
+                    if (chat.size >= chat.history_limit) {
+                        chat.container.children(":last").remove();
+                    }
+
+                    $("#chat_messages").fadeIn('fast');
+                    if (closeTimeout) {
+                        clearTimeout(closeTimeout);
+                        closeTimeout = null;
+                    }
+                    if (chat.timeoutHidden < 99999000) {
+                        closeTimeout = setTimeout(function () {
+                            $("#chat_messages").fadeOut('slow')
+                        }, chat.timeoutHidden);
                     }
                 }
-
-                matchColors = /!\{\w*\}/gi;
-                match = textResult.match(matchColors);
-                if (match !== null) {
-
-                    for (let i = 0; i < match.length; i++) {
-                        let clr = match[i].replace(match[i], match[i].replace('!{', '').replace('}', ''));
-                        textResult = textResult.replace(match[i], '<span style="color: #' + clr + '">');
-                    }
-
-                    for (let i = 0; i < match.length; i++) {
-                        textResult += '</span>';
-                    }
-                }
-
-                chat.container.prepend("<li>" + textResult + "</li>");
-
-                chat.size++;
-
-                if (chat.size >= chat.history_limit) {
-                    chat.container.children(":last").remove();
-                }
-
-                $("#chat_messages").fadeIn('fast');
-                if (closeTimeout) {
-                    clearTimeout(closeTimeout);
-                    closeTimeout = null;
-                }
-                if (chat.timeoutHidden < 99999000) {
-                    closeTimeout = setTimeout(function () {
-                        $("#chat_messages").fadeOut('slow')
-                    }, chat.timeoutHidden);
+                catch (e) {
+                    console.log(e);
                 }
             },
 
             clear: () => {
-                chat.container.html("");
+                try {
+                    chat.container.html("");
+                }
+                catch (e) {
+                    console.log(e);
+                }
             },
 
             activate: (toggle) => {
-                if (toggle == false
-                    && (chat.input != null))
-                    enableChatInput(false);
+                try {
+                    if (toggle == false
+                        && (chat.input != null))
+                        enableChatInput(false);
 
-                chat.active = toggle;
+                    chat.active = toggle;
+                }
+                catch (e) {
+                    console.log(e);
+                }
             },
 
             show: (toggle) => {
-                if (toggle)
-                    $("#chat").show();
-                else
-                    $("#chat").hide();
+                try {
+                    if (toggle)
+                        $("#chat").show();
+                    else
+                        $("#chat").hide();
 
-                chat.active = toggle;
-                this.setState({show: toggle});
+                    chat.active = toggle;
+                }
+                catch (e) {
+                    console.log(e);
+                }
             }
         };
 

@@ -74,7 +74,14 @@ class Chat extends React.Component {
 
     inputFocus(focus) {
         try {
-            mp.trigger('client:phone:focusInput', focus); // eslint-disable-line
+            mp.trigger('client:phone:inputModal', true); // eslint-disable-line
+        } catch (e) {
+        }
+    }
+
+    inputBlur(focus) {
+        try {
+            mp.trigger('client:phone:inputModal', false); // eslint-disable-line
         } catch (e) {
         }
     }
@@ -178,7 +185,7 @@ class Chat extends React.Component {
                     <div className="ded-input-text">
                         <MaterialIcon icon="insert_emoticon" size={22} color="#7D8B97" />
                         <input type="text" placeholder="Введите сообщение..." className="ded-text-ipn"
-                            value={this.state.text} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)} />
+                            value={this.state.text} onBlur={(e) => this.inputBlur(e)} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)} />
                         <MaterialIcon icon="send" size={22} color="#67B1F8" onClick={() => this.sendMessage()} />
                     </div>
                 </div>

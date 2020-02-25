@@ -40,45 +40,51 @@
     overflow: hidden;
     margin-top: 3px;
     margin-right: 1px;
+    background-size: cover !important;
 }
 
 .bg-0 {
-    background: url(https://i.imgur.com/PSr4n0g.png) no-repeat center;
+    background: url(https://i.imgur.com/v4aju8F.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-1 {
-    background: url(https://i.ytimg.com/vi/c_3Rmwmzs4c/maxresdefault.jpg) no-repeat center;
+    background: url(https://i.imgur.com/1AaJHAC.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-2 {
-    background: url(https://images3.alphacoders.com/841/841112.jpg) no-repeat center;
+    background: url(https://i.imgur.com/Z1udZP3.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-3 {
-    background: url(https://i.pinimg.com/originals/17/95/a8/1795a8ad3bef7f77eec1e50b89dcab74.jpg) no-repeat center;
+    background: url(https://i.imgur.com/Kv46Oye.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-4 {
-    background: url(https://i.pinimg.com/originals/b6/d7/34/b6d734ddaa97170f4ca5e2e93c38d053.jpg) no-repeat center;
+    background: url(https://i.imgur.com/6TRT27j.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-5 {
-    background: url(http://i.imgur.com/megfG87.jpg) no-repeat center;
+    background: url(https://i.imgur.com/8lOLNXr.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-6 {
-    background: url(https://www.itl.cat/pngfile/big/63-635502_gta-5-live-wallpaper-gta-v-4k-background.jpg) no-repeat center;
+    background: url(https://i.imgur.com/aPQR0hE.jpg) no-repeat center;
     background-size: cover;
 }
 
 .bg-7 {
-    background: url(https://www.ecopetit.cat/iconpics/f/13/133332/gta-5-city-wallpaper.jpg) no-repeat center;
+    background: url(https://i.imgur.com/RmYDFxw.png) no-repeat center;
+    background-size: cover;
+}
+
+.bg-8 {
+    background: url(https://i.imgur.com/u5MfuvP.png) no-repeat center;
     background-size: cover;
 }
 
@@ -224,72 +230,124 @@
     margin-right: auto;
 }
 .icons-hack2{
-    background: url(../img/android/icons/console2.svg) no-repeat;
+    background: url(../img/android/icons/console2.svg) no-repeat center;
     background-size: 32px;
 }
 .icons-hack{
-    background: url(../img/android/icons/hack.png) no-repeat;
+    background: url(../img/android/icons/hack.png) no-repeat center;
+    background-size: 32px;
+}
+.icons-console{
+    background: url(../img/android/icons/console.png) no-repeat center;
     background-size: 32px;
 }
 .icons-settings {
-    background: url(../img/android/icons/settings.png) no-repeat;
+    background: url(../img/android/icons/settings.png) no-repeat center;
     background-size: 32px;
 }
 
 .icons-phone {
-    background: url(../img/android/icons/telephone.png) no-repeat;
+    background: url(../img/android/icons/telephone.png) no-repeat center;
     background-size: 32px;
 }
 
 .icons-sms {
-    background: url(../img/android/icons/sms.png) no-repeat;
+    background: url(../img/android/icons/sms.png) no-repeat center;
     background-size: 32px;
 }
 
 .icons-gps {
-    background: url(../img/android/icons/gps.png) no-repeat;
+    background: url(../img/android/icons/gps.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-cont {
-    background: url(../img/android/icons/cont.png) no-repeat;
+    background: url(../img/android/icons/cont.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-apps {
-    background: url(../img/android/icons/apps.png) no-repeat;
+    background: url(../img/android/icons/apps.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-fleeca {
-    background: url(../img/android/icons/fleeca.png) no-repeat;
+    background: url(../img/android/icons/fleeca.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-maze {
-    background: url(../img/android/icons/maze.png) no-repeat;
+    background: url(../img/android/icons/maze.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-blaine {
-    background: url(../img/android/icons/blaine.png) no-repeat;
+    background: url(../img/android/icons/blaine.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }
 
 .icons-pacific {
-    background: url(../img/android/icons/pacific.png) no-repeat;
+    background: url(../img/android/icons/pacific.png) no-repeat center;
     background-size: 32px;
     filter: invert(100%);
 }
 
 .icons-invader {
-    background: url(../img/android/icons/invader.png) no-repeat;
+    background: url(../img/android/icons/invader.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-news {
+    background: url(../img/android/icons/news.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-uveh {
+    background: url(../img/android/icons/car.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-ems {
+    background: url(../img/android/icons/ems.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-lspd {
+    background: url(../img/android/icons/lspd.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-lspd2 {
+    background: url(../img/android/icons/lspd2.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-community {
+    background: url(../img/android/icons/community.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-gov {
+    background: url(../img/android/icons/gov.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
+.icons-bcsd {
+    background: url(../img/android/icons/bcsd.png) no-repeat center;
     background-size: 32px;
     /*filter: invert(100%);*/
 }

@@ -728,6 +728,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     background-size: cover;
     position: absolute;
     right: 5px;
+    display: none;
 }
 .moveall_right:hover, .moveall_left:hover {
     filter: brightness(0) saturate(100%) invert(59%) sepia(82%) saturate(454%) hue-rotate(169deg) brightness(97%) contrast(96%);

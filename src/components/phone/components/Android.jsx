@@ -23,6 +23,7 @@ class Android extends React.Component {
             path: '/phone/android/defaultpage',
             history: ['/phone/android/defaultpage'],
             rotate: false,
+            bg_img_url: 'https://i.imgur.com/v4aju8F.jpg',
             bg_color: '',
             top_bar: {
                 time: '00:00', // Сервер должен регулировать время на телефоне/обновлять раз в минуту (скорее всего)
@@ -39,214 +40,34 @@ class Android extends React.Component {
                 { link: "/phone/android/umenu", action: 'gps', img: 'gps' },
                 { link: "/phone/android/phonebook", action: 'cont', img: 'cont' },
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms' },
-                { link: "/phone/android/console", action: 'hack', img: 'hack2' },
-                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
-                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
-                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
-                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' }, 
-                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
-                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
-                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
-                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' },   
-                // { link: "/phone/android/umenu", action: 'maze', img: 'maze' },
-                // { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
-                // { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
-                // { link: "/phone/android/umenu", action: 'settings', img: 'settings' }, 
+                { link: "/phone/android/console", action: 'console', img: 'console' },
+                /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },
+                { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
+                { link: "/phone/android/umenu", action: 'fleeca', img: 'fleeca' },
+                { link: "/phone/android/umenu", action: 'blaine', img: 'blaine' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'invader' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'news' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'community' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'bcsd' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'gov' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'uveh' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'lspd2' },*/
+
             ],
             menu: {
                 UUID: '11223',
-                title: 'Ваши приложения',
+                title: 'Загрузка...',
                 items: [
                     {
-                        title: 'Аккаунт',
+                        title: 'Загрузка...',
                         umenu: [
                             {
-                                title: "Nika Kondr",
-                                text: "nika.kondr@ded.net",
+                                title: "Загрузка...",
+                                text: "",
                                 type: 0,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
                             }
-                        ],
-                    },
-                    {
-                        title: 'Таблица', //Массив работает внутри utable
-                        umenu: [
-                            {
-                                type: 10,
-                                title: 'TEst',
-                                readonly: true,
-                                columns: [
-                                    { title: 'Имя', field: 'name' },
-                                    { title: 'Фамилия', field: 'surname', initialEditValue: 'Введите значение' },
-                                    { title: 'Год рождения', field: 'birthYear' },
-                                    {
-                                        title: 'Место рождения',
-                                        field: 'birthCity',
-                                        lookup: { 34: 'Москва', 63: 'Санкт-Петербург' },
-                                    },
-                                    {
-                                        field: 'url',
-                                        title: 'Фото',
-                                        editable: false,
-                                        render: rowData => <img src={rowData.url} alt=""
-                                            style={{ width: 50, borderRadius: '50%' }} />
-                                    },
-                                ],
-                                data: [
-                                    {
-                                        params: { name: "none" },
-                                        url: 'https://a.rsg.sc//n/socialclub',
-                                        name: 'Выдал "Лицензия на оружие" гражданину Looney Moretti',
-                                        surname: 'Выдал "Лицензия на оружие" гражданину Looney Moretti',
-                                        birthYear: 1987,
-                                        birthCity: 63
-                                    },
-                                    {
-                                        params: { name: "none" },
-                                        url: 'https://a.rsg.sc//n/socialclub',
-                                        name: 'Test',
-                                        surname: 'Test2',
-                                        birthYear: 2017,
-                                        birthCity: 34
-                                    },
-                                ],
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Новые типы блоков',
-                        umenu: [
-                            {
-                                title: "Vasya Pupkin",
-                                text: "Заместитель директора",
-                                img: 'https://a.rsg.sc//n/socialclub',
-                                online: false,
-                                type: 4,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Fleeca Bank",
-                                text: "5467 3526 2109 0919",
-                                name: 'Looney Moretti',
-                                color: '#4CAF50',
-                                type: 9,
-                                clickable: false,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: " I found i still had this issues sometimes when I had certain divs set to height or min-height: 100%. I had to remove and either wrap it in a parent or move further into the tree where it could still scroll",
-                                text: " I found i still had this issues sometimes when I had certain divs set to height or min-height: 100%. I had to remove and either wrap it in a parent or move further into the tree where it could still scroll",
-                                img: 'https://a.rsg.sc//n/socialclub',
-                                online: true,
-                                type: 4,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                show: false,
-                                title: "Повысить",
-                                text: "Заместитель кипера",
-                                scrollbarTitle: 'Test 123',
-                                scrollbar: [
-                                    { title: 'Ранг 1', checked: true, params: { name: "null" } },
-                                    { title: 'TEST', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                    { title: 'Ранг 3', params: { name: "null" } },
-                                ],
-                                type: 5,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                show: false,
-                                title: "Тест",
-                                text: "Заместитель кипера",
-                                modalTitle: 'Повысить?',// Есть инпуты, где я пишу отдельно заголовок модалки и название самой кнопки
-                                modalText: 'Повысить?',
-                                modalButton: ['Нет', 'Да'],
-                                type: 7,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                show: false,
-                                title: "Выдать розыск",
-                                text: "Заместитель кипера",
-                                modalTitle: 'Введите значение',
-                                modalValue: 'value',
-                                modalButton: ['Нет', 'Да'],
-                                type: 8,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                        ]
-                    },
-                    {
-                        title: 'Приложения',
-                        umenu: [
-                            {
-                                title: "UVehicle",
-                                text: "Приложени \n перенос",
-                                img: 'car',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Life Invader",
-                                text: "Приложение вашей организации",
-                                img: 'community',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Life Invader",
-                                text: "Доступная и качественная реклама",
-                                img: 'invader',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Maze Bank",
-                                text: "",
-                                img: 'maze',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Fleeca Bank",
-                                text: "",
-                                img: 'fleeca',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Pacific Standard Bank",
-                                text: "",
-                                img: 'pacific',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Blaine Country Savings Bank",
-                                text: "",
-                                img: 'blaine',
-                                type: 1,
-                                clickable: true,
-                                params: { name: "null" }
-                            },
                         ],
                     },
                 ],
@@ -356,7 +177,7 @@ class Android extends React.Component {
                     ]
                 }
             ],
-            console_message: ['- npm install group6 start...', '@root: - npm build'],
+            console_message: ['Welcome To Console v0.1\nGNU/Linux 4.15.0-55-generic x86_64\n\nuse "help" command\n\n'],
             // topbar_color: false,
             // Все нижние массивы это временно для демонстрации работы
             scrollbar: {
@@ -400,6 +221,13 @@ class Android extends React.Component {
                     console.log(e);
                 }
             }
+            if (value.type === 'updateApps') {
+                try {
+                    this.setState({ apps: value.apps });
+                } catch (e) {
+                    console.log(e);
+                }
+            }
             if (value.type === 'updatePhonebook') {
                 try {
                     this.setState({ phonebook: value.phonebook });
@@ -429,9 +257,29 @@ class Android extends React.Component {
                     console.log(e);
                 }
             }
+            if (value.type === 'selectChat') {
+                try {
+                    this.selectChat(value.phone);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'addConsoleCommand') {
+                try {
+                    this.consoleCommand(value.command);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
             if (value.type === 'updateTopBar') {
                 this.setState({ top_bar: value.bar })
-            } else return;
+            }
+            if (value.type === 'updateBg') {
+                this.setState({ bg_img_url: value.url })
+            }
+            if (value.type === 'toMainPage') {
+                this.setState({ path: '/phone/android/defaultpage' })
+            }
         })
     }
 
@@ -798,12 +646,15 @@ class Android extends React.Component {
 
     render() {
         const bg = {
-            background: this.state.bg_color
-        }
+            background: this.state.bg_color,
+        };
+        if (this.state.path === '/phone/android/defaultpage')
+            bg.background = `url(${this.state.bg_img_url}) no-repeat center`;
+
         return (
             <React.Fragment>
                 <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
-                    <div className="phone-bg bg-1" style={bg}>
+                    <div className="phone-bg" style={bg}>
                         <div className={this.state.rotate ? "rotate-components" : 'main-phone-box-flex'}>
                             <TopBar data={this.state.top_bar} />
                             <Router>

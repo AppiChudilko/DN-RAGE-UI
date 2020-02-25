@@ -55,7 +55,6 @@ class Console extends React.Component {
 
     componentWillUnmount() {
         document.removeEventListener("keydown", this.handleKeyPress);
-
         EventManager.removeHandler('phone_console');
     }
 
@@ -66,14 +65,27 @@ class Console extends React.Component {
 
     inputFocus(focus) {
         try {
-            mp.trigger('client:phone:focusInput', focus); // eslint-disable-line
+            mp.trigger('client:phone:inputModal', true); // eslint-disable-line
+        } catch (e) {
+        }
+    }
+
+    inputBlur(focus) {
+        try {
+            mp.trigger('client:phone:inputModal', false); // eslint-disable-line
         } catch (e) {
         }
     }
 
     sendMessage() {
-        if (this.state.text !== undefined || this.state.text === '')
-            this.props.consoleCommand(this.state.text)
+        if (this.state.text !== undefined || this.state.text === '') {
+            this.props.consoleCommand(`[${this.state.current_user}@${this.state.current_server}:~ ] $ ${this.state.text}`);
+
+            try {
+                mp.trigger('client:phone:consoleCallback', this.state.text); // eslint-disable-line
+            } catch (e) {
+            }
+        }
         this.setState({ text: '', history_counter: 0 })
     }
     render() {
@@ -88,7 +100,8 @@ class Console extends React.Component {
                             {this.props.console_message.map((e, i) => {
                                 let index = `consolelist${i}`
                                 return (
-                                    <li key={index}><a>[{this.state.current_user}@{this.state.current_server}:~ ] $ </a>{e}</li>
+                                    <li key={index}>{e}</li>
+                                    /*<li key={index}><a>[{this.state.current_user}@{this.state.current_server}:~ ] $ </a>{e}</li>*/
                                 )
                             })}
                         </ul>
@@ -97,7 +110,7 @@ class Console extends React.Component {
                                 className="c-i-style " /> */}
                             <span>$:></span>
                             <input type="text" className="c-i-style"
-                                value={this.state.text} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)}
+                                value={this.state.text} onBlur={(e) => this.inputBlur(e)} onFocus={(e) => this.inputFocus(e)} onChange={(e) => this.inputChange(e)}
                             />
                             {/* <MaterialIcon icon="send" size={22} color="#67B1F8" onClick={() => this.sendMessage()} /> */}
                         </div>
