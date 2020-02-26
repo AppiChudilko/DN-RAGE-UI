@@ -297,8 +297,8 @@ class Android extends React.Component {
             if (value.type === 'updateBg') {
                 this.setState({ bg_img_url: value.url })
             }
-            if (value.type === 'toMainPage') {
-                this.setState({ path: '/phone/android/defaultpage' })
+            if (value.type === 'toPage') {
+                this.setState({ path: value.page })
             }
         })
     }
