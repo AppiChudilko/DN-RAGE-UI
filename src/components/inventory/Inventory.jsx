@@ -13,7 +13,7 @@ class Inventory extends React.Component {
             show: false, // Инвентарь открыт/закрыт
             player_name: "Nika Kondr",
             player_id: 456,
-            craft: false,
+            craft: true,
             secondary_inv_open: false, // Багажник открыт/закрыт
             crafting_succes: false,
             x: '',
@@ -1953,7 +1953,7 @@ class Inventory extends React.Component {
                                                     style={{ background: this.getWeaponBorderColor(this.state.selected_weapon_item_id) }}></div>
                                                 <div className="box-img-equip-weapon">
                                                     <div
-                                                        className={this.state.selected_weapon_item_id !== 0 ? "selected-weapon img-" + this.state.selected_weapon_item_id : "weapon-m41"}></div>
+                                                        className={this.state.selected_weapon_item_id !== 0 ? "selected-weapon img-" + this.state.selected_weapon_item_id : ''}></div>
                                                 </div>
                                                 <div className="main-box-craft-weapon">
                                                     <div className="square-box-craft-weapon sqr-wp-top">
