@@ -5,9 +5,15 @@
     align-items: center;
     justify-content: flex-end;
     padding-right: 50px; */
-    position: absolute;
+
+    /*position: absolute;
     top: 23%;
     right: 25px;
+    z-index: 1;*/
+
+    position: absolute;
+    bottom: -40px;
+    right: 75px;
     z-index: 1;
 }
 
@@ -22,6 +28,7 @@
 }
 
 .rotate-androind {
+    margin-bottom: 100%;
     transform: rotate(-90deg) translate(0px, -128%) scale(2);
 }
 
