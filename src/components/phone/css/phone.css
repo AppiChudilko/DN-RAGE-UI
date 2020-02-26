@@ -145,7 +145,7 @@
 }
 
 .rotate-components .main-app-box {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     width: 60%;
     display: flex;
     justify-content: center;
@@ -153,7 +153,6 @@
 
 .main-app-box {
     margin-top: auto;
-    margin-bottom: -5px;
     margin-left: auto;
     margin-right: auto;
     width: 244px;
@@ -174,6 +173,7 @@
     justify-content: center;
     background-position: center;
     transition: 0.3s;
+    position: relative;
 }
 
 .app-box:hover {
@@ -202,11 +202,11 @@
     margin-bottom: 20px;
 } */
 .android-content .app-box {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .rotate-components .app-box {
-    margin-right: 14px !important;
+    margin-right: 30px !important;
     margin-bottom: 0px !important;
     width: 40px;
     height: 41px;
@@ -2482,4 +2482,183 @@ BankCard
     border: none;
     resize: none;
     margin-left: 5px;
+}
+/*Achiev*/
+.rotate-components .achiev-menu {
+    height: 502px;
+    margin-left: 2px;
+}
+
+.achiev-menu {
+    width: inherit;
+    height: 412px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    width: 101%;
+    margin-left: -1px;
+}
+.rotate-components .u-title-achiev {
+    height: 48px;
+}
+
+.u-title-achiev {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #212121;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+}
+.u-texttittle-achiev {
+    font-family: "RobotoMedium";
+    color: #fff;
+    font-size: 14px;
+}
+.u-l-arrow-achiev {
+    width: 16px;
+    height: 20px;
+    background-size: 20px;
+    background-position: center;
+    background: url(../img/android/icons/arrow-menu.svg) center center no-repeat;
+    transform: rotate(180deg);
+    filter: invert(100%) sepia(12%) saturate(7498%) hue-rotate(179deg) brightness(106%) contrast(98%);
+    cursor: pointer;
+}
+.ar-left-tr {
+    transform: none;
+    margin-right: auto;
+    margin-left: 20px;
+}
+.ar-right-tr {
+    margin-left: auto;
+    margin-right: 20px;
+}
+.rotate-components .achiev-main {
+    height: 85.4%;
+}
+
+.achiev-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;   
+    flex-direction: column;
+    
+    background: #1D2733;
+    overflow: scroll;
+    padding-top: 8px;    
+    overflow: scroll;
+}
+.achiev-main::-webkit-scrollbar {
+    display: none;
+}
+.main-achiev-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+    
+}
+.achiev-box {
+    width: 100%;
+    min-height: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #00000000;
+    /* background: #212d3b3d; */
+    position: relative;
+}
+.img-achiev {
+    width: 41px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    margin-right: 16px;
+    z-index: 1;
+    /* filter: brightness(2) saturate(0%); */
+}
+.item-achiev-1 {
+    background: url(../../inventory/img/all-items/Item_48.png) no-repeat;
+    background-size: cover;
+}
+.rotate-components .info-box-achiev {
+    width: 100%;
+}
+.info-box-achiev {
+    width: 75%;
+    min-height: 47px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+    padding-bottom: 7px;
+}
+.i-achiev-title {
+    font-family: 'Roboto';
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+.i-achiev-title-two {
+    font-family: 'RobotoLight';
+    font-size: 12px;
+    color: #fff;
+}
+.i-achiev-title-three {
+    width: 92%;
+    min-height: 20px;
+    font-family: 'RobotoLight';
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 5px;
+    padding: 10px;
+    display: none;
+    opacity: 0;
+}
+.main-achiev-box:hover {
+    background: #0000006e;
+}
+.main-achiev-box:hover .i-achiev-title-three {
+    display: block;
+    opacity: 1;
+}
+
+.achiev-linear {
+    width: 50%;
+    height: 100%;
+    background: #2d72c199;
+    position: absolute;
+    z-index: 0;
+}
+.i-achiev-result {
+    font-family: 'RobotoLight';
+    font-size: 14px;
+    color: rgb(46, 252, 5);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 10px;
+}
+.testbokk {
+    width: 92%;
+    min-height: 20px;
+    font-family: 'RobotoLight';
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 5px;
+    padding: 10px;
+    display: block;
+}
+.textfor-app {
+    position: absolute;
+    bottom: -16px;
+    font-family: 'Roboto';
+    font-size: 12px;
 }
