@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class DefaultPage extends React.Component {
     constructor(props) {
@@ -31,8 +31,9 @@ class DefaultPage extends React.Component {
                             const index = `appBox${i}`
                             return (
                                 <Link to={e.link} className="app-box" onClick={() => this.props.clickApps(e, i)}
-                                      key={index}>
+                                    key={index}>
                                     <div className={`app-icon icons-${e.img}`}></div>
+                                    <div className="textfor-app">{e.name}</div>
                                 </Link>
                             )
                         })}
