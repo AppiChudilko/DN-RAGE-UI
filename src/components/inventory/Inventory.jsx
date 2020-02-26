@@ -230,10 +230,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                /*{
+                /* {
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
-                    craft: ['1', '2', '3'],
-                },*/
+                    craft: ['1', '2', '3'], craft_time: 2000
+                }, */
             ],
         }
     }
@@ -281,12 +281,18 @@ class Inventory extends React.Component {
                 this.setState({ secondary_items_owner_type: value.ownerType });
             }
             if (value.type === 'updateWeaponItems') {
-                this.setState({ equipment_weapon: value.items });
-
-                if (this.state.selected_weapon_id == 0) {
-                    this.setState({ craft: false });
-                    this.setState({ selected_weapon_id: this.state.equipment_weapon[0].id });
+                try {
+                    this.setState({ equipment_weapon: value.items });
+                    if (value.items !== undefined && value.items.length !== 0) {
+                        if (this.state.selected_weapon_id == 0) {
+                            this.setState({ craft: false });
+                            this.setState({ selected_weapon_id: this.state.equipment_weapon[0].id });
+                        }
+                    } else {
+                        this.setState({ craft: true });
+                    }
                 }
+                catch (e) { }
             }
             if (value.type === 'updateLabel') {
                 this.setState({ player_name: value.uname });
@@ -1705,8 +1711,9 @@ class Inventory extends React.Component {
         this.setState({ recipes_craft: true, selected_recipe: item })
     }
     craftItem() {
-        if (this.state.craft_process > -1) {
-            console.log('Откат на крафт 4 секунды')
+        console.log(this.state.craft_process)
+        if (this.state.craft_process > -1) {            
+            console.log('Откат на крафт ' + this.state.selected_recipe.craft_time + 'ms')
             //this.notifyToClient('~r~Крафт в процессе!');
             return;
         }
@@ -1723,10 +1730,10 @@ class Inventory extends React.Component {
             console.log('Успешный крафт')
             // mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
             return;
-        }, 2000)
+        }, this.state.selected_recipe.craft_time / 2)
         setTimeout(() => {
             this.setState({ craft_process: -1 })
-        }, 4000)
+        }, this.state.selected_recipe.craft_time)
     }
     isItemInInventory(id) {
         let check_item = this.state.items.filter(obj => { return obj.item_id.toString() === id.toString() })
@@ -1851,7 +1858,7 @@ class Inventory extends React.Component {
                                                         </div>
                                                     </div>
                                                     <div className="crafting-object-main">
-                                                        <div className="liner-crafting-obj" style={{ width: this.state.craft_process + "%" }}></div>
+                                                        <div className="liner-crafting-obj" style={{ width: this.state.craft_process + "%", transition: this.state.selected_recipe.craft_time/2+'ms'}}></div>
                                                         <div className="main-box-craft-weapon">
                                                             <div className="square-box-craft-weapon sqr-wp-top">
                                                                 {this.state.selected_recipe.craft.length > 0 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[0]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[0]}`}></div> : null}
