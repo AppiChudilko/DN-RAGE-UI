@@ -2567,6 +2567,7 @@ BankCard
     flex-direction: column;
     margin-bottom: 5px;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+    transition: 0.3s all;
     
 }
 .achiev-box {
@@ -2628,13 +2629,14 @@ BankCard
     padding: 10px;
     display: none;
     opacity: 0;
+    transition: 0.3s all;
 }
 .main-achiev-box:hover {
     background: #0000006e;
 }
 .main-achiev-box:hover .i-achiev-title-three {
-    display: block;
-    opacity: 1;
+    /*display: block;
+    opacity: 1;*/
 }
 
 .achiev-linear {
