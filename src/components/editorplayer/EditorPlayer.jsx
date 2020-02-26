@@ -267,13 +267,13 @@ class EditorPlayer extends React.Component {
         let parents = this.state.stats_parents;
         let slider = this.state.slider;
 
-        let edurance = parents[0][slider[0].index_help].endurance * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].endurance * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let strength = parents[0][slider[0].index_help].strength * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].strength * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let shooting = parents[0][slider[0].index_help].shooting * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].shooting * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let stealth = parents[0][slider[0].index_help].stealth * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].stealth * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let flying = parents[0][slider[0].index_help].flying * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].flying * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let driving = parents[0][slider[0].index_help].driving * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].driving * ((100 - slider[2].index_help * 5) / 100) * 2;
-        let psychics = parents[0][slider[0].index_help].psychics * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].psychics * ((100 - slider[2].index_help * 5) / 100) * 2;
+        let edurance = (parents[0][slider[0].index_help].endurance * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].endurance * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let strength = (parents[0][slider[0].index_help].strength * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].strength * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let shooting = (parents[0][slider[0].index_help].shooting * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].shooting * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let stealth = (parents[0][slider[0].index_help].stealth * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].stealth * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let flying = (parents[0][slider[0].index_help].flying * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].flying * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let driving = (parents[0][slider[0].index_help].driving * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].driving * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
+        let psychics = (parents[0][slider[0].index_help].psychics * ((slider[2].index_help * 5) / 100) * 2 + parents[1][slider[1].index_help].psychics * ((100 - slider[2].index_help * 5) / 100) * 2) / 2;
 
         let new_stats = {
             endurance: edurance > 90 ? 90 : edurance,
