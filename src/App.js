@@ -22,11 +22,11 @@ import Quickmenu from './components/quickmenu/Quickmenu';
 function App() {
   return (
     <React.Fragment>
+      <EditorMain />
       <div className="box" id="box">
         <AuthMain />
         <Inventory />
         <Phone />  
-        <EditorMain />
         <Hud />
         <IDCard />
         <WorkID />

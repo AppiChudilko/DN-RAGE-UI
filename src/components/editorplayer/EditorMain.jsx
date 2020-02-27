@@ -16,7 +16,7 @@ class EditorMain extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        mp.trigger('client:ui:debug', 'EditorMain.jsx', error, errorInfo); // eslint-disable-line
+      mp.trigger('client:ui:debug', 'EditorMain.jsx', error, errorInfo); // eslint-disable-line
     }
 
     componentDidMount() {
@@ -45,6 +45,7 @@ class EditorMain extends React.Component {
         }
         return (
             <React.Fragment>
+                <div className="adaptive_editor">
                     <Router>
                         <Route path="/editor">
                             <EditorPlayer/>
@@ -54,6 +55,7 @@ class EditorMain extends React.Component {
                         </Route>
                         <Redirect to={this.state.path} push/>
                     </Router>
+                    </div>
             </React.Fragment>
         )
     }

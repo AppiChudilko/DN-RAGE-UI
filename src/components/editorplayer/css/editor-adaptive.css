@@ -1,6 +1,8 @@
 .adaptive_editor {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
+    position: absolute;
+    z-index: 1;
 }
 
 @media (max-width: 1000px) and (min-width: 600px) {
