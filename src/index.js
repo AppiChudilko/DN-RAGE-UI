@@ -57,13 +57,18 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-if (window.outerWidth > 1900)
-    document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth ** 2 + window.outerHeight ** 2) / 2202.9071700822983).toFixed(3);
-else
-    document.getElementsByTagName('body')[0].style.zoom = 1;
-window.onresize = () => {
+if (document.getElementById('disableZoom') === undefined) {
     if (window.outerWidth > 1900)
         document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth ** 2 + window.outerHeight ** 2) / 2202.9071700822983).toFixed(3);
     else
         document.getElementsByTagName('body')[0].style.zoom = 1;
-};
+
+    window.onresize = () => {
+        if (window.outerWidth > 1900)
+            document.getElementsByTagName('body')[0].style.zoom = +(Math.sqrt(window.outerWidth ** 2 + window.outerHeight ** 2) / 2202.9071700822983).toFixed(3);
+        else
+            document.getElementsByTagName('body')[0].style.zoom = 1;
+    };
+}
+else
+    document.getElementsByTagName('body')[0].style.zoom = 1;

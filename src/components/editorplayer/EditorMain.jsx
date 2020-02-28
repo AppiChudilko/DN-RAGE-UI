@@ -45,7 +45,7 @@ class EditorMain extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="adaptive_editor">
+                <div id="disableZoom" className="adaptive_editor">
                     <Router>
                         <Route path="/editor">
                             <EditorPlayer/>

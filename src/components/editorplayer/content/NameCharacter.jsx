@@ -1,5 +1,6 @@
 import React from 'react';
 import SliderEditor from './PageEditor/Elements/SliderEditor';
+// import { Link } from 'react-router-dom';
 
 class NameCharacter extends React.Component {
     constructor(props) {
@@ -71,12 +72,12 @@ class NameCharacter extends React.Component {
                     <div className="last-button-menu">
                         <div className="box-last-btn">...</div>
                         <div className="box-last-btn" onClick={this.props.reset.bind(this)}>Сброс</div>
-                    </div>
-                    {/*<Link to="/editor/family-character">*/}
+                    </div>                    
+                    {/* <Link to="/editor/family-character"> */}
                     <div className="next-button-menu">
                         <div className="box-next-btn" onClick={this.registerPlayer.bind(this)}>Далее</div>
                     </div>
-                    {/*</Link>*/}
+                    {/* </Link> */}
                 </div>
             </React.Fragment>
         )
