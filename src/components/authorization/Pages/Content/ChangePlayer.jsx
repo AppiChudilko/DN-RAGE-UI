@@ -37,7 +37,7 @@ class ChangePlayer extends React.Component {
                 {
                     player: {
                         name: "Appi Moretti",
-                        old: "55",
+                        old: "155",
                         money: "250000",
                         date: "26.12.1996",
                         sex: "m",

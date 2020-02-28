@@ -13,24 +13,14 @@ class InfoPlayer extends React.Component {
             name, spawnName);
     }
 
-    componentDidMount() {
-        this.changeImg();
-    }
-
     changeImg() {
-        let index = this.props.index;
-        let array = this.props.info_player[index].player;
-
-        let sex_array = array.sex;
-        let old_array = array.old;
-
-        if (sex_array === "w") {
-            this.setState({img: "player_women"});
+        if (this.props.info_player[this.props.index].player.sex === "w") {
+            return "player_women";
         } else {
-            if (old_array > 100) {
-                this.setState({img: "player_old"});
+            if (this.props.info_player[this.props.index].player.old > 100) {
+                return "player_old";
             } else {
-                this.setState({img: "player_young"});
+                return "player_young";
             }
         }
     }
@@ -45,7 +35,7 @@ class InfoPlayer extends React.Component {
                 <div className="change-create-player">
                     <div className="border-top"></div>
                     <div className="info-player">
-                        <div className={this.state.img}></div>
+                        <div className={this.changeImg()}></div>
                         <div className="name-player-info">{this.props.name}</div>
                         <div className="info-text-player">
                             <div className="text-box">
