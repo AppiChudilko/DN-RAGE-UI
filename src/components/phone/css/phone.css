@@ -1534,11 +1534,12 @@ figure img {
 .rotate-components .u-scrollable {
     height: 88%;
     width: 101%;
+    top: 22px;
 }
 
 .u-scrollable {
-    width: inherit;
-    height: inherit;
+    width: 88%;
+    height: 72.5%;
     background: rgba(0, 0, 0, 0.38);
     position: absolute;
     z-index: 2;
