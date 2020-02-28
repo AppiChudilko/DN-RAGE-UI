@@ -617,7 +617,9 @@ class Inventory extends React.Component {
             this.setState({ inter_menu: menu, inter_show: false })
         }
         let menu = this.state.inter_menu
-        let actions = ["give", "drop", "infoItem", "close"] // Стандартные действия для всех предметов (передать, выбросить, закрыть)
+        let actions = [];
+        if(source === 'weapon' || source === 'outfit') actions = ["drop", "infoItem", "close"];
+        else actions = ["give", "drop", "infoItem", "close"]; // Стандартные действия для всех предметов (передать, выбросить, закрыть)
         if (source === 'weapon') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
             actions.push('select') // Выбрать оружие
             actions.push('unloadW') // Выбрать оружие
