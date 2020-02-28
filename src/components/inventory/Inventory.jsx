@@ -1028,15 +1028,11 @@ class Inventory extends React.Component {
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
-                    item = this.checkItem(item, 'inventory')
-                    this.setState({ items: this.arrayRemove(this.state.items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
-                    item = this.checkItem(item, 'secondary_inv')
-                    this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
@@ -1045,19 +1041,61 @@ class Inventory extends React.Component {
         }
     }
 
-    itemUsePlayer(item, source) {
+    deleteItemById(item_id, source){
+        let item = this.getItemById(item_id, source);
+        if(item === null) return;
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
                     item = this.checkItem(item, 'inventory')
                     this.setState({ items: this.arrayRemove(this.state.items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
-                    mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
                     item = this.checkItem(item, 'secondary_inv')
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    getItemById(item_id, source){
+        let item = null;
+        switch (source) {
+            case 'inventory':
+                let items_copy = [...this.state.items]
+                for (let i = 0; i < items_copy.length; i++) {
+                    if (items_copy[i].id === item_id) {
+                        item = items_copy[i];
+                    }
+                }
+                break;
+            case 'secondary_inv':
+                let secondary_items_copy = [...this.state.secondary_items]
+                for (let i = 0; i < secondary_items_copy.length; i++) {
+                    if (secondary_items_copy[i].id === item_id) {
+                        item = secondary_items_copy[i];
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        return item;
+    }
+
+    itemUsePlayer(item, source) {
+        switch (source) {
+            case 'inventory':
+                if (this.checkItem(item, 'inventory') !== null) {
+                    mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
+                }
+                break;
+            case 'secondary_inv':
+                if (this.checkItem(item, 'secondary_inv') !== null) {
                     mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
@@ -1212,7 +1250,6 @@ class Inventory extends React.Component {
     }
 
     itemInfoItem(item, source) {
-
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
