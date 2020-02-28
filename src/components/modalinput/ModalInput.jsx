@@ -63,11 +63,11 @@ class ModalInput extends React.Component {
     selecetButton(e, text) {
         try {
             console.log(e, text);
-            this.setState({show: false})
+            this.setState({show: false, text: ''})
 
             try {
                 mp.trigger('client:modalinput:callBack', '');// eslint-disable-line
-                this.setState({show: false})
+                this.setState({show: false, text: ''})
             } catch (e) {
                 console.log(e);
             }
@@ -80,7 +80,7 @@ class ModalInput extends React.Component {
         if (event.key === 'Enter') {
             try {
                 mp.trigger('client:modalinput:callBack', this.state.text);// eslint-disable-line
-                this.setState({show: false})
+                this.setState({show: false, text: ''})
             } catch (e) {
                 console.log(e);
             }
