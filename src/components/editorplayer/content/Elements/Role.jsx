@@ -22,7 +22,7 @@ class Role extends React.Component {
                 <div className="change-create-player">
                     <div className="border-top"></div>
                     <div className="info-player role-custom">
-                        <div className={this.state.img}></div>
+                        <div className={this.state.img}><div className="text-role-recomed">{this.props.text}</div></div>
                         <div className="name-player-info">{this.props.name}</div>
                         <div className="info-role">
                             <span className="title-info-role">Информация</span>

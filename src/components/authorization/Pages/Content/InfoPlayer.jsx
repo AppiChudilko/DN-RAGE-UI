@@ -27,7 +27,7 @@ class InfoPlayer extends React.Component {
         if (sex_array === "w") {
             this.setState({img: "player_women"});
         } else {
-            if (old_array > 50) {
+            if (old_array > 100) {
                 this.setState({img: "player_old"});
             } else {
                 this.setState({img: "player_young"});
@@ -49,8 +49,8 @@ class InfoPlayer extends React.Component {
                         <div className="name-player-info">{this.props.name}</div>
                         <div className="info-text-player">
                             <div className="text-box">
-                                <span className="title-info-text">ID Аккаунта</span> <span
-                                className="text-box-blue">{this.props.old}</span>
+                                <span className="title-info-text">Вы играли</span> <span
+                                className="text-box-blue">{this.props.old}ч.</span>
                             </div>
                             <div className="text-box">
                                 <span className="title-info-text">Деньги</span> <span

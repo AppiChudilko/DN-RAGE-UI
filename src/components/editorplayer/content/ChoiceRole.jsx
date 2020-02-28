@@ -8,18 +8,21 @@ class ChoiceRole extends React.Component {
             show: false,
             info_player: [
                 {
+                    text_recommend: '',
                     player: {
                         name: "Иммигрант",
                         text: 'Иммигрируя из своей страны на корабле, вы доплываете до порта Лос-Сантоса, где с самыми нужными вещами, что вы успели забрать с собой, вас ждёт работа, на которой вы сразу же сможете заработать свои первые деньги.'
                     }
                 },
                 {
+                    text_recommend: '',
                     player: {
                         name: "Приезжий",
                         text: 'Прилетев на самолёте в Лос-Сантос, в опрятной одежде с первыми деньгами и телефоном, вам открыты все дороги для покорения города, который никогда не спит.'
                     }
                 },
                 {
+                    text_recommend: '',
                     player: {
                         name: "Бездомный",
                         text: 'Очнувшись в окрестностях округа Блейн, в старой грязной одежде и без цента в кармане вам предстоит вернуться к нормальной жизни. Хорошо, что вы уже полноценный гражданин США, что облегчит ваш дальнейший путь.'
@@ -51,18 +54,21 @@ class ChoiceRole extends React.Component {
                         <div className="main-box-change">
                             <Role
                                 index={0}
+                                text={this.state.info_player[0].text_recommend}
                                 name={this.state.info_player[0].player.name}
                                 info_player={this.state.info_player}
                                 text_info={this.state.info_player[0].player.text}
                             />
                             <Role
                                 index={1}
+                                text={this.state.info_player[1].text_recommend}
                                 name={this.state.info_player[1].player.name}
                                 info_player={this.state.info_player}
                                 text_info={this.state.info_player[1].player.text}
                             />
                             <Role
                                 index={2}
+                                text={this.state.info_player[2].text_recommend}
                                 name={this.state.info_player[2].player.name}
                                 info_player={this.state.info_player}
                                 text_info={this.state.info_player[2].player.text}
