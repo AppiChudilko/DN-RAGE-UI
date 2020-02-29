@@ -38,6 +38,8 @@ class UMenuContainer extends React.Component {
                                                 openModal={this.props.openModal}
                                                 openInputModal={this.props.openInputModal}
                                                 rotate={this.props.rotate}
+                                                historyPush={this.props.historyPush}
+                                                path={this.props.path}
                                             />
                                         )
                                     })}

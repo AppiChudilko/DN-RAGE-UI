@@ -17,7 +17,7 @@ class UMenu extends React.Component {
                 <div className="uni-menu">
                     <UMenuContainer data={this.props.data} openScrollbar={this.props.openScrollbar}
                                     openModal={this.props.openModal} openInputModal={this.props.openInputModal}
-                                    rotate={this.props.rotate}/>
+                                    rotate={this.props.rotate} historyPush={this.props.historyPush} path={this.props.path}/>
                 </div>
             </React.Fragment>
         )

@@ -69,7 +69,7 @@ class Android extends React.Component {
                                 type: 0,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
-                            }
+                            },
                         ],
                     },
                 ],
@@ -317,7 +317,12 @@ class Android extends React.Component {
         }
     }
 
-    historyPush() {
+    historyPush(customLink) {
+        //if(customLink === this.state.path) return;
+        if(customLink !== undefined && customLink !== null && customLink !== '') {
+            this.setState({ history: this.state.history.concat([customLink]), path: customLink })
+            return;
+        }
         if (this.state.path === '/phone/android/defaultpage') {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '' }))
             this.setState({ bg_color: '' })
@@ -359,6 +364,23 @@ class Android extends React.Component {
             if (this.state.history[this.state.history.length - 2] === '/phone/android/phonebook/profilecontact/editcontact') {
                 this.setState({ history: this.state.history.slice(0, -1) })
             }
+            if(this.state.history[this.state.history.length - 2].split('?')[0] === '/phone/android/umenu' && 
+            this.state.history[this.state.history.length - 2].split('?').length > 1) {
+                try {
+                console.log(this.state.history[this.state.history.length - 2].split('?')[1].split(':')[0])
+                let params1 = JSON.parse(
+                    '{"' + this.state.history[this.state.history.length - 2].split('?')[1]
+                    .split(':')[0].replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) }
+                    );
+                let params2 = {};
+                if(this.state.history[this.state.history.length - 2].split(':')[1] !== '')
+                    params2 = JSON.parse(
+                    '{"' + this.state.history[this.state.history.length - 2].split(':')[1]
+                    .replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) }
+                    );
+                mp.trigger('client:phone:callBack', params1.action, params1.UUID, parseInt(params1.id), JSON.stringify(params2)); // eslint-disable-line
+                } catch(e) { console.log(e) }
+            }
             this.setState({
                 path: this.state.history[this.state.history.length - 2],
             }, () => this.setState({ history: this.state.history.slice(0, -1) }))
@@ -375,7 +397,11 @@ class Android extends React.Component {
     }
 
     clickApps(event, i) {
-        if (event.link === "/phone/android/umenu") {
+        console.log(event.action)
+        let link = event.link.split('?')[0]
+        console.log(link)
+        console.log(event.link.split('?')[1])
+        if (link === "/phone/android/umenu") {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
             this.setState({ bg_color: '#000' })
             this.setState({ path: event.link })
@@ -386,7 +412,7 @@ class Android extends React.Component {
                 console.log(e);
                 //#1C3AA9
             }
-        } else if (event.link === "/phone/android/phonebook") {
+        } else if (link === "/phone/android/phonebook") {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
             this.setState({ bg_color: '#1C3AA9' })
             this.setState({ path: event.link })
@@ -396,7 +422,7 @@ class Android extends React.Component {
             } catch (e) {
                 console.log(e);
             }
-        } else if (event.link === "/phone/android/messenger") {
+        } else if (link === "/phone/android/messenger") {
             this.setState({ path: event.link })
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
@@ -404,7 +430,7 @@ class Android extends React.Component {
                 console.log(e);
             }
         }
-        else if (event.link === "/phone/android/console") {
+        else if (link === "/phone/android/console") {
             this.setState({ path: event.link })
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
@@ -412,7 +438,7 @@ class Android extends React.Component {
                 console.log(e);
             }
         }
-        else if (event.link === "/phone/android/achiev") {
+        else if (link === "/phone/android/achiev") {
             this.setState({ path: event.link })
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
@@ -703,7 +729,7 @@ class Android extends React.Component {
                                     closeInputModal={this.closeInputModal.bind(this)} />
                                 <Route exact path="/phone/android/umenu">
                                     <UMenu historyPush={this.historyPush.bind(this)} data={this.state.menu}
-                                        openModal={this.openModal.bind(this)}
+                                        openModal={this.openModal.bind(this)} path={this.state.path}
                                         openInputModal={this.openInputModal.bind(this)}
                                         openScrollbar={this.openScrollbar.bind(this)} rotate={this.state.rotate} />
                                 </Route>
