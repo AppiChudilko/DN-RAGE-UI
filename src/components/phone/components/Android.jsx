@@ -70,6 +70,14 @@ class Android extends React.Component {
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
                             },
+                            {
+                                title: "Загрузка...",
+                                text: "",
+                                type: 1,
+                                clickable: 1,
+                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                params: { name: "null" }
+                            },
                         ],
                     },
                 ],
@@ -367,7 +375,8 @@ class Android extends React.Component {
             if (this.state.history[this.state.history.length - 2].split('?')[0] === '/phone/android/umenu' &&
                 this.state.history[this.state.history.length - 2].split('?').length > 1) {
                 try {
-                    if (this.state.history[this.state.history.length - 2].search('appmainpage' !== -1)) {
+                    console.log(this.state.history[this.state.history.length - 2])
+                    if (this.state.history[this.state.history.length - 2].search('appmainpage') !== -1) {
                         mp.trigger('client:phone:apps', this.state.history[this.state.history.length - 2].split(':')[1]) // eslint-disable-line
                     } else {
                         let params1 = JSON.parse(
