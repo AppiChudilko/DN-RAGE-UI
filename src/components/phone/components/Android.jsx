@@ -364,22 +364,25 @@ class Android extends React.Component {
             if (this.state.history[this.state.history.length - 2] === '/phone/android/phonebook/profilecontact/editcontact') {
                 this.setState({ history: this.state.history.slice(0, -1) })
             }
-            if(this.state.history[this.state.history.length - 2].split('?')[0] === '/phone/android/umenu' && 
-            this.state.history[this.state.history.length - 2].split('?').length > 1) {
+            if (this.state.history[this.state.history.length - 2].split('?')[0] === '/phone/android/umenu' &&
+                this.state.history[this.state.history.length - 2].split('?').length > 1) {
                 try {
-                console.log(this.state.history[this.state.history.length - 2].split('?')[1].split(':')[0])
-                let params1 = JSON.parse(
-                    '{"' + this.state.history[this.state.history.length - 2].split('?')[1]
-                    .split(':')[0].replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) }
-                    );
-                let params2 = {};
-                if(this.state.history[this.state.history.length - 2].split(':')[1] !== '')
-                    params2 = JSON.parse(
-                    '{"' + this.state.history[this.state.history.length - 2].split(':')[1]
-                    .replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) }
-                    );
-                mp.trigger('client:phone:callBack', params1.action, params1.UUID, parseInt(params1.id), JSON.stringify(params2)); // eslint-disable-line
-                } catch(e) { console.log(e) }
+                    if (this.state.history[this.state.history.length - 2].search('appmainpage' !== -1)) {
+                        mp.trigger('client:phone:apps', this.state.history[this.state.history.length - 2].split(':')[1]) // eslint-disable-line
+                    } else {
+                        let params1 = JSON.parse(
+                            '{"' + this.state.history[this.state.history.length - 2].split('?')[1]
+                                .split(':')[0].replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) }
+                        );
+                        let params2 = {};
+                        if (this.state.history[this.state.history.length - 2].split(':')[1] !== '')
+                            params2 = JSON.parse(
+                                '{"' + this.state.history[this.state.history.length - 2].split(':')[1]
+                                    .replace(/&/g, '","').replace(/=/g, '":"') + '"}', function (key, value) { return key === "" ? value : decodeURIComponent(value) }
+                            );
+                        mp.trigger('client:phone:callBack', params1.action, params1.UUID, parseInt(params1.id), JSON.stringify(params2)); // eslint-disable-line
+                    }
+                } catch (e) { console.log(e) }
             }
             this.setState({
                 path: this.state.history[this.state.history.length - 2],
@@ -404,7 +407,7 @@ class Android extends React.Component {
         if (link === "/phone/android/umenu") {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
             this.setState({ bg_color: '#000' })
-            this.setState({ path: event.link })
+            this.setState({ path: `${event.link}?appmainpage:${event.action}` })
 
             try {
                 mp.trigger('client:phone:apps', event.action); // eslint-disable-line
