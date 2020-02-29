@@ -327,6 +327,7 @@ class Android extends React.Component {
         if (this.state.path !== prevState.path) {
             if (this.state.path !== this.state.history[this.state.history.length - 1])
                 this.historyPush()
+                window.scrollTo(0, 0);
             if (this.state.path !== '/phone/android/phonebook/profilecontact/editcontact' && this.state.phonebook.editing_contact) {
                 this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
             }
