@@ -71,12 +71,20 @@ class Android extends React.Component {
                                 params: { name: "null" }
                             },
                             {
-                                title: "Загрузка...",
+                                title: "Запись в историю",
                                 text: "",
                                 type: 1,
                                 clickable: 1,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
+                            },
+                            {
+                                title: "Пропуск записи",
+                                text: "",
+                                type: 1,
+                                clickable: 1,
+                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                params: { name: "null", skip: true }
                             },
                         ],
                     },
@@ -326,7 +334,7 @@ class Android extends React.Component {
     }
 
     historyPush(customLink) {
-        //if(customLink === this.state.path) return;
+        if(customLink === this.state.path) return;
         if(customLink !== undefined && customLink !== null && customLink !== '') {
             this.setState({ history: this.state.history.concat([customLink]), path: customLink })
             return;

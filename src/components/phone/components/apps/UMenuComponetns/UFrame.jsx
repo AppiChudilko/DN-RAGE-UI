@@ -20,10 +20,12 @@ class UFrame extends React.Component {
 
     buttonClick(params) {
         try {
-            let urlParams = Object.keys(params).map(function(key){ 
-                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]); 
-              }).join('&');
-            this.props.historyPush(`${this.props.path.split('?')[0]}?action=button&UUID=${this.props.menu}&id=${this.props.id}:${urlParams}`)
+            if (params.skip === undefined || params.skip !== true) {
+                let urlParams = Object.keys(params).map(function (key) {
+                    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+                }).join('&');
+                this.props.historyPush(`${this.props.path.split('?')[0]}?action=button&UUID=${this.props.menu}&id=${this.props.id}:${urlParams}`)
+            }
             this.callback('button', JSON.stringify(params));
         } catch (e) {
             console.log(e);
