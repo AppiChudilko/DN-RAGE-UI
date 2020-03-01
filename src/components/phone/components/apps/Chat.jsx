@@ -68,7 +68,7 @@ class Chat extends React.Component {
     }
 
     inputChange(message) {
-        if (this.state.text.length >= 500) return; // Макс длинна сообщения 600 символов
+        if (message.target.value.toString().length >= 500) return; // Макс длинна сообщения 600 символов
         this.setState({ text: message.target.value })
     }
 
@@ -92,7 +92,7 @@ class Chat extends React.Component {
         setTimeout(function () {
             this.setState({ message_timeout: false })
         }.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
-        if (this.state.text.length >= 600)
+        if (this.state.text.length >= 500)
             this.setState({ text: this.state.text.substr(0, 500) }); // Макс длинна сообщения 500 символов
         if (this.state.text === "")
             return;
@@ -134,11 +134,14 @@ class Chat extends React.Component {
                                     src={this.state.contact.img === '' || this.state.contact.img === undefined ? "" : this.state.contact.img}
                                     className="m-img-sms-title">{this.state.contact.name.substring(0, 1)}</Avatar>
                             }
-                            <div className="u-title-row">
+                            <div className="u-title-row spiceal-ts-chat">
                                 <div
                                     className="dedbit-title-name">{this.state.contact !== null ? this.state.contact.name : this.state.chat.phone_number}</div>
                                 <div className="dedbit-title-text">{this.state.chat.online}</div>
                             </div>
+                            <div className="posit-icon-del-chat" onClick={() => this.props.deleteChat(this.state.chat.phone_number) /* this.props.openModal('','Вы уверены в том что хотите удалить всю переписку?', ['Да','Нет'], 'params') */}>
+                            <MaterialIcon icon="delete" size={18} color="#fff"/>
+                            </div>                            
                         </div>
                     </div>
                     <div className="messenger-main clm-reverse-chat">

@@ -1967,6 +1967,16 @@ BankCard
     overflow: scroll;
     padding-top: 8px;
     flex-direction: column;
+    position: relative;
+}
+.messenger-main .MuiFab-primary {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgb(33, 45, 59);
+}
+.messenger-main .MuiFab-primary:hover {
+    background: rgb(40, 56, 74);
 }
 
 .rotate-components .clm-reverse-chat {
@@ -1990,6 +2000,7 @@ BankCard
     flex-direction: row;
     padding-bottom: 10px;
     border-bottom: 0.5px solid #0D1117;
+    margin-top: 10px;
 }
 
 .rotate-components .m-box-clm-mes {
@@ -2009,6 +2020,9 @@ BankCard
     flex-direction: row;
     margin-bottom: 8px;
 }
+.m-box-sms:hover{
+    background: #0000002b;
+}
 
 .m-img-sms {
     width: 41px;
@@ -2019,6 +2033,7 @@ BankCard
     justify-content: center;
     margin-left: 8px;
     margin-right: 16px;
+    margin-top: 10px;
 }
 
 .m-img-sms-title {
@@ -2671,4 +2686,87 @@ BankCard
     bottom: -16px;
     font-family: 'Roboto';
     font-size: 12px;
+}
+.rotate-components .messenger-addchat {
+    height: 85.3%;
+}
+
+.messenger-addchat {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: 0.3s;
+    background: #1D2733;
+    overflow: scroll;
+    padding-top: 8px;
+    flex-direction: column;
+    position: relative;
+}
+.m-mes-txtfield {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    color: #fff;
+    margin-left: 6%;
+}
+.m-mes-txtfield .MuiInput-root{
+    color: #fff
+}
+.m-mes-txtfield .MuiInput-underline:after {
+    border-bottom: 2px solid rgb(89, 97, 105);
+}
+.m-mes-txtfield .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: 2px solid rgb(89, 97, 105);
+}
+.m-mes-txtfield .MuiInput-underline:before {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+.text-place-m-mes {
+    font-family: 'Roboto';
+    font-size: 14px;
+    color:#fff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 6%;
+}
+.position-btn-addchat{
+    position: absolute;
+    bottom: 3%;
+    right: 5%;
+}
+.position-btn-addchat .MuiButton-containedPrimary {
+    background-color: #212d3b;
+}
+.position-btn-addchat .MuiButton-containedPrimary:hover {
+    background-color: #2a3848;
+}
+.messenger-addchat::-webkit-scrollbar {
+    display: none;
+}
+.spiceal-ts-chat {
+    margin-right: auto;
+}
+.rotate-components .posit-icon-del-chat {
+    margin-right: 2%;
+}
+.posit-icon-del-chat {
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader-style-addchat {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-style-addchat .MuiCircularProgress-colorPrimary {
+    color: #213246;
+}
+.loader-style-addchat .MuiCircularProgress-root.MuiCircularProgress-colorPrimary.MuiCircularProgress-indeterminate {
+    width: 60px !important;
+    height: 60px !important;
 }

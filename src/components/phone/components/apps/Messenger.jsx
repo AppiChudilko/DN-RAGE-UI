@@ -1,4 +1,6 @@
 import React from 'react';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class Messenger extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class Messenger extends React.Component {
     }
 
     componentWillMount() {
-        this.setState({chats: this.props.data}, () => {
+        this.setState({ chats: this.props.data }, () => {
             for (let i = 0; i < this.state.chats.length; i++) {
                 this.setState(prevState => ({
                     ...prevState.chats[i].message = [...this.state.chats[i].message].sort(
@@ -28,7 +30,7 @@ class Messenger extends React.Component {
 
     componentDidUpdate(prevProp, prevState) {
         if (this.props.data !== prevProp.data) {
-            this.setState({chats: this.props.data}, () => {
+            this.setState({ chats: this.props.data }, () => {
                 for (let i = 0; i < this.state.chats.length; i++) {
                     this.setState(prevState => ({
                         ...prevState.chats[i].message = [...this.state.chats[i].message].sort(
@@ -48,7 +50,7 @@ class Messenger extends React.Component {
         return (
             <React.Fragment>
                 <div className="dedbit-menu">
-                    <div className="u-title" style={{background: "#212D3B"}}>
+                    <div className="u-title" style={{ background: "#212D3B" }}>
                         <span className="u-texttittle">Onion Messenger</span>
                     </div>
                     <div className="messenger-main">
@@ -57,8 +59,8 @@ class Messenger extends React.Component {
                                 let index = `umessagechatbox${i}`
                                 return (
                                     <div className="m-box-sms" key={index}
-                                         onClick={() => this.props.selectChat(e.phone_number)}>
-                                        <img src="https://a.rsg.sc//n/socialclub" alt="" className="m-img-sms"/>
+                                        onClick={() => this.props.selectChat(e.phone_number)}>
+                                        <img src="https://a.rsg.sc//n/socialclub" alt="" className="m-img-sms" />
                                         <div className="m-box-messeng">
                                             <div className="m-box-clm-mes">
                                                 <div
@@ -80,7 +82,9 @@ class Messenger extends React.Component {
                                 return null;
                             }
                         })}
-
+                        <Fab color="primary" aria-label="add" onClick={() => this.props.setLink('/phone/android/messenger/addchat')}>
+                            <AddIcon />
+                        </Fab>
                     </div>
                 </div>
             </React.Fragment>

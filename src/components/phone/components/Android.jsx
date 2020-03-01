@@ -16,6 +16,7 @@ import Chat from './apps/Chat';
 import EditContact from './Android/PhoneBook/pages/EditContact';
 import Console from './Android/Console';
 import Achiev from './apps/Achiev';
+import AddChat from './apps/AddChat';
 
 class Android extends React.Component {
     constructor(props) {
@@ -158,7 +159,7 @@ class Android extends React.Component {
                 ],
             },
             messenger: {
-                current_chat: '222-3567347'
+                current_chat: '2223567347'
             },
             chats: [
                 {
@@ -173,7 +174,7 @@ class Android extends React.Component {
                     ]
                 },
                 {
-                    phone_number: '222-9746753',
+                    phone_number: '2229746753',
                     is_online: true, // был(а) в сети 12.01.2019
                     last_login: '12.01.2020',
                     new_messages: 3,
@@ -186,7 +187,7 @@ class Android extends React.Component {
                     ]
                 },
                 {
-                    phone_number: '222-9746456',
+                    phone_number: '2229746456',
                     is_online: true, // был(а) в сети 12.01.2019
                     last_login: '29.01.2020',
                     new_messages: 1,
@@ -381,6 +382,12 @@ class Android extends React.Component {
             if (this.state.history[this.state.history.length - 2] === '/phone/android/phonebook/profilecontact/editcontact') {
                 this.setState({ history: this.state.history.slice(0, -1) })
             }
+            if (this.state.history[this.state.history.length - 2] === '/phone/android/messenger/addchat') {
+                this.setState({ history: this.state.history.slice(0, -1) })
+            }
+            if (this.state.history[this.state.history.length - 2] === this.state.path) {
+                this.setState({ history: this.state.history.slice(0, -1) })
+            }
             if (this.state.history[this.state.history.length - 2].split('?')[0] === '/phone/android/umenu' &&
                 this.state.history[this.state.history.length - 2].split('?').length > 1) {
                 try {
@@ -402,9 +409,11 @@ class Android extends React.Component {
                     }
                 } catch (e) { console.log(e) }
             }
-            this.setState({
-                path: this.state.history[this.state.history.length - 2],
-            }, () => this.setState({ history: this.state.history.slice(0, -1) }))
+            setTimeout(() => {
+                this.setState({
+                    path: this.state.history[this.state.history.length - 2],
+                }, () => this.setState({ history: this.state.history.slice(0, -1) }))
+            }, 20);
         }
     }
 
@@ -719,6 +728,23 @@ class Android extends React.Component {
 
     }
 
+    deleteChat(phone_number) {        
+        this.historyGoBack()
+        let newChats = [...this.state.chats]
+        let index = newChats.findIndex(e => e.phone_number === phone_number);
+        if (index !== -1) {
+            newChats.splice(index, 1)
+            console.log(newChats)
+            this.setState(prevState => ({
+                ...prevState.chats = newChats
+            }))
+        }
+        try {
+            mp.trigger('client:phone:deleteChat', phone_number); // eslint-disable-line
+        } catch (e) {
+        }
+    }
+
     setLink(link) {
         this.setState({ path: link })
     }
@@ -790,13 +816,24 @@ class Android extends React.Component {
                                 <Route exact path="/phone/android/messenger">
                                     <Messenger data={this.state.chats}
                                         getContactByNumber={this.getContactByNumber.bind(this)}
-                                        selectChat={this.selectChat.bind(this)} />
+                                        selectChat={this.selectChat.bind(this)}
+                                        setLink={this.setLink.bind(this)}/>
+                                </Route>
+                                <Route exact path="/phone/android/messenger/addchat">
+                                    <AddChat data={this.state.chats}
+                                    sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} date={this.state.top_bar.dateFull}
+                                    getContactByNumber={this.getContactByNumber.bind(this)}
+                                    setLink={this.setLink.bind(this)}
+                                    historyGoBack={this.historyGoBack.bind(this)}/>
                                 </Route>
                                 <Route exact path="/phone/android/messenger/chat">
                                     <Chat data={this.state.chats} messenger={this.state.messenger}
                                         sendMessage={this.sendMessage.bind(this)} time={this.state.top_bar.time} date={this.state.top_bar.dateFull}
                                         getContactByNumber={this.getContactByNumber.bind(this)}
-                                        setLink={this.setLink.bind(this)} />
+                                        setLink={this.setLink.bind(this)} 
+                                        openModal={this.openModal.bind(this)}
+                                        deleteChat={this.deleteChat.bind(this)}
+                                        />
                                 </Route>
                                 <Redirect to={this.state.path} push />
                             </Router>
