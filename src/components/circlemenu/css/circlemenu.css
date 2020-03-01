@@ -1,0 +1,12 @@
+.circle-menu {
+    width: 32.917%;
+    height: 58.519%;
+    background: black;
+    left: 33.5%;
+    top: 20.7%;
+    position: absolute;
+    z-index: 1;
+}
+.circle-menu::-webkit-scrollbar {
+    display: none;
+}

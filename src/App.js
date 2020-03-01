@@ -18,12 +18,14 @@ import ModalInput from './components/modalinput/ModalInput';
 import Notification from './components/notification/Notification';
 import CarShop from './components/carshop/CarShop';
 import Quickmenu from './components/quickmenu/Quickmenu';
+import CircleMenu from './components/circlemenu/CircleMenu';
 
 function App() {
   return (
     <React.Fragment>
-      <EditorMain />
-      <div className="box" id="box">
+      <EditorMain />      
+      <CircleMenu />
+      <div className="box" id="box">        
         <AuthMain />
         <Inventory />
         <Phone />  

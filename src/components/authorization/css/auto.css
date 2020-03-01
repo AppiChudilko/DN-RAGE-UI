@@ -1,4 +1,7 @@
 
+.auth-main::-webkit-scrollbar {
+    display: none;
+}
 .auth-main {
     background: #1c1c1c;
     width: -webkit-fill-available;
