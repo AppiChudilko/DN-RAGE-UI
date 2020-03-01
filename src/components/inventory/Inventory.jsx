@@ -327,6 +327,9 @@ class Inventory extends React.Component {
                     }
                 });
             }
+            if (value.type === 'deleteItemById') {
+                this.deleteItemById(value.id);
+            }
             if (value.type === 'updateItemIdCount') {
                 this.state.items.forEach((item) => {
                     if (value.itemId == item.id) {
@@ -1041,10 +1044,25 @@ class Inventory extends React.Component {
         }
     }
 
-    deleteItemById(item_id, source){
-        let item = this.getItemById(item_id, source);
-        if(item === null) return;
-        switch (source) {
+    deleteItemById(item_id){
+        let item = this.getItemById(item_id, 'secondary_inv');
+        if(item !== null) {
+            if (this.checkItem(item, 'secondary_inv') !== null) {
+                item = this.checkItem(item, 'secondary_inv');
+                this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
+                return;
+            }
+        }
+
+        item = this.getItemById(item_id, 'inventory');
+        if(item !== null) {
+            if (this.checkItem(item, 'inventory') !== null) {
+                item = this.checkItem(item, 'inventory');
+                this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) }) // Возможно не каждый предмет нужно удалять, тогда нужна проверка по item_id
+            }
+        }
+
+        /*switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
                     item = this.checkItem(item, 'inventory')
@@ -1059,7 +1077,7 @@ class Inventory extends React.Component {
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     getItemById(item_id, source){
