@@ -117,7 +117,7 @@ class FamilyCharacter extends React.Component {
                         <div className="circle-change"></div>
                     </div>
                     <div className="last-button-menu">
-                        <div className="box-last-btn">...</div>
+                        <div className="box-last-btn" onClick={this.props.randomize.bind(this)}>Рандом</div>
                         <div className="box-last-btn" onClick={this.props.reset.bind(this)}>Сброс</div>
                     </div>
                     <Link to="/editor/editor-character/face-first">

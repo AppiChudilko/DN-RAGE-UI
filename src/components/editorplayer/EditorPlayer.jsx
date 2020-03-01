@@ -472,6 +472,35 @@ class EditorPlayer extends React.Component {
         }
     }
 
+    getRandomArbitrary(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    randomize() {
+        for(let i = 0; i<this.state.input_editor_face.length; i++){
+            this.setState(prevState => ({ ...prevState.input_editor_face[i].value = this.getRandomArbitrary(-100, 100)}))
+        };
+        for(let i = 0; i<this.state.input_editor_nose.length; i++){
+            this.setState(prevState => ({ ...prevState.input_editor_nose[i].value = this.getRandomArbitrary(-100, 100)}))
+        };
+        for(let i = 0; i<this.state.input_editor_eyes_lips.length; i++){
+            this.setState(prevState => ({ ...prevState.input_editor_eyes_lips[i].value = this.getRandomArbitrary(-100, 100)}))
+        };
+        for(let i = 0; i<this.state.input_editor_face_last.length; i++){
+            this.setState(prevState => ({ ...prevState.input_editor_face_last[i].index_help = this.getRandomArbitrary(0, this.state.input_editor_face_last[i].maxVal)}))
+        };
+        this.setState(prevState => ({ ...prevState.slider[0].index_help = this.getRandomArbitrary(0, this.state.slider[0].parents.length-1)}))
+        this.setState(prevState => ({ ...prevState.slider[1].index_help = this.getRandomArbitrary(0, this.state.slider[1].parents.length-1)}))
+        this.setState(prevState => ({ ...prevState.slider[2].index_help = this.getRandomArbitrary(0, 20)}))
+        this.setState(prevState => ({ ...prevState.slider[3].index_help = this.getRandomArbitrary(0, 20)}))
+        setTimeout(() => {
+            this.updateStatsFamilyCharacter();
+        }, 20);
+        setTimeout(() => {
+            this.setCustomization();
+        }, 40);
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -504,6 +533,7 @@ class EditorPlayer extends React.Component {
                                 clickLeftArrow={this.clickLeftArrowFamilyCharacter.bind(this)}
                                 clickRightArrow={this.clickRightArrowFamilyCharacter.bind(this)}
                                 reset={this.resetFamilyCharacter.bind(this)}
+                                randomize={this.randomize.bind(this)}
 
                                 slider_one={this.state.slider[0].index_help}
                                 title_one={this.state.slider[0].title}
