@@ -1,5 +1,7 @@
 /* eslint-disable */
 import React from 'react';
+import { Animated } from 'react-animated-css';
+
 import './css/phone.css'
 import '../../css/animate.css'
 import Android from './components/Android';
@@ -10,6 +12,7 @@ class Phone extends React.Component {
         super(props)
         this.state = {
             show: false,
+            visible: false,
         }
     }
 
@@ -20,12 +23,22 @@ class Phone extends React.Component {
     componentDidMount() {
         EventManager.addHandler('phone', value => {
             if (value.type === 'show') {
-                this.setState({ show: true })
+                this.setState({ show: true, visible: true })
             } else if (value.type === 'hide') {
-                this.setState({ show: false })
+                this.setState({ visible: false })
+                setTimeout(() => {
+                    this.setState({ show: false })
+                }, 1000);
             } else if (value.type === 'showOrHide') {
                 let status = !this.state.show;
-                this.setState({ show: status })
+                if (!status) {
+                    this.setState({ visible: false })
+                    setTimeout(() => {
+                        this.setState({ show: status })
+                    }, 1000);
+                } else {
+                    this.setState({ show: status, visible: true })
+                }
                 try {
                     mp.trigger('client:phone:status', status); // eslint-disable-line
                 } catch (e) {
@@ -46,7 +59,9 @@ class Phone extends React.Component {
         return (
             <React.Fragment>
                 <div className="phone-position">
-                    <Android />
+                    <Animated animationIn="slideInUp" animationOut="slideOutDown" isVisible={this.state.visible}>
+                        <Android />
+                    </Animated>
                 </div>
             </React.Fragment>
         )

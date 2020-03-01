@@ -39,7 +39,7 @@ class Android extends React.Component {
             apps: [
                 { link: "/phone/android/umenu", action: 'app', img: 'apps', name: 'App' },
                 { link: "/phone/android/umenu", action: 'gps', img: 'gps', name: 'GPS' },
-                { link: "/phone/android/phonebook", action: 'cont', img: 'cont' , name: 'Контакты'},
+                { link: "/phone/android/phonebook", action: 'cont', img: 'cont', name: 'Контакты' },
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms', name: 'SMS' },
                 { link: "/phone/android/console", action: 'console', img: 'console', name: 'Console' },
                 { link: "/phone/android/achiev", action: 'achiev', img: 'achiev', name: 'Достижения' },
@@ -196,22 +196,22 @@ class Android extends React.Component {
                 }
             ],
             console_message: ['Welcome To Console v0.1\nGNU/Linux 4.15.0-55-generic x86_64\n\nuse "help" command\n\n'],
-            achiev:[
+            achiev: [
                 {
                     title: 'Достижения',
                     achiev_map:
-                    [
-                        {name: '1Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [50,200], result:'$50', img:'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show:false,},
-                        {name: '1Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [0,1], result:'$150',img:'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show:false,},
-                    ],
+                        [
+                            { name: '1Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [50, 200], result: '$50', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: false, },
+                            { name: '1Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [0, 1], result: '$150', img: 'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show: false, },
+                        ],
                 },
                 {
                     title: 'Ежедневные задания',
                     achiev_map:
-                    [
-                        {name: '2Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [99,200], result:'$50000', img:'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show:false,},
-                        {name: '2Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [1,3], result:'$999',img:'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show:false,},
-                    ],
+                        [
+                            { name: '2Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [99, 200], result: '$50000', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: false, },
+                            { name: '2Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [1, 3], result: '$999', img: 'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show: false, },
+                        ],
                 }
             ],
             // topbar_color: false,
@@ -327,7 +327,7 @@ class Android extends React.Component {
         if (this.state.path !== prevState.path) {
             if (this.state.path !== this.state.history[this.state.history.length - 1])
                 this.historyPush()
-                window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
             if (this.state.path !== '/phone/android/phonebook/profilecontact/editcontact' && this.state.phonebook.editing_contact) {
                 this.setState(prevState => ({ ...prevState.phonebook.editing_contact = false }))
             }
@@ -335,8 +335,8 @@ class Android extends React.Component {
     }
 
     historyPush(customLink) {
-        if(customLink === this.state.path) return;
-        if(customLink !== undefined && customLink !== null && customLink !== '') {
+        if (customLink === this.state.path) return;
+        if (customLink !== undefined && customLink !== null && customLink !== '') {
             this.setState({ history: this.state.history.concat([customLink]), path: customLink })
             return;
         }
@@ -723,7 +723,7 @@ class Android extends React.Component {
         this.setState({ path: link })
     }
     openInfoShow(achievIndex, index) {
-        this.setState(prev => ({...prev.achiev[achievIndex].achiev_map[index].info_show = !this.state.achiev[achievIndex].achiev_map[index].info_show}))
+        this.setState(prev => ({ ...prev.achiev[achievIndex].achiev_map[index].info_show = !this.state.achiev[achievIndex].achiev_map[index].info_show }))
     }
 
     render() {
@@ -732,7 +732,6 @@ class Android extends React.Component {
         };
         if (this.state.path === '/phone/android/defaultpage')
             bg.background = `url(${this.state.bg_img_url}) no-repeat center`;
-
         return (
             <React.Fragment>
                 <div className={this.state.rotate ? "android-phone rotate-androind" : "android-phone"}>
@@ -761,7 +760,7 @@ class Android extends React.Component {
                                     <Console console_message={this.state.console_message} consoleCommand={this.consoleCommand.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/achiev">
-                                    <Achiev data={this.state.achiev} openInfoShow={this.openInfoShow.bind(this)}/>
+                                    <Achiev data={this.state.achiev} openInfoShow={this.openInfoShow.bind(this)} />
                                 </Route>
                                 <Route exact path="/phone/android/phonebook">
                                     <PhoneBook historyPush={this.historyPush.bind(this)} data={this.state.phonebook}
