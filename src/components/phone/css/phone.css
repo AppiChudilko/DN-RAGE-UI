@@ -16,9 +16,9 @@
     right: 75px;
     z-index: 1;
 }
-.android-phone::-webkit-scrollbar {
+/* .android-phone::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .android-phone {
     background: url(../img/android/android.png) no-repeat;
