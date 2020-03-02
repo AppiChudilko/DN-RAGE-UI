@@ -696,7 +696,7 @@ class Inventory extends React.Component {
                 }
             }
         }
-        if (this.state.secondary_inv_open && source !== 'secondary_inv') {
+        if (this.state.secondary_inv_open && source !== 'secondary_inv' && source !== 'outfit' && source !== 'weapon') {
             actions.push('move') // Убрать в багажник
             let check_stack = this.state.itemsCounted.filter(obj => { return obj.item_id === item.item_id })
             if (check_stack !== undefined && check_stack[0].count > 1) actions.push('move_all') // Убрать всё
