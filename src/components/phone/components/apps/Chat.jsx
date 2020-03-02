@@ -24,9 +24,25 @@ class Chat extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProp, prevState) {
+        if (this.props.data !== prevProp.data) {
+            this.updateChat();
+            window.scrollTo(0,document.body.scrollHeight);
+        }
+    }
+
     componentWillMount() {
         document.addEventListener("keydown", this.handleKeyPress);
+        this.updateChat();
+        window.scrollTo(0,document.body.scrollHeight);
+    }
 
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+        this.setState({ chat: {}, render: false, contact: null })
+    }
+
+    updateChat(){
         let chat = null;
         this.props.data.forEach((e) => {
             if (e.phone_number === this.props.messenger.current_chat) {
@@ -60,11 +76,6 @@ class Chat extends React.Component {
                 contact: this.props.getContactByNumber(this.props.messenger.current_chat)
             })
         }
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleKeyPress);
-        this.setState({ chat: {}, render: false, contact: null })
     }
 
     inputChange(message) {
@@ -176,7 +187,13 @@ class Chat extends React.Component {
                                             <div className="dedmeta-text">{e.date}</div>
                                         </div>
                                         : null}
-                                    {i < this.state.chat.message.length - 1 && e.date > this.state.chat.message[i + 1].date ?
+                                    {i < this.state.chat.message.length - 1 && 
+                                    e.date.substring(6, 10) +
+                                    e.date.substring(3, 5)  +
+                                    e.date.substring(0, 2)  > 
+                                    this.state.chat.message[i + 1].date.substring(6, 10) +
+                                    this.state.chat.message[i + 1].date.substring(3, 5) +
+                                    this.state.chat.message[i + 1].date.substring(0, 2) ?
                                         <div className="ded-meta-center">
                                             <div className="dedmeta-text">{e.date}</div>
                                         </div>

@@ -1159,11 +1159,15 @@ class Inventory extends React.Component {
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
+                    this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'inventory');
                     mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
+                    this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'secondary_inv');
                     mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
