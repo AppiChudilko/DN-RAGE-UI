@@ -35,7 +35,7 @@ class EditorPlayer extends React.Component {
             ],
 
             input_editor_eyes_lips: [
-                {name: 'Высота глаз', value: 0},
+                {name: 'Эпикантус', value: 0},
                 {name: 'Толщина губ', value: 0},
             ],
             input_editor_face_last: [
@@ -47,7 +47,6 @@ class EditorPlayer extends React.Component {
                 {title: "Цвет бровей", maxVal: 64, index_help: 0},
                 {title: "Цвет глаз", maxVal: 32, index_help: 0},
                 {title: "Веснушки", maxVal: 17, index_help: 0},
-                {title: "Цвет веснушек", maxVal: 10, index_help: 0},
             ],
             cheked_sex: false,
             slider: [

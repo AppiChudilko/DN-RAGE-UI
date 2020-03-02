@@ -740,7 +740,7 @@ class Inventory extends React.Component {
                 }
             }
         }
-        if (this.state.secondary_inv_open && source !== 'secondary_inv') {
+        if (this.state.secondary_inv_open && source !== 'secondary_inv' && source !== 'outfit' && source !== 'weapon') {
             actions.push('move') // Убрать в багажник
             let check_stack = this.state.itemsCounted.filter(obj => { return obj.item_id === item.item_id })
             if (check_stack !== undefined && check_stack[0].count > 1) actions.push('move_all') // Убрать всё
@@ -1076,12 +1076,16 @@ class Inventory extends React.Component {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
                     this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'inventory')
+                    this.setState({ items: this.arrayRemove(this.state.items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
                     this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'secondary_inv')
+                    this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;

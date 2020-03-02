@@ -28,14 +28,14 @@ class Phone extends React.Component {
                 this.setState({ visible: false })
                 setTimeout(() => {
                     this.setState({ show: false })
-                }, 1000);
+                }, 300);
             } else if (value.type === 'showOrHide') {
                 let status = !this.state.show;
                 if (!status) {
                     this.setState({ visible: false })
                     setTimeout(() => {
                         this.setState({ show: status })
-                    }, 1000);
+                    }, 300);
                 } else {
                     this.setState({ show: status, visible: true })
                 }
@@ -59,7 +59,7 @@ class Phone extends React.Component {
         return (
             <React.Fragment>
                 <div className="phone-position">
-                    <Animated animationIn="slideInUp" animationOut="slideOutDown" isVisible={this.state.visible}>
+                    <Animated animationIn="slideInUp" animationOut="slideOutDown" animationInDuration="300" animationOutDuration="300" isVisible={this.state.visible}>
                         <Android />
                     </Animated>
                 </div>
