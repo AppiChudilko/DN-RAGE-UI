@@ -1031,11 +1031,15 @@ class Inventory extends React.Component {
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
+                    item = this.checkItem(item, 'inventory')
+                    this.setState({ items: this.arrayRemove(this.state.items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
+                    item = this.checkItem(item, 'secondary_inv')
+                    this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
