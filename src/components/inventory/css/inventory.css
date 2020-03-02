@@ -113,7 +113,7 @@
 .object-inv-box {
     margin-top: 18px;
     overflow: auto;
-    height: 90%;
+    height: 91%;
 }
 
 .object-box {
@@ -121,8 +121,16 @@
     height: 68px;
     display: flex;
     align-items: center;
+    position: relative;
 }
-
+.linearbar-inv{
+    position: absolute;
+    /* width: 26%; */
+    height: 100%;
+    background: #00000042;
+    transition: 1s linear;
+    z-index: -1;
+}
 .object-box:hover {
     width: 387px;
     background-color: rgb(255, 255, 255, 0.102);
@@ -660,6 +668,7 @@ input[type="radio"]:checked + label .bg-color-craft-block {
     height: 68px;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .object-box-trunk:hover {
