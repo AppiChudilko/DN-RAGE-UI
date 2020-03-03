@@ -22,7 +22,8 @@
     "react-scripts": "^3.3.0",
     "react-slick": "^0.25.2",
     "react-snake": "^1.0.3",
-    "react-snake-game": "^1.0.9"
+    "react-snake-game": "^1.0.9",
+    "uifx": "^2.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
