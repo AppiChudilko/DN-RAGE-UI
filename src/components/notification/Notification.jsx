@@ -80,8 +80,7 @@ class Notification extends React.Component {
                     {this.state.type === 0 ?
                         <div className="notifi-first-box">
                             <div className="notifi-f-main">
-                                {this.state.isShowClose ?
-                                    <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null}
+                                {this.state.isShowClose ? <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null}
                                 <div className="notifi-text-box">{this.state.text}</div>
                             </div>
                             <div className="notifi-btn">

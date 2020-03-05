@@ -80,7 +80,7 @@ class ModalInput extends React.Component {
         if (event.key === 'Enter') {
             try {
                 mp.trigger('client:modalinput:callBack', this.state.text);// eslint-disable-line
-                this.setState({show: false, text: ''})
+                this.setState({show: false, text: '', defaultText: ''});
             } catch (e) {
                 console.log(e);
             }

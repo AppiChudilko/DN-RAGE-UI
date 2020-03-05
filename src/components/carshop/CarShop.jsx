@@ -262,7 +262,7 @@ export default class CarShop extends React.Component {
         console.log(this.state.change_car)
 
         try {
-            mp.trigger('client:carshop:buyCar', this.state.change_car.name); // eslint-disable-line
+            mp.trigger('client:carshop:buyCar', this.state.change_car.name, this.state.change_car.count); // eslint-disable-line
         }
         catch (e) {
             console.log(e);
