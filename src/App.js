@@ -25,6 +25,7 @@ function App() {
     <React.Fragment>
       <EditorMain />      
       <CircleMenu />
+      <Walkietalkie />
       <div className="box" id="box">        
         <AuthMain />
         <Inventory />
@@ -33,8 +34,7 @@ function App() {
         <IDCard />
         <WorkID />
         <License />
-        <Certificate />
-        <Walkietalkie />
+        <Certificate />        
         <ModalInput />
         <Notification />
         <CarShop />

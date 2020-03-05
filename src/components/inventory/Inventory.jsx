@@ -141,7 +141,7 @@ class Inventory extends React.Component {
             ],
 
             secondary_items: [ // Багажник
-                { id: 15, item_id: 1, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
+                { id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
             ],
             secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
@@ -235,7 +235,44 @@ class Inventory extends React.Component {
                     craft: ['1', '2', '3'], craft_time: 2000
                 }, */
             ],
+            itemCooldown: [
+                // { item_id: 14, cooldown: 5 }
+            ],
         }
+    }
+
+    isCooldownActive(item_id){ // returns true/false
+        let cdArray = this.state.itemCooldown.filter(function (el) {
+            return el.item_id === item_id && el.cooldown > -1
+          });
+          if(cdArray.length !== 0) return true;
+          else return false;
+    }
+
+    setCooldown(item_id) {
+        this.setState({itemCooldown: this.state.itemCooldown.concat({item_id: item_id, cooldown: 5})})
+    }
+
+    cooldownTick(){
+        for(let i = 0; i < this.state.itemCooldown.length; i++){
+            if(this.state.itemCooldown[i].cooldown > 0){
+                this.setState(prevState => ({...prevState.itemCooldown[i].cooldown = this.state.itemCooldown[i].cooldown-1}))
+            } else {
+                this.setState({itemCooldown: this.state.itemCooldown.filter(function (el) {
+                    return el.cooldown > 0
+                  })
+                });
+            }
+        }
+    }
+
+    getItemCooldown(item_id){
+        for(let i = 0; i < this.state.itemCooldown.length; i++){
+            if(this.state.itemCooldown[i].item_id === item_id){
+                return this.state.itemCooldown[i].cooldown;
+            }
+        }
+        return 0;
     }
 
     componentDidCatch(error, errorInfo) {
@@ -243,6 +280,11 @@ class Inventory extends React.Component {
     }
 
     componentDidMount() {
+        var cooldownTick = setInterval(() => {
+            this.cooldownTick();
+        }, 1000);
+        this.setState({cooldownTick: cooldownTick});
+
         EventManager.addHandler('inventory', value => {
             if (value.type === 'show') {
                 this.setState({ show: true })
@@ -372,6 +414,7 @@ class Inventory extends React.Component {
 
     componentWillUnmount() {
         EventManager.removeHandler('inventory');
+        clearInterval(this.state.cooldownTick);
     }
 
     componentDidUpdate(prevProp, prevState) {
@@ -611,6 +654,7 @@ class Inventory extends React.Component {
 
     handlePos(e, item, source) { // Функция которая генерирует меню взаимодействия
         if (source === 'outfit' && item.equipped === false) return; // Не открывать меню взаимодействия если ячейка outfit'a пустая
+        if (this.isCooldownActive(item.item_id)) return;
         this.setState(prevState => ({ ...prevState.inter_menu_selected.item = item, ...prevState.inter_menu_selected.source = source }))
         if (this.state.inter_show) {
             let menu = this.state.inter_menu
@@ -1031,6 +1075,7 @@ class Inventory extends React.Component {
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
+                    this.setCooldown(item.item_id);
                     item = this.checkItem(item, 'inventory')
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
@@ -1038,6 +1083,7 @@ class Inventory extends React.Component {
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
+                    this.setCooldown(item.item_id);
                     item = this.checkItem(item, 'secondary_inv')
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     mp.trigger('client:inventory:use', item.id, item.item_id); // eslint-disable-line
@@ -1113,11 +1159,15 @@ class Inventory extends React.Component {
         switch (source) {
             case 'inventory':
                 if (this.checkItem(item, 'inventory') !== null) {
+                    this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'inventory');
                     mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
             case 'secondary_inv':
                 if (this.checkItem(item, 'secondary_inv') !== null) {
+                    this.setCooldown(item.item_id);
+                    item = this.checkItem(item, 'secondary_inv');
                     mp.trigger('client:inventory:usePlayer', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
@@ -1828,8 +1878,11 @@ class Inventory extends React.Component {
                                         {this.state.itemsCounted.map((item, i) => {
                                             const index = `item${i}`
                                             return (
-                                                <div className="object-box" key={index}
+                                                <div className="object-box" key={index} style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
                                                     onContextMenu={(e) => this.handlePos(e, item, 'inventory')}>
+                                                        {this.isCooldownActive(item.item_id) ?
+                                                        <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
+                                                        : null}
                                                     <div className={`img-inv-box ${item.icon}`}></div>
                                                     <div className="obj-inf-box">
                                                         <div className="obj-inf-title"><span>{item.name}</span>
@@ -2066,8 +2119,11 @@ class Inventory extends React.Component {
                                         {this.state.secondary_itemsCounted.map((item, i) => {
                                             const index = `item${i}`
                                             return (
-                                                <div className="object-box-trunk" key={index}
+                                                <div className="object-box-trunk" key={index} style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
                                                     onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
+                                                        {this.isCooldownActive(item.item_id) ?
+                                                        <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
+                                                        : null}
                                                     <div className={`img-inv-box ${item.icon}`}></div>
                                                     <div className="obj-inf-box">
                                                         <div className="obj-inf-title"><span>{item.name}</span>
