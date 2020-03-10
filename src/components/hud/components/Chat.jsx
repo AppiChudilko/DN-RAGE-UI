@@ -143,7 +143,6 @@ class Chat extends React.Component {
 
                 if (enable != (chat.input != null)) {
                     //chat_printing = enable;
-
                     try {
                         mp.invoke("focus", enable); // eslint-disable-line
                     }
