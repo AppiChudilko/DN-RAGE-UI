@@ -1530,7 +1530,11 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'outfit') !== null) {
                     item = this.checkItem(item, 'outfit')
                     if (this.state.weight_now + item.volume > this.state.weight_max) {
-                        this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
+
+                        if (item.item_id === 264)
+                            this.notifyToClient('~r~Сумка в инвентарь не складывается, её можно только выкинуть, положить на склад, в багажник и так далее');
+                        else
+                            this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
                         return;
                     }
                     this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
