@@ -679,6 +679,8 @@ class Inventory extends React.Component {
 
             if (source !== 'outfit')
                 actions.push('put_on') // Надеть
+            else if (source === 'outfit' && this.state.secondary_inv_open)
+                actions.push('move') // Убрать в багажник
         }
 
         if (this.state.itemsById.countItems.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
@@ -756,6 +758,10 @@ class Inventory extends React.Component {
                     actions.push('openBag') // Открыть сумку
                 }
             }
+
+            if (this.state.secondary_inv_open)
+                actions.push('move') // Убрать в багажник
+
             actions.push('take_off') // Снять
         }
         if (source === 'weapon') {
@@ -1057,7 +1063,10 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'secondary_inv') !== null) {
                     item = this.checkItem(item, 'secondary_inv')
                     if (this.state.weight_now + item.volume > this.state.weight_max) {
-                        this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
+                        if (item.item_id === 264)
+                            this.notifyToClient('~r~Сумка в инвентарь не складывается, её можно только выкинуть, положить на склад, в багажник и так далее');
+                        else
+                            this.notifyToClient('~r~Ваш инвентарь переполнен ;c');
                         return;
                     }
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
