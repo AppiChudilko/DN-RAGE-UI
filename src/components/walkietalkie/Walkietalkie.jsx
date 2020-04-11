@@ -71,19 +71,26 @@ class Walkietalkie extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        mp.trigger('client:ui:debug', 'Walkietalkie.jsx', error, errorInfo); // eslint-disable-line
+        try {
+            mp.trigger('client:ui:debug', 'Walkietalkie.jsx', error, errorInfo); // eslint-disable-line
+        }
+        catch (e) {
+            
+        }
     }
 
     componentDidMount() {
         EventManager.addHandler('walkietalkie', value => {
             if (value.type === 'show') {
                 this.setState({ show: true, visible: true })
-            } else if (value.type === 'hide') {
+            }
+            else if (value.type === 'hide') {
                 this.setState({ visible: false })
                 setTimeout(() => {
                     this.setState({ show: false })
                 }, 300);
-            } else if (value.type === 'showOrHide') {
+            }
+            else if (value.type === 'showOrHide') {
                 let status = !this.state.show;
                 if (!status) {
                     this.setState({ visible: false })
@@ -98,7 +105,15 @@ class Walkietalkie extends React.Component {
                 } catch (e) {
                     console.log(e);
                 }
-            } else return;
+            }
+            else if (value.type === 'updateValues') {
+                this.setState({ frq1: value.frq1 });
+                this.setState({ frq2: value.frq2 });
+                this.setState({ frqEdit: value.frqEdit });
+                this.setState({ volume: value.volume });
+                this.setState({ color: value.color });
+            }
+            else return;
         })
     }
 
@@ -110,14 +125,37 @@ class Walkietalkie extends React.Component {
         let index = this.state.bgColors.indexOf(this.state.color);
         if(index === this.state.bgColors.length-1) index = 0;
         this.setState({color: this.state.bgColors[index+1]});
+
+        try {
+            mp.trigger('client:walkietalkie:color', this.state.bgColors[index+1]); // eslint-disable-line
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
     arrowUp() {
         if(this.state.editingFrq) return;
         if(this.state.editingVolume) {
             if(this.state.volume<10) this.setState({volume: this.state.volume+1}, () => beep.play(this.state.volume/10))
+
+            try {
+                mp.trigger('client:walkietalkie:volume', this.state.volume); // eslint-disable-line
+            }
+            catch (e) {
+                console.log(e);
+            }
+
             return;
         }
+
+        try {
+            mp.trigger('client:walkietalkie:frqChange', 0); // eslint-disable-line
+        }
+        catch (e) {
+            console.log(e);
+        }
+
         this.setState({frqEdit: 0});
     }
 
@@ -125,8 +163,23 @@ class Walkietalkie extends React.Component {
         if(this.state.editingFrq) return;
         if(this.state.editingVolume) {
             if(this.state.volume>0) this.setState({volume: this.state.volume-1}, () => beep.play(this.state.volume/10))
+
+            try {
+                mp.trigger('client:walkietalkie:volume', this.state.volume); // eslint-disable-line
+            }
+            catch (e) {
+                console.log(e);
+            }
             return;
         }
+
+        try {
+            mp.trigger('client:walkietalkie:frqChange', 1); // eslint-disable-line
+        }
+        catch (e) {
+            console.log(e);
+        }
+
         this.setState({frqEdit: 1});
     }
 
@@ -188,6 +241,12 @@ class Walkietalkie extends React.Component {
                 return;
             } else {
                 this.setState({currentFrq: this.state.frq1})
+                try {
+                    mp.trigger('client:walkietalkie:frq1', JSON.stringify(this.state.frq1)); // eslint-disable-line
+                }
+                catch (e) {
+                    console.log(e);
+                }
             }
         } else {
             if (this.state.frq2[0].length === 0 || this.state.frq2[1].length === 0) {
@@ -195,6 +254,12 @@ class Walkietalkie extends React.Component {
                 return;
             } else {
                 this.setState({currentFrq: this.state.frq2})
+                try {
+                    mp.trigger('client:walkietalkie:frq2', JSON.stringify(this.state.frq2)); // eslint-disable-line
+                }
+                catch (e) {
+                    console.log(e);
+                }
             }
         }
         pip.play();
