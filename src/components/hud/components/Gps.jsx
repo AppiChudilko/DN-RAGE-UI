@@ -9,8 +9,10 @@ class Gps extends React.Component {
             district: 'Загрузка...',
             street: 'Загрузка...',
             showGang: false,
+            showMafia: false,
             att: 0,
             def: 0,
+            tre: 0,
             timer: 0,
             color: '#48B9F2',
             background: 0.5,
@@ -43,7 +45,20 @@ class Gps extends React.Component {
             }
             else if (value.type === 'hideGangInfo') {
                 this.setState({showGang: false});
-            } else return;
+            }
+            else if (value.type === 'updateMafiaInfo') {
+                this.setState({att: value.top1});
+                this.setState({def: value.top2});
+                this.setState({tre: value.top3});
+                this.setState({timer: value.timerCounter});
+            }
+            else if (value.type === 'showMafiaInfo') {
+                this.setState({showMafia: true});
+            }
+            else if (value.type === 'hideMafiaInfo') {
+                this.setState({showMafia: false});
+            }
+            else return;
         })
     }
 
@@ -65,6 +80,13 @@ class Gps extends React.Component {
                     <div className="war-att" style={this.state}>Война за территорию</div>
                     <div className="war-att">Атака: {this.state.att}</div>
                     <div className="war-def">Оборона: {this.state.def}</div>
+                    <div className="war-timer">Таймер: {this.state.timer} сек</div>
+                </div>
+                <div className={this.state.showMafia ? 'gang-war-info' : 'hide'} style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                    <div className="war-att" style={this.state}>Война за территорию</div>
+                    <div className="war-att">Cosa Nostra: {this.state.att}</div>
+                    <div className="war-def">Russian Mafia: {this.state.def}</div>
+                    <div className="war-def">Yakuza: {this.state.def}</div>
                     <div className="war-timer">Таймер: {this.state.timer} сек</div>
                 </div>
             </React.Fragment>
