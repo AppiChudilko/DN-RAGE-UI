@@ -1,138 +1,118 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
+import Header from './MainMenu/Header/Header'
+import Desc from './MainMenu/uikit/Desc'
+import InterfaceItem from './MainMenu/List/InterfaceItem'
 
-class Logo extends React.Component {
+class MainMenu extends React.Component {
     constructor(props) {
         super(props)
+        this.handleKeyDown = this.handleKeyDown.bind(this)
         this.state = {
-            show: true,
-            showAmmo: false,
-            ammoCount: 0,
-            ammoMode: 'auto',
-            date: '01.01',
-            time: '12:00',
-            online: '0',
-            max_player: '1000',
-            id: '0',
-            color: '#48B9F2',
-            background: 0.5,
+            selected: 1,
+            header: true,
+            opacity: 0.8,
+            headerText: 'headerText',
+            menuList: [
+                {
+                    id: 1,
+                    type: 'caption',
+                    title: 'TEST',
+                    subtitle: 'TEST2',
+                    items: [],
+                    divider: false
+                }
+            ]
+        };
+        this.selectedElement = React.createRef();
+    }
+
+    resetVal(type) {
+        type === 'max' ?
+            this.setState((state) => {
+                return {selected: 1}
+            }) :
+            this.setState((state) => {
+                return {selected: this.state.menuList.length}
+            })
+    }
+
+    handleWheel(e) {
+        if (e.deltaY < 0) {
+            if (this.state.selected - 1 === 0) {
+                this.resetVal('min')
+            } else {
+                this.setState((state) => {
+                    return {selected: state.selected--}
+                })
+            }
+        } else if (e.deltaY > 0) {
+            if (this.state.menuList.length === this.state.selected) {
+                this.resetVal('max')
+            } else {
+                this.setState((state) => {
+                    return {selected: state.selected++}
+                })
+            }
         }
     }
 
-    componentDidCatch(error, errorInfo) {
-        mp.trigger('client:ui:debug', 'MainMenu.jsx', error, errorInfo); // eslint-disable-line
-    }
-
-    componentDidMount() {
-        EventManager.addHandler('hudm', value => {
-            if (value.type === 'show') {
-                this.setState({show: true})
-            } else if (value.type === 'hide') {
-                this.setState({show: false})
-            } else if (value.type === 'updateValues') {
-                this.setState({date: value.date});
-                this.setState({time: value.time});
-                this.setState({online: value.online});
-                this.setState({max_player: value.max_player});
-                this.setState({id: value.id});
-                this.setState({showAmmo: value.showAmmo});
-                this.setState({ammoCount: value.ammoCount});
-                this.setState({ammoMode: value.ammoMode});
-                this.setState({background: value.background});
-            } else return;
-        })
-    }
-
-    componentWillUnmount() {
-        EventManager.removeHandler('hudm');
+    handleKeyDown(e) {
+        if (e.keyCode === 38) {
+            if (this.state.selected - 1 === 0) {
+                this.resetVal('min')
+            } else {
+                this.setState((state) => {
+                    return {selected: state.selected--}
+                })
+            }
+        } else if (e.keyCode === 40) {
+            if (this.state.menuList.length === this.state.selected) {
+                this.resetVal('max')
+            } else {
+                this.setState((state) => {
+                    return {selected: state.selected++}
+                })
+            }
+        }
     }
 
     render() {
-        if (!this.state.show) {
-            return null;
+
+        const styles = {
+            container: {
+                display: 'flex',
+                flex: 1,
+                marginTop: '10%',
+                marginBottom: '10%',
+                marginLeft: '30%',
+                marginRight: '30%',
+                height: '100%',
+                backgroundColor: '#0c0c0c',
+                flexDirection: 'column',
+                opacity: this.state.opacity,
+                paddingBottom: '2%'
+            },
+            menuContainer: {
+                overflow: 'hidden',
+                overflowY: 'scroll',
+                maxHeight: '16rem'
+
+            }
         }
+
         return (
-            <React.Fragment>
-                <div className="menu_native">
-                    <div className="head">Name</div>
-                    <div className="body">
-                        <div className="subtitle">
-                            <div className="name">Название</div>
-                            <div>10/50</div>
-                        </div>
-                        <div className="content_list">
-                            <div className="content_item active">
-                                <div className="text">Название</div>
-                                <div className="checkbox">
-                                    <input type="checkbox" id="checkbox_1" />
-                                    <label htmlFor="checkbox_1"></label>
-                                </div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                                <div className="list">
-                                    <div className="prev"></div>
-                                    <div className="text">Текст</div>
-                                    <div className="next"></div>
-                                </div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                                <div className="list">
-                                    <div className="prev"></div>
-                                    <div className="text">Текст</div>
-                                    <div className="next"></div>
-                                </div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                                <div className="checkbox">
-                                    <input type="checkbox" id="checkbox_2" />
-                                    <label htmlFor="checkbox_2"></label>
-                                </div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                            <div className="content_item">
-                                <div className="text">Название</div>
-                            </div>
-                        </div>
-                    </div>
+            <div style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
+                {this.state.header ? <Header headerText={this.state.headerText} /> : <></>}
+                <div className="menuContainer" style={styles.menuContainer}>
+                    {this.state.menuList.map(item => {
+                        return <InterfaceItem data={item} selected={item.id === this.state.selected ? true : false} key={item.id.toString()}/>
+                    })}
                 </div>
-            </React.Fragment>
+                {this.state.menuList[this.state.selected - 1].subtitle ? <Desc desc={this.state.menuList[this.state.selected - 1].subtitle} /> : <></>}
+            </div>
         )
     }
 }
 
-export default Logo;
+export default MainMenu;

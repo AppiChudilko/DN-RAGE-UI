@@ -12,14 +12,14 @@ const styles = {
         overflow: 'auto'
     },
     listitem: {
-        fontFamily: 'WD',
+        fontFamily: 'HACKED',
         color: '#fff',
         fontSize: '1.4rem',
         marginRight: 'auto',
         minWidth: '80%'
     },
     itemCarousel: {
-        fontFamily: 'WD',
+        fontFamily: 'HACKED',
         color: '#fff',
         fontSize: '0.9rem',
         width: '100%',
@@ -53,13 +53,13 @@ export default class ListMenu extends React.Component {
       return {selectedListIndex: 0}
     }) :
     this.setState((state) => {
-      return {selectedListIndex: this.props.data.data.items.length - 1}
+      return {selectedListIndex: this.props.menuList.data.items.length - 1}
     })
   }
 
   nextVal() {
 
-    if (this.state.selectedListIndex + 2 > this.props.data.data.items.length) {
+    if (this.state.selectedListIndex + 2 > this.props.menuList.data.items.length) {
       this.resetVal('max')
     } else {
       this.setState((state) => {
@@ -92,12 +92,12 @@ export default class ListMenu extends React.Component {
         <div style={styles.container} tabIndex="2" onKeyDown={(e) => this.handleKeyDown(e)}>
           <input style={{opacity: 0, height: "0px", width: "0px"}} autoFocus={true} />
           <label style={styles.listitem}>
-            {this.props.data.data.title}
+            {this.props.menuList.data.title}
           </label>
           <div style={styles.carousel}>
             <ion-icon onClick={this.prevVal.bind(this)} style={styles.icon} name="caret-back-outline"></ion-icon>
-            <div style={styles.itemCarousel} value={this.props.data.data.items[this.state.selectedListIndex]} onClick={this.nextVal.bind(this)} >
-              {this.props.data.data.items[this.state.selectedListIndex]}
+            <div style={styles.itemCarousel} value={this.props.menuList.data.items[this.state.selectedListIndex]} onClick={this.nextVal.bind(this)} >
+              {this.props.menuList.data.items[this.state.selectedListIndex]}
             </div>
             <ion-icon onClick={this.nextVal.bind(this)} style={styles.icon} name="caret-forward-outline"></ion-icon>
           </div>

@@ -10,7 +10,7 @@ const styles = {
         alignItems: 'center'
     },
     title: {
-        fontFamily: 'WD',
+        fontFamily: 'HACKED',
         color: '#fff',
         fontSize: '1.4rem',
         marginRight: 'auto',
@@ -47,18 +47,18 @@ export default class Checkbox extends React.Component {
     render() {
       return (
           <label tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)} className="checkbox-container" style={styles.container}>
-                <label htmlFor={this.props.data.data.title} style={styles.title}>
-                    {this.props.data.data.title}
+                <label htmlFor={this.props.menuList.data.title} style={styles.title}>
+                    {this.props.menuList.data.title}
                 </label>
                 <input type="checkbox"
                     autoFocus={true}
                     checked={this.state.isChecked}
                     onChange={this.toggleChange}
                     className="checkbox"
-                    id={this.props.data.data.title}
+                    id={this.props.menuList.data.title}
                     style={styles.checkbox}
                 />
-                <label htmlFor={this.props.data.data.title} className="checkmark" style={styles.checkmark} />
+                <label htmlFor={this.props.menuList.data.title} className="checkmark" style={styles.checkmark} />
           </label>
       );
     }

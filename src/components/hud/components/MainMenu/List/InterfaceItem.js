@@ -3,7 +3,6 @@ import Checkbox from '../uikit/Checkbox'
 import ListMenu from '../uikit/ListMenu'
 import Caption from '../uikit/Caption'
 
-
 const uikit = {
     checkbox: Checkbox,
     listmenu: ListMenu,

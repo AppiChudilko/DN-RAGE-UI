@@ -21,7 +21,13 @@ class Hud extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        mp.trigger('client:ui:debug', 'Hud.jsx', error, errorInfo); // eslint-disable-line
+        console.log(error, errorInfo);
+        try {
+            mp.trigger('client:ui:debug', 'Hud.jsx', error, errorInfo); // eslint-disable-line
+        }
+        catch (e) {
+
+        }
     }
 
     componentDidMount() {

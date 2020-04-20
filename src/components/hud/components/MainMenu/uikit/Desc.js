@@ -2,7 +2,7 @@ import React from 'react'
 
 const styles = {
     header: {
-        fontFamily: 'WD',
+        fontFamily: 'HACKED',
         color: '#fff',
         fontSize: '1.2rem',
         fontWeight: 400
