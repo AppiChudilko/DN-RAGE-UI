@@ -10,6 +10,8 @@ const styles = {
     container: {
         paddingLeft: '10%',
         paddingRight: '10%',
+        paddingBottom: '8%',
+        paddingTop: '4%',
         backgroundColor: '#000'
     }
 }

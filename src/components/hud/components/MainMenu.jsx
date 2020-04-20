@@ -1,8 +1,8 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
-import Header from './MainMenu/Header/Header'
-import Desc from './MainMenu/uikit/Desc'
-import InterfaceItem from './MainMenu/List/InterfaceItem'
+import Header from './MainMenu/Header/Header.jsx'
+import Desc from './MainMenu/uikit/Desc.jsx'
+import InterfaceItem from './MainMenu/List/InterfaceItem.jsx'
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class MainMenu extends React.Component {
         this.state = {
             selected: 1,
             header: true,
-            opacity: 0.8,
+            opacity: 0.88,
             headerText: 'headerText',
             menuList: [
                 {
@@ -21,10 +21,34 @@ class MainMenu extends React.Component {
                     subtitle: 'TEST2',
                     items: [],
                     divider: false
+                },
+                {
+                    id: 2,
+                    type: 'caption',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 3,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 4,
+                    type: 'listmenu',
+                    title: 'YOUR FRACTION',
+                    items: [
+                        'PD',
+                        'FIB',
+                        'TEST',
+                        'TEST14'
+                    ]
                 }
             ]
         };
-        this.selectedElement = React.createRef();
     }
 
     resetVal(type) {
@@ -43,7 +67,7 @@ class MainMenu extends React.Component {
                 this.resetVal('min')
             } else {
                 this.setState((state) => {
-                    return {selected: state.selected--}
+                    return {selected: state.selected - 1}
                 })
             }
         } else if (e.deltaY > 0) {
@@ -51,7 +75,7 @@ class MainMenu extends React.Component {
                 this.resetVal('max')
             } else {
                 this.setState((state) => {
-                    return {selected: state.selected++}
+                    return {selected: state.selected + 1}
                 })
             }
         }
@@ -63,7 +87,7 @@ class MainMenu extends React.Component {
                 this.resetVal('min')
             } else {
                 this.setState((state) => {
-                    return {selected: state.selected--}
+                    return {selected: state.selected - 1}
                 })
             }
         } else if (e.keyCode === 40) {
@@ -71,7 +95,7 @@ class MainMenu extends React.Component {
                 this.resetVal('max')
             } else {
                 this.setState((state) => {
-                    return {selected: state.selected++}
+                    return {selected: state.selected + 1}
                 })
             }
         }
@@ -97,7 +121,6 @@ class MainMenu extends React.Component {
                 overflow: 'hidden',
                 overflowY: 'scroll',
                 maxHeight: '16rem'
-
             }
         }
 

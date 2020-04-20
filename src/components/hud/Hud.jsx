@@ -56,7 +56,7 @@ class Hud extends React.Component {
                     </div>
                     <div className='hud-position-righttop'>
                         <Logo/>
-                        <MainMenu/>
+                        <MainMenu />
                     </div>
                     <div className='hud-position-leftbottom'>
                         <Watch/>

@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const styles = {
     container: {
         display: 'flex',
         paddingLeft: '15%',
         paddingRight: '15%',
-        marginBottom: '4%',
-        marginTop: '4%',
+        paddingBottom: '2%',
+        paddingTop: '2%',
         alignItems: 'center',
         position: 'relative',
         overflow: 'auto'
@@ -53,18 +53,18 @@ export default class ListMenu extends React.Component {
       return {selectedListIndex: 0}
     }) :
     this.setState((state) => {
-      return {selectedListIndex: this.props.menuList.data.items.length - 1}
+      return {selectedListIndex: this.props.data.data.items.length - 1}
     })
   }
 
   nextVal() {
-
-    if (this.state.selectedListIndex + 2 > this.props.menuList.data.items.length) {
+    if (this.state.selectedListIndex + 2 > this.props.data.data.items.length) {
       this.resetVal('max')
     } else {
       this.setState((state) => {
-        return {selectedListIndex: state.selectedListIndex++}
+        return {selectedListIndex: state.selectedListIndex + 1}
       });
+      console.log(this.state.selectedListIndex)
     }
   }
 
@@ -73,7 +73,7 @@ export default class ListMenu extends React.Component {
       this.resetVal('min')
     } else {
       this.setState((state) => {
-        return {selectedListIndex: state.selectedListIndex--}
+        return {selectedListIndex: state.selectedListIndex - 1}
       });
     }
   }
@@ -90,14 +90,14 @@ export default class ListMenu extends React.Component {
     render() {
       return (
         <div style={styles.container} tabIndex="2" onKeyDown={(e) => this.handleKeyDown(e)}>
-          <input style={{opacity: 0, height: "0px", width: "0px"}} autoFocus={true} />
+          <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
           <label style={styles.listitem}>
-            {this.props.menuList.data.title}
+            {this.props.data.data.title}
           </label>
           <div style={styles.carousel}>
             <ion-icon onClick={this.prevVal.bind(this)} style={styles.icon} name="caret-back-outline"></ion-icon>
-            <div style={styles.itemCarousel} value={this.props.menuList.data.items[this.state.selectedListIndex]} onClick={this.nextVal.bind(this)} >
-              {this.props.menuList.data.items[this.state.selectedListIndex]}
+            <div style={styles.itemCarousel} value={this.props.data.data.items[this.state.selectedListIndex]} onClick={this.nextVal.bind(this)} >
+              {this.props.data.data.items[this.state.selectedListIndex]}
             </div>
             <ion-icon onClick={this.nextVal.bind(this)} style={styles.icon} name="caret-forward-outline"></ion-icon>
           </div>

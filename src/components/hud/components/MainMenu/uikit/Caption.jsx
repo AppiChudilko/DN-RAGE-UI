@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const styles = {
     container: {
         display: 'flex',
         paddingLeft: '15%',
         paddingRight: '15%',
-        marginBottom: '4%',
-        marginTop: '4%',
+        paddingBottom: '2%',
+        paddingTop: '2%',
         alignItems: 'center'
     },
     listitem: {
@@ -26,11 +26,11 @@ export default class Caption extends React.Component {
     render() {
       return (
         <div style={styles.container}>
-          <input style={{opacity: 0, height: "0px", width: "0px"}} autoFocus={true} />
+          <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
           <label style={styles.listitem}>
-            {this.props.menuList.data.title}
+            {this.props.data.data.title}
           </label>
-          {this.props.menuList.data.divider ? <ion-icon name="chevron-forward-circle" style={styles.icon} size="medium" /> : <></>}
+          {this.props.data.data.divider ? <ion-icon name="chevron-forward-circle" style={styles.icon} size="medium" /> : <></>}
          </div>
       );
     }

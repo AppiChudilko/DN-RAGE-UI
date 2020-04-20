@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const styles = {
     container: {
         display: 'flex',
         paddingLeft: '15%',
         paddingRight: '15%',
-        marginBottom: '4%',
-        marginTop: '4%',
+        paddingBottom: '2%',
+        paddingTop: '2%',
         alignItems: 'center'
     },
     title: {
@@ -47,18 +47,18 @@ export default class Checkbox extends React.Component {
     render() {
       return (
           <label tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)} className="checkbox-container" style={styles.container}>
-                <label htmlFor={this.props.menuList.data.title} style={styles.title}>
-                    {this.props.menuList.data.title}
+                <label htmlFor={this.props.data.data.title} style={styles.title}>
+                    {this.props.data.data.title}
                 </label>
                 <input type="checkbox"
                     autoFocus={true}
                     checked={this.state.isChecked}
                     onChange={this.toggleChange}
                     className="checkbox"
-                    id={this.props.menuList.data.title}
+                    id={this.props.data.data.title}
                     style={styles.checkbox}
                 />
-                <label htmlFor={this.props.menuList.data.title} className="checkmark" style={styles.checkmark} />
+                <label htmlFor={this.props.data.data.title} className="checkmark" style={styles.checkmark} />
           </label>
       );
     }
