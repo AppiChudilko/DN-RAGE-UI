@@ -6,6 +6,19 @@ ion-icon {
     cursor: pointer;
 }
 
+.menu-box {
+    display: flex;
+    flex: 1 1 0%;
+    background-color: rgb(12, 12, 12);
+    flex-direction: column;
+    opacity: 0.88;
+    outline: none;
+    position: absolute;
+    width: 400px;
+    right: 40px;
+    top: 130px;
+}
+
 .checkbox-container {
     position: relative;
     cursor: pointer;
@@ -54,6 +67,10 @@ ion-icon {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.menuContainer {
+    outline: none;
 }
 
 .menu-item {

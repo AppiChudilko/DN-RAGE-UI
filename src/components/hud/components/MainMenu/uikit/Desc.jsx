@@ -2,16 +2,13 @@ import React from 'react'
 
 const styles = {
     header: {
-        fontFamily: 'HACKED',
+        fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1.2rem',
+        fontSize: '0.9rem',
         fontWeight: 400
     },
     container: {
-        paddingLeft: '10%',
-        paddingRight: '10%',
-        paddingBottom: '8%',
-        paddingTop: '4%',
+        padding: '20px',
         backgroundColor: '#000'
     }
 }

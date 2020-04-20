@@ -9,16 +9,24 @@ class MainMenu extends React.Component {
         super(props)
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.state = {
+            show: true,
             selected: 1,
             header: true,
             opacity: 0.88,
-            headerText: 'headerText',
+            headerText: 'headerTex',
+            headerDesc: 'header desc',
             menuList: [
                 {
                     id: 1,
                     type: 'caption',
                     title: 'TEST',
-                    subtitle: 'TEST2',
+                    subtitle: '~r~TEST2~s~Dfsdfdsf~y~sdfsdfsdf',
+                    icon: 'test',
+                    iconr: 'test',
+
+                    rl: '~r~Test2~r~',
+
+                    params: {},
                     items: [],
                     divider: false
                 },
@@ -46,7 +54,57 @@ class MainMenu extends React.Component {
                         'TEST',
                         'TEST14'
                     ]
-                }
+                },
+                {
+                    id: 5,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 6,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 7,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 8,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 9,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 10,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    id: 11,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    subtitle: '~r~TEST2~s~Dfsdfdsf~y~sdfsdfsdf',
+                    items: [],
+                    divider: false
+                },
             ]
         };
     }
@@ -103,6 +161,9 @@ class MainMenu extends React.Component {
 
     render() {
 
+        if (!this.state.show)
+            return null;
+
         const styles = {
             container: {
                 display: 'flex',
@@ -115,18 +176,19 @@ class MainMenu extends React.Component {
                 backgroundColor: '#0c0c0c',
                 flexDirection: 'column',
                 opacity: this.state.opacity,
-                paddingBottom: '2%'
+                paddingBottom: '2%',
+                outline: 'none',
             },
             menuContainer: {
                 overflow: 'hidden',
                 overflowY: 'scroll',
-                maxHeight: '16rem'
+                maxHeight: '350px'
             }
         }
 
         return (
-            <div style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                {this.state.header ? <Header headerText={this.state.headerText} /> : <></>}
+            <div className="menu-box" onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
+                {this.state.header ? <Header headerText={this.state.headerText} headerDesc={this.state.headerDesc} /> : <></>}
                 <div className="menuContainer" style={styles.menuContainer}>
                     {this.state.menuList.map(item => {
                         return <InterfaceItem data={item} selected={item.id === this.state.selected ? true : false} key={item.id.toString()}/>

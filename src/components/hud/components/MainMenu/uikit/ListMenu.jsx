@@ -3,25 +3,22 @@ import React from 'react'
 const styles = {
     container: {
         display: 'flex',
-        paddingLeft: '15%',
-        paddingRight: '15%',
-        paddingBottom: '2%',
-        paddingTop: '2%',
+        padding: '5px 20px',
         alignItems: 'center',
         position: 'relative',
         overflow: 'auto'
     },
     listitem: {
-        fontFamily: 'HACKED',
+        fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1.4rem',
+        fontSize: '1rem',
         marginRight: 'auto',
         minWidth: '80%'
     },
     itemCarousel: {
-        fontFamily: 'HACKED',
+        fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '0.9rem',
+        fontSize: '1rem',
         width: '100%',
         textAlign: 'center',
         overflow: 'hidden'

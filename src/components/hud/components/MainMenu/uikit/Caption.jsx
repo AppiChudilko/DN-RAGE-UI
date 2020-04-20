@@ -3,16 +3,13 @@ import React from 'react'
 const styles = {
     container: {
         display: 'flex',
-        paddingLeft: '15%',
-        paddingRight: '15%',
-        paddingBottom: '2%',
-        paddingTop: '2%',
+        padding: '5px 20px',
         alignItems: 'center'
     },
     listitem: {
-        fontFamily: 'HACKED',
+        fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1.4rem',
+        fontSize: '1rem',
         marginRight: 'auto',
     },
     icon: {
