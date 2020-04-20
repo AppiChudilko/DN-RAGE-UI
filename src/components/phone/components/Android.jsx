@@ -162,7 +162,7 @@ class Android extends React.Component {
                 current_chat: '2223567347'
             },
             chats: [
-                {
+                /*{
                     phone_number: '2223567347',
                     is_online: true, // был(а) в сети 12.01.2019
                     last_login: '12.01.2020',
@@ -194,7 +194,7 @@ class Android extends React.Component {
                     message: [
                         { type: 2, text: 'Товар на месте?', date: '10.01.2020', time: '12:00:02' },
                     ]
-                }
+                }*/
             ],
             console_message: ['Welcome To Console v0.1\nGNU/Linux 4.15.0-55-generic x86_64\n\nuse "help" command\n\n'],
             achiev: [

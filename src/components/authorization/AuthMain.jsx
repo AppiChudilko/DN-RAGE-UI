@@ -9,7 +9,7 @@ class AuthMain extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
+            show: false,
             path: '/'
         }
     }
@@ -42,11 +42,11 @@ class AuthMain extends React.Component {
         }
         return (
             <React.Fragment>
-                    <Router>
-                        <Route exact path="/" component={Authorization}/>
-                        <Route exact path="/create" component={CreatePlayer}/>
-                        <Redirect to={this.state.path} push/>
-                    </Router>
+                <Router>
+                    <Route exact path="/" component={Authorization}/>
+                    <Route exact path="/create" component={CreatePlayer}/>
+                    <Redirect to={this.state.path} push/>
+                </Router>
             </React.Fragment>
         )
     }

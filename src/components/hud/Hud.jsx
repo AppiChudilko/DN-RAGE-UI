@@ -2,11 +2,13 @@ import React from 'react';
 import './css/hud.css'
 import './css/main.css'
 import './css/checkbox.css'
+import './css/menu.css'
 import Player from './components/Player';
 import Car from './components/Car';
 import Gps from './components/Gps';
 import Watch from './components/Watch';
 import Logo from './components/Logo';
+import MainMenu from './components/MainMenu';
 import EventManager from "../../EventManager";
 import Chat from './components/Chat';
 
@@ -14,7 +16,7 @@ class Hud extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
+            show: true,
         }
     }
 
@@ -48,6 +50,7 @@ class Hud extends React.Component {
                     </div>
                     <div className='hud-position-righttop'>
                         <Logo/>
+                        <MainMenu/>
                     </div>
                     <div className='hud-position-leftbottom'>
                         <Watch/>
