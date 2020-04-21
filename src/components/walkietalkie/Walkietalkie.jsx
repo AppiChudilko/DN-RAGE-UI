@@ -69,7 +69,7 @@ class Walkietalkie extends React.Component {
         }
         
     }
-
+/*Test*/
     componentDidCatch(error, errorInfo) {
         try {
             mp.trigger('client:ui:debug', 'Walkietalkie.jsx', error, errorInfo); // eslint-disable-line
