@@ -1973,9 +1973,15 @@ BankCard
     position: relative;
 }
 .messenger-main .MuiFab-primary {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+    position: fixed;
+    bottom: 18%;
+    right: 9%;
+    background: rgb(33, 45, 59);
+}
+.rotate-components .messenger-main .MuiFab-primary {
+    position: fixed;
+    bottom: 11%;
+    right: 2%;
     background: rgb(33, 45, 59);
 }
 .messenger-main .MuiFab-primary:hover {

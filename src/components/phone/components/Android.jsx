@@ -93,14 +93,14 @@ class Android extends React.Component {
             },
             phonebook: {
                 editing_contact: false,
-                selected_contact: {
+                selected_contact: {/*
                     name: 'Godvil Moretti',
                     numbers: ['222-2346837'],
                     mail: 'godvil.moretti@ded.net',
-                    img: 'https://a.rsg.sc//n/socialclub',
+                    img: 'https://a.rsg.sc//n/socialclub',*/
                 },
                 history: [
-
+/*
                     {
                         number: '222-2346837',
                         img: 'https://a.rsg.sc//n/socialclub',
@@ -124,10 +124,10 @@ class Android extends React.Component {
                         img: 'https://a.rsg.sc//n/socialclub',
                         type: 'call_made',
                         data: '20190212-1453'
-                    },
+                    },*/
                 ],
                 contact: [
-                    {
+                    /*{
                         name: 'Wika Aretti',
                         numbers: ['222-1234212', '555-6347544'],
                         mail: 'wika.aretti@ded.net',
@@ -154,7 +154,7 @@ class Android extends React.Component {
                         mail: 'aika.aretti@ded.net',
                         isFavorite: false,
                         img: 'https://a.rsg.sc//n/socialclub',
-                    },
+                    },*/
 
                 ],
             },
