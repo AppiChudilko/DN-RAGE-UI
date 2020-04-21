@@ -35,7 +35,7 @@ class AddChat extends React.Component {
         this.setState({ message_timeout: true, loading: true });
         setTimeout(function () {
             this.setState({ message_timeout: false, loading: false })
-        }.bind(this), 1000); // 1 секунда таймаут на отправку сообщения
+        }.bind(this), 2000); // 1 секунда таймаут на отправку сообщения
 
         let chat = null;
         this.props.data.forEach((e) => {
