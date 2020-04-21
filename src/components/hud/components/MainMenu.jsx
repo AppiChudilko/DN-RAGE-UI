@@ -3,6 +3,7 @@ import EventManager from "../../../EventManager";
 import Header from './MainMenu/Header/Header.jsx'
 import Desc from './MainMenu/uikit/Desc.jsx'
 import InterfaceItem from './MainMenu/List/InterfaceItem.jsx'
+import Icon from './MainMenu/uikit/Icon'
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -14,94 +15,85 @@ class MainMenu extends React.Component {
             header: true,
             opacity: 0.88,
             headerText: 'headerTex',
-            headerDesc: 'header desc',
+            headerDesc: 'qweeqweq',
             menuList: [
                 {
-                    id: 1,
                     type: 'caption',
                     title: 'TEST',
-                    subtitle: '~r~TEST2~s~Dfsdfdsf~y~sdfsdfsdf',
-                    icon: 'test',
-                    iconr: 'test',
-
-                    rl: '~r~Test2~r~',
-
+                    subtitle: '~red~TEST2~yellow~Dfsdfdsf~br~qwerty~blue~sdfsdfsdf~green~djasdnajksnd',
+                    icon: 'test__icon__inverted',
+                    rl: '~blue~RIGHT LABEL',
                     params: {},
                     items: [],
                     divider: false
                 },
                 {
-                    id: 2,
+                    type: 'caption',
+                    title: 'Бизнес',
+                    subtitle: 'default text',
+                    iconr: 'test__icon__inverted',
+                    items: [],
+                    divider: false
+                },
+                {
                     type: 'caption',
                     title: 'TEST2',
+                    icon: 'test__icon__inverted',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 3,
-                    type: 'checkbox',
-                    title: 'TEST2',
-                    items: [],
-                    divider: false
-                },
-                {
-                    id: 4,
                     type: 'listmenu',
                     title: 'YOUR FRACTION',
+                    icon: 'test__icon__inverted',
                     items: [
                         'PD',
                         'FIB',
                         'TEST',
-                        'TEST14'
+                        'TESTDNASK JBDKAJSB KNASDANSDJKABNSDKJBASK14'
                     ]
                 },
                 {
-                    id: 5,
                     type: 'checkbox',
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 6,
+                    type: 'checkbox',
+                    title: 'TEST2',
+                    icon: 'test__icon__inverted',
+                    items: [],
+                    divider: false
+                },
+                {
                     type: 'checkbox',
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 7,
                     type: 'checkbox',
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 8,
                     type: 'checkbox',
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 9,
                     type: 'checkbox',
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    id: 10,
                     type: 'checkbox',
                     title: 'TEST2',
-                    items: [],
-                    divider: false
-                },
-                {
-                    id: 11,
-                    type: 'checkbox',
-                    title: 'TEST2',
-                    subtitle: '~r~TEST2~s~Dfsdfdsf~y~sdfsdfsdf',
+                    subtitle: '~red~TEST2~yellow~Dfsdfdsf~blue~sdfsdfsdf~green~djasdnajksnd',
                     items: [],
                     divider: false
                 },
@@ -159,6 +151,12 @@ class MainMenu extends React.Component {
         }
     }
 
+    toggleSelected(id) {
+        this.setState((state) => {
+            return {selected: id}
+        })
+    }
+
     render() {
 
         if (!this.state.show)
@@ -188,10 +186,14 @@ class MainMenu extends React.Component {
 
         return (
             <div className="menu-box" onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                {this.state.header ? <Header headerText={this.state.headerText} headerDesc={this.state.headerDesc} /> : <></>}
+                {this.state.header ? <Header headerData={`${this.state.selected} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} /> : <></>}
                 <div className="menuContainer" style={styles.menuContainer}>
-                    {this.state.menuList.map(item => {
-                        return <InterfaceItem data={item} selected={item.id === this.state.selected ? true : false} key={item.id.toString()}/>
+                    {this.state.menuList.map((item, index) => {
+                        return (
+                            <div onClick={() => this.toggleSelected(index + 1)} key={(index + 1).toString()} className={index + 1 === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
+                                <InterfaceItem id={index + 1} data={item} selected={index + 1 === this.state.selected ? true : false} />
+                            </div>
+                        )
                     })}
                 </div>
                 {this.state.menuList[this.state.selected - 1].subtitle ? <Desc desc={this.state.menuList[this.state.selected - 1].subtitle} /> : <></>}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './Icon'
 
 const styles = {
     container: {
@@ -44,7 +45,8 @@ export default class Checkbox extends React.Component {
     render() {
       return (
           <label tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)} className="checkbox-container" style={styles.container}>
-                <label htmlFor={this.props.data.data.title} style={styles.title}>
+                {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
+                <label htmlFor={this.props.data.data.id} style={styles.title}>
                     {this.props.data.data.title}
                 </label>
                 <input type="checkbox"
@@ -52,10 +54,10 @@ export default class Checkbox extends React.Component {
                     checked={this.state.isChecked}
                     onChange={this.toggleChange}
                     className="checkbox"
-                    id={this.props.data.data.title}
+                    id={this.props.data.data.id}
                     style={styles.checkbox}
                 />
-                <label htmlFor={this.props.data.data.title} className="checkmark" style={styles.checkmark} />
+                <label htmlFor={this.props.data.data.id} className="checkmark" style={styles.checkmark} />
           </label>
       );
     }
