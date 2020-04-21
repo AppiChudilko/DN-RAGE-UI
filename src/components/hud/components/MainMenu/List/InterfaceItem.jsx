@@ -12,9 +12,8 @@ const uikit = {
 export default function InterfaceItem(item) {
 
     const TypeComponent = uikit[item.data.type.toLowerCase()]
+    
     return (
-        <div className={item.selected ? 'menu-item-inverted' : 'menu-item'}>
-            <TypeComponent selected={item.selected} data={item} />
-        </div>
+        <TypeComponent selected={item.selected} data={item} key={item.id.toString()} />
     )
 }

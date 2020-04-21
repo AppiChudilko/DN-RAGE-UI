@@ -19,6 +19,10 @@ ion-icon {
     top: 130px;
 }
 
+.menu-box div, label {
+    outline: none;
+}
+
 .checkbox-container {
     position: relative;
     cursor: pointer;
@@ -75,11 +79,18 @@ ion-icon {
 
 .menu-item {
     background-color: var(--bg-color);
-
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+
+.list-arrow-icon {
+    width: 24px;
+    height: 20px;
+    display: flex;
+    alignItems: center;
+    justify-content: center;
 }
 
 .menu-item-inverted {

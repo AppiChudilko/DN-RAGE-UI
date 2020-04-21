@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './Icon'
 
 const styles = {
     container: {
@@ -12,16 +13,15 @@ const styles = {
         fontFamily: 'Roboto',
         color: '#fff',
         fontSize: '1rem',
-        marginRight: 'auto',
-        minWidth: '80%'
+        marginRight: 'auto'
     },
     itemCarousel: {
         fontFamily: 'Roboto',
         color: '#fff',
         fontSize: '1rem',
-        width: '100%',
         textAlign: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '100%'
     },
     carousel: {
         flexDirection: 'row',
@@ -29,11 +29,12 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'space-between',
         color: '#fff',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        maxWidth: '40%'
     },
     icon: {
-      fontSize: '1.4rem',
-      cusor: 'pointer'
+      cusor: 'pointer',
+      justifyContent: 'center'
     }
 }
 
@@ -61,7 +62,6 @@ export default class ListMenu extends React.Component {
       this.setState((state) => {
         return {selectedListIndex: state.selectedListIndex + 1}
       });
-      console.log(this.state.selectedListIndex)
     }
   }
 
@@ -83,20 +83,25 @@ export default class ListMenu extends React.Component {
     }
   }
 
-
     render() {
+      
       return (
         <div style={styles.container} tabIndex="2" onKeyDown={(e) => this.handleKeyDown(e)}>
+          {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
           <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
           <label style={styles.listitem}>
             {this.props.data.data.title}
           </label>
           <div style={styles.carousel}>
-            <ion-icon onClick={this.prevVal.bind(this)} style={styles.icon} name="caret-back-outline"></ion-icon>
+            <div style={styles.icon} onClick={this.prevVal.bind(this)}>
+              <Icon className="list-arrow-icon" arrow={true} name="arrow_left" />
+            </div>
             <div style={styles.itemCarousel} value={this.props.data.data.items[this.state.selectedListIndex]} onClick={this.nextVal.bind(this)} >
               {this.props.data.data.items[this.state.selectedListIndex]}
             </div>
-            <ion-icon onClick={this.nextVal.bind(this)} style={styles.icon} name="caret-forward-outline"></ion-icon>
+            <div style={styles.icon} onClick={this.nextVal.bind(this)}>
+              <Icon className="list-arrow-icon" arrow={true} name="arrow_right" />
+            </div>
           </div>
          </div>
       );

@@ -1,4 +1,5 @@
 import React from 'react'
+import parseText from '../functions/parseText'
 
 const styles = {
     header: {
@@ -13,10 +14,12 @@ const styles = {
     }
 }
 
+
 export default function Desc(props) {
+
     return (
         <div style={styles.container}>
-            <p className="header" style={styles.header}>{props.desc}</p>
+            <p className="header" style={styles.header} dangerouslySetInnerHTML={{__html: parseText(props.desc)}}></p>
         </div>
     )
 }
