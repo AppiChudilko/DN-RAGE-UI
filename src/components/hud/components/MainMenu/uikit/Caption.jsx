@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from './Icon'
 import RightLabel from './RightLabel'
+import parseText from '../functions/parseText'
 
 const styles = {
     container: {
@@ -28,8 +29,9 @@ export default class Caption extends React.Component {
         <div style={styles.container}>
           {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
           <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
-          <label style={styles.listitem}>
-            {this.props.data.data.title}
+          <label style={styles.listitem}
+            dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}
+          >
           </label>
           {this.props.data.data.rl ? <RightLabel text={this.props.data.data.rl} /> : <></>}
           {this.props.data.data.divider ? <Icon style={styles.icon} name="arrow_right" /> : <></>}

@@ -3,12 +3,12 @@ import EventManager from "../../../EventManager";
 import Header from './MainMenu/Header/Header.jsx'
 import Desc from './MainMenu/uikit/Desc.jsx'
 import InterfaceItem from './MainMenu/List/InterfaceItem.jsx'
-import Icon from './MainMenu/uikit/Icon'
 
 class MainMenu extends React.Component {
     constructor(props) {
         super(props)
         this.handleKeyDown = this.handleKeyDown.bind(this)
+        this.itemRefs = {}
         this.state = {
             show: true,
             selected: 1,
@@ -37,7 +37,7 @@ class MainMenu extends React.Component {
                 },
                 {
                     type: 'caption',
-                    title: 'TEST2',
+                    title: '~green~TEST2',
                     icon: 'test__icon__inverted',
                     items: [],
                     divider: false
@@ -83,32 +83,23 @@ class MainMenu extends React.Component {
                     title: 'TEST2',
                     items: [],
                     divider: false
-                },
-                {
-                    type: 'checkbox',
-                    title: 'TEST2',
-                    items: [],
-                    divider: false
-                },
-                {
-                    type: 'checkbox',
-                    title: 'TEST2',
-                    subtitle: '~red~TEST2~yellow~Dfsdfdsf~blue~sdfsdfsdf~green~djasdnajksnd',
-                    items: [],
-                    divider: false
-                },
+                }
             ]
         };
     }
 
     resetVal(type) {
-        type === 'max' ?
+        if (type === 'max') {
             this.setState((state) => {
                 return {selected: 1}
-            }) :
+            })
+            this.itemRefs[1].focus()
+        } else {
             this.setState((state) => {
                 return {selected: this.state.menuList.length}
             })
+            this.itemRefs[this.state.menuList.length].focus()
+        }
     }
 
     handleWheel(e) {
@@ -131,6 +122,8 @@ class MainMenu extends React.Component {
         }
     }
 
+    
+
     handleKeyDown(e) {
         if (e.keyCode === 38) {
             if (this.state.selected - 1 === 0) {
@@ -139,6 +132,7 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected - 1}
                 })
+                this.scrollMenu('up')
             }
         } else if (e.keyCode === 40) {
             if (this.state.menuList.length === this.state.selected) {
@@ -147,7 +141,27 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected + 1}
                 })
+                this.scrollMenu('down')
             }
+        }
+    }
+
+    scrollMenu(type) {
+        if ((this.state.selected === this.state.menuList.length) && (type === 'up')) {
+            this.itemRefs[this.state.menuList.length - 1].focus()
+            return null
+        }
+
+        if ((this.state.selected === 1) && (type === 'down')) {
+            this.itemRefs[2].focus()
+            return null
+        }
+
+        if (type === 'up') {
+            this.itemRefs[this.state.selected + 1].focus()
+        }
+        if (type === 'down') {
+            this.itemRefs[this.state.selected - 1].focus()
         }
     }
 
@@ -157,7 +171,12 @@ class MainMenu extends React.Component {
         })
     }
 
+    componentDidMount() {
+        this.itemRefs[1].focus()
+    }
+
     render() {
+
 
         if (!this.state.show)
             return null;
@@ -190,7 +209,7 @@ class MainMenu extends React.Component {
                 <div className="menuContainer" style={styles.menuContainer}>
                     {this.state.menuList.map((item, index) => {
                         return (
-                            <div onClick={() => this.toggleSelected(index + 1)} key={(index + 1).toString()} className={index + 1 === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
+                            <div id={index + 1} tabIndex="-1" ref={el => (this.itemRefs[index + 1] = el)} onClick={() => this.toggleSelected(index + 1)} key={(index + 1).toString()} className={index + 1 === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
                                 <InterfaceItem id={index + 1} data={item} selected={index + 1 === this.state.selected ? true : false} />
                             </div>
                         )
