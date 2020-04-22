@@ -37,7 +37,7 @@ export default class Checkbox extends React.Component {
         });
 
         try {
-            mp.trigger('client:menuList:callBack:check', this.props.data.id, this.props.data.data.params, !this.state.isChecked); // eslint-disable-line
+            mp.trigger('client:menuList:callBack:check', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), !this.state.isChecked); // eslint-disable-line
         }
         catch (e) {}
     }

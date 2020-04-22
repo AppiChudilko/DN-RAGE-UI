@@ -70,7 +70,7 @@ export default class ListMenu extends React.Component {
                 return {selectedListIndex: state.selectedListIndex + 1}
             });
             try {
-                mp.trigger('client:menuList:callBack:list', this.props.data.id, this.props.data.data.params, this.state.selectedListIndex + 1); // eslint-disable-line
+                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex + 1); // eslint-disable-line
             }
             catch (e) {}
         }
@@ -85,7 +85,7 @@ export default class ListMenu extends React.Component {
             });
 
             try {
-                mp.trigger('client:menuList:callBack:list', this.props.data.id, this.props.data.data.params, this.state.selectedListIndex - 1); // eslint-disable-line
+                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex - 1); // eslint-disable-line
             }
             catch (e) {}
         }

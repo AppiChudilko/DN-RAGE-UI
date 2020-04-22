@@ -13,10 +13,11 @@ class MainMenu extends React.Component {
             show: false,
             selected: 1,
             header: true,
-            opacity: 0.88,
+            opacity: 0.80,
             headerText: '',
             headerDesc: '',
             banner: '',
+            menuName: '',
             menuList: [
                 {
                     type: 2,
@@ -130,6 +131,10 @@ class MainMenu extends React.Component {
     }
 
     componentDidMount() {
+        try {
+            this.itemRefs[1].focus();
+        }
+        catch (e) {}
         EventManager.addHandler('hudm', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
@@ -146,9 +151,14 @@ class MainMenu extends React.Component {
                 this.setState({headerDesc: value.headerDesc});
                 this.setState({banner: value.banner});
                 this.setState({menuList: value.menuList});
+                this.setState({menuName: value.menuName});
+
+                try {
+                    this.itemRefs[value.selected].focus();
+                }
+                catch (e) {}
             } else return;
         })
-        this.itemRefs[1].focus()
     }
 
     resetVal(type) {
@@ -257,6 +267,10 @@ class MainMenu extends React.Component {
         });
     }
 
+    onChangeSelectedSelected(id) {
+        console.log(id);
+    }
+
     render() {
         if (!this.state.show)
             return null;
@@ -290,7 +304,7 @@ class MainMenu extends React.Component {
                     {this.state.menuList.map((item, index) => {
                         return (
                             <div id={index + 1} tabIndex="-1" ref={el => (this.itemRefs[index + 1] = el)} onClick={() => this.toggleSelected(index + 1)} key={(index + 1).toString()} className={index + 1 === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
-                                <InterfaceItem id={index + 1} data={item} selected={index + 1 === this.state.selected ? true : false} />
+                                <InterfaceItem id={index + 1} menuName={this.state.menuName} data={item} selected={index + 1 === this.state.selected ? true : false} />
                             </div>
                         )
                     })}
