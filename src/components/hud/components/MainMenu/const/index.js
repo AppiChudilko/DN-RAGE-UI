@@ -1,8 +1,8 @@
 export const COLORS = {
-    red: '#ff2b2b',
-    blue: '#1f75fe',
-    green: '#0bda51',
-    yellow: '#ffcc00' 
+    r: '#ff2b2b',
+    b: '#1f75fe',
+    g: '#0bda51',
+    y: '#ffcc00'
 }
 
 export const SPECIAL = {

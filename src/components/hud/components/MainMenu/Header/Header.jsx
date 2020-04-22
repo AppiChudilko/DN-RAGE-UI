@@ -7,7 +7,8 @@ const styles = {
         fontSize: '4.2rem',
         fontWeight: 400,
         padding: '20px 20px',
-        textAlign: 'center'
+        textAlign: 'center',
+        minHeight: '65px'
     },
     headerDataContainer: {
         display: 'flex',
@@ -28,9 +29,15 @@ const styles = {
 }
 
 export default function Header(props) {
+
+    /*if (props.banner)
+    {
+        styles.header.backgroundImage = `url(${require('../img/banners/' + props.banner + '.png')})`;
+        styles.header.backgroundPosition = 'center';
+    }*/
    
     return (
-        <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : ''}}>
+        <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : '', backgroundPosition: 'center'}}>
             <h1 className="header" style={styles.header}>{props.headerText}</h1>
             <div style={styles.headerDataContainer}>
                 <div style={styles.headerDesc}>{props.headerDesc}</div>

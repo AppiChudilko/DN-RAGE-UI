@@ -10,13 +10,13 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: true,
+            show: false,
             selected: 1,
             header: true,
             opacity: 0.88,
-            headerText: 'headerTex',
-            headerDesc: 'qweeqweq',
-            banner: 'menu-head-back',
+            headerText: '',
+            headerDesc: '',
+            banner: '',
             menuList: [
                 {
                     type: 2,
@@ -138,16 +138,16 @@ class MainMenu extends React.Component {
             } else if (value.type === 'switch') {
                 this.setState({show: !this.state.show})
             } else if (value.type === 'updateInfo') {
+                this.setState({show: true});
                 this.setState({header: value.header});
                 this.setState({opacity: value.opacity});
                 this.setState({selected: value.selected});
                 this.setState({headerText: value.headerText});
                 this.setState({headerDesc: value.headerDesc});
+                this.setState({banner: value.banner});
                 this.setState({menuList: value.menuList});
             } else return;
         })
-
-
         this.itemRefs[1].focus()
     }
 
@@ -163,6 +163,7 @@ class MainMenu extends React.Component {
                 .bind(this),
                 100
             )
+            console.log(1);
         } else {
             this.setState((state) => {
                 return {selected: this.state.menuList.length}
