@@ -28,39 +28,26 @@ export default class Checkbox extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        isChecked: true,
+        isChecked: false,
       };
-    }
-    toggleChange = () => {
-      this.setState({
-        isChecked: !this.state.isChecked,
-      });
-
-      console.log(!this.state.isChecked);
-    }
-
-    handleKeyDown(e) {
-      if (e.keyCode === 13) {
-        this.toggleChange()
-      }
     }
 
     render() {
       return (
-          <label tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)} className="checkbox-container" style={styles.container}>
+          <label tabIndex="1" className="checkbox-container" style={styles.container}>
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
-                <label htmlFor={this.props.data.data.id} style={styles.title} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>
+                <label htmlFor={this.props.data.id} style={styles.title} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>
 
                 </label>
                 <input type="checkbox"
                     autoFocus={true}
-                    checked={this.state.isChecked}
-                    onChange={this.toggleChange}
+                    checked={this.props.data.data.checked}
                     className="checkbox"
-                    id={this.props.data.data.id}
                     style={styles.checkbox}
+                    id={this.props.data.id}
+                    onChange={() => this.props.data.onChangeCheckbox(this.props.data.id + 1)}
                 />
-                <label htmlFor={this.props.data.data.id} className="checkmark" style={styles.checkmark} />
+                <label htmlFor={this.props.data.id} className="checkmark" style={styles.checkmark} />
           </label>
       );
     }

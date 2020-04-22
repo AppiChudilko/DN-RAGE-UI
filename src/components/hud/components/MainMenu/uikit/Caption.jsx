@@ -24,10 +24,12 @@ const styles = {
 
 export default class Caption extends React.Component {
 
-    handleOnClick() {
-        console.log(this.props.data.data);
-        console.log(this.props.data.id);
+  handleOnClick() {
+    try {
+        mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
     }
+    catch (e) {}
+  }
 
     render() {
       return (

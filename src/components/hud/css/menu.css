@@ -99,6 +99,11 @@ ion-icon {
     filter: invert(100%);
 }
 
+
+.menu-item-inverted span {
+    color: #fff !important;
+}
+
 .menu-item:hover {
     background-color: rgba(150, 150, 150, 0.7);
     transition: 0.4s ease-in-out;

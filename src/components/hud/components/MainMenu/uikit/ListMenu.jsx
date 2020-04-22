@@ -52,13 +52,11 @@ export default class ListMenu extends React.Component {
           this.setState((state) => {
               return {selectedListIndex: 0}
           })
-          console.log(0)
       }
       else {
           this.setState((state) => {
               return {selectedListIndex: this.props.data.data.items.length - 1}
           })
-          console.log(this.props.data.data.items.length - 1)
       }
   }
 
@@ -69,7 +67,10 @@ export default class ListMenu extends React.Component {
       this.setState((state) => {
         return {selectedListIndex: state.selectedListIndex + 1}
       });
-        console.log(this.state.selectedListIndex + 1)
+      try {
+        mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex + 1); // eslint-disable-line
+      }
+      catch (e) {}
     }
   }
 
@@ -80,8 +81,10 @@ export default class ListMenu extends React.Component {
       this.setState((state) => {
         return {selectedListIndex: state.selectedListIndex - 1}
       });
-
-      console.log(this.state.selectedListIndex - 1)
+      try {
+        mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex - 1); // eslint-disable-line
+      }
+      catch (e) {}
     }
   }
 
@@ -90,6 +93,14 @@ export default class ListMenu extends React.Component {
         this.prevVal()
     } else if (e.keyCode === 39) {
         this.nextVal()
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.data.data.initValue) {
+      this.setState({
+        selectedListIndex: this.props.data.data.index,
+      })
     }
   }
 
