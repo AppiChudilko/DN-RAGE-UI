@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from './Icon'
+import parseText from '../functions/parseText'
 
 const styles = {
     container: {
@@ -34,6 +35,8 @@ export default class Checkbox extends React.Component {
       this.setState({
         isChecked: !this.state.isChecked,
       });
+
+      console.log(!this.state.isChecked);
     }
 
     handleKeyDown(e) {
@@ -46,8 +49,8 @@ export default class Checkbox extends React.Component {
       return (
           <label tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)} className="checkbox-container" style={styles.container}>
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
-                <label htmlFor={this.props.data.data.id} style={styles.title}>
-                    {this.props.data.data.title}
+                <label htmlFor={this.props.data.data.id} style={styles.title} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>
+
                 </label>
                 <input type="checkbox"
                     autoFocus={true}

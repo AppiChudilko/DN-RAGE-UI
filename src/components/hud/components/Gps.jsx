@@ -86,7 +86,7 @@ class Gps extends React.Component {
                     <div className="war-att" style={this.state}>Война за территорию</div>
                     <div className="war-att">Cosa Nostra: {this.state.att}</div>
                     <div className="war-def">Russian Mafia: {this.state.def}</div>
-                    <div className="war-def">Yakuza: {this.state.def}</div>
+                    <div className="war-def">Yakuza: {this.state.tre}</div>
                     <div className="war-timer">Таймер: {this.state.timer} сек</div>
                 </div>
             </React.Fragment>

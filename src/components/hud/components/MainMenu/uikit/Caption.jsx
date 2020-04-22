@@ -23,10 +23,15 @@ const styles = {
 }
 
 export default class Caption extends React.Component {
-    
+
+    handleOnClick() {
+        console.log(this.props.data.data);
+        console.log(this.props.data.id);
+    }
+
     render() {
       return (
-        <div style={styles.container}>
+        <div onClick={this.handleOnClick.bind(this)} style={styles.container}>
           {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
           <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
           <label style={styles.listitem}

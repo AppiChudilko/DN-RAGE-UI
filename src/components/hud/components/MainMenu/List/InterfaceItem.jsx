@@ -4,14 +4,14 @@ import ListMenu from '../uikit/ListMenu'
 import Caption from '../uikit/Caption'
 
 const uikit = {
-    checkbox: Checkbox,
-    listmenu: ListMenu,
-    caption: Caption
-}
+    0: Checkbox,
+    1: ListMenu,
+    2: Caption
+};
 
 export default function InterfaceItem(item) {
 
-    const TypeComponent = uikit[item.data.type.toLowerCase()]
+    const TypeComponent = uikit[item.data.type]
     
     return (
         <TypeComponent selected={item.selected} data={item} key={item.id.toString()} />

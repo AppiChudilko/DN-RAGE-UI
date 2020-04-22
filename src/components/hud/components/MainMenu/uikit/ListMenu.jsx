@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from './Icon'
+import parseText from '../functions/parseText'
 
 const styles = {
     container: {
@@ -46,13 +47,19 @@ export default class ListMenu extends React.Component {
 }
 
   resetVal(type) {
-    type === 'max' ?
-    this.setState((state) => {
-      return {selectedListIndex: 0}
-    }) :
-    this.setState((state) => {
-      return {selectedListIndex: this.props.data.data.items.length - 1}
-    })
+
+      if (type === 'max') {
+          this.setState((state) => {
+              return {selectedListIndex: 0}
+          })
+          console.log(0)
+      }
+      else {
+          this.setState((state) => {
+              return {selectedListIndex: this.props.data.data.items.length - 1}
+          })
+          console.log(this.props.data.data.items.length - 1)
+      }
   }
 
   nextVal() {
@@ -62,6 +69,7 @@ export default class ListMenu extends React.Component {
       this.setState((state) => {
         return {selectedListIndex: state.selectedListIndex + 1}
       });
+        console.log(this.state.selectedListIndex + 1)
     }
   }
 
@@ -72,6 +80,8 @@ export default class ListMenu extends React.Component {
       this.setState((state) => {
         return {selectedListIndex: state.selectedListIndex - 1}
       });
+
+      console.log(this.state.selectedListIndex - 1)
     }
   }
 
@@ -89,8 +99,7 @@ export default class ListMenu extends React.Component {
         <div style={styles.container} tabIndex="2" onKeyDown={(e) => this.handleKeyDown(e)}>
           {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
           <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
-          <label style={styles.listitem}>
-            {this.props.data.data.title}
+          <label style={styles.listitem} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>
           </label>
           <div style={styles.carousel}>
             <div style={styles.icon} onClick={this.prevVal.bind(this)}>

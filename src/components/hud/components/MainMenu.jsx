@@ -16,11 +16,12 @@ class MainMenu extends React.Component {
             opacity: 0.88,
             headerText: 'headerTex',
             headerDesc: 'qweeqweq',
+            banner: 'menu-head-back',
             menuList: [
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST',
-                    subtitle: '~red~TEST2~yellow~Dfsdfdsf~br~qwerty~blue~sdfsdfsdf~green~djasdnajksnd',
+                    subtitle: '~green~TEST2~yellow~Dfsdfdsf~br~qwerty~blue~sdfsdfsdf~green~djasdnajksnd',
                     icon: 'test__icon__inverted',
                     rl: '~blue~RIGHT LABEL',
                     params: {},
@@ -28,22 +29,22 @@ class MainMenu extends React.Component {
                     divider: false
                 },
                 {
-                    type: 'caption',
-                    title: 'Бизнес',
+                    type: 2,
+                    title: '~red~Бизнес',
                     subtitle: 'default text',
                     iconr: 'test__icon__inverted',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: '~green~TEST2',
                     icon: 'test__icon__inverted',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'listmenu',
+                    type: 1,
                     title: 'YOUR FRACTION',
                     icon: 'test__icon__inverted',
                     items: [
@@ -54,74 +55,100 @@ class MainMenu extends React.Component {
                     ]
                 },
                 {
-                    type: 'checkbox',
+                    type: 0,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'checkbox',
+                    type: 0,
                     title: 'TEST2',
                     icon: 'test__icon__inverted',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'checkbox',
+                    type: 0,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'checkbox',
+                    type: 0,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'checkbox',
+                    type: 0,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST1',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST3',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST1',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST2',
                     items: [],
                     divider: false
                 },
                 {
-                    type: 'caption',
+                    type: 2,
                     title: 'TEST3',
                     items: [],
                     divider: false
                 }
             ]
         };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        mp.trigger('client:ui:debug', 'MainMenu.jsx', error, errorInfo); // eslint-disable-line
+    }
+
+    componentDidMount() {
+        EventManager.addHandler('hudm', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'switch') {
+                this.setState({show: !this.state.show})
+            } else if (value.type === 'updateInfo') {
+                this.setState({header: value.header});
+                this.setState({opacity: value.opacity});
+                this.setState({selected: value.selected});
+                this.setState({headerText: value.headerText});
+                this.setState({headerDesc: value.headerDesc});
+                this.setState({menuList: value.menuList});
+            } else return;
+        })
+
+
+        this.itemRefs[1].focus()
     }
 
     resetVal(type) {
@@ -169,8 +196,6 @@ class MainMenu extends React.Component {
             }
         }
     }
-
-    
 
     handleKeyDown(e) {
         if (e.keyCode === 38) {
@@ -228,16 +253,10 @@ class MainMenu extends React.Component {
     toggleSelected(id) {
         this.setState((state) => {
             return {selected: id}
-        })
-    }
-
-    componentDidMount() {
-        this.itemRefs[1].focus()
+        });
     }
 
     render() {
-
-
         if (!this.state.show)
             return null;
 
@@ -265,7 +284,7 @@ class MainMenu extends React.Component {
 
         return (
             <div className="menu-box" onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                {this.state.header ? <Header headerData={`${this.state.selected} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} /> : <></>}
+                {this.state.header ? <Header headerData={`${this.state.selected} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner} /> : <></>}
                 <div className="menuContainer" style={styles.menuContainer}>
                     {this.state.menuList.map((item, index) => {
                         return (
