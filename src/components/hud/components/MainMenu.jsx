@@ -83,6 +83,42 @@ class MainMenu extends React.Component {
                     title: 'TEST2',
                     items: [],
                     divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST1',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST1',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 'caption',
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
                 }
             ]
         };
@@ -93,12 +129,24 @@ class MainMenu extends React.Component {
             this.setState((state) => {
                 return {selected: 1}
             })
-            this.itemRefs[1].focus()
+            setTimeout(
+                function() {
+                    this.itemRefs[1].focus()
+                }
+                .bind(this),
+                100
+            )
         } else {
             this.setState((state) => {
                 return {selected: this.state.menuList.length}
             })
-            this.itemRefs[this.state.menuList.length].focus()
+            setTimeout(
+                function() {
+                    this.itemRefs[this.state.menuList.length].focus()
+                }
+                .bind(this),
+                100
+            )
         }
     }
 
@@ -148,12 +196,24 @@ class MainMenu extends React.Component {
 
     scrollMenu(type) {
         if ((this.state.selected === this.state.menuList.length) && (type === 'up')) {
-            this.itemRefs[this.state.menuList.length - 1].focus()
+            setTimeout(
+                function() {
+                    this.itemRefs[this.state.menuList.length - 1].focus()
+                }
+                .bind(this),
+                120
+            )
             return null
         }
 
         if ((this.state.selected === 1) && (type === 'down')) {
-            this.itemRefs[2].focus()
+            setTimeout(
+                function() {
+                    this.itemRefs[2].focus()
+                }
+                .bind(this),
+                120
+            )
             return null
         }
 
