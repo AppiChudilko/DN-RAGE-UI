@@ -28,12 +28,9 @@ const styles = {
 }
 
 export default function Header(props) {
-
-    if (props.banner !== '')
-        styles.header.background = 'url(../img/banners/' + props.banner + '.png)';
-
+   
     return (
-        <div>
+        <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : ''}}>
             <h1 className="header" style={styles.header}>{props.headerText}</h1>
             <div style={styles.headerDataContainer}>
                 <div style={styles.headerDesc}>{props.headerDesc}</div>
