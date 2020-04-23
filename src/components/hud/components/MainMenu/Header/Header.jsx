@@ -1,4 +1,5 @@
 import React from 'react'
+import parseText from '../functions/parseText'
 
 const styles = {
     header: {
@@ -40,7 +41,7 @@ export default function Header(props) {
         <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : '', backgroundPosition: 'center'}}>
             <h1 className="header" style={styles.header}>{props.headerText}</h1>
             <div style={styles.headerDataContainer}>
-                <div style={styles.headerDesc}>{props.headerDesc}</div>
+                <div style={styles.headerDesc} dangerouslySetInnerHTML={{__html: parseText(props.headerDesc)}}></div>
                 <div style={styles.headerDescCount}>{props.headerData}</div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 export const COLORS = {
     w: '#ffffff',
+    bl: '#000000',
+    w: '#ffffff',
     s: '#ffffff',
     bl: '#000000',
     r: '#ff2b2b',

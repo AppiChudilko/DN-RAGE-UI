@@ -14,6 +14,6 @@ export default function InterfaceItem(item) {
     const TypeComponent = uikit[item.data.type]
     
     return (
-        <TypeComponent selected={item.selected} data={item} key={item.id.toString()} />
+        <TypeComponent onChangeCheckbox={item.changeCheckbox} selected={item.selected} data={item} id={item.id} key={item.id.toString()} />
     )
 }
