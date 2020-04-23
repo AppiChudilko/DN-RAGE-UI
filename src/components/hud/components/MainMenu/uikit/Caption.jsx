@@ -19,31 +19,31 @@ const styles = {
         fontSize: '1.4rem',
         cusor: 'pointer'
     }
-    
+
 }
 
 export default class Caption extends React.Component {
 
-  handleOnClick() {
-    try {
-        mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
+    handleOnClick() {
+        try {
+            mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
+        }
+        catch (e) {}
     }
-    catch (e) {}
-  }
 
     render() {
-      return (
-        <div onClick={this.handleOnClick.bind(this)} style={styles.container}>
-          {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
-          <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
-          <label style={styles.listitem}
-            dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}
-          >
-          </label>
-          {this.props.data.data.rl ? <RightLabel text={this.props.data.data.rl} /> : <></>}
-          {this.props.data.data.divider ? <Icon style={styles.icon} name="arrow_right" /> : <></>}
-          {this.props.data.data.iconr ? <Icon style={styles.icon} name={this.props.data.data.iconr} /> : <></>}
-         </div>
-      );
+        return (
+            <div onClick={this.handleOnClick.bind(this)} style={styles.container}>
+                {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
+                <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
+                <label style={styles.listitem}
+                       dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}
+                >
+                </label>
+                {this.props.data.data.rl ? <RightLabel text={this.props.data.data.rl} /> : <></>}
+                {this.props.data.data.divider ? <Icon style={styles.icon} name="arrow_right" /> : <></>}
+                {this.props.data.data.iconr ? <Icon style={styles.icon} name={this.props.data.data.iconr} /> : <></>}
+            </div>
+        );
     }
-  }
+}

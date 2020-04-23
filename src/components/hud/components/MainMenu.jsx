@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: true,
+            show: false,
             selected: 0,
             header: true,
             opacity: 0.80,
@@ -174,7 +174,7 @@ class MainMenu extends React.Component {
                 function() {
                     this.itemRefs[0].focus()
                 }
-                .bind(this),
+                    .bind(this),
                 100
             )
         } else {
@@ -185,7 +185,7 @@ class MainMenu extends React.Component {
                 function() {
                     this.itemRefs[this.state.menuList.length - 1].focus()
                 }
-                .bind(this),
+                    .bind(this),
                 100
             )
         }
@@ -259,7 +259,7 @@ class MainMenu extends React.Component {
                 function() {
                     this.itemRefs[this.state.menuList.length - 2].focus()
                 }
-                .bind(this),
+                    .bind(this),
                 120
             )
             return null
@@ -270,7 +270,7 @@ class MainMenu extends React.Component {
                 function() {
                     this.itemRefs[1].focus()
                 }
-                .bind(this),
+                    .bind(this),
                 120
             )
             return null
@@ -302,9 +302,14 @@ class MainMenu extends React.Component {
         catch (e) {}
     }
 
-    
+
     onChangeSelected(selected) {
         console.log(selected)
+
+        try {
+            mp.trigger('client:menuList:callBack:select', this.props.data.menuName, selected); // eslint-disable-line
+        }
+        catch (e) {}
     }
 
     render() {

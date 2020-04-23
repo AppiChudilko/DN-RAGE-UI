@@ -26,29 +26,29 @@ const styles = {
 
 export default class Checkbox extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {
-        isChecked: false,
-      };
+        super(props);
+        this.state = {
+            isChecked: false,
+        };
     }
 
     render() {
-      return (
-          <label tabIndex="1" className="checkbox-container" style={styles.container}>
+        return (
+            <label tabIndex="1" className="checkbox-container" style={styles.container}>
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
                 <label htmlFor={this.props.data.id} style={styles.title} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>
 
                 </label>
                 <input type="checkbox"
-                    autoFocus={true}
-                    checked={this.props.data.data.checked}
-                    className="checkbox"
-                    style={styles.checkbox}
-                    id={this.props.data.id}
-                    onChange={() => this.props.data.onChangeCheckbox(this.props.data.id + 1)}
+                       autoFocus={true}
+                       checked={this.props.data.data.checked}
+                       className="checkbox"
+                       style={styles.checkbox}
+                       id={this.props.data.id}
+                       onChange={() => this.props.data.onChangeCheckbox(this.props.data.id + 1)}
                 />
                 <label htmlFor={this.props.data.id} className="checkmark" style={styles.checkmark} />
-          </label>
-      );
+            </label>
+        );
     }
-  }
+}
