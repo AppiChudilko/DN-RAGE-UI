@@ -15,23 +15,23 @@ class MainMenu extends React.Component {
             header: true,
             opacity: 0.80,
             headerText: '',
-            headerDesc: '~red~HELL~green~O WO~blue~RLD',
+            headerDesc: '~r~HELL~g~O WO~b~RLD',
             banner: '',
             menuName: '',
             menuList: [
                 {
                     type: 2,
                     title: 'TEST',
-                    subtitle: '~green~TEST2~yellow~Dfsdfdsf~br~qwerty~blue~sdfsdfsdf~green~djasdnajksnd',
+                    subtitle: '~g~TEST2~y~Dfsdfdsf~br~qwerty~b~sdfsdfsdf~g~djasdnajksnd',
                     icon: 'test__icon__inverted',
-                    rl: '~blue~RIGHT LABEL',
+                    rl: '~b~RIGHT LABEL',
                     params: {},
                     items: [],
                     divider: false
                 },
                 {
                     type: 2,
-                    title: '~red~Бизнес',
+                    title: '~r~Бизнес',
                     subtitle: 'default text',
                     iconr: 'test__icon__inverted',
                     items: [],
@@ -39,7 +39,7 @@ class MainMenu extends React.Component {
                 },
                 {
                     type: 2,
-                    title: '~green~TEST2',
+                    title: '~g~TEST2',
                     icon: 'test__icon__inverted',
                     items: [],
                     divider: false
@@ -201,7 +201,7 @@ class MainMenu extends React.Component {
                 }, this.onChangeSelected(this.state.selected - 1))
             }
         } else if (e.deltaY > 0) {
-            if (this.state.menuList.length === this.state.selected) {
+            if (this.state.menuList.length - 1 === this.state.selected) {
                 this.resetVal('max')
             } else {
                 this.setState((state) => {
@@ -242,7 +242,7 @@ class MainMenu extends React.Component {
                 this.scrollMenu('up')
             }
         } else if (e.keyCode === 40) {
-            if (this.state.menuList.length === this.state.selected + 1) {
+            if (this.state.menuList.length - 1 === this.state.selected) {
                 this.resetVal('max')
             } else {
                 this.setState((state) => {
@@ -254,7 +254,7 @@ class MainMenu extends React.Component {
     }
 
     scrollMenu(type) {
-        if ((this.state.selected + 1 === this.state.menuList.length) && (type === 'up')) {
+        if ((this.state.selected === this.state.menuList.length) && (type === 'up')) {
             setTimeout(
                 function() {
                     this.itemRefs[this.state.menuList.length - 2].focus()
@@ -296,15 +296,15 @@ class MainMenu extends React.Component {
         this.setState((state) => {
             return {menuList: menuListNew}
         })
+
         try {
-            mp.trigger('client:menuList:callBack:check', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), !this.state.isChecked); // eslint-disable-line
+            mp.trigger('client:menuList:callBack:check', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), menuListNew[id - 1].checked); // eslint-disable-line
         }
         catch (e) {}
     }
 
-
     onChangeSelected(selected) {
-        console.log(selected)
+        console.log('SELECTED', selected)
 
         try {
             mp.trigger('client:menuList:callBack:select', this.props.data.menuName, selected); // eslint-disable-line
