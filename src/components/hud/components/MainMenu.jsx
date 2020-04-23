@@ -298,7 +298,7 @@ class MainMenu extends React.Component {
         })
 
         try {
-            mp.trigger('client:menuList:callBack:check', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), menuListNew[id - 1].checked); // eslint-disable-line
+            mp.trigger('client:menuList:callBack:check', this.state.menuName, id - 1, JSON.stringify(menuListNew[id - 1].params), menuListNew[id - 1].checked); // eslint-disable-line
         }
         catch (e) {}
     }
@@ -307,7 +307,7 @@ class MainMenu extends React.Component {
         console.log('SELECTED', selected)
 
         try {
-            mp.trigger('client:menuList:callBack:select', this.props.data.menuName, selected); // eslint-disable-line
+            mp.trigger('client:menuList:callBack:select', this.state.menuName, selected); // eslint-disable-line
         }
         catch (e) {}
     }

@@ -1,14 +1,11 @@
 export const COLORS = {
-    w: '#ffffff',
-    bl: '#000000',
-    w: '#ffffff',
     s: '#ffffff',
     bl: '#000000',
-    r: '#ff2b2b',
-    b: '#1f75fe',
-    g: '#0bda51',
-    y: '#ffcc00',
-    o: '#ffcc00'
+    r: '#f44336',
+    b: '#64B5F6',
+    g: '#8BC34A',
+    y: '#FFEB3B',
+    o: '#FF9800'
 }
 
 export const SPECIAL = {
