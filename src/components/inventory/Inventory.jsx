@@ -14,7 +14,7 @@ class Inventory extends React.Component {
             player_name: "Nika Kondr",
             player_id: 456,
             craft: true,
-            secondary_inv_open: true, // Багажник открыт/закрыт
+            secondary_inv_open: false, // Багажник открыт/закрыт
             crafting_succes: false,
             x: '',
             y: '',
@@ -76,7 +76,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
-                { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+                /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -134,14 +134,14 @@ class Inventory extends React.Component {
                 { id: 34, item_id: 120, name: "Пистолет-обрез?", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 35, item_id: 121, name: "Ракетница", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
                 { id: 36, item_id: 122, name: "Гранатомёт", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 37, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+                { id: 37, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },*/
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
 
             secondary_items: [ // Багажник
-                { id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
+                //{ id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
             ],
             secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
@@ -219,7 +219,7 @@ class Inventory extends React.Component {
             ],
 
             equipment_weapon: [ // Экипированное оружие
-                { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
+                //{ id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
             ],
             selected_weapon_id: 0,
             selected_weapon_item_id: 0,
