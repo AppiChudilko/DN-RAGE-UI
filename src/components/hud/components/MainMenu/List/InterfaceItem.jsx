@@ -16,7 +16,6 @@ export default function InterfaceItem(item) {
     return (
         <TypeComponent
             onChangeCheckbox={item.changeCheckbox}
-            resetValList={item.resetValList}
             nextVal={item.nextVal}
             prevVal={item.prevVal}
             selected={item.selected}

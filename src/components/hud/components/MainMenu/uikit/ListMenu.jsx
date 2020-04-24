@@ -59,9 +59,11 @@ export default class ListMenu extends React.Component {
                     <div style={styles.icon} onClick={() => this.props.prevVal()}>
                         <Icon className="list-arrow-icon" arrow={true} name="arrow_left" />
                     </div>
-                    <div style={styles.itemCarousel} value={this.props.data.data.items[this.props.data.data.index]} onClick={() => this.props.nextVal()} >
-                        {this.props.data.data.items[this.props.data.data.index]}
-                    </div>
+                    <div style={styles.itemCarousel}
+                        value={this.props.data.data.items[this.props.data.data.index]}
+                        onClick={() => this.props.nextVal()}
+                        dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.items[this.props.data.data.index])}}   
+                    />
                     <div style={styles.icon} onClick={() => this.props.nextVal()}>
                         <Icon className="list-arrow-icon" arrow={true} name="arrow_right" />
                     </div>

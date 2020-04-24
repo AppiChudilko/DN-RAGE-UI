@@ -49,8 +49,8 @@ class MainMenu extends React.Component {
                     title: 'YOUR FRACTION',
                     icon: 'test__icon__inverted',
                     items: [
-                        'DATA 1',
-                        'DATA 2',
+                        '~r~DATA 1',
+                        '~g~DATA 2',
                         'DATA 3',
                         'DATA 4'
                     ],
@@ -408,7 +408,6 @@ class MainMenu extends React.Component {
                                     menuName={this.state.menuName}
                                     nextVal={this.nextVal}
                                     prevVal={this.prevVal}
-                                    resetValList={this.resetValList}
                                     onChangeCheckbox={this.changeCheckbox}
                                     id={index}
                                     data={item}
