@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: false,
+            show: true,
             selected: 0,
             header: true,
             opacity: 0.80,
@@ -214,11 +214,18 @@ class MainMenu extends React.Component {
     handleKeyDown(e) {
         if (e.keyCode === 13) {
             if (0 === this.state.menuList[this.state.selected].type) {
+                // CHECKBOX
                 let menuListNew = [...this.state.menuList]
                 menuListNew[this.state.selected].checked = !menuListNew[this.state.selected].checked
                 this.setState((state) => {
                     return {menuList: menuListNew}
                 })
+            }
+            if (1 === this.state.menuList[this.state.selected].type) {
+                // LIST MENU
+            }
+            if (2 === this.state.menuList[this.state.selected].type) {
+                // CAPTION
             }
         }
         if (e.keyCode === 39) {
