@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: false,
+            show: true,
             selected: 0,
             header: true,
             opacity: 0.80,
@@ -49,10 +49,10 @@ class MainMenu extends React.Component {
                     title: 'YOUR FRACTION',
                     icon: 'test__icon__inverted',
                     items: [
-                        'PD',
-                        'FIB',
-                        'TEST',
-                        'TESTDNASK JBDKAJSB KNASDANSDJKABNSDKJBASK14'
+                        'DATA 1',
+                        'DATA 2',
+                        'DATA 3',
+                        'DATA 4'
                     ],
                     index: 2
                 },
@@ -211,6 +211,58 @@ class MainMenu extends React.Component {
         }
     }
 
+    
+    resetValList(type) {
+
+        if (type === 'max') {
+            let menuListNew = [...this.state.menuList]
+            menuListNew[this.state.selected].index = 0
+            this.setState((state) => {
+                return {menuList: menuListNew}
+            })
+        }
+        else {
+            let menuListNew = [...this.state.menuList]
+            menuListNew[this.state.selected].index = menuListNew[this.state.selected].items.length - 1
+            this.setState((state) => {
+                return {menuList: menuListNew}
+            })
+        }
+    }
+
+    nextVal = () => {
+        if (this.state.menuList[this.state.selected].index + 2 > this.state.menuList[this.state.selected].items.length) {
+            this.resetValList('max')
+        } else {
+            let menuListNew = [...this.state.menuList]
+            menuListNew[this.state.selected].index = menuListNew[this.state.selected].index + 1
+            this.setState((state) => {
+                return {menuList: menuListNew}
+            })
+            try {
+                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex + 1); // eslint-disable-line
+            }
+            catch (e) {}
+        }
+    }
+
+    prevVal = () => {
+        if (this.state.menuList[this.state.selected].index === 0) {
+            this.resetValList('min')
+        } else {
+            let menuListNew = [...this.state.menuList]
+            menuListNew[this.state.selected].index = menuListNew[this.state.selected].index - 1
+            this.setState((state) => {
+                return {menuList: menuListNew}
+            })
+            try {
+                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex - 1); // eslint-disable-line
+            }
+            catch (e) {}
+        }
+    }
+
+
     handleKeyDown(e) {
         if (e.keyCode === 13) {
             if (0 === this.state.menuList[this.state.selected].type) {
@@ -230,12 +282,12 @@ class MainMenu extends React.Component {
         }
         if (e.keyCode === 39) {
             if (1 === this.state.menuList[this.state.selected].type) {
-                // TODO FOR ME: Нативная навигация по списку как в ГТА (см. CHECKBOX)
+                this.nextVal()
             }
         }
         if (e.keyCode === 37) {
             if (1 === this.state.menuList[this.state.selected].type) {
-                // TODO FOR ME: Нативная навигация по списку как в ГТА (см. CHECKBOX)
+                this.prevVal()
             }
         }
 
@@ -284,10 +336,10 @@ class MainMenu extends React.Component {
         }
 
         if (type === 'up') {
-            this.itemRefs[this.state.selected + 1].focus()
+            this.itemRefs[this.state.selected - 1].focus()
         }
         if (type === 'down') {
-            this.itemRefs[this.state.selected - 1].focus()
+            this.itemRefs[this.state.selected + 1].focus()
         }
     }
 
@@ -352,7 +404,16 @@ class MainMenu extends React.Component {
                     {this.state.menuList.map((item, index) => {
                         return (
                             <div tabIndex="-1" ref={el => (this.itemRefs[index] = el)} onClick={() => this.toggleSelected(index)} key={(index).toString()} className={index === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
-                                <InterfaceItem menuName={this.state.menuName} onChangeCheckbox={this.changeCheckbox} id={index} data={item} selected={index === this.state.selected ? true : false} />
+                                <InterfaceItem
+                                    menuName={this.state.menuName}
+                                    nextVal={this.nextVal}
+                                    prevVal={this.prevVal}
+                                    resetValList={this.resetValList}
+                                    onChangeCheckbox={this.changeCheckbox}
+                                    id={index}
+                                    data={item}
+                                    selected={index === this.state.selected ? true : false}
+                                />
                             </div>
                         )
                     })}
