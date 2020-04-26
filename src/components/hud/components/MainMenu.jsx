@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: true,
+            show: false,
             selected: 0,
             header: true,
             opacity: 0.80,
@@ -220,6 +220,11 @@ class MainMenu extends React.Component {
             this.setState((state) => {
                 return {menuList: menuListNew}
             })
+
+            try {
+                mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), 0); // eslint-disable-line
+            }
+            catch (e) {}
         }
         else {
             let menuListNew = [...this.state.menuList]
@@ -227,6 +232,11 @@ class MainMenu extends React.Component {
             this.setState((state) => {
                 return {menuList: menuListNew}
             })
+
+            try {
+                mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), menuListNew[this.state.selected].index); // eslint-disable-line
+            }
+            catch (e) {}
         }
     }
 
@@ -240,7 +250,7 @@ class MainMenu extends React.Component {
                 return {menuList: menuListNew}
             })
             try {
-                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex + 1); // eslint-disable-line
+                mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), menuListNew[this.state.selected].index); // eslint-disable-line
             }
             catch (e) {}
         }
@@ -256,7 +266,7 @@ class MainMenu extends React.Component {
                 return {menuList: menuListNew}
             })
             try {
-                mp.trigger('client:menuList:callBack:list', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params), this.state.selectedListIndex - 1); // eslint-disable-line
+                mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), menuListNew[this.state.selected].index); // eslint-disable-line
             }
             catch (e) {}
         }
@@ -363,7 +373,7 @@ class MainMenu extends React.Component {
     }
 
     onChangeSelected(selected) {
-        console.log('SELECTED', selected)
+        //console.log('SELECTED', selected)
 
         try {
             mp.trigger('client:menuList:callBack:select', this.state.menuName, selected); // eslint-disable-line
