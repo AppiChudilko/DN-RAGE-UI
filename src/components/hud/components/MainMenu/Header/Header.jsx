@@ -5,7 +5,7 @@ const styles = {
     header: {
         fontFamily: 'HACKED',
         color: '#fff',
-        fontSize: '4.2rem',
+        fontSize: '4rem',
         fontWeight: 400,
         padding: '20px 20px',
         textAlign: 'center',
@@ -38,8 +38,10 @@ export default function Header(props) {
     }*/
    
     return (
-        <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : '', backgroundPosition: 'center'}}>
-            <h1 className="header" style={styles.header}>{props.headerText}</h1>
+        <div>
+            <div style={{backgroundImage: props.banner ? `url(${require('../img/banners/' + props.banner + '.png')})` : '', backgroundPosition: 'center', backgroundSize: 'cover'}}>
+                <h1 className="header" style={styles.header}>{props.headerText}</h1>
+            </div>
             <div style={styles.headerDataContainer}>
                 <div style={styles.headerDesc} dangerouslySetInnerHTML={{__html: parseText(props.headerDesc)}}></div>
                 <div style={styles.headerDescCount}>{props.headerData}</div>

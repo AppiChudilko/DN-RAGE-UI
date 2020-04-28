@@ -13,13 +13,13 @@ const styles = {
     listitem: {
         fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1rem',
+        fontSize: '1.2rem',
         marginRight: 'auto'
     },
     itemCarousel: {
         fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1rem',
+        fontSize: '1.1rem',
         textAlign: 'center',
         overflow: 'hidden',
         width: '100%'
@@ -31,7 +31,7 @@ const styles = {
         justifyContent: 'space-between',
         color: '#fff',
         overflow: 'hidden',
-        maxWidth: '40%'
+        maxWidth: '80%'
     },
     icon: {
         cusor: 'pointer',
@@ -45,12 +45,17 @@ export default class ListMenu extends React.Component {
         super(props);
     }
 
-   
+    handleOnClick() {
+        try {
+            mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
+        }
+        catch (e) {}
+    }
 
     render() {
 
         return (
-            <div style={styles.container} tabIndex="2">
+            <div style={styles.container} onClick={this.handleOnClick.bind(this)} tabIndex="2">
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}
                 <input style={{opacity: 0, height: "0px", width: "0px", position: 'absolute'}} autoFocus={true} />
                 <label style={styles.listitem} dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}>

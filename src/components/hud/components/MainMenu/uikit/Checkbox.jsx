@@ -11,7 +11,7 @@ const styles = {
     title: {
         fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1rem',
+        fontSize: '1.2rem',
         marginRight: 'auto',
         maxWidth: '80%',
         overflow: 'hidden',

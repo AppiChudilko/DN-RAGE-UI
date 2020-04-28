@@ -14,9 +14,9 @@ class MainMenu extends React.Component {
             selected: 0,
             header: true,
             opacity: 0.80,
-            headerText: '',
+            headerText: 'TEST ____ SIZE',
             headerDesc: '~r~HELL~g~O WO~b~RLD',
-            banner: '',
+            banner: 'arcadius',
             menuName: '',
             menuList: [
                 {
@@ -119,6 +119,108 @@ class MainMenu extends React.Component {
                 {
                     type: 2,
                     title: 'TEST2',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
+                    items: [],
+                    divider: false
+                },
+                {
+                    type: 2,
+                    title: 'TEST3',
                     items: [],
                     divider: false
                 },
@@ -282,12 +384,25 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {menuList: menuListNew}
                 })
+
+                try {
+                    mp.trigger('client:menuList:callBack:check', this.state.menuName, id - 1, JSON.stringify(menuListNew[id - 1].params), menuListNew[id - 1].checked); // eslint-disable-line
+                }
+                catch (e) {}
             }
             if (1 === this.state.menuList[this.state.selected].type) {
                 // LIST MENU
+                try {
+                    mp.trigger('client:menuList:callBack:btn', this.state.menuName, this.state.selected, JSON.stringify(this.state.menuList[this.state.selected].params)); // eslint-disable-line
+                }
+                catch (e) {}
             }
             if (2 === this.state.menuList[this.state.selected].type) {
                 // CAPTION
+                try {
+                    mp.trigger('client:menuList:callBack:btn', this.state.menuName, this.state.selected, JSON.stringify(this.state.menuList[this.state.selected].params)); // eslint-disable-line
+                }
+                catch (e) {}
             }
         }
         if (e.keyCode === 39) {
@@ -387,20 +502,15 @@ class MainMenu extends React.Component {
 
         const styles = {
             container: {
-                display: 'flex',
-                flex: 1,
-                marginTop: '10%',
-                marginBottom: '10%',
-                marginLeft: '30%',
-                marginRight: '30%',
-                height: '100%',
-                backgroundColor: '#0c0c0c',
-                flexDirection: 'column',
+                backgroundColor: '#000',
                 opacity: this.state.opacity,
-                paddingBottom: '2%',
-                outline: 'none',
+                borderRadius: '0px',
+                border: '0px solid #000',
+                width: '400px',
             },
             menuContainer: {
+                backgroundColor: '#000',
+                position: 'relative',
                 overflow: 'hidden',
                 overflowY: 'scroll',
                 maxHeight: '350px'
@@ -408,7 +518,7 @@ class MainMenu extends React.Component {
         }
 
         return (
-            <div className="menu-box" onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
+            <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
                 {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner} /> : <></>}
                 <div className="menuContainer" style={styles.menuContainer}>
                     {this.state.menuList.map((item, index) => {

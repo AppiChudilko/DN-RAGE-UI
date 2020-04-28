@@ -9,7 +9,7 @@ ion-icon {
 .menu-box {
     display: flex;
     flex: 1 1 0%;
-    background-color: rgb(12, 12, 12);
+    /*background-color: rgb(12, 12, 12);*/
     flex-direction: column;
     opacity: 0.88;
     outline: none;
@@ -83,6 +83,7 @@ ion-icon {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    font-weight: 300;
 }
 
 .list-arrow-icon {
@@ -97,8 +98,8 @@ ion-icon {
     background-color: var(--bg-color);
     -webkit-filter: invert(100%);
     filter: invert(100%);
+    font-weight: 300;
 }
-
 
 .menu-item-inverted span {
     color: #fff !important;

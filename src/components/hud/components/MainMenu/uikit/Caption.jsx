@@ -12,7 +12,7 @@ const styles = {
     listitem: {
         fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '1rem',
+        fontSize: '1.2rem',
         marginRight: 'auto',
     },
     icon: {

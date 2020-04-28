@@ -5,8 +5,8 @@ const styles = {
     header: {
         fontFamily: 'Roboto',
         color: '#fff',
-        fontSize: '0.9rem',
-        fontWeight: 400
+        fontSize: '1.1rem',
+        fontWeight: 300
     }
 }
 
