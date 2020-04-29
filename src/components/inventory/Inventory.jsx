@@ -6,6 +6,9 @@ import { Animated } from 'react-animated-css';
 import InteractionMenu from '../interactionmenu/InteractionMenu';
 import EventManager from "../../EventManager";
 
+// Drag & Drop components
+import {Draggable, Droppable} from './Dnd'
+
 class Inventory extends React.Component {
     constructor(props) {
         super(props)
@@ -76,7 +79,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
-                /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+                { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -134,14 +137,18 @@ class Inventory extends React.Component {
                 { id: 34, item_id: 120, name: "Пистолет-обрез?", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 35, item_id: 121, name: "Ракетница", volume: 15, desc: "AR-0001244", counti: 0, params: {} },
                 { id: 36, item_id: 122, name: "Гранатомёт", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 37, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },*/
+                { id: 37, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+                { id: 38, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+                { id: 39, item_id: 265, name: "Футболка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+                { id: 40, item_id: 269, name: "Кепка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
+                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
 
             secondary_items: [ // Багажник
-                //{ id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
+                { id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
             ],
             secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
@@ -219,9 +226,9 @@ class Inventory extends React.Component {
             ],
 
             equipment_weapon: [ // Экипированное оружие
-                //{ id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
+                { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
             ],
-            selected_weapon_id: 0,
+            selected_weapon_id: 33,
             selected_weapon_item_id: 0,
             updateItemIcons_primary_timeout: false,
             updateItemIcons_secondary_timeout: false,
@@ -652,6 +659,117 @@ class Inventory extends React.Component {
         this.setState({ craft: !this.state.craft })
     }
 
+    getActions(item, source) {
+        if (source === 'outfit' && item.equipped === false) return; // Не открывать меню взаимодействия если ячейка outfit'a пустая
+        if (this.isCooldownActive(item.item_id)) return;
+
+        let actions = [];
+        if(source === 'weapon' || source === 'outfit') actions = ["drop", "infoItem", "close"];
+        else actions = ["give", "drop", "infoItem", "close"]; // Стандартные действия для всех предметов (передать, выбросить, закрыть)
+        if (source === 'weapon') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('select') // Выбрать оружие
+            actions.push('unloadW') // Выбрать оружие
+        }
+        if (this.state.itemsById.food.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('eat') // Съесть
+        }
+        if (this.state.itemsById.bag.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('openBag') // Открыть сумку
+
+            if (source !== 'outfit')
+                actions.push('put_on') // Надеть
+            else if (source === 'outfit' && this.state.secondary_inv_open)
+                actions.push('move') // Убрать в багажник
+        }
+
+        if (this.state.itemsById.countItems.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('countItems') // Посчитать
+        }
+        if (this.state.itemsById.weightGr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('weightGr') // Взвесить
+        }
+        if (this.state.itemsById.take1gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('take1gr')
+        }
+        if (this.state.itemsById.take10gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('take10gr')
+        }
+        if (this.state.itemsById.take50gr.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('take50gr')
+        }
+        if (this.state.itemsById.drinks.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('drink') // Выпить
+        }
+        if (this.state.itemsById.consumable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('consume') // Употребить
+        }
+        if (this.state.itemsById.fish.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('fish') // Рыбачить
+        }
+        if (this.state.itemsById.smoke.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('smoke') // Курить
+        }
+        if (this.state.itemsById.play.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('play') // Играть
+        }
+        if (this.state.itemsById.usable.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('use') // Использовать
+        }
+        if (this.state.itemsById.usablePlayer.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('usePlayer') // Использовать
+        }
+        if (this.state.itemsById.equipable.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('equip') // Экипировать
+        }
+        if (this.state.itemsById.putOnGun.includes(item.item_id) && source !== 'weapon' && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('put_on_gun') // Надеть на оружие
+        }
+        if (this.state.itemsById.ammo.includes(item.item_id) && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('loadw') // Зарядить оружие
+        }
+        if (this.state.itemsById.countPt.includes(item.item_id) && source !== 'secondary_inv') { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('countPt') // Зарядить оружие
+        }
+        for (let i = 0; i < Object.keys(this.state.outfitById).length; i++) {
+            if (Object.values(this.state.outfitById)[i].includes(item.item_id) && source !== 'secondary_inv') {
+                if (source !== 'outfit') {
+                    actions.push('put_on') // Надеть
+                    break;
+                } else {
+                    actions.push('take_off') // Снять
+                    break;
+                }
+            }
+        }
+        if (this.state.secondary_inv_open && source !== 'secondary_inv' && source !== 'outfit' && source !== 'weapon') {
+            actions.push('move') // Убрать в багажник
+            let check_stack = this.state.itemsCounted.filter(obj => { return obj.item_id === item.item_id })
+            if (check_stack !== undefined && check_stack[0].count > 1) actions.push('move_all') // Убрать всё
+        }
+        if (this.state.secondary_inv_open && source === 'secondary_inv') {
+            actions.push('take') // Взять
+            let check_stack = this.state.secondary_itemsCounted.filter(obj => { return obj.item_id === item.item_id })
+            if (check_stack !== undefined && check_stack[0].count > 1) actions.push('take_all') // Взять всё
+        }
+        if (source === 'outfit') {
+            if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit') !== null) {
+                if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 263 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 264) {
+                    actions.push('openBag') // Открыть сумку
+                }
+            }
+
+            if (this.state.secondary_inv_open)
+                actions.push('move') // Убрать в багажник
+
+            actions.push('take_off') // Снять
+        }
+        if (source === 'weapon') {
+            actions.push('unequip') // Снять экипировку / Убрать в инвентарь
+        }
+
+        return actions
+    }
+
     handlePos(e, item, source) { // Функция которая генерирует меню взаимодействия
         if (source === 'outfit' && item.equipped === false) return; // Не открывать меню взаимодействия если ячейка outfit'a пустая
         if (this.isCooldownActive(item.item_id)) return;
@@ -985,7 +1103,7 @@ class Inventory extends React.Component {
                     }
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     this.setState({ secondary_items: this.state.secondary_items.concat(item) })
-                    // mp.call ... переместить в багажник и удалить из инвентаря
+                    // // // // mp.call ... переместить в багажник и удалить из инвентаря
                     mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
                 }
                 break;
@@ -1001,7 +1119,7 @@ class Inventory extends React.Component {
                     this.setState({ secondary_items: this.state.secondary_items.concat(item) })
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
                     mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id.toString(), this.state.secondary_items_owner_type); // eslint-disable-line
-                    // mp.call ... переместить в багажник, снять с персонажа, и удалить из инвентаря
+                    // // // // mp.call ... переместить в багажник, снять с персонажа, и удалить из инвентаря
                 }
                 break;
             case 'weapon':
@@ -1023,7 +1141,7 @@ class Inventory extends React.Component {
                     this.setState({ secondary_items: this.state.secondary_items.concat(item) })
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
                     mp.trigger('client:inventory:moveTo', item.id, item.item_id, this.state.secondary_items_owner_id, this.state.secondary_items_owner_type); // eslint-disable-line
-                    // mp.call ... переместить в багажник, снять оружие из экипировки, и удалить из инвентаря
+                    // // // // mp.call ... переместить в багажник, снять оружие из экипировки, и удалить из инвентаря
                 }
                 break;
             default:
@@ -1072,7 +1190,7 @@ class Inventory extends React.Component {
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     this.setState({ items: this.state.items.concat(item) })
                     mp.trigger('client:inventory:moveFrom', item.id, item.item_id, this.state.secondary_items_owner_type); // eslint-disable-line
-                    // mp.call ... переместить в инвентарь и удалить из багажника
+                    // // // // mp.call ... переместить в инвентарь и удалить из багажника
                 }
                 break;
             default:
@@ -1375,7 +1493,7 @@ class Inventory extends React.Component {
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
                     this.setState({ selected_weapon_id: item.id, craft: false })
-                    // mp.call ... экипировать и удалить из инвентаря
+                    // // // // mp.call ... экипировать и удалить из инвентаря
                     mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
                 }
                 break;
@@ -1385,7 +1503,7 @@ class Inventory extends React.Component {
                 this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                 this.setState({ equipment_weapon: this.state.equipment_weapon.concat(item) })
                 this.setState({ selected_weapon_id: item.id, craft: false })
-                // mp.call ... экипировать и удалить из багажника
+                // // // // mp.call ... экипировать и удалить из багажника
               }
               break; */
             default:
@@ -1401,7 +1519,7 @@ class Inventory extends React.Component {
                     item = this.checkItem(item, 'inventory')
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
-                    // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+                    // // // // mp.call ... передать и удалить из инвентаря (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
 
                     mp.trigger('client:inventory:giveItem', item.id, item.item_id, trade_player_id); // eslint-disable-line
                 }
@@ -1411,7 +1529,7 @@ class Inventory extends React.Component {
                     item = this.checkItem(item, 'secondary_inv')
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
-                    // mp.call ... передать и удалить из багажника (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+                    // // // // mp.call ... передать и удалить из багажника (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
                     mp.trigger('client:inventory:giveItem', item.id, item.item_id, trade_player_id); // eslint-disable-line
                 }
                 break;
@@ -1422,7 +1540,7 @@ class Inventory extends React.Component {
                     item = this.checkItem(item, 'outfit')
                     this.setState({equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item)})
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
-                    // mp.call ... передать и удалить с персонажа (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+                    // // // // mp.call ... передать и удалить с персонажа (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
                 }*/
                 break;
             case 'weapon':
@@ -1439,7 +1557,7 @@ class Inventory extends React.Component {
                         }
                     })
                     console.log(`Передаю ${item.name}, ID ${item.id}, игроку ID ${trade_player_id}`)
-                    // mp.call ... передать оружие и удалить из экипировки (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
+                    // // // // mp.call ... передать оружие и удалить из экипировки (item.id - ID предмета, trade_player_id - ID игрока которому нужно передать)
                 }*/
                 break;
             default:
@@ -1454,7 +1572,7 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'inventory') !== null) {
                     item = this.checkItem(item, 'inventory')
                     //this.setState({ items: this.arrayRemove(this.state.items, item) })
-                    // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
+                    // // // // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
                     mp.trigger('client:inventory:loadWeapon', item.id, item.item_id, loadw_id, item.counti); // eslint-disable-line
                 }
                 break;
@@ -1470,7 +1588,7 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'inventory') !== null) {
                     item = this.checkItem(item, 'inventory')
                     //this.setState({ items: this.arrayRemove(this.state.items, item) })
-                    // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
+                    // // // // mp.call ... зарядить оружие ID loadw_id и удалить из инвентаря патроны ID item.id
                     console.log(upgradew);
                     mp.trigger('client:inventory:upgradeWeapon', item.id, item.item_id, upgradew); // eslint-disable-line
                 }
@@ -1486,7 +1604,7 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'inventory') !== null) {
                     item = this.checkItem(item, 'inventory')
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
-                    // mp.call ... выбросить и удалить из инвентаря
+                    // // // // mp.call ... выбросить и удалить из инвентаря
                     mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
@@ -1494,7 +1612,7 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'secondary_inv') !== null) {
                     item = this.checkItem(item, 'secondary_inv')
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
-                    // mp.call ... выбросить и удалить из багажника
+                    // // // // mp.call ... выбросить и удалить из багажника
 
                     mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
                 }
@@ -1504,7 +1622,7 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'outfit') !== null) {
                     item = this.checkItem(item, 'outfit')
                     this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
-                    // mp.call ... выбросить и снять с персонажа
+                    // // // // mp.call ... выбросить и снять с персонажа
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
                     mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
                 }
@@ -1521,7 +1639,7 @@ class Inventory extends React.Component {
                             }
                         }
                     })
-                    // mp.call ... выбросить и удалить из экипировки
+                    // // // // mp.call ... выбросить и удалить из экипировки
 
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
                     mp.trigger('client:inventory:drop', item.id, item.item_id); // eslint-disable-line
@@ -1549,7 +1667,7 @@ class Inventory extends React.Component {
                     this.setState({ equipment_outfit: this.arrayRemove(this.state.equipment_outfit, item) })
                     this.setState({ items: this.state.items.concat(item) })
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
-                    // mp.call ... снять с персонажа и переместить в инвентарь
+                    // // // // mp.call ... снять с персонажа и переместить в инвентарь
                 }
                 break;
             default:
@@ -1575,7 +1693,7 @@ class Inventory extends React.Component {
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
                     mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
-                    // mp.call ... надеть на персонажа и удалить из инвентаря
+                    // // // // mp.call ... надеть на персонажа и удалить из инвентаря
                 }
                 break;
             case 'secondary_inv':
@@ -1600,7 +1718,7 @@ class Inventory extends React.Component {
                     this.setState({ items: this.arrayRemove(this.state.items, item) })
                     this.setState({ equipment_outfit: this.state.equipment_outfit.concat(item) })
                     mp.trigger('client:inventory:equip', item.id, item.item_id, item.counti, JSON.stringify(item.params)); // eslint-disable-line
-                    // mp.call ... надеть на персонажа и удалить из инвентаря
+                    // // // // mp.call ... надеть на персонажа и удалить из инвентаря
                 }
                 break;
             default:
@@ -1627,7 +1745,7 @@ class Inventory extends React.Component {
                         }
                     })
                     this.setState({ items: this.state.items.concat(item) })
-                    // mp.call ... снять оружие из экипировки и переместить в инвентарь
+                    // // // // mp.call ... снять оружие из экипировки и переместить в инвентарь
                     mp.trigger('client:inventory:unEquip', item.id, item.item_id); // eslint-disable-line
                 }
                 break;
@@ -1662,7 +1780,7 @@ class Inventory extends React.Component {
         if (this.checkItem(item, 'weapon') !== null) {
             item = this.checkItem(item, 'weapon')
             this.setState({ selected_weapon_id: item.id })
-            // mp.call ... выбрать оружие для модификации и взять в руки
+            // // // // mp.call ... выбрать оружие для модификации и взять в руки
 
             mp.trigger('client:inventory:selectWeapon', item.id, item.item_id, item.params.serial); // eslint-disable-line
         }
@@ -1811,22 +1929,22 @@ class Inventory extends React.Component {
 
     openTrunk() {
         this.setState({ secondary_inv_open: true }) // <----- это нужно будет убрать и открывать эвентом с клиента
-        // mp.call ... найти тачку и открыть багажник
+        // // // // mp.call ... найти тачку и открыть багажник
     }
 
     openStock() {
         this.setState({ secondary_inv_open: true }) // <----- это нужно будет убрать и открывать эвентом с клиента
-        // mp.call ... найти и открыть склад
+        // // // mp.call ... найти и открыть склад
     }
 
     openFridger() {
         this.setState({ secondary_inv_open: true }) // <----- это нужно будет убрать и открывать эвентом с клиента
-        // mp.call ... найти и открыть холодильник
+        // // // mp.call ... найти и открыть холодильник
     }
 
     openWorld() {
         this.setState({ secondary_inv_open: true }) // <----- это нужно будет убрать и открывать эвентом с клиента
-        // mp.call ... загрузить предметы рядом с игроком
+        // // // mp.call ... загрузить предметы рядом с игроком
     }
     closeRecipesCraft() {
         this.setState({ recipes_craft: false, selected_recipe: {} })
@@ -1852,7 +1970,7 @@ class Inventory extends React.Component {
                 }
             }
             console.log('Успешный крафт')
-            // mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
+            //mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
             return;
         }, this.state.selected_recipe.craft_time / 2)
         setTimeout(() => {
@@ -1868,6 +1986,7 @@ class Inventory extends React.Component {
         if (!this.state.show) {
             return null;
         }
+
         return (
             <React.Fragment >
                 <InteractionMenu
@@ -1877,6 +1996,7 @@ class Inventory extends React.Component {
                     inter_menu={this.state.inter_menu}
                     closeInterMenu={this.closeInterMenu.bind(this)}
                 />
+                <Droppable that={this} className="bgForDrop droppable" id="drop"/>
                 <div className="inv-box animated fadeIn" onContextMenu={(e) => e.preventDefault()}>
                     <div className="content-inventory">
                         <div className="inventory-main">
@@ -1887,29 +2007,40 @@ class Inventory extends React.Component {
                                         <span
                                             className="weight-title-inv">({this.numberToK(this.state.weight_now)}/{this.numberToK(this.state.weight_max)})</span>
                                     </div>
-                                    <div className="object-inv-box">
+
+                                    <Droppable className="object-inv-box droppable" id="take_off" that={this}>
+                                        {/* Список предметов: */}
                                         {this.state.itemsCounted.map((item, i) => {
                                             const index = `item${i}`
-                                            return (
-                                                <div className="object-box" key={index} style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
-                                                    onContextMenu={(e) => this.handlePos(e, item, 'inventory')}>
-                                                        {this.isCooldownActive(item.item_id) ?
-                                                        <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
-                                                        : null}
-                                                    <div className={`img-inv-box ${item.icon}`}></div>
-                                                    <div className="obj-inf-box">
-                                                        <div className="obj-inf-title"><span>{item.name}</span>
-                                                        </div>
-                                                        <div className="obj-inf-weight"><span>{item.desc}</span>
-                                                        </div>
-                                                    </div>
-                                                    {item.count > 1 ?
-                                                        <div className="obj-inf-count">{item.count}</div> : null}
 
-                                                </div>
+                                            const actions = this.getActions(item, 'inventory') ? this.getActions(item, 'inventory').join(' ') : ''
+
+                                            return (
+                                                <Draggable that={this} id={`${index}_inv`} type={actions} item={item} key={index}>
+                                                    <Droppable className="droppable" id="take_off" that={this}>
+                                                        <div className="object-box" style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
+                                                            onContextMenu={(e) => this.handlePos(e, item, 'inventory')}>
+                                                                {this.isCooldownActive(item.item_id) ?
+                                                                <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
+                                                                : null}
+                                                            <div className={`img-inv-box ${item.icon}`}></div>
+                                                            <div className="obj-inf-box">
+                                                                <div className="obj-inf-title"><span>{item.name}</span>
+                                                                </div>
+                                                                <div className="obj-inf-weight"><span>{item.desc}</span>
+                                                                </div>
+                                                            </div>
+                                                            {item.count > 1 ?
+                                                                <div className="obj-inf-count">{item.count}</div> : null}
+
+                                                        </div>
+                                                    </Droppable>
+                                                </Draggable>
                                             )
                                         })}
-                                    </div>
+                                        {/* ---------------- */}
+                                    </Droppable>
+
                                 </div>
                                 <div className="player-info">
                                     <div className="title-inv"><span>Информация</span></div>
@@ -1920,26 +2051,55 @@ class Inventory extends React.Component {
                                         <div className="player-inv-old">
                                             <span>ID Аккаунта: {this.state.player_id}</span></div>
                                     </div>
-                                    <div className="outfit-player-box">
-                                        {this.state.outfit[0].map((item, i) => {
-                                            const index = `item-outf${i}`
-                                            return (
-                                                <div key={index}
-                                                    className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
-                                                    onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
-                                            )
-                                        })}
-                                        <div className="bottom-otf-box">
-                                            {this.state.outfit[1].map((item, i) => {
-                                                const index = `items-outf${i}`
+                                    <Droppable className="outfit-player-box droppable" id="put_on" that={this}>
+                                            {this.state.outfit[0].map((item, i) => {
+                                                const index = `item-outf${i}`
+
+                                                if (item.equipped) {
+                                                    return (
+                                                        <Draggable that={this} id={index} type="take_off drop" item={item} key={index}>
+                                                            <Droppable className="droppable" id="put_on" that={this}>
+                                                                <div key={index}
+                                                                    className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
+                                                                    onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
+                                                            </Droppable>
+                                                        </Draggable>
+                                                    )
+                                                }
+
                                                 return (
-                                                    <div key={index}
-                                                        className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
-                                                        onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
+                                                    <Droppable className="droppable" key={index} id="put_on" that={this}>
+                                                        <div key={index}
+                                                            className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
+                                                            onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
+                                                    </Droppable>
                                                 )
                                             })}
-                                        </div>
-                                    </div>
+                                            <div className="bottom-otf-box">
+                                                {this.state.outfit[1].map((item, i) => {
+                                                    const index = `items-outf${i}`
+                                                    if (item.equipped) {
+                                                        return (
+                                                            <Draggable that={this} id={index} type="take_off drop" item={item} key={index}>
+                                                                <Droppable className="droppable" id="put_on" that={this}>
+                                                                    <div key={index}
+                                                                        className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
+                                                                        onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
+                                                                </Droppable>
+                                                            </Draggable>
+                                                        )
+                                                    }
+    
+                                                    return (
+                                                        <Droppable className="droppable" key={index} id="put_on" that={this}>
+                                                            <div key={index}
+                                                                className={`${item.slot}` + `${item.equipped ? ' use-outfit' : ''}`}
+                                                                onContextMenu={(e) => this.handlePos(e, item, 'outfit')}></div>
+                                                        </Droppable>
+                                                    )
+                                                })}
+                                            </div>
+                                    </Droppable>
                                 </div>
                                 <div className="player-craft">
                                     <div className="close-window-craft" onClick={() => this.closeInventory()}></div>
@@ -2067,21 +2227,26 @@ class Inventory extends React.Component {
                                         :
                                         <React.Fragment>
 
-                                            <div className="weapon-player-equip ">
+                                            <Droppable className="weapon-player-equip droppable" id="equip" that={this}>
                                                 {this.state.equipment_weapon.map((item, i) => {
                                                     const index = `weaponplayer${i}`
+
                                                     return (
-                                                        <div key={index}
-                                                            className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`}
-                                                            onClick={() => this.selectWeapon(item)}
-                                                            onContextMenu={(e) => this.handlePos(e, item, 'weapon')}
-                                                            style={{ borderColor: this.getWeaponBorderColor(item.item_id) }}>
-                                                            <span>{item.name}</span>
-                                                            <span className="style-serial-weapon">{item.desc}</span>
-                                                        </div>
+                                                        <Draggable that={this} id={index} type="unequip drop" item={item} key={index}>
+                                                            <Droppable className="droppable" id="equip" that={this}>
+                                                                <div key={index}
+                                                                    className={`style-weapon-txt-craft ${item.id === this.state.selected_weapon_id ? 'style-weapon-txt-craft-selected' : ''}`}
+                                                                    onClick={() => this.selectWeapon(item)}
+                                                                    onContextMenu={(e) => this.handlePos(e, item, 'weapon')}
+                                                                    style={{ borderColor: this.getWeaponBorderColor(item.item_id) }}>
+                                                                    <span>{item.name}</span>
+                                                                    <span className="style-serial-weapon">{item.desc}</span>
+                                                                </div>
+                                                            </Droppable>
+                                                        </Draggable>
                                                     )
                                                 })}
-                                            </div>
+                                            </Droppable>
                                             <div className="weapon-craft-box">
                                                 <div className="liner-weapon-crafting"
                                                     style={{ background: this.getWeaponBorderColor(this.state.selected_weapon_item_id) }}></div>
@@ -2126,30 +2291,37 @@ class Inventory extends React.Component {
                                         <span>({this.numberToK(this.state.secondary_weight_now)}/{this.numberToK(this.state.secondary_weight_max)})</span>
                                         {this.state.secondary_inv_open && this.state.secondary_items.length > 0 ? <div className="moveall_right" onClick={() => this.moveAllToInventory(true)}></div> : null}
                                     </div>
-                                    <div className="trunk-info-menu">
+                                    <Droppable className="trunk-info-menu droppable" id="move" that={this}>
                                         <div className="close-window-craft color-blue-btn"
                                             onClick={() => this.closeSecondaryInventory()}></div>
                                         {this.state.secondary_itemsCounted.map((item, i) => {
                                             const index = `item${i}`
+
+                                            const actions = this.getActions(item, 'secondary_inv') ? this.getActions(item, 'secondary_inv').join(' ') : ''
+
                                             return (
-                                                <div className="object-box-trunk" key={index} style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
-                                                    onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
-                                                        {this.isCooldownActive(item.item_id) ?
-                                                        <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
-                                                        : null}
-                                                    <div className={`img-inv-box ${item.icon}`}></div>
-                                                    <div className="obj-inf-box">
-                                                        <div className="obj-inf-title"><span>{item.name}</span>
+                                                <Draggable that={this} id={index} type={actions} item={item} key={index}>
+                                                    <Droppable className="droppable" id="move" that={this}>
+                                                        <div className="object-box-trunk" key={index} style={this.isCooldownActive(item.item_id) ? {opacity: 0.2} : {opacity:1}}
+                                                            onContextMenu={(e) => this.handlePos(e, item, 'secondary_inv')}>
+                                                                {this.isCooldownActive(item.item_id) ?
+                                                                <div className="linearbar-inv" style={{width: `${this.getItemCooldown(item.item_id) * (100/5)}%`}}></div>
+                                                                : null}
+                                                            <div className={`img-inv-box ${item.icon}`}></div>
+                                                            <div className="obj-inf-box">
+                                                                <div className="obj-inf-title"><span>{item.name}</span>
+                                                                </div>
+                                                                <div className="obj-inf-weight"><span>{item.desc}</span>
+                                                                </div>
+                                                            </div>
+                                                            {item.count > 1 ?
+                                                                <div className="obj-inf-count">{item.count}</div> : null}
                                                         </div>
-                                                        <div className="obj-inf-weight"><span>{item.desc}</span>
-                                                        </div>
-                                                    </div>
-                                                    {item.count > 1 ?
-                                                        <div className="obj-inf-count">{item.count}</div> : null}
-                                                </div>
+                                                    </Droppable>
+                                                </Draggable>
                                             )
                                         })}
-                                    </div>
+                                    </Droppable>
                                 </div>
                                 : ''
                             }
