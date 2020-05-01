@@ -1,6 +1,8 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
 
+import Draggable from '../Draggable'
+
 class Player extends React.Component {
     constructor(props) {
         super(props)
@@ -52,37 +54,41 @@ class Player extends React.Component {
         return (
             <React.Fragment>
                 <div className="player-hud">
-                    <div className="mic" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
-                        <div className={this.state.microphone ? 'mic-img use-mic' : 'mic-img'}></div>
-                    </div>
-                    <div className="needs" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
-                        <div className="needs-box">
-                            <div className="img-drink"></div>
-                            <div className="liner-needs">
-                                <div className="color-liner"
-                                     style={{width: this.state.drink + '%', background: this.state.color}}></div>
+
+                        <Draggable id="player-mic" className="phud-mic" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                            <div className={this.state.microphone ? 'mic-img use-mic' : 'mic-img'}></div>
+                        </Draggable>
+                    
+                        <Draggable id="player-needs" className="phud-needs" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                            <div className="needs-box">
+                                <div className="img-drink"></div>
+                                <div className="liner-needs">
+                                    <div className="color-liner"
+                                        style={{width: this.state.drink + '%', background: this.state.color}}></div>
+                                </div>
+                                <div className="needs-text">{this.state.drink}%</div>
                             </div>
-                            <div className="needs-text">{this.state.drink}%</div>
-                        </div>
-                        <div className="needs-box">
-                            <div className="img-eat"></div>
-                            <div className="liner-needs">
-                                <div className="color-liner"
-                                     style={{width: this.state.eat + '%', background: this.state.color}}></div>
+                            <div className="needs-box">
+                                <div className="img-eat"></div>
+                                <div className="liner-needs">
+                                    <div className="color-liner"
+                                        style={{width: this.state.eat + '%', background: this.state.color}}></div>
+                                </div>
+                                <div className="needs-text">{this.state.eat}%</div>
                             </div>
-                            <div className="needs-text">{this.state.eat}%</div>
-                        </div>
-                    </div>
-                    <div className="money" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
-                        <div className="money-box">
-                            <div className="img-wallet"></div>
-                            <div className="wallet-text" style={{color: this.state.color}}>{this.state.wallet}</div>
-                        </div>
-                        <div className="money-box">
-                            <div className="img-credit-card"></div>
-                            <div className="credit-text">{this.state.card}</div>
-                        </div>
-                    </div>
+                        </Draggable>
+                    
+                        <Draggable id="player-money" className="phud-money" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                            <div className="money-box">
+                                <div className="img-wallet"></div>
+                                <div className="wallet-text" style={{color: this.state.color}}>{this.state.wallet}</div>
+                            </div>
+                            <div className="money-box">
+                                <div className="img-credit-card"></div>
+                                <div className="credit-text">{this.state.card}</div>
+                            </div>
+                        </Draggable>
+                    
                 </div>
             </React.Fragment>
         )

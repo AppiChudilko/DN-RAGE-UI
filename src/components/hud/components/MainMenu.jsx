@@ -4,6 +4,8 @@ import Header from './MainMenu/Header/Header.jsx'
 import Desc from './MainMenu/uikit/Desc.jsx'
 import InterfaceItem from './MainMenu/List/InterfaceItem.jsx'
 
+import Draggable from '../Draggable'
+
 class MainMenu extends React.Component {
     constructor(props) {
         super(props)
@@ -518,27 +520,29 @@ class MainMenu extends React.Component {
         }
 
         return (
-            <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner} /> : <></>}
-                <div className="menuContainer" style={styles.menuContainer}>
-                    {this.state.menuList.map((item, index) => {
-                        return (
-                            <div tabIndex="-1" ref={el => (this.itemRefs[index] = el)} onClick={() => this.toggleSelected(index)} key={(index).toString()} className={index === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
-                                <InterfaceItem
-                                    menuName={this.state.menuName}
-                                    nextVal={this.nextVal}
-                                    prevVal={this.prevVal}
-                                    onChangeCheckbox={this.changeCheckbox}
-                                    id={index}
-                                    data={item}
-                                    selected={index === this.state.selected ? true : false}
-                                />
-                            </div>
-                        )
-                    })}
+            <Draggable id='menu'>
+                <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
+                    {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner} /> : <></>}
+                    <div className="menuContainer" style={styles.menuContainer}>
+                        {this.state.menuList.map((item, index) => {
+                            return (
+                                <div tabIndex="-1" ref={el => (this.itemRefs[index] = el)} onClick={() => this.toggleSelected(index)} key={(index).toString()} className={index === this.state.selected ? 'menu-item-inverted' : 'menu-item'}>
+                                    <InterfaceItem
+                                        menuName={this.state.menuName}
+                                        nextVal={this.nextVal}
+                                        prevVal={this.prevVal}
+                                        onChangeCheckbox={this.changeCheckbox}
+                                        id={index}
+                                        data={item}
+                                        selected={index === this.state.selected ? true : false}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </div>
+                    {this.state.menuList[this.state.selected].subtitle ? <Desc desc={this.state.menuList[this.state.selected].subtitle} /> : <></>}
                 </div>
-                {this.state.menuList[this.state.selected].subtitle ? <Desc desc={this.state.menuList[this.state.selected].subtitle} /> : <></>}
-            </div>
+            </Draggable>
         )
     }
 }

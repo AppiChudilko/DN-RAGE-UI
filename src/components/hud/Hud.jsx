@@ -12,11 +12,14 @@ import MainMenu from './components/MainMenu';
 import EventManager from "../../EventManager";
 import Chat from './components/Chat';
 
+import {HudContext} from './context/HudContext'
+
 class Hud extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             show: false,
+            allowDraggable: true
         }
     }
 
@@ -40,6 +43,10 @@ class Hud extends React.Component {
         })
     }
 
+    componentWillMount() {
+        window.HudComponents = {}
+    }
+
     componentWillUnmount() {
         EventManager.removeHandler('hud');
     }
@@ -50,23 +57,25 @@ class Hud extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="hud-main">
-                <div className='hud-position-leftop'>
-                        <Chat/>
+                <HudContext.Provider value={{ allowDraggable: this.state.allowDraggable }}>
+                    <div className="hud-main">
+                    <div className='hud-position-leftop'>
+                            <Chat/>
+                        </div>
+                        <div className='hud-position-righttop'>
+                            <Logo/>
+                            <MainMenu />
+                        </div>
+                        <div className='hud-position-leftbottom'>
+                            <Watch/>
+                            <Gps/>
+                        </div>
+                        <div className="hud-position-rightbottom">
+                            <Car/>
+                            <Player/>
+                        </div>
                     </div>
-                    <div className='hud-position-righttop'>
-                        <Logo/>
-                        <MainMenu />
-                    </div>
-                    <div className='hud-position-leftbottom'>
-                        <Watch/>
-                        <Gps/>
-                    </div>
-                    <div className="hud-position-rightbottom">
-                        <Car/>
-                        <Player/>
-                    </div>
-                </div>
+                </HudContext.Provider>
             </React.Fragment>
         )
     }

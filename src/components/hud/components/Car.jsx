@@ -1,12 +1,14 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
 
+import Draggable from '../Draggable'
+
 class Car extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            isShowSmall: false,
+            show: true,
+            isShowSmall: true,
             light: false,
             door: false,
             engine: false,
@@ -83,37 +85,44 @@ class Car extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className={this.state.isShowSmall ? 'hide' : 'speedbox-main-small'}>
-                    <div className="speedbox">
-                        <div className="speedbox-score" style={speed_score}></div>
-                        <div className="speedbox-groove"></div>
-
+                <Draggable id="car-speedbox" isShowSmall={this.state.isShowSmall}>
+                    <div className={this.state.isShowSmall ? 'hide' : 'speedbox-main-small'}>
+                        <div className="speedbox">
+                            <div className="speedbox-score" style={speed_score}></div>
+                            <div className="speedbox-groove"></div>
+                        </div>
+                        <div className="backg-speed">
+                            <div className="speed-txt">{this.state.speed}</div>
+                        </div>
                     </div>
-                    <div className="backg-speed">
+                </Draggable>
+                <Draggable id="car-speedbox-small" isShowSmall={this.state.isShowSmall}>
+                    <div className={this.state.isShowSmall ? 'speedbox-small' : 'hide'}>
                         <div className="speed-txt">{this.state.speed}</div>
+                        {this.state.speedLabel}
                     </div>
-                </div>
-                <div className={this.state.isShowSmall ? 'speedbox-small' : 'hide'}>
-                    <div className="speed-txt">{this.state.speed}</div>
-                    {this.state.speedLabel}
-                </div>
+                </Draggable>
                 <div className="car-hud">
-                    <div className="elements-auto"
-                         style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
-                        <div className={this.state.light ? 'light-auto use-mic' : 'light-auto'}></div>
-                        <div className={this.state.door ? 'on-door-auto' : 'off-door-auto'}></div>
-                        <div className={this.state.engine ? 'key-auto use-mic' : 'key-auto'}></div>
-                    </div>
-                    <div className="bak-oil" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
-                        <div className="oil-text">
-                            <div className="oil-tt">Топливо</div>
-                            <div className="oil-num">{this.state.fuel} {this.state.fuelType}</div>
+                    <Draggable id="car-elements">
+                        <div className="elements-auto"
+                            style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                            <div className={this.state.light ? 'light-auto use-mic' : 'light-auto'}></div>
+                            <div className={this.state.door ? 'on-door-auto' : 'off-door-auto'}></div>
+                            <div className={this.state.engine ? 'key-auto use-mic' : 'key-auto'}></div>
                         </div>
-                        <div className="oil-liner">
-                            <div className="full-liner"
-                                 style={{width: fuel_liner + '%', background: this.state.color}}></div>
+                    </Draggable>
+                    <Draggable id="car-fuel">
+                        <div className="bak-oil" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                            <div className="oil-text">
+                                <div className="oil-tt">Топливо</div>
+                                <div className="oil-num">{this.state.fuel} {this.state.fuelType}</div>
+                            </div>
+                            <div className="oil-liner">
+                                <div className="full-liner"
+                                    style={{width: fuel_liner + '%', background: this.state.color}}></div>
+                            </div>
                         </div>
-                    </div>
+                    </Draggable>
                 </div>
 
             </React.Fragment>

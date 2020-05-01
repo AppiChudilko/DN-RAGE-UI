@@ -1,6 +1,8 @@
 import React from 'react';
 import EventManager from "../../../EventManager";
 
+import Draggable from '../Draggable'
+
 class Gps extends React.Component {
     constructor(props) {
         super(props)
@@ -9,7 +11,7 @@ class Gps extends React.Component {
             district: 'Загрузка...',
             street: 'Загрузка...',
             showGang: false,
-            showMafia: false,
+            showMafia: true,
             att: 0,
             def: 0,
             tre: 0,
@@ -72,23 +74,27 @@ class Gps extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="gps-main" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+
+                <Draggable id="gps" className="gps-main" style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
                     <div className="gps-title" style={this.state}>{this.state.district}</div>
                     <div className="gps-txt">{this.state.street}</div>
-                </div>
-                <div className={this.state.showGang ? 'gang-war-info' : 'hide'} style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                </Draggable>
+
+                <Draggable id="gang" className={this.state.showGang ? 'gang-war-info' : 'hide'} style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
                     <div className="war-att" style={this.state}>Война за территорию</div>
                     <div className="war-att">Атака: {this.state.att}</div>
                     <div className="war-def">Оборона: {this.state.def}</div>
                     <div className="war-timer">Таймер: {this.state.timer} сек</div>
-                </div>
-                <div className={this.state.showMafia ? 'gang-war-info' : 'hide'} style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                </Draggable>
+
+                <Draggable id="mafia" className={this.state.showMafia ? 'gang-war-info' : 'hide'} style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
                     <div className="war-att" style={this.state}>Война за территорию</div>
                     <div className="war-att">Cosa Nostra: {this.state.att}</div>
                     <div className="war-def">Russian Mafia: {this.state.def}</div>
                     <div className="war-def">Yakuza: {this.state.tre}</div>
                     <div className="war-timer">Таймер: {this.state.timer} сек</div>
-                </div>
+                </Draggable>
+
             </React.Fragment>
         )
     }

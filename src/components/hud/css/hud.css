@@ -1,6 +1,6 @@
 /* body {
     background-color: brown;
-} */
+}  */
 .hud-main {
     width: 100%;
     height: 100%;
@@ -28,7 +28,7 @@
     margin-bottom: 32px;
 }
 
-.player-hud .mic {
+.phud-mic {
     width: 48px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
@@ -38,13 +38,13 @@
     justify-content: center;
 }
 
-.player-hud .mic .mic-img {
+.phud-mic .mic-img {
     background: url(../img/mic-off.png) no-repeat;
     width: 21px;
     height: 36px;
 }
 
-.player-hud .needs {
+.phud-needs {
     width: 144px;
     height: 47.99px;
     background: rgb(0, 0, 0, 0.502);
@@ -99,7 +99,7 @@
     text-align: left;
 }
 
-.player-hud .money {
+.phud-money {
     width: 188px;
     height: 48px;
     background: rgb(0, 0, 0, 0.502);
@@ -356,6 +356,7 @@
 
 .gps-main {
     /*width: 386px;*/
+    min-width: 115px;
     height: 64px;
     background: rgb(0, 0, 0, 0.502);
     margin-left: 323px;
