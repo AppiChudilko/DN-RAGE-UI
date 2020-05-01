@@ -33,7 +33,8 @@ export default class Draggable extends React.Component {
                 try {
                     this.setPos({ x: value.x, y: value.y })
                 }
-                catch (e) {}
+                catch (e) {
+                }
             } else return;
         })
     }
@@ -43,6 +44,11 @@ export default class Draggable extends React.Component {
         const y = this.state.y
 
         console.log(this.props.id, x, y)
+
+        try {
+            mp.trigger('client:ui:saveHudDrag', this.props.id, x, y); // eslint-disable-line
+        }
+        catch (e) {}
         // mp.event на сохранение координат в БД
     }
 
@@ -65,8 +71,8 @@ export default class Draggable extends React.Component {
         if (!this.context.allowDraggable) return
 
         if (event.button === 2) {
-            this.setPosToDefault()
-            this.dragStop()
+            this.setPosToDefault(true)
+            //this.dragStop()
             return
         }
 
@@ -110,7 +116,7 @@ export default class Draggable extends React.Component {
         return false
     }
 
-    setPosToDefault = () => {
+    setPosToDefault = (byClick = false) => {
         let element = this.draggable.current
 
         let x = element.offsetLeft
@@ -128,6 +134,12 @@ export default class Draggable extends React.Component {
         if (element.getElementsByTagName('DIV')[0].classList.contains('hide')) {
             y-=52
         }
+
+        try {
+            if (byClick)
+                mp.trigger('client:ui:saveHudDefault', this.props.id); // eslint-disable-line
+        }
+        catch (e) {}
 
         /*if (this.props.id === 'car-speedbox') {
             y-=52
