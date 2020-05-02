@@ -17,7 +17,6 @@ export default class Draggable extends React.Component {
 
     state = {
         id: this.props.id,
-        isShowSmall: this.props.isShowSmall,
         x: null,
         y: null
     }
@@ -28,12 +27,15 @@ export default class Draggable extends React.Component {
         // Сюда вставить функционал приёма координат с серверной БД (использовать this.setPos)
         // this.setPos({ x: 0, y: 0 })
 
-        EventManager.addHandler('hud-draggable', value => {
+        EventManager.addHandler('hud-draggable-' + this.props.id, value => {
+            //mp.trigger('client:inventory:notify', `${value.id} | ${this.props.id}`); // eslint-disable-line
             if (value.id === this.props.id) {
                 try {
+                    //mp.trigger('client:inventory:notify', `${value.id} | ${value.x} | ${value.y}`); // eslint-disable-line
                     this.setPos({ x: value.x, y: value.y })
                 }
                 catch (e) {
+                    //mp.trigger('client:inventory:notify', `${e}`); // eslint-disable-line
                 }
             } else return;
         })
@@ -42,9 +44,6 @@ export default class Draggable extends React.Component {
     dragStop = () => {
         const x = this.state.x
         const y = this.state.y
-
-        console.log(this.props.id, x, y)
-
         try {
             mp.trigger('client:ui:saveHudDrag', this.props.id, x, y); // eslint-disable-line
         }
@@ -53,7 +52,7 @@ export default class Draggable extends React.Component {
     }
 
     componentWillUnmount() {
-        EventManager.removeHandler('hud-draggable');
+        EventManager.removeHandler('hud-draggable' + this.props.id);
     }
 
     // Вызывайте этот метод для изменения координат компонента

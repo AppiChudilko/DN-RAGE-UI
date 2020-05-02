@@ -7,7 +7,7 @@ class Car extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
+            show: true,
             isShowSmall: true,
             light: false,
             door: false,
@@ -29,6 +29,7 @@ class Car extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ show: false })
 
         EventManager.addHandler('hudc', value => {
             if (value.type === 'show') {
@@ -105,7 +106,7 @@ class Car extends React.Component {
                 <div className="car-hud">
                     <Draggable id="car-elements">
                         <div className="elements-auto"
-                            style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
+                             style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}>
                             <div className={this.state.light ? 'light-auto use-mic' : 'light-auto'}></div>
                             <div className={this.state.door ? 'on-door-auto' : 'off-door-auto'}></div>
                             <div className={this.state.engine ? 'key-auto use-mic' : 'key-auto'}></div>
@@ -119,7 +120,7 @@ class Car extends React.Component {
                             </div>
                             <div className="oil-liner">
                                 <div className="full-liner"
-                                    style={{width: fuel_liner + '%', background: this.state.color}}></div>
+                                     style={{width: fuel_liner + '%', background: this.state.color}}></div>
                             </div>
                         </div>
                     </Draggable>

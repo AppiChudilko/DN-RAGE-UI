@@ -18,8 +18,8 @@ class Hud extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            allowDraggable: true
+            show: true,
+            allowDraggable: false
         }
     }
 
