@@ -11,7 +11,7 @@ class Gps extends React.Component {
             district: 'Загрузка...',
             street: 'Загрузка...',
             showGang: false,
-            showMafia: true,
+            showMafia: false,
             att: 0,
             def: 0,
             tre: 0,

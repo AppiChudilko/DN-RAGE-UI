@@ -39,6 +39,10 @@ class Hud extends React.Component {
                 this.setState({show: true})
             } else if (value.type === 'hide') {
                 this.setState({show: false})
+            } else if (value.type === 'showEdit') {
+                this.setState({allowDraggable: true})
+            } else if (value.type === 'hideEdit') {
+                this.setState({allowDraggable: false})
             } else return;
         })
     }
