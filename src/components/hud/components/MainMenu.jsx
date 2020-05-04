@@ -463,10 +463,24 @@ class MainMenu extends React.Component {
         }
 
         if (type === 'up') {
-            this.itemRefs[this.state.selected - 1].focus()
+            const selected = this.state.selected - 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
         }
         if (type === 'down') {
-            this.itemRefs[this.state.selected + 1].focus()
+            const selected = this.state.selected + 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
         }
     }
 
