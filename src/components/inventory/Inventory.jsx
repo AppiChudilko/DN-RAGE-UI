@@ -299,6 +299,11 @@ class Inventory extends React.Component {
             if (value.type === 'hide') {
                 this.setState({ show: false })
                 this.closeInterMenu(null, { action: null });
+
+                this.setState({ secondary_inv_open: false });
+                this.setState({ secondary_items: [] });
+                this.setState({ secondary_items_owner_id: 0 });
+                this.setState({ secondary_items_owner_type: 0 });
             }
             if (value.type === 'showOrHide') {
                 let status = !this.state.show;
