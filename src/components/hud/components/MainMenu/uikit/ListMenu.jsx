@@ -47,7 +47,8 @@ export default class ListMenu extends React.Component {
 
     handleOnClick() {
         try {
-            mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
+            if (this.props.selectCurrent === this.props.id)
+                mp.trigger('client:menuList:callBack:btn', this.props.data.menuName, this.props.data.id, JSON.stringify(this.props.data.data.params)); // eslint-disable-line
         }
         catch (e) {}
     }

@@ -19,6 +19,7 @@ export default function InterfaceItem(item) {
             nextVal={item.nextVal}
             prevVal={item.prevVal}
             selected={item.selected}
+            selectCurrent={item.selectCurrent}
             data={item}
             id={item.id}
             key={item.id.toString()}

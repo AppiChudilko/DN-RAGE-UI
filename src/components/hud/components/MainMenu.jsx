@@ -548,7 +548,8 @@ class MainMenu extends React.Component {
                                         onChangeCheckbox={this.changeCheckbox}
                                         id={index}
                                         data={item}
-                                        selected={index === this.state.selected ? true : false}
+                                        selectCurrent={this.state.selected}
+                                        selected={index === this.state.selected}
                                     />
                                 </div>
                             )
