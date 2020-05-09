@@ -12,13 +12,13 @@ class MainMenu extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
         this.state = {
-            show: false,
+            show: true,
             selected: 0,
             header: true,
             opacity: 0.80,
             headerText: 'TEST ____ SIZE',
             headerDesc: '~r~HELL~g~O WO~b~RLD',
-            banner: 'arcadius',
+            banner: 'c_binco',
             menuName: '',
             menuList: [
                 {
@@ -536,7 +536,7 @@ class MainMenu extends React.Component {
         return (
             <Draggable id='menu'>
                 <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                    {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner} /> : <></>}
+                    {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={`url(${require('./MainMenu/img/banners/' + this.state.banner + '.png')})`} /> : <></>}
                     <div className="menuContainer" style={styles.menuContainer}>
                         {this.state.menuList.map((item, index) => {
                             return (

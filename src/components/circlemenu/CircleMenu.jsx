@@ -10,8 +10,8 @@ class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
-            showMenu: true,
+            show: false,
+            showMenu: false,
             selected: 0,
             selectedType: 0,
             menuData: [
