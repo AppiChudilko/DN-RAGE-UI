@@ -1,10 +1,247 @@
 import React from 'react';
 import './css/circlemenu.css'
+import PieMenu from './PieMenu'
+import Slice from './PieMenu/Slice'
+import Icon from '../hud/components/MainMenu/uikit/Icon'
+
+const MOUSE_RIGHT_CODE = 3;
+
 class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show:false,
+            show: true,
+            showMenu: true,
+            selected: 0,
+            selectedType: 0,
+            menuData: [
+              [
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '-1',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'рукопашное',
+                      circleInfoMiddle: 'кулак',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  // 54 - 69
+                  // 64 - криво, фиксится при max-width: 18%
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '62',
+                      imgStyle: {
+                        transform: "rotate(-120deg)"
+                      },
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'холодное',
+                      circleInfoMiddle: 'нож',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  // 85 - 93
+                  // 93 - криво
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '92',
+                      imgStyle: {
+                        transform: "scale(-1, 1) rotate(60deg)"
+                      },
+                      spanStyle: {
+                        position: 'absolute',
+                        marginTop: '65px',
+                        paddingRight: '40px'
+                      },
+                      ammount: '10', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'дробовик',
+                      circleInfoMiddle: 'Heavy Shotgun',
+                      circleInfoBottom: 'дробь',
+                    }
+                  ]
+                },
+                {
+                  // 70 - 84
+                  // 80, 81 - криво
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '84',
+                      spanStyle: {
+                        position: 'absolute',
+                        paddingTop: '58px'
+                      },
+                      imgStyle: {
+                        marginBottom: '-10px'
+                      },
+                      ammount: '20', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'пистолет',
+                      circleInfoMiddle: 'Heavy Pistol',
+                      circleInfoBottom: '9',
+                    }
+                  ]
+                },
+                {
+                  // 94 - 126
+                  // 99, 102, 104, 112, 120, 120+ криво
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '100',
+                      imgStyle: {
+                        transform: "rotate(60deg)"
+                      },
+                      spanStyle: {
+                        position: 'absolute',
+                        marginTop: '65px',
+                        paddingLeft: '40px'
+                      },
+                      ammount: '30', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'основное',
+                      circleInfoMiddle: 'AK-102',
+                      circleInfoBottom: '7.65',
+                    }
+                  ]
+                },
+                {
+                  // 127 - 136
+                  // 128, 130, 136 
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '127',
+                      imgStyle: {
+                        transform: "rotate(-60deg)"
+                      },
+                      spanStyle: {
+                        marginTop: '60px',
+                        position: 'absolute'
+                      },
+                      ammount: '2', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'метательное',
+                      circleInfoMiddle: 'C4',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '165',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Еда',
+                      circleInfoMiddle: 'Бургер',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '12',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Еда',
+                      circleInfoMiddle: 'Кола',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '13',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Еда',
+                      circleInfoMiddle: 'Жвачка',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '14',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Еда',
+                      circleInfoMiddle: 'Пицца',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '20',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Напитки',
+                      circleInfoMiddle: 'Вода',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '21',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Напитки',
+                      circleInfoMiddle: 'Пиво',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '22',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Напитки',
+                      circleInfoMiddle: 'Водка',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '165',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Алкоголь',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '166',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Табак',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '158',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Медикаменты',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '10',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Инструменты',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                }
+              ]
+            ]
         }
     }
 
@@ -12,13 +249,168 @@ class CircleMenu extends React.Component {
         mp.trigger('client:ui:debug', 'CircleMenu.jsx', error, errorInfo); // eslint-disable-line
     }
 
+    componentDidMount() {
+      }
+    
+      onContextMenu = e => {
+        e.preventDefault();
+      }
+
+      handleKeyPress = (event) => {
+        console.log(event.key)
+      }
+    
+      onMouseDown = e => {
+        if (e.nativeEvent.which === MOUSE_RIGHT_CODE) {
+          this.setState({
+            mouseX: `${e.pageX}px`,
+            mouseY: `${e.pageY}px`,
+            showMenu: true,
+          });
+        }
+      }
+      
+      toggleSelect = (type) => {
+        this.setState({
+          selectedType: type,
+          selected: 0
+        });
+      }
+    
+      onMouseUp = e => {
+        if (e.nativeEvent.which === MOUSE_RIGHT_CODE) {
+          this.setState({ showMenu: false });
+          e.preventDefault();
+        }
+      }
+
+      nextVal = () => {
+        if (this.state.menuData[this.state.selectedType][this.state.selected].data.length === this.state.menuData[this.state.selectedType][this.state.selected].selected + 1) {
+          let menuListNew = [...this.state.menuData]
+          menuListNew[this.state.selectedType][this.state.selected].selected = 0
+          this.setState((state) => {
+              return {menuData: menuListNew}
+          })
+        } else {
+          let menuListNew = [...this.state.menuData]
+          menuListNew[this.state.selectedType][this.state.selected].selected = menuListNew[this.state.selectedType][this.state.selected].selected + 1
+          this.setState((state) => {
+              return {menuData: menuListNew}
+          })
+        }
+      }
+
+      prevVal = () => {
+        if (this.state.menuData[this.state.selectedType][this.state.selected].selected === 0) {
+          let menuListNew = [...this.state.menuData]
+          menuListNew[this.state.selectedType][this.state.selected].selected = this.state.menuData[this.state.selectedType][this.state.selected].data.length - 1
+          this.setState((state) => {
+              return {menuData: menuListNew}
+          })
+        } else {
+          let menuListNew = [...this.state.menuData]
+          menuListNew[this.state.selectedType][this.state.selected].selected = menuListNew[this.state.selectedType][this.state.selected].selected - 1
+          this.setState((state) => {
+              return {menuData: menuListNew}
+          })
+        }
+      }
+
+
+
     render() {
         if (!this.state.show) {
             return null;
         }
+        const { showMenu, mouseX, mouseY } = this.state;
         return (
             <React.Fragment>
-                <div className="circle-menu"></div>              
+                <div
+                    role="presentation"
+                    className="circle-menu"
+                    onMouseDown={this.onMouseDown}
+                    onMouseUp={this.onMouseUp}
+                    onContextMenu={this.onContextMenu}
+                    onKeyDown={this.handleKeyPress}
+                >
+                {showMenu && (
+                <div className="circle-menu-type">
+                  <div className="circle-menu-type-button">
+                    <span>R</span>
+                  </div>
+                  <div className="circle-menu-type-selector">
+                    <div onClick={() => this.toggleSelect(0)} className={this.state.selectedType === 0 ? "menu-type-selected" : "menu-type-default"}>
+                      <span>ОРУЖИЕ</span>
+                    </div>
+                    <div onClick={() => this.toggleSelect(1)} className={this.state.selectedType === 1 ? "menu-type-selected" : "menu-type-default"}>
+                      <span>ПРЕДМЕТЫ</span>
+                    </div>
+                    <div onClick={() => this.toggleSelect(1)} className={this.state.selectedType === 2 ? "menu-type-selected" : "menu-type-default"}>
+                      <span>АНИМАЦИИ</span>
+                    </div>
+                  </div>
+                </div>
+                )}
+                <div className="circle-content">
+                <canvas style={{width: '100%', height: '100%', position: 'absolute'}} ref={ref => { this.canvas = ref; }} />
+                {showMenu && (
+                    <PieMenu
+                        className="circle-menu-main"
+                        radius='200px' 
+                        centerRadius='120px'
+                        centerX={0}
+                        centerY={0}
+                        attrs={this.state.menuData[this.state.selectedType]}
+                        selected={this.state.selected}
+                    > 
+                      {
+                        this.state.menuData[this.state.selectedType].map((item, indexItem) => {
+                          return (
+                            <Slice
+                              key={item.data[item.selected].itemId}
+                              onMouseOver={() => {
+                                this.setState((state) => {
+                                  return {selected: indexItem}
+                                })
+                              }}
+                              onSelect={() => console.log(`You selected ${indexItem} elemnt`)}
+                            >
+                              {item.data.length > 0 && (
+                              <div
+                               className="circle-container-content"
+                              >
+                                {(item.data.length > 1 && this.state.selected === indexItem) && (
+                                <div style={{marginRight: '5px'}} onClick={() => this.prevVal()}>
+                                  <div className="circle-menu-container-tumbler">
+                                    <span>Q</span>
+                                  </div>
+                                </div>
+                                )}
+                                <img
+                                  src={require(`../inventory/img/all-items/Item_${item.data[item.selected].itemId}.png`)}
+                                  className={this.state.selectedType === 0 ? "circle-weapon-img" : "circle-weapon-img circle-item-img"}
+                                  style={
+                                    (item.data.length === 1) ? item.data[item.selected].imgStyle : {maxWidth: this.state.selected === indexItem ? '35%' : '60%'}
+                                  }
+                                />
+                                {(item.data.length > 1 && this.state.selected === indexItem) && (
+                                <div style={{marginLeft: '5px'}} onClick={() => this.nextVal()}>
+                                  <div className="circle-menu-container-tumbler">
+                                    <span>E</span>
+                                  </div>
+                                </div>
+                                )}
+                                <span style={item.data[item.selected].spanStyle} className="ammo-info">{item.data[item.selected].ammount}</span>
+                              </div>
+                              )}
+                            </Slice>
+                        )
+                        })
+                      }
+                    </PieMenu>  
+                )}
+                </div>
+                </div>     
             </React.Fragment>
         )
     }
