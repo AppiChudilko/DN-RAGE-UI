@@ -37,7 +37,6 @@ export default function Header(props) {
         styles.header.backgroundPosition = 'center';
     }*/
     
-   console.log(props.banner)
     return (
         <div>
             <div style={{backgroundImage: props.banner ? props.banner : '', backgroundPosition: 'center', backgroundSize: 'cover'}}>

@@ -1,3 +1,8 @@
+#box {
+    background: url('https://sun9-55.userapi.com/6uzqef2pGVz0UMm_8LdLgNscuqVyNk1k-wdkqw/AOk5nr2Xktw.jpg') no-repeat;
+    background-size: 100%;
+}
+
 .circle-menu {
     width: 32.917%;
     height: 65.519%;
@@ -9,6 +14,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    outline: none;
 }
 .circle-menu::-webkit-scrollbar {
     display: none;

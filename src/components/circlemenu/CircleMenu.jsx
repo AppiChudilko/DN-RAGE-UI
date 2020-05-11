@@ -10,12 +10,12 @@ class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            showMenu: false,
+            show: true,
+            showMenu: true,
             selected: 0,
             selectedType: 0,
             menuData: [
-              [
+              [ // оружие
                 {
                   selected: 0,
                   data: [
@@ -132,7 +132,7 @@ class CircleMenu extends React.Component {
                   ]
                 }
               ],
-              [
+              [ // предметы
                 {
                   selected: 0,
                   data: [
@@ -240,6 +240,115 @@ class CircleMenu extends React.Component {
                     }
                   ]
                 }
+              ],
+              [ // анимации
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '40',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Танцевальные',
+                      circleInfoMiddle: 'Танец 1',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '41',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Танцевальные',
+                      circleInfoMiddle: 'Танец 2',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '42',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Танцевальные',
+                      circleInfoMiddle: 'Танец 3',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '43',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Танцевальные',
+                      circleInfoMiddle: 'Танец 4',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '45',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Важные',
+                      circleInfoMiddle: 'Поднять руки',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '46',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Важные',
+                      circleInfoMiddle: 'Пожать руку',
+                      circleInfoBottom: '',
+                    },
+                    {
+                      itemId: '47',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Важные',
+                      circleInfoMiddle: 'Лечь',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '48',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Социальные',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '49',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Спортивные',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '50',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Взаимодействия',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                },
+                {
+                  selected: 0,
+                  data: [
+                    {
+                      itemId: '51',
+                      ammount: '', // то что пишется в кругу под иконкой
+                      circleInfoTop: 'Нецензурные',
+                      circleInfoMiddle: '',
+                      circleInfoBottom: '',
+                    }
+                  ]
+                }
               ]
             ]
         }
@@ -257,7 +366,22 @@ class CircleMenu extends React.Component {
       }
 
       handleKeyPress = (event) => {
-        console.log(event.key)
+        if (event.which === 69 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
+          this.prevVal()
+        }
+        if (event.which === 81 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
+          this.nextVal()
+        }
+        if (event.which === 82) {
+          if (this.state.selectedType === 2) {
+            this.setState({ selectedType: 0 })
+          }
+          else {
+            this.setState((state) => {
+              return {selectedType: state.selectedType + 1}
+          })
+          }
+        }
       }
     
       onMouseDown = e => {
@@ -332,6 +456,7 @@ class CircleMenu extends React.Component {
                     onMouseUp={this.onMouseUp}
                     onContextMenu={this.onContextMenu}
                     onKeyDown={this.handleKeyPress}
+                    tabIndex="1"
                 >
                 {showMenu && (
                 <div className="circle-menu-type">
@@ -345,7 +470,7 @@ class CircleMenu extends React.Component {
                     <div onClick={() => this.toggleSelect(1)} className={this.state.selectedType === 1 ? "menu-type-selected" : "menu-type-default"}>
                       <span>ПРЕДМЕТЫ</span>
                     </div>
-                    <div onClick={() => this.toggleSelect(1)} className={this.state.selectedType === 2 ? "menu-type-selected" : "menu-type-default"}>
+                    <div onClick={() => this.toggleSelect(2)} className={this.state.selectedType === 2 ? "menu-type-selected" : "menu-type-default"}>
                       <span>АНИМАЦИИ</span>
                     </div>
                   </div>
@@ -373,7 +498,7 @@ class CircleMenu extends React.Component {
                                   return {selected: indexItem}
                                 })
                               }}
-                              onSelect={() => console.log(`You selected ${indexItem} elemnt`)}
+                              onSelect={() => console.log(`Использую ${this.state.menuData[this.state.selectedType][this.state.selected].data[this.state.menuData[this.state.selectedType][this.state.selected].selected].circleInfoMiddle}`)}
                             >
                               {item.data.length > 0 && (
                               <div
