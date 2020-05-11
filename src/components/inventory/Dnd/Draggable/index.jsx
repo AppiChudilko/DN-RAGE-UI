@@ -7,6 +7,10 @@ export default class Draggable extends React.PureComponent {
         droppable: null
     }
 
+    componentWillUnmount() {
+        console.log(this.props.children)
+    }
+
     drop = () => {
         if (!this.state.droppable) {
             console.log('DnD Inventory: Некорректный droppable элемент')
