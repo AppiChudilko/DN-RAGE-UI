@@ -48,7 +48,7 @@ const Slice = ({
   className,
   radius,
   centerRadius,
-  contentHeight = '2em',
+  contentHeight = '2.4em',
   centralAngle,
   endAngle,
   onMouseOver,
@@ -64,7 +64,8 @@ const Slice = ({
     className={className}
     onMouseOver={onMouseOver}
     onMouseOut={onMouseOut}
-    onMouseUp={onSelect}
+    onClick={onSelect}
+    // onMouseUp
     onFocus={onFocus}
     onBlur={onBlur}
     tabIndex={-1}

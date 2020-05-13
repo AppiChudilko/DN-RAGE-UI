@@ -3,6 +3,7 @@ import './css/circlemenu.css'
 import PieMenu from './PieMenu'
 import Slice from './PieMenu/Slice'
 import Icon from '../hud/components/MainMenu/uikit/Icon'
+import ReactDOM from 'react-dom'
 
 const MOUSE_RIGHT_CODE = 3;
 
@@ -30,7 +31,7 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 54 - 69
-                  // 64 - криво, фиксится при max-width: 18%
+                  // 55 уезжает, 60+ маленькие и уезжают
                   selected: 0,
                   data: [
                     {
@@ -47,7 +48,7 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 85 - 93
-                  // 93 - криво
+                  // 89, 93 - не очень
                   selected: 0,
                   data: [
                     {
@@ -69,7 +70,7 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 70 - 84
-                  // 80, 81 - криво
+                  // 80, 81 - не очень
                   selected: 0,
                   data: [
                     {
@@ -90,11 +91,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 94 - 126
-                  // 99, 102, 104, 112, 120, 120+ криво
+                  // 120+ криво, перепроверить
                   selected: 0,
                   data: [
                     {
-                      itemId: '100',
+                      itemId: '112',
                       imgStyle: {
                         transform: "rotate(60deg)"
                       },
@@ -116,7 +117,7 @@ class CircleMenu extends React.Component {
                   selected: 0,
                   data: [
                     {
-                      itemId: '127',
+                      itemId: '131',
                       imgStyle: {
                         transform: "rotate(-60deg)"
                       },
@@ -359,6 +360,7 @@ class CircleMenu extends React.Component {
     }
 
     componentDidMount() {
+      this.focusDiv();
       }
     
       onContextMenu = e => {
@@ -366,10 +368,10 @@ class CircleMenu extends React.Component {
       }
 
       handleKeyPress = (event) => {
-        if (event.which === 69 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
+        if (event.which === 81 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
           this.prevVal()
         }
-        if (event.which === 81 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
+        if (event.which === 69 && this.state.menuData[this.state.selectedType][this.state.selected].data.length > 1) {
           this.nextVal()
         }
         if (event.which === 82) {
@@ -440,13 +442,60 @@ class CircleMenu extends React.Component {
         }
       }
 
+    focusDiv() {
+      ReactDOM.findDOMNode(this.refs.circle).focus()
+      // автофокусится на круг для навигации кнопками
+    }
+
+
+    fixWeaponStyles= (arr) => {
+      const uglyWeapon = [
+        '99',
+        '102',
+        '104',
+        '112',
+        '120',
+        '120'
+      ]
+      const uglyWeaponDropable = [
+        '128',
+        '130',
+        '136',
+      ]
+      arr[0].map((item, index) => {
+        if ((uglyWeapon.indexOf(item.data[0].itemId)) != -1) {
+          item.data[0].imgStyle = ({
+            ...item.data[0].imgStyle,
+            marginBottom: '-15px'
+          })
+          return;
+        }
+        else if ((uglyWeaponDropable.indexOf(item.data[0].itemId)) != -1) {
+          item.data[0].imgStyle = ({
+            ...item.data[0].imgStyle,
+            marginTop: '-15px',
+            transform: 'rotate(30deg)'
+          })
+          return;
+        }
+        else if (item.data[0].itemId === '131') { // молотов
+          item.data[0].imgStyle = ({
+            ...item.data[0].imgStyle,
+            marginTop: '-15px',
+            transform: 'rotate(75deg)'
+          })
+          return;
+        }
+      })
+    }
 
 
     render() {
         if (!this.state.show) {
             return null;
         }
-        const { showMenu, mouseX, mouseY } = this.state;
+        const { showMenu } = this.state;
+        this.fixWeaponStyles(this.state.menuData)
         return (
             <React.Fragment>
                 <div
@@ -457,6 +506,7 @@ class CircleMenu extends React.Component {
                     onContextMenu={this.onContextMenu}
                     onKeyDown={this.handleKeyPress}
                     tabIndex="1"
+                    ref="circle"
                 >
                 {showMenu && (
                 <div className="circle-menu-type">
@@ -505,7 +555,11 @@ class CircleMenu extends React.Component {
                                className="circle-container-content"
                               >
                                 {(item.data.length > 1 && this.state.selected === indexItem) && (
-                                <div style={{marginRight: '5px'}} onClick={() => this.prevVal()}>
+                                <div style={{marginRight: '5px'}} onClick={(event) => {
+                                    event.stopPropagation();
+                                    event.nativeEvent.stopImmediatePropagation()
+                                    this.prevVal()
+                                  }}>
                                   <div className="circle-menu-container-tumbler">
                                     <span>Q</span>
                                   </div>
@@ -519,7 +573,11 @@ class CircleMenu extends React.Component {
                                   }
                                 />
                                 {(item.data.length > 1 && this.state.selected === indexItem) && (
-                                <div style={{marginLeft: '5px'}} onClick={() => this.nextVal()}>
+                                <div style={{marginLeft: '5px'}} onClick={(event) => {
+                                    event.stopPropagation();
+                                    event.nativeEvent.stopImmediatePropagation()
+                                    this.nextVal()
+                                  }}>
                                   <div className="circle-menu-container-tumbler">
                                     <span>E</span>
                                   </div>
