@@ -79,7 +79,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
-                { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+                /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -141,14 +141,14 @@ class Inventory extends React.Component {
                 { id: 38, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 39, item_id: 265, name: "Футболка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 40, item_id: 269, name: "Кепка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }
+                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }*/
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
 
             secondary_items: [ // Багажник
-                { id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
+                //{ id: 15, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // secondary_items.id Уникальный id предмета из базы (не должны повторяться)
             ],
             secondary_itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
             ],
@@ -287,6 +287,11 @@ class Inventory extends React.Component {
     }
 
     componentDidMount() {
+        // setTimeout(() => {
+        //     this.setState({ show: false })
+        //     this.closeInterMenu(null, { action: null })
+        // }, 10000)
+
         var cooldownTick = setInterval(() => {
             this.cooldownTick();
         }, 1000);
@@ -299,11 +304,6 @@ class Inventory extends React.Component {
             if (value.type === 'hide') {
                 this.setState({ show: false })
                 this.closeInterMenu(null, { action: null });
-
-                this.setState({ secondary_inv_open: false });
-                this.setState({ secondary_items: [] });
-                this.setState({ secondary_items_owner_id: 0 });
-                this.setState({ secondary_items_owner_type: 0 });
             }
             if (value.type === 'showOrHide') {
                 let status = !this.state.show;

@@ -7,6 +7,10 @@ export default class Draggable extends React.PureComponent {
         droppable: null
     }
 
+    componentWillUnmount() {
+        console.log(this.props.children)
+    }
+
     drop = () => {
         if (!this.state.droppable) {
             console.log('DnD Inventory: Некорректный droppable элемент')
@@ -142,15 +146,15 @@ export default class Draggable extends React.PureComponent {
 
         let that = this
 
-        moveAt(event.pageX, event.pageY)
+        moveAt(event.clientX, event.clientY)
 
-        function moveAt(pageX, pageY) {
-            clone.style.left = pageX - shiftX + 'px'
-            clone.style.top = pageY - shiftY + 'px'
+        function moveAt(clientX, clientY) {
+            clone.style.left = clientX - shiftX + 'px'
+            clone.style.top = clientY - shiftY + 'px'
         }
 
         function onMouseMove(event) {
-            moveAt(event.pageX, event.pageY)
+            moveAt(event.clientX, event.clientY)
 
             clone.hidden = true
             let elemBelow = document.elementFromPoint(event.clientX, event.clientY)

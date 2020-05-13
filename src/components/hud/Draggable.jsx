@@ -90,14 +90,14 @@ export default class Draggable extends React.Component {
 
         let that = this
 
-        moveAt(event.pageX, event.pageY)
+        moveAt(event.clientX, event.clientY)
 
-        function moveAt(pageX, pageY) {
-            that.setPos({ x: (pageX - shiftX), y: (pageY - shiftY) })
+        function moveAt(clientX, clientY) {
+            that.setPos({ x: (clientX - shiftX), y: (clientY - shiftY) })
         }
 
         function onMouseMove(event) {
-            moveAt(event.pageX, event.pageY)
+            moveAt(event.clientX, event.clientY)
         }
 
         document.addEventListener('mousemove', onMouseMove)
