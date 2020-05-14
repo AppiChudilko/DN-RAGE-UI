@@ -11,8 +11,8 @@ class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            showMenu: false,
+            show: true,
+            showMenu: true,
             selected: 0,
             selectedType: 0,
             menuData: [
@@ -31,11 +31,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 54 - 69
-                  // 55 уезжает, 60+ маленькие и уезжают
+                  // 65 - кастет, можно и лучше
                   selected: 0,
                   data: [
                     {
-                      itemId: '62',
+                      itemId: '67',
                       imgStyle: {
                         transform: "rotate(-120deg)"
                       },
@@ -48,11 +48,10 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 85 - 93
-                  // 89, 93 - не очень
                   selected: 0,
                   data: [
                     {
-                      itemId: '92',
+                      itemId: '93',
                       imgStyle: {
                         transform: "scale(-1, 1) rotate(60deg)"
                       },
@@ -70,11 +69,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 70 - 84
-                  // 80, 81 - не очень
+                  // 80, 81 - не очень, но вроде норм?
                   selected: 0,
                   data: [
                     {
-                      itemId: '84',
+                      itemId: '73',
                       spanStyle: {
                         position: 'absolute',
                         paddingTop: '58px'
@@ -91,13 +90,14 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 94 - 126
-                  // 120+ криво, перепроверить
+                  // перепроверить, а так вроде норм все
                   selected: 0,
                   data: [
                     {
-                      itemId: '112',
+                      itemId: '126',
                       imgStyle: {
-                        transform: "rotate(60deg)"
+                        transform: "rotate(60deg)",
+                        maxWidth: '70%'
                       },
                       spanStyle: {
                         position: 'absolute',
@@ -113,17 +113,17 @@ class CircleMenu extends React.Component {
                 },
                 {
                   // 127 - 136
-                  // 128, 130, 136 
                   selected: 0,
                   data: [
                     {
-                      itemId: '131',
+                      itemId: '136',
                       imgStyle: {
                         transform: "rotate(-60deg)"
                       },
                       spanStyle: {
-                        marginTop: '60px',
-                        position: 'absolute'
+                        marginTop: '55px',
+                        position: 'absolute',
+                        marginLeft: '-10px'
                       },
                       ammount: '2', // то что пишется в кругу под иконкой
                       circleInfoTop: 'метательное',
@@ -451,43 +451,159 @@ class CircleMenu extends React.Component {
 
 
     fixWeaponStyles= (arr) => {
-      const uglyWeapon = [
-        '99',
-        '102',
-        '104',
-        '112',
-        '120',
-        '120'
-      ]
-      const uglyWeaponDropable = [
-        '128',
-        '130',
-        '136',
-      ]
+
       arr[0].map((item, index) => {
-        if ((uglyWeapon.indexOf(item.data[0].itemId)) != -1) {
-          item.data[0].imgStyle = ({
-            ...item.data[0].imgStyle,
-            marginBottom: '-15px'
-          })
-          return;
+        let styles = {}
+        switch(item.data[0].itemId) {
+          case '99':
+            styles = {
+              marginBottom: '-15px'
+            }
+            break;
+          case '102':
+            styles = {
+              marginBottom: '-15px',
+              maxWidth: '60%'
+            }
+            break;
+          case '104':
+            styles = {
+              marginBottom: '-15px',
+              maxWidth: '60%'
+            }
+            break;
+          case '112':
+            styles = {
+              marginBottom: '-15px',
+              maxWidth: '60%'
+            }
+            break;
+          case '120':
+            styles = {
+              marginBottom: '-15px',
+              maxWidth: '60%'
+            }
+            break;
+          case '128':
+            styles = {
+              marginTop: '-15px',
+              transform: 'rotate(30deg)'
+            }
+            break;
+          case '130':
+            styles = { 
+              marginTop: '-15px',
+              transform: 'rotate(30deg)'
+            }
+            break;
+          case '131':
+            styles = {
+              marginTop: '-15px',
+              transform: 'rotate(75deg)'
+            }
+            break;
+          case '136':
+            styles = {
+              marginTop: '-15px',
+              transform: 'rotate(30deg)'
+            }
+            break;
+          case '55':
+            styles = {
+              marginTop: '10px'
+            }
+            break;
+          case '59':
+            styles = {
+              marginTop: '10px'
+            }
+            break;
+          case '60':
+            styles = {
+              marginTop: '10px',
+              maxWidth: '80%'
+            }
+            break;
+          case '63':
+            styles = {
+              marginTop: '10px'
+            }
+            break;
+          case '65':
+            styles = {
+              marginTop: '10px'
+            }
+            break;
+          case '67':
+            styles = {
+              marginTop: '10px',
+              maxWidth: '70%'
+            }
+            break;
+          case '68':
+            styles = {
+              marginTop: '10px',
+              maxWidth: '80%'
+            }
+            break;
+          case '89':
+            styles = {
+              marginBottom: '10px',
+              maxWidth: '80%'
+            }
+            break;
+          case '88':
+            styles = {
+              maxWidth: '80%'
+            }
+            break;
+          case '90':
+            styles = {
+              maxWidth: '80%'
+            }
+            break;
+          case '91':
+            styles = {
+              maxWidth: '80%'
+            }
+            break;
+          case '93':
+            styles = {
+              marginBottom: '-15px'
+            }
+            break;
+          case '108':
+            styles = {
+              marginBottom: '-10px'
+            }
+            break;
+          case '109':
+            styles = {
+              marginBottom: '-10px'
+            }
+            break;
+          case '121':
+            styles = {
+              marginBottom: '10px'
+            }
+            break;
+          case '126':
+            styles = {
+              marginBottom: '10px'
+            }
+            break;
+          case '129':
+            styles = {
+              marginTop: '10px'
+            }
+            break;
+          default:
+            break;
         }
-        else if ((uglyWeaponDropable.indexOf(item.data[0].itemId)) != -1) {
-          item.data[0].imgStyle = ({
-            ...item.data[0].imgStyle,
-            marginTop: '-15px',
-            transform: 'rotate(30deg)'
-          })
-          return;
-        }
-        else if (item.data[0].itemId === '131') { // молотов
-          item.data[0].imgStyle = ({
-            ...item.data[0].imgStyle,
-            marginTop: '-15px',
-            transform: 'rotate(75deg)'
-          })
-          return;
-        }
+        item.data[0].imgStyle = ({
+          ...item.data[0].imgStyle,
+          ...styles
+        })
       })
     }
 
@@ -509,7 +625,7 @@ class CircleMenu extends React.Component {
                     onKeyDown={this.handleKeyPress}
                     tabIndex="1"
                     ref="circle"
-                    style={{transform: `scale(${document.documentElement.clientHeight / 642})`}}
+                    style={{transform: `scale(${document.documentElement.clientHeight / 652})`}}
                 >
                 {showMenu && (
                 <div className="circle-menu-type">
