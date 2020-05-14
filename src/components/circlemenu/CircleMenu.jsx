@@ -11,8 +11,8 @@ class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            showMenu: false,
+            show: true,
+            showMenu: true,
             selected: 0,
             selectedType: 0,
             menuData: [
@@ -139,28 +139,28 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '165',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '5', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Бургер',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '12',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '5', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Кола',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '13',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '5', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Жвачка',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '14',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '5', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Пицца',
                       circleInfoBottom: '',
@@ -172,21 +172,21 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '20',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '2', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Вода',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '21',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '3', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Пиво',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '22',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '4', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Водка',
                       circleInfoBottom: '',
@@ -198,7 +198,7 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '165',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '7', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Алкоголь',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
@@ -210,7 +210,7 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '166',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '9', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Табак',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
@@ -234,7 +234,7 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '10',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '9', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Инструменты',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
@@ -248,14 +248,14 @@ class CircleMenu extends React.Component {
                   data: [
                     {
                       itemId: '40',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '9', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 1',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '41',
-                      ammount: '', // то что пишется в кругу под иконкой
+                      ammount: '9', // то что пишется в кругу под иконкой
                       circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 2',
                       circleInfoBottom: '',
@@ -360,8 +360,10 @@ class CircleMenu extends React.Component {
     }
 
     componentDidMount() {
-      this.focusDiv();
+      if (this.state.show && this.state.showMenu) {
+        this.focusDiv()
       }
+    }
     
       onContextMenu = e => {
         e.preventDefault();
@@ -507,6 +509,7 @@ class CircleMenu extends React.Component {
                     onKeyDown={this.handleKeyPress}
                     tabIndex="1"
                     ref="circle"
+                    style={{transform: `scale(${document.documentElement.clientHeight / 642})`}}
                 >
                 {showMenu && (
                 <div className="circle-menu-type">
@@ -531,8 +534,8 @@ class CircleMenu extends React.Component {
                 {showMenu && (
                     <PieMenu
                         className="circle-menu-main"
-                        radius='200px' 
-                        centerRadius='120px'
+                        radius={`200px`} // 200px {`${document.documentElement.clientHeight / 3.2}px`}
+                        centerRadius={`120px`} // 120px {`${document.documentElement.clientHeight / 5.4}px`}
                         centerX={0}
                         centerY={0}
                         attrs={this.state.menuData[this.state.selectedType]}
@@ -554,6 +557,9 @@ class CircleMenu extends React.Component {
                               <div
                                className="circle-container-content"
                               >
+                                <div
+                                  className="circle-container-data"
+                                >
                                 {(item.data.length > 1 && this.state.selected === indexItem) && (
                                 <div style={{marginRight: '5px'}} onClick={(event) => {
                                     event.stopPropagation();
@@ -583,7 +589,13 @@ class CircleMenu extends React.Component {
                                   </div>
                                 </div>
                                 )}
-                                <span style={item.data[item.selected].spanStyle} className="ammo-info">{item.data[item.selected].ammount}</span>
+                                </div>
+                                <span
+                                  style={item.data[item.selected].spanStyle}
+                                  className={this.state.selectedType != 0 ? "ammo-info-item" : "ammo-info"}
+                                >
+                                {item.data[item.selected].ammount}
+                                </span>
                               </div>
                               )}
                             </Slice>

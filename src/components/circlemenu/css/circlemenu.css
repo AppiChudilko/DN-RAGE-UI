@@ -1,5 +1,5 @@
 #box {
-    /*background: url('https://sun9-55.userapi.com/6uzqef2pGVz0UMm_8LdLgNscuqVyNk1k-wdkqw/AOk5nr2Xktw.jpg') no-repeat;*/
+    background: url('https://sun9-55.userapi.com/6uzqef2pGVz0UMm_8LdLgNscuqVyNk1k-wdkqw/AOk5nr2Xktw.jpg') no-repeat;
     background-size: 100%;
 }
 
@@ -69,7 +69,7 @@
 
 .circle-menu-type {
     padding: 12px;
-    width: 60%;
+    max-width: 80%;
     margin-bottom: 40px;
     background: rgba(0, 0, 0, 0.67);
     display: flex;
@@ -109,19 +109,22 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .menu-type-selected {
     font-family: HACKED;
     font-weight: 400;
     color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .menu-type-default {
     font-family: HACKED;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.35);
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .circle-weapon-img {
@@ -153,8 +156,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.ammo-info-item {
+    font-family: HACKED;
+    font-weight: 400;
+    font-size: 12px;
+    color: #ffffff;
+    position: absolute;
+    margin-top: 28px;
 }
 
 .circle-item-img {
     filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+
+.circle-container-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
