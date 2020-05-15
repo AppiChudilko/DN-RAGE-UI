@@ -16,7 +16,7 @@ class MainMenu extends React.Component {
             selected: 0,
             header: true,
             opacity: 0.80,
-            headerText: 'TEST ____ SIZE',
+            headerText: '',
             headerDesc: '~r~HELL~g~O WO~b~RLD',
             banner: 'c_binco',
             menuName: '',
@@ -536,7 +536,14 @@ class MainMenu extends React.Component {
         return (
             <Draggable id='menu'>
                 <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
-                    {this.state.header ? <Header headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`} headerText={this.state.headerText} headerDesc={this.state.headerDesc} banner={this.state.banner ? `url(${require('./MainMenu/img/banners/' + this.state.banner + '.png')})` : ''} /> : <></>}
+                    {this.state.header ? 
+                        <Header
+                            headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`}
+                            headerText={this.state.headerText}
+                            headerDesc={this.state.headerDesc}
+                            banner={this.state.header && this.state.banner ? `${require('./MainMenu/img/banners/' + this.state.banner + '.png')}` : ''}
+                        />
+                         : <></>}
                     <div className="menuContainer" style={styles.menuContainer}>
                         {this.state.menuList.map((item, index) => {
                             return (

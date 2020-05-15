@@ -39,7 +39,7 @@ export default function Header(props) {
     
     return (
         <div>
-            <div style={{backgroundImage: props.banner ? props.banner : '', backgroundPosition: 'center', backgroundSize: 'cover'}}>
+            <div style={{backgroundImage: props.banner ? `url(${props.banner})` : '', backgroundPosition: 'center', backgroundSize: 'cover'}}>
                 <h1 className="header" style={styles.header}>{props.headerText}</h1>
             </div>
             <div style={styles.headerDataContainer}>
