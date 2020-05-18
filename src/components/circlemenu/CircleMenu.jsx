@@ -35,7 +35,7 @@ class CircleMenu extends React.Component {
                   selected: 0,
                   data: [
                     {
-                      itemId: '67',
+                      itemId: '64',
                       imgStyle: {
                         transform: "rotate(-120deg)"
                       },
@@ -51,14 +51,14 @@ class CircleMenu extends React.Component {
                   selected: 0,
                   data: [
                     {
-                      itemId: '93',
+                      itemId: '86',
                       imgStyle: {
                         transform: "scale(-1, 1) rotate(60deg)"
                       },
                       spanStyle: {
-                        position: 'absolute',
-                        marginTop: '65px',
-                        paddingRight: '40px'
+                        position: 'fixed',
+                        marginTop: '45px',
+                        marginLeft: '-35px'
                       },
                       ammount: '10', // то что пишется в кругу под иконкой
                       circleInfoTop: 'дробовик',
@@ -75,8 +75,7 @@ class CircleMenu extends React.Component {
                     {
                       itemId: '73',
                       spanStyle: {
-                        position: 'absolute',
-                        paddingTop: '58px'
+                        position: 'fixed'
                       },
                       imgStyle: {
                         marginBottom: '-10px'
@@ -94,15 +93,15 @@ class CircleMenu extends React.Component {
                   selected: 0,
                   data: [
                     {
-                      itemId: '126',
+                      itemId: '94',
                       imgStyle: {
                         transform: "rotate(60deg)",
                         maxWidth: '70%'
                       },
                       spanStyle: {
-                        position: 'absolute',
-                        marginTop: '65px',
-                        paddingLeft: '40px'
+                        position: 'fixed',
+                        marginTop: '42px',
+                        marginLeft: '12px'
                       },
                       ammount: '30', // то что пишется в кругу под иконкой
                       circleInfoTop: 'основное',
@@ -121,9 +120,9 @@ class CircleMenu extends React.Component {
                         transform: "rotate(-60deg)"
                       },
                       spanStyle: {
-                        marginTop: '55px',
-                        position: 'absolute',
-                        marginLeft: '-10px'
+                        marginTop: '20px',
+                        position: 'fixed',
+                        marginLeft: '-5px'
                       },
                       ammount: '2', // то что пишется в кругу под иконкой
                       circleInfoTop: 'метательное',
@@ -597,6 +596,12 @@ class CircleMenu extends React.Component {
               marginTop: '10px'
             }
             break;
+          case '64':
+            styles = {
+              transform: 'rotate(60deg)',
+              marginBottom: '-10px',
+              marginTop: '-10px'
+            }
           default:
             break;
         }
@@ -671,7 +676,7 @@ class CircleMenu extends React.Component {
                             >
                               {item.data.length > 0 && (
                               <div
-                               className="circle-container-content"
+                               className={this.state.selectedType === 0 ? null : "circle-container-content"}
                               >
                                 <div
                                   className="circle-container-data"

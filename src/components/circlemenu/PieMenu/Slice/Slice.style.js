@@ -13,7 +13,7 @@ export const container = css`
 
   &:hover {
     color: white;
-    border: 6px solid #add8e6;
+    border: 6px solid #ABBABB;
     background: radial-gradient(transparent ${({ centerRadius }) => `${centerRadius}, #424242 ${centerRadius}`});
   }
 `;

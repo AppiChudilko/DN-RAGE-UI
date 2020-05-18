@@ -101,7 +101,7 @@ const PieMenu = ({
           justifyContent: 'center',
           alignItems: 'center',
           zIndex: '10',
-          boxShadow: 'inset 0 0 10px #add8e6'
+          boxShadow: 'inset 0 0 10px #E2F8FF'
         }}
       >
           <div className="center-content">
