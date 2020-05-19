@@ -3,7 +3,6 @@ import React from 'react';
 import { compose, getContext } from 'recompose';
 import PropTypes from 'prop-types';
 
-import { connectTheme } from 'styled-components-theme-connector';
 
 type Callback = (event: SyntheticEvent<*>) => any;
 
@@ -40,9 +39,9 @@ export const itemTypes = {
   skew: PropTypes.number,
 };
 
-const ContentContainer = connectTheme('slice.contentContainer')('div');
 
-const Content = connectTheme('slice.content')('div');
+
+
 
 const Slice = ({
   className,
@@ -57,34 +56,80 @@ const Slice = ({
   onFocus,
   onBlur,
   children,
+  skew,
+  polar,
   attrs = {},
-}: Props) => (
+}: Props) => {
+  const styles = {
+    ContentContainer: {
+      position: 'absolute',
+      width: '100%',
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: `calc((${centralAngle > 90 ? '50% + ' : ''}${radius} - ${centerRadius}) / 2 - ${contentHeight} / 2)`
+    },
+    Content: {
+      display: 'inline-block',
+      transform: `rotate(${-endAngle}deg)`,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    Container: {
+      width: '200%',
+      height: '200%',
+      transformOrigin: '50% 50%',
+      borderRadius: '50%',
+      transform: `skew(${-skew}deg) rotate(${((polar ? 90 : centralAngle) / 2) - 90}deg)`,
+      color: 'black',
+      border: '6px solid rgba(255, 255, 255, 0)',
+      background: `radial-gradient(transparent ${centerRadius}, rgba(0, 0, 0, 0.67) ${centerRadius})`,
+      outline: 'none'
+    },
+    ContainerHover: {
+      width: '200%',
+      height: '200%',
+      transformOrigin: '50% 50%',
+      borderRadius: '50%',
+      transform: `skew(${-skew}deg) rotate(${((polar ? 90 : centralAngle) / 2) - 90}deg)`,
+      color: 'white',
+      border: '6px solid #ABBABB',
+      background: `radial-gradient(transparent ${centerRadius}, #424242 ${centerRadius})`,
+      outline: 'none'
+    }
+  }
+  return (
   <div
     role="button"
-    className={className}
+    className={`${className} circle-slice`}
     onMouseOver={onMouseOver}
     onMouseOut={onMouseOut}
     onClick={onSelect}
     // onMouseUp
     onFocus={onFocus}
     onBlur={onBlur}
+    style={styles.Container}
     tabIndex={-1}
     {...attrs}
   >
-    <ContentContainer
-      radius={radius}
-      centralAngle={centralAngle}
-      centerRadius={centerRadius}
-      contentHeight={contentHeight}
+    <div
+      style={styles.ContentContainer}
     >
-      <Content angle={endAngle}>
+      <div
+        style={styles.Content}
+      >
         {children}
-      </Content>
-    </ContentContainer>
+      </div>
+    </div>
   </div>
-);
+)};
+
+
+
 
 export default compose(
-  getContext({ ...propTypes, ...itemTypes }),
-  connectTheme('slice.container'),
+  getContext({ ...propTypes, ...itemTypes })
 )(Slice);

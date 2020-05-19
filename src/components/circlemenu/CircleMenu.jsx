@@ -11,19 +11,19 @@ class CircleMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            showMenu: false,
+            show: true,
+            showMenu: true,
             selected: 0,
             selectedType: 0,
             menuData: [
               [ // оружие
                 {
                   selected: 0,
+                  circleInfoTop: 'рукопашное',
                   data: [
                     {
                       itemId: '-1',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'рукопашное',
                       circleInfoMiddle: 'кулак',
                       circleInfoBottom: '',
                     }
@@ -33,14 +33,11 @@ class CircleMenu extends React.Component {
                   // 54 - 69
                   // 65 - кастет, можно и лучше
                   selected: 0,
+                  circleInfoTop: 'холодное',
                   data: [
                     {
                       itemId: '64',
-                      imgStyle: {
-                        transform: "rotate(-120deg)"
-                      },
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'холодное',
                       circleInfoMiddle: 'нож',
                       circleInfoBottom: '',
                     }
@@ -49,19 +46,11 @@ class CircleMenu extends React.Component {
                 {
                   // 85 - 93
                   selected: 0,
+                  circleInfoTop: 'дробовик',
                   data: [
                     {
                       itemId: '86',
-                      imgStyle: {
-                        transform: "scale(-1, 1) rotate(60deg)"
-                      },
-                      spanStyle: {
-                        position: 'fixed',
-                        marginTop: '45px',
-                        marginLeft: '-35px'
-                      },
                       ammount: '10', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'дробовик',
                       circleInfoMiddle: 'Heavy Shotgun',
                       circleInfoBottom: 'дробь',
                     }
@@ -71,17 +60,11 @@ class CircleMenu extends React.Component {
                   // 70 - 84
                   // 80, 81 - не очень, но вроде норм?
                   selected: 0,
+                  circleInfoTop: 'пистолет',
                   data: [
                     {
                       itemId: '73',
-                      spanStyle: {
-                        position: 'fixed'
-                      },
-                      imgStyle: {
-                        marginBottom: '-10px'
-                      },
                       ammount: '20', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'пистолет',
                       circleInfoMiddle: 'Heavy Pistol',
                       circleInfoBottom: '9',
                     }
@@ -91,20 +74,11 @@ class CircleMenu extends React.Component {
                   // 94 - 126
                   // перепроверить, а так вроде норм все
                   selected: 0,
+                  circleInfoTop: 'основное',
                   data: [
                     {
                       itemId: '94',
-                      imgStyle: {
-                        transform: "rotate(60deg)",
-                        maxWidth: '70%'
-                      },
-                      spanStyle: {
-                        position: 'fixed',
-                        marginTop: '42px',
-                        marginLeft: '12px'
-                      },
                       ammount: '30', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'основное',
                       circleInfoMiddle: 'AK-102',
                       circleInfoBottom: '7.65',
                     }
@@ -113,19 +87,11 @@ class CircleMenu extends React.Component {
                 {
                   // 127 - 136
                   selected: 0,
+                  circleInfoTop: 'метательное',
                   data: [
                     {
                       itemId: '136',
-                      imgStyle: {
-                        transform: "rotate(-60deg)"
-                      },
-                      spanStyle: {
-                        marginTop: '20px',
-                        position: 'fixed',
-                        marginLeft: '-5px'
-                      },
                       ammount: '2', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'метательное',
                       circleInfoMiddle: 'C4',
                       circleInfoBottom: '',
                     }
@@ -135,32 +101,29 @@ class CircleMenu extends React.Component {
               [ // предметы
                 {
                   selected: 0,
+                  circleInfoTop: 'Еда',
                   data: [
                     {
                       itemId: '165',
                       ammount: '5', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Бургер',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '12',
                       ammount: '5', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Кола',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '13',
                       ammount: '5', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Жвачка',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '14',
                       ammount: '5', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Еда',
                       circleInfoMiddle: 'Пицца',
                       circleInfoBottom: '',
                     }
@@ -168,25 +131,23 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Напитки',
                   data: [
                     {
                       itemId: '20',
                       ammount: '2', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Вода',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '21',
                       ammount: '3', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Пиво',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '22',
                       ammount: '4', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Напитки',
                       circleInfoMiddle: 'Водка',
                       circleInfoBottom: '',
                     }
@@ -194,11 +155,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Алкоголь',
                   data: [
                     {
                       itemId: '165',
                       ammount: '7', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Алкоголь',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -206,11 +167,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Табак',
                   data: [
                     {
                       itemId: '166',
                       ammount: '9', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Табак',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -218,11 +179,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Медикаменты',
                   data: [
                     {
                       itemId: '158',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Медикаменты',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -230,46 +191,37 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Инструменты',
                   data: [
-                    {
-                      itemId: '10',
-                      ammount: '9', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Инструменты',
-                      circleInfoMiddle: '',
-                      circleInfoBottom: '',
-                    }
                   ]
                 }
               ],
               [ // анимации
                 {
                   selected: 0,
+                  circleInfoTop: 'Танцевальные',
                   data: [
                     {
                       itemId: '40',
                       ammount: '9', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 1',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '41',
                       ammount: '9', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 2',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '42',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 3',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '43',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Танцевальные',
                       circleInfoMiddle: 'Танец 4',
                       circleInfoBottom: '',
                     }
@@ -277,25 +229,23 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Важные',
                   data: [
                     {
                       itemId: '45',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Важные',
                       circleInfoMiddle: 'Поднять руки',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '46',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Важные',
                       circleInfoMiddle: 'Пожать руку',
                       circleInfoBottom: '',
                     },
                     {
                       itemId: '47',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Важные',
                       circleInfoMiddle: 'Лечь',
                       circleInfoBottom: '',
                     }
@@ -303,11 +253,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Социальные',
                   data: [
                     {
                       itemId: '48',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Социальные',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -315,11 +265,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Спортивные',
                   data: [
                     {
                       itemId: '49',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Спортивные',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -327,11 +277,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Взаимодействия',
                   data: [
                     {
                       itemId: '50',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Взаимодействия',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -339,11 +289,11 @@ class CircleMenu extends React.Component {
                 },
                 {
                   selected: 0,
+                  circleInfoTop: 'Нецензурные',
                   data: [
                     {
                       itemId: '51',
                       ammount: '', // то что пишется в кругу под иконкой
-                      circleInfoTop: 'Нецензурные',
                       circleInfoMiddle: '',
                       circleInfoBottom: '',
                     }
@@ -448,11 +398,75 @@ class CircleMenu extends React.Component {
       // автофокусится на круг для навигации кнопками
     }
 
+    getWeaponSpanStyle = (index) => {
+      let styles = {}
+      // index - слот в колесе
+      switch(index) {
+        case 2:
+          styles = {
+            position: 'fixed',
+            marginTop: '45px',
+            marginLeft: '-32px'
+          }
+          break;
+        case 3:
+          styles = {
+             position: 'fixed'
+          }
+          break;
+        case 4:
+          styles = {
+            position: 'fixed',
+            marginTop: '42px',
+            marginLeft: '12px'
+          }
+          break;
+        case 5:
+          styles = {
+            marginTop: '20px',
+            position: 'fixed',
+            marginLeft: '-5px'
+          }
+          break;
+      }
+      return styles
+    }
 
     fixWeaponStyles= (arr) => {
 
+      
+
       arr[0].map((item, index) => {
         let styles = {}
+        if (item.data[0]) {
+        switch(index) {
+          case 1: // холодное
+            styles = {
+              transform: "rotate(-120deg)"
+            }
+            break;
+          case 2: // дробовик
+            styles = {
+              transform: "scale(-1, 1) rotate(60deg)"
+            }
+            break;
+          case 3: // пистолет
+            styles = {
+              marginBottom: '-10px'
+            }
+            break;
+          case 4: // автоматическое
+            styles = {
+              transform: "rotate(60deg)",
+              maxWidth: '70%'
+            }
+            break;
+          case 5: // метательное
+            styles = {
+              transform: "rotate(-60deg)"
+            }
+            break;
+        }
         switch(item.data[0].itemId) {
           case '99':
             styles = {
@@ -609,6 +623,7 @@ class CircleMenu extends React.Component {
           ...item.data[0].imgStyle,
           ...styles
         })
+      }
       })
     }
 
@@ -666,13 +681,13 @@ class CircleMenu extends React.Component {
                         this.state.menuData[this.state.selectedType].map((item, indexItem) => {
                           return (
                             <Slice
-                              key={item.data[item.selected].itemId}
+                              key={indexItem.toString()}
                               onMouseOver={() => {
                                 this.setState((state) => {
                                   return {selected: indexItem}
                                 })
                               }}
-                              onSelect={() => console.log(`Использую ${this.state.menuData[this.state.selectedType][this.state.selected].data[this.state.menuData[this.state.selectedType][this.state.selected].selected].circleInfoMiddle}`)}
+                              onSelect={() => this.state.menuData[this.state.selectedType][this.state.selected].data[this.state.menuData[this.state.selectedType][this.state.selected].selected] ? console.log(`Использую ${this.state.menuData[this.state.selectedType][this.state.selected].data[this.state.menuData[this.state.selectedType][this.state.selected].selected].circleInfoMiddle}`) : console.log('В этой иконке ничего нет, не могу использовать')}
                             >
                               {item.data.length > 0 && (
                               <div
@@ -693,7 +708,7 @@ class CircleMenu extends React.Component {
                                 </div>
                                 )}
                                 <img
-                                  src={require(`../inventory/img/all-items/Item_${item.data[item.selected].itemId}.png`)}
+                                  src={item.data[item.selected].itemId ? require(`../inventory/img/all-items/Item_${item.data[item.selected].itemId}.png`) : null}
                                   className={this.state.selectedType === 0 ? "circle-weapon-img" : "circle-weapon-img circle-item-img"}
                                   style={
                                     (item.data.length === 1) ? item.data[item.selected].imgStyle : {maxWidth: this.state.selected === indexItem ? '35%' : '60%'}
@@ -712,7 +727,7 @@ class CircleMenu extends React.Component {
                                 )}
                                 </div>
                                 <span
-                                  style={item.data[item.selected].spanStyle}
+                                  style={this.state.selectedType === 0 ? this.getWeaponSpanStyle(indexItem) : null}
                                   className={this.state.selectedType != 0 ? "ammo-info-item" : "ammo-info"}
                                 >
                                 {item.data[item.selected].ammount}
