@@ -2,7 +2,6 @@ import React from 'react';
 import './css/circlemenu.css'
 import PieMenu from './PieMenu'
 import Slice from './PieMenu/Slice'
-import Icon from '../hud/components/MainMenu/uikit/Icon'
 import ReactDOM from 'react-dom'
 
 const MOUSE_RIGHT_CODE = 3;
@@ -12,7 +11,6 @@ class CircleMenu extends React.Component {
         super(props)
         this.state = {
             show: false,
-            showMenu: false,
             selected: 0,
             selectedType: 0,
             menuData: [
@@ -309,7 +307,7 @@ class CircleMenu extends React.Component {
     }
 
     componentDidMount() {
-      if (this.state.show && this.state.showMenu) {
+      if (this.state.show) {
         this.focusDiv()
       }
     }
@@ -340,9 +338,7 @@ class CircleMenu extends React.Component {
       onMouseDown = e => {
         if (e.nativeEvent.which === MOUSE_RIGHT_CODE) {
           this.setState({
-            mouseX: `${e.pageX}px`,
-            mouseY: `${e.pageY}px`,
-            showMenu: true,
+            show: true,
           });
         }
       }
@@ -356,7 +352,7 @@ class CircleMenu extends React.Component {
     
       onMouseUp = e => {
         if (e.nativeEvent.which === MOUSE_RIGHT_CODE) {
-          this.setState({ showMenu: false });
+          this.setState({ show: false });
           e.preventDefault();
         }
       }
@@ -632,7 +628,7 @@ class CircleMenu extends React.Component {
         if (!this.state.show) {
             return null;
         }
-        const { showMenu } = this.state;
+        const { show } = this.state;
         this.fixWeaponStyles(this.state.menuData)
         return (
             <React.Fragment>
@@ -647,7 +643,7 @@ class CircleMenu extends React.Component {
                     ref="circle"
                     style={{transform: `scale(${document.documentElement.clientHeight / 652})`}}
                 >
-                {showMenu && (
+                {show && (
                 <div className="circle-menu-type">
                   <div className="circle-menu-type-button">
                     <span>R</span>
@@ -667,7 +663,7 @@ class CircleMenu extends React.Component {
                 )}
                 <div className="circle-content">
                 <canvas style={{width: '100%', height: '100%', position: 'absolute'}} ref={ref => { this.canvas = ref; }} />
-                {showMenu && (
+                {show && (
                     <PieMenu
                         className="circle-menu-main"
                         radius={`200px`} // 200px {`${document.documentElement.clientHeight / 3.2}px`}

@@ -98,7 +98,7 @@ const PieMenu = ({
     borderRadius: '50%',
     overflow: 'hidden'
   }}>
-    <div className={className} {...attrs}>
+    <div className={className}>
       <div style={styles.list}>
         {slices.map((slice, i) => (
             <Item
@@ -123,7 +123,6 @@ const PieMenu = ({
         ))}
       </div>
       <div
-        centerRadius={centerRadius}
         style={{
           display: 'flex',
           justifyContent: 'center',
