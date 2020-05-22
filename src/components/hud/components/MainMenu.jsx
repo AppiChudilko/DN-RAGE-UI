@@ -10,7 +10,7 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props)
         this.handleKeyDown = this.handleKeyDown.bind(this)
-        this.itemRefs = {}
+        this.itemRefs = []
         this.state = {
             show: false,
             selected: 0,
@@ -274,25 +274,16 @@ class MainMenu extends React.Component {
             this.setState((state) => {
                 return {selected: 0}
             }, this.onChangeSelected(0))
-            setTimeout(
-                function() {
-                    this.itemRefs[0].focus()
-                }
-                    .bind(this),
-                100
-            )
         } else {
             this.setState((state) => {
                 return {selected: this.state.menuList.length - 1}
             }, this.onChangeSelected(this.state.menuList.length - 1))
-            setTimeout(
-                function() {
-                    this.itemRefs[this.state.menuList.length - 1].focus()
-                }
-                    .bind(this),
-                100
-            )
         }
+    }
+
+    componentDidUpdate() {
+        const selectedNow = this.state.selected
+        this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }
 
     handleWheel(e) {
@@ -378,6 +369,10 @@ class MainMenu extends React.Component {
 
 
     handleKeyDown(e) {
+        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+
         if (e.keyCode === 13) {
             if (0 === this.state.menuList[this.state.selected].type) {
                 // CHECKBOX
@@ -425,7 +420,6 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected - 1}
                 }, this.onChangeSelected(this.state.selected - 1))
-                this.scrollMenu('up')
             }
         } else if (e.keyCode === 40) {
             if (this.state.menuList.length - 1 === this.state.selected) {
@@ -434,55 +428,11 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected + 1}
                 }, this.onChangeSelected(this.state.selected + 1))
-                this.scrollMenu('down')
             }
         }
     }
 
-    scrollMenu(type) {
-        if ((this.state.selected === this.state.menuList.length) && (type === 'up')) {
-            setTimeout(
-                function() {
-                    this.itemRefs[this.state.menuList.length - 2].focus()
-                }
-                    .bind(this),
-                120
-            )
-            return null
-        }
 
-        if ((this.state.selected === 0) && (type === 'down')) {
-            setTimeout(
-                function() {
-                    this.itemRefs[1].focus()
-                }
-                    .bind(this),
-                120
-            )
-            return null
-        }
-
-        if (type === 'up') {
-            const selected = this.state.selected - 1
-            setTimeout(
-                function() {
-                    this.itemRefs[selected].focus()
-                }
-                    .bind(this),
-                120
-            )
-        }
-        if (type === 'down') {
-            const selected = this.state.selected + 1
-            setTimeout(
-                function() {
-                    this.itemRefs[selected].focus()
-                }
-                    .bind(this),
-                120
-            )
-        }
-    }
 
     toggleSelected(id) {
         this.setState((state) => {
