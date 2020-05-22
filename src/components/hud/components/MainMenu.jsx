@@ -18,7 +18,7 @@ class MainMenu extends React.Component {
             opacity: 0.80,
             headerText: '',
             headerDesc: '~r~HELL~g~O WO~b~RLD',
-            banner: 'c_binco',
+            banner: 'bs_hair',
             menuName: '',
             menuList: [
                 {
@@ -541,7 +541,7 @@ class MainMenu extends React.Component {
                             headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`}
                             headerText={this.state.headerText}
                             headerDesc={this.state.headerDesc}
-                            banner={this.state.header && this.state.banner ? `${require('./MainMenu/img/banners/' + this.state.banner + '.png')}` : ''}
+                            banner={this.state.header && this.state.banner ? this.state.banner : ''}
                         />
                          : <></>}
                     <div className="menuContainer" style={styles.menuContainer}>

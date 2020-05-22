@@ -26,6 +26,11 @@ const styles = {
         width: '80%'
     },
     headerDescCount: {
+    },
+    banner: {
+        width: '100%',
+        position: 'absolute',
+        zIndex: '-1'
     }
 }
 
@@ -39,7 +44,10 @@ export default function Header(props) {
     
     return (
         <div>
-            <div style={{backgroundImage: props.banner ? `url(${props.banner})` : '', backgroundPosition: 'center', backgroundSize: 'cover'}}>
+            <div style={{minHeight: props.banner ? '150px' : ''}}>
+                {props.banner && (
+                    <img src={require(`../img/banners/${props.banner}.png`)} style={styles.banner} />
+                )}
                 <h1 className="header" style={styles.header}>{props.headerText}</h1>
             </div>
             <div style={styles.headerDataContainer}>
