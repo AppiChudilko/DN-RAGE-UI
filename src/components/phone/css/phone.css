@@ -344,6 +344,12 @@
     /*filter: invert(100%);*/
 }
 
+.icons-usmc {
+    background: url(../img/android/icons/usmc.png) no-repeat center;
+    background-size: 32px;
+    /*filter: invert(100%);*/
+}
+
 .icons-community {
     background: url(../img/android/icons/community.png) no-repeat center;
     background-size: 32px;

@@ -100,9 +100,9 @@ export default class Draggable extends React.Component {
             moveAt(event.clientX, event.clientY)
         }
 
-        document.addEventListener('mousemove', onMouseMove)
+        document.addEventListener('mousemove', onMouseMove);
 
-        element.onmouseup = function() {
+        document.onmouseup = function() { //TODO
             document.removeEventListener('mousemove', onMouseMove)
             element.style.zIndex = oldZindex
             element.onmouseup = null
