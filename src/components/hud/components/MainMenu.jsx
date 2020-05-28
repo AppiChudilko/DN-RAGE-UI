@@ -244,6 +244,15 @@ class MainMenu extends React.Component {
         try {
             this.itemRefs[0].focus()
         } catch (e) {}
+
+        /*let that = this; //DEBUG
+        setTimeout(function () {
+            that.setState({show: false})
+        }, 5000);
+        setTimeout(function () {
+            that.setState({show: true})
+        }, 10000);*/
+
         EventManager.addHandler('hudm', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
@@ -282,8 +291,11 @@ class MainMenu extends React.Component {
     }
 
     componentDidUpdate() {
-        const selectedNow = this.state.selected
-        this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        try {
+            const selectedNow = this.state.selected
+            this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        }
+        catch (e) {}
     }
 
     handleWheel(e) {
@@ -305,7 +317,6 @@ class MainMenu extends React.Component {
             }
         }
     }
-
     
     resetValList(type) {
 
@@ -431,8 +442,6 @@ class MainMenu extends React.Component {
             }
         }
     }
-
-
 
     toggleSelected(id) {
         this.setState((state) => {

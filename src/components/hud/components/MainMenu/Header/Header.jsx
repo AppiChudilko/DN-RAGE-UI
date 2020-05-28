@@ -29,7 +29,10 @@ const styles = {
     },
     banner: {
         width: '100%',
+        height: '120px',
         position: 'absolute',
+        objectFit: 'cover',
+        objectPosition: 'center',
         zIndex: '-1'
     }
 }
@@ -44,7 +47,7 @@ export default function Header(props) {
     
     return (
         <div>
-            <div style={{minHeight: props.banner ? '150px' : ''}}>
+            <div style={{minHeight: props.banner ? '120px' : ''}}>
                 {props.banner && (
                     <img src={require(`../img/banners/${props.banner}.png`)} style={styles.banner} />
                 )}
