@@ -3,16 +3,15 @@ import EventManager from "../../../EventManager";
 import Header from './MainMenu/Header/Header.jsx'
 import Desc from './MainMenu/uikit/Desc.jsx'
 import InterfaceItem from './MainMenu/List/InterfaceItem.jsx'
-
 import Draggable from '../Draggable'
-
 class MainMenu extends React.Component {
     constructor(props) {
         super(props)
         this.handleKeyDown = this.handleKeyDown.bind(this)
+        this.itemRefs = {}
         this.itemRefs = []
         this.state = {
-            show: false,
+            show: true,
             selected: 0,
             header: true,
             opacity: 0.80,
@@ -235,24 +234,13 @@ class MainMenu extends React.Component {
             ]
         };
     }
-
     componentDidCatch(error, errorInfo) {
         mp.trigger('client:ui:debug', 'MainMenu.jsx', error, errorInfo); // eslint-disable-line
     }
-
     componentDidMount() {
         try {
             this.itemRefs[0].focus()
         } catch (e) {}
-
-        /*let that = this; //DEBUG
-        setTimeout(function () {
-            that.setState({show: false})
-        }, 5000);
-        setTimeout(function () {
-            that.setState({show: true})
-        }, 10000);*/
-
         EventManager.addHandler('hudm', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
@@ -271,30 +259,41 @@ class MainMenu extends React.Component {
                 this.setState({menuList: value.menuList});
                 this.setState({menuName: value.menuName});
                 try {
-                    this.itemRefs[value.selected].focus()
+                    this.itemRefs[value.selected].focus();
                 }
                 catch (e) {}
             } else return;
         })
     }
-
     resetVal(type) {
         if (type === 'max') {
             this.setState((state) => {
                 return {selected: 0}
             }, this.onChangeSelected(0))
+            setTimeout(
+                function() {
+                    this.itemRefs[0].focus()
+                }
+                    .bind(this),
+                100
+            )
         } else {
             this.setState((state) => {
                 return {selected: this.state.menuList.length - 1}
             }, this.onChangeSelected(this.state.menuList.length - 1))
+            setTimeout(
+                function() {
+                    this.itemRefs[this.state.menuList.length - 1].focus()
+                }
+                    .bind(this),
+                100
+            )
         }
     }
 
     componentDidUpdate() {
-        try {
-            this.itemRefs[this.state.selected].focus()
-        }
-        catch (e) {}
+        const selectedNow = this.state.selected
+        this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }
 
     handleWheel(e) {
@@ -318,14 +317,12 @@ class MainMenu extends React.Component {
     }
     
     resetValList(type) {
-
         if (type === 'max') {
             let menuListNew = [...this.state.menuList]
             menuListNew[this.state.selected].index = 0
             this.setState((state) => {
                 return {menuList: menuListNew}
             })
-
             try {
                 mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), 0); // eslint-disable-line
             }
@@ -337,14 +334,12 @@ class MainMenu extends React.Component {
             this.setState((state) => {
                 return {menuList: menuListNew}
             })
-
             try {
                 mp.trigger('client:menuList:callBack:list', this.state.menuName, this.state.selected, JSON.stringify(menuListNew[this.state.selected].params), menuListNew[this.state.selected].index); // eslint-disable-line
             }
             catch (e) {}
         }
     }
-
     nextVal = () => {
         if (this.state.menuList[this.state.selected].index + 2 > this.state.menuList[this.state.selected].items.length) {
             this.resetValList('max')
@@ -360,7 +355,6 @@ class MainMenu extends React.Component {
             catch (e) {}
         }
     }
-
     prevVal = () => {
         if (this.state.menuList[this.state.selected].index === 0) {
             this.resetValList('min')
@@ -380,7 +374,7 @@ class MainMenu extends React.Component {
 
     handleKeyDown(e) {
         if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-            //e.preventDefault();
+            e.preventDefault();
         }
 
         if (e.keyCode === 13) {
@@ -391,7 +385,6 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {menuList: menuListNew}
                 })
-
                 try {
                     mp.trigger('client:menuList:callBack:check', this.state.menuName, id - 1, JSON.stringify(menuListNew[id - 1].params), menuListNew[id - 1].checked); // eslint-disable-line
                 }
@@ -422,7 +415,6 @@ class MainMenu extends React.Component {
                 this.prevVal()
             }
         }
-
         if (e.keyCode === 38) {
             if (this.state.selected === 0) {
                 this.resetVal('min')
@@ -430,6 +422,7 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected - 1}
                 }, this.onChangeSelected(this.state.selected - 1))
+                this.scrollMenu('up')
             }
         } else if (e.keyCode === 40) {
             if (this.state.menuList.length - 1 === this.state.selected) {
@@ -438,7 +431,53 @@ class MainMenu extends React.Component {
                 this.setState((state) => {
                     return {selected: state.selected + 1}
                 }, this.onChangeSelected(this.state.selected + 1))
+                this.scrollMenu('down')
             }
+        }
+    }
+
+    scrollMenu(type) {
+        if ((this.state.selected === this.state.menuList.length) && (type === 'up')) {
+            setTimeout(
+                function() {
+                    this.itemRefs[this.state.menuList.length - 2].focus()
+                }
+                    .bind(this),
+                120
+            )
+            return null
+        }
+
+        if ((this.state.selected === 0) && (type === 'down')) {
+            setTimeout(
+                function() {
+                    this.itemRefs[1].focus()
+                }
+                    .bind(this),
+                120
+            )
+            return null
+        }
+
+        if (type === 'up') {
+            const selected = this.state.selected - 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
+        }
+        if (type === 'down') {
+            const selected = this.state.selected + 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
         }
     }
 
@@ -447,33 +486,27 @@ class MainMenu extends React.Component {
             return {selected: id}
         }, this.onChangeSelected(id))
     }
-
     changeCheckbox = (id) => {
         let menuListNew = [...this.state.menuList]
         menuListNew[id - 1].checked = !menuListNew[id - 1].checked
         this.setState((state) => {
             return {menuList: menuListNew}
         })
-
         try {
             mp.trigger('client:menuList:callBack:check', this.state.menuName, id - 1, JSON.stringify(menuListNew[id - 1].params), menuListNew[id - 1].checked); // eslint-disable-line
         }
         catch (e) {}
     }
-
     onChangeSelected(selected) {
         //console.log('SELECTED', selected)
-
         try {
             mp.trigger('client:menuList:callBack:select', this.state.menuName, selected); // eslint-disable-line
         }
         catch (e) {}
     }
-
     render() {
         if (!this.state.show)
             return null;
-
         const styles = {
             container: {
                 backgroundColor: '#000',
@@ -490,7 +523,6 @@ class MainMenu extends React.Component {
                 maxHeight: '350px'
             }
         }
-
         return (
             <Draggable id='menu'>
                 <div className="menu-box" style={styles.container} onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
@@ -526,5 +558,4 @@ class MainMenu extends React.Component {
         )
     }
 }
-
 export default MainMenu;
