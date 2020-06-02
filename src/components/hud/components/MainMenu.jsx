@@ -242,7 +242,7 @@ class MainMenu extends React.Component {
 
     componentDidMount() {
         try {
-            this.itemRefs[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+            //this.itemRefs[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
             this.itemRefs[0].focus()
         } catch (e) {}
 
@@ -272,7 +272,7 @@ class MainMenu extends React.Component {
                 this.setState({menuList: value.menuList});
                 this.setState({menuName: value.menuName});
                 try {
-                    this.itemRefs[value.selected].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+                    //this.itemRefs[value.selected].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
                     this.itemRefs[value.selected].focus()
                 }
                 catch (e) {}
@@ -294,8 +294,8 @@ class MainMenu extends React.Component {
 
     componentDidUpdate() {
         try {
-            const selectedNow = this.state.selected
-            this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+            this.itemRefs[this.state.selected].focus()
+            //this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
         }
         catch (e) {}
     }
@@ -383,7 +383,7 @@ class MainMenu extends React.Component {
 
     handleKeyDown(e) {
         if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-            e.preventDefault();
+            //e.preventDefault();
         }
 
         if (e.keyCode === 13) {
