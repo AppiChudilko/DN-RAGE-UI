@@ -9,9 +9,8 @@ class MainMenu extends React.Component {
         super(props)
         this.handleKeyDown = this.handleKeyDown.bind(this)
         this.itemRefs = {}
-        this.itemRefs = []
         this.state = {
-            show: true,
+            show: false,
             selected: 0,
             header: true,
             opacity: 0.80,
