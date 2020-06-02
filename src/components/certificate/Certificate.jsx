@@ -79,6 +79,9 @@ class Certificate extends React.Component {
             case 'ems':
                 this.setState({work: 'emergency medical services', img_frac: ` ${ems}`})
                 break;
+            case 'usmc':
+                this.setState({work: 'united states marine corps', img_frac: ``})
+                break;
             default:
                 break;
         }
