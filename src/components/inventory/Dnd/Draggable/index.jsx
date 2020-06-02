@@ -145,6 +145,7 @@ export default class Draggable extends React.PureComponent {
 
             let element = document.getElementById(this.props.id)
             let clone = element.cloneNode(true)
+            clone.canDrop = true;
 
             let shiftX = event.clientX - element.getBoundingClientRect().left
             let shiftY = event.clientY - element.getBoundingClientRect().top
@@ -210,11 +211,14 @@ export default class Draggable extends React.PureComponent {
 
             document.onmouseup = function() {
                 try {
-                    document.removeEventListener('mousemove', onMouseMove)
-                    clone.onmouseup = null
-                    clone.remove()
-                    //mp.trigger('client:inventory:notify', `MOUSE UP2`); // eslint-disable-line
-                    that.drop()
+                    if (clone.canDrop) {
+                        document.removeEventListener('mousemove', onMouseMove);
+                        clone.onmouseup = null;
+                        clone.canDrop = false;
+                        clone.remove();
+                        //mp.trigger('client:inventory:notify', `MOUSE UP2`); // eslint-disable-line
+                        that.drop()
+                    }
                 }
                 catch (e) {
                     //mp.trigger('client:inventory:notify', `DROP ERROR2: ` + e.toString()); // eslint-disable-line
