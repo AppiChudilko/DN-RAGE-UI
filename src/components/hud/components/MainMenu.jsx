@@ -291,10 +291,7 @@ class MainMenu extends React.Component {
         }
     }
 
-    componentDidUpdate() {
-        const selectedNow = this.state.selected
-        this.itemRefs[selectedNow].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }
+
 
     handleWheel(e) {
         if (e.deltaY < 0) {
@@ -373,7 +370,7 @@ class MainMenu extends React.Component {
 
 
     handleKeyDown(e) {
-        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        if([38, 40].indexOf(e.keyCode) > -1) {
             e.preventDefault();
         }
 
