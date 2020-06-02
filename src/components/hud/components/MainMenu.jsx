@@ -242,8 +242,8 @@ class MainMenu extends React.Component {
 
     componentDidMount() {
         try {
-            this.itemRefs[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
             this.itemRefs[0].focus()
+            this.itemRefs[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
         } catch (e) {}
 
         /*let that = this; //DEBUG
@@ -272,8 +272,8 @@ class MainMenu extends React.Component {
                 this.setState({menuList: value.menuList});
                 this.setState({menuName: value.menuName});
                 try {
-                    this.itemRefs[value.selected].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
                     this.itemRefs[value.selected].focus()
+                    this.itemRefs[value.selected].scrollIntoView({ behavior: 'smooth', block: 'nearest' })
                 }
                 catch (e) {}
             } else return;
