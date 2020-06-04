@@ -11,15 +11,15 @@ const styles = {
         overflow: 'auto'
     },
     listitem: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoLight',
         color: '#fff',
-        fontSize: '1.2rem',
+        fontSize: '1.3rem',
         marginRight: 'auto'
     },
     itemCarousel: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoLight',
         color: '#fff',
-        fontSize: '1.1rem',
+        fontSize: '1.2rem',
         textAlign: 'center',
         overflow: 'hidden',
         width: '100%'
@@ -54,6 +54,12 @@ export default class ListMenu extends React.Component {
     }
 
     render() {
+
+        try {
+            styles.listitem.fontFamily = this.props.font;
+            styles.itemCarousel.fontFamily = this.props.font;
+        }
+        catch (e) {}
 
         return (
             <div style={styles.container} onClick={this.handleOnClick.bind(this)} tabIndex="2">

@@ -10,13 +10,13 @@ const styles = {
         alignItems: 'center'
     },
     listitem: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoLight',
         color: '#fff',
-        fontSize: '1.2rem',
+        fontSize: '1.3rem',
         marginRight: 'auto',
     },
     icon: {
-        fontSize: '1.4rem',
+        fontSize: '1.5rem',
         cusor: 'pointer'
     }
 
@@ -33,6 +33,12 @@ export default class Caption extends React.Component {
     }
 
     render() {
+
+        try {
+            styles.listitem.fontFamily = this.props.font;
+        }
+        catch (e) {}
+
         return (
             <div onClick={this.handleOnClick.bind(this)} style={styles.container}>
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}

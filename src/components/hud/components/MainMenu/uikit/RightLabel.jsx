@@ -3,15 +3,20 @@ import parseText from '../functions/parseText'
 
 const styles = {
     header: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoLight',
         color: '#fff',
-        fontSize: '1.1rem',
+        fontSize: '1.2rem',
         fontWeight: 300
     }
 }
 
 
 export default function RightLabel(props) {
+
+    try {
+        styles.header.fontFamily = props.font;
+    }
+    catch (e) {}
 
     return (
         <div>
