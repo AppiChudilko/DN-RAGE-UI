@@ -47,7 +47,7 @@ export default class Caption extends React.Component {
                        dangerouslySetInnerHTML={{__html: parseText(this.props.data.data.title)}}
                 >
                 </label>
-                {this.props.data.data.rl ? <RightLabel text={this.props.data.data.rl} /> : <></>}
+                {this.props.data.data.rl ? <RightLabel font={this.props.font} text={this.props.data.data.rl} /> : <></>}
                 {this.props.data.data.divider ? <Icon style={styles.icon} name="arrow_right" /> : <></>}
                 {this.props.data.data.iconr ? <Icon style={styles.icon} name={this.props.data.data.iconr} /> : <></>}
             </div>
