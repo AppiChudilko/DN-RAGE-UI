@@ -9,9 +9,9 @@ const styles = {
         alignItems: 'center'
     },
     title: {
-        fontFamily: 'Roboto',
+        fontFamily: 'RobotoLight',
         color: '#fff',
-        fontSize: '1.2rem',
+        fontSize: '1.3rem',
         marginRight: 'auto',
         maxWidth: '80%',
         overflow: 'hidden',
@@ -33,6 +33,12 @@ export default class Checkbox extends React.Component {
     }
 
     render() {
+
+        try {
+            styles.title.fontFamily = this.props.font;
+        }
+        catch (e) {}
+
         return (
             <label tabIndex="1" className="checkbox-container" style={styles.container}>
                 {this.props.data.data.icon ? <Icon name={this.props.data.data.icon} /> : <></>}

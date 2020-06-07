@@ -78,7 +78,7 @@ ion-icon {
 }
 
 .menu-item {
-    background-color: var(--bg-color);
+
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
@@ -95,7 +95,7 @@ ion-icon {
 }
 
 .menu-item-inverted {
-    background-color: var(--bg-color);
+    background-color: #0c0c0c;
     -webkit-filter: invert(100%);
     filter: invert(100%);
     font-weight: 300;

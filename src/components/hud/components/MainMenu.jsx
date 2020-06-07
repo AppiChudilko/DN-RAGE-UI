@@ -13,8 +13,16 @@ class MainMenu extends React.Component {
             show: false,
             selected: 0,
             header: true,
-            opacity: 0.80,
-            headerText: '',
+            opacity: 0.8,
+            mStyle: {
+                font: 'RobotoLight',
+                fontOffset: 2,
+                borderRadius: 4,
+                bgColor: 'rgb(0,0,0,1)',
+                width: '400px',
+                height: '350px',
+            },
+            headerText: 'Test',
             headerDesc: '~r~HELL~g~O WO~b~RLD',
             banner: 'bs_hair',
             menuName: '',
@@ -247,6 +255,8 @@ class MainMenu extends React.Component {
                 this.setState({show: false})
             } else if (value.type === 'switch') {
                 this.setState({show: !this.state.show})
+            } else if (value.type === 'updateStyle') {
+                this.setState({mStyle: value.style})
             } else if (value.type === 'updateInfo') {
                 this.setState({show: true});
                 this.setState({header: value.header});
@@ -505,18 +515,18 @@ class MainMenu extends React.Component {
             return null;
         const styles = {
             container: {
-                backgroundColor: '#000',
                 opacity: this.state.opacity,
-                borderRadius: '0px',
+                borderRadius: this.state.mStyle.borderRadius + 'px',
                 border: '0px solid #000',
-                width: '400px',
+                width: this.state.mStyle.width
             },
             menuContainer: {
-                backgroundColor: '#000',
+                backgroundColor: this.state.mStyle.bgColor,
                 position: 'relative',
                 overflow: 'hidden',
                 overflowY: 'scroll',
-                maxHeight: '350px'
+                maxHeight: this.state.mStyle.height,
+                borderRadius: '0 0 ' + this.state.mStyle.borderRadius + 'px ' + this.state.mStyle.borderRadius + 'px'
             }
         }
         return (
@@ -527,6 +537,9 @@ class MainMenu extends React.Component {
                             headerData={`${this.state.selected + 1} / ${this.state.menuList.length}`}
                             headerText={this.state.headerText}
                             headerDesc={this.state.headerDesc}
+                            headerColor={this.state.mStyle.bgColor}
+                            headerBorder={this.state.mStyle.borderRadius}
+                            headerFont={this.state.mStyle.font}
                             banner={this.state.header && this.state.banner ? this.state.banner : ''}
                         />
                          : <></>}
@@ -541,6 +554,7 @@ class MainMenu extends React.Component {
                                         onChangeCheckbox={this.changeCheckbox}
                                         id={index}
                                         data={item}
+                                        font={this.state.mStyle.font}
                                         selectCurrent={this.state.selected}
                                         selected={index === this.state.selected}
                                     />
@@ -548,7 +562,7 @@ class MainMenu extends React.Component {
                             )
                         })}
                     </div>
-                    {this.state.menuList[this.state.selected].subtitle ? <Desc desc={this.state.menuList[this.state.selected].subtitle} /> : <></>}
+                    {this.state.menuList[this.state.selected].subtitle ? <Desc font={this.state.mStyle.font} border={this.state.mStyle.borderRadius} color={this.state.mStyle.bgColor} desc={this.state.menuList[this.state.selected].subtitle} /> : <></>}
                 </div>
             </Draggable>
         )
