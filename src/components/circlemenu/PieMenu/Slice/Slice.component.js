@@ -85,7 +85,7 @@ const Slice = ({
       borderRadius: '50%',
       transform: `skew(${-skew}deg) rotate(${((polar ? 90 : centralAngle) / 2) - 90}deg)`,
       color: 'black',
-      border: '6px solid rgba(255, 255, 255, 0)',
+      //border: '6px solid rgba(255, 255, 255, 0)',
       background: `radial-gradient(transparent ${centerRadius}, rgba(0, 0, 0, 0.67) ${centerRadius})`,
       outline: 'none'
     },

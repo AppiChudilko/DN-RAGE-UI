@@ -11,6 +11,7 @@ import Logo from './components/Logo';
 import MainMenu from './components/MainMenu';
 import EventManager from "../../EventManager";
 import Chat from './components/Chat';
+import Notification from './components/Notification/Notification'
 
 import {HudContext} from './context/HudContext'
 
@@ -72,6 +73,7 @@ class Hud extends React.Component {
                         </div>
                         <div className='hud-position-leftbottom'>
                             <Watch/>
+                            <Notification />
                             <Gps/>
                         </div>
                         <div className="hud-position-rightbottom">

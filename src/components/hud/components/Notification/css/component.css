@@ -1,0 +1,30 @@
+.notification-timer {
+    font-family: 'Choujikuu';
+    color: #48b9f2;
+    font-size: 0.8rem;
+    width: 100%;
+    margin-left: 92%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 2%;
+}
+
+.notification-timer::after {
+    content: 'с';
+    margin-top: 5%;
+    font-size: 0.5rem;
+}
+
+.notification-timer-line {
+    width: 100%;
+    background-color: #48B9F2;
+    height: 4%;
+    position: absolute;
+    z-index: 1;
+}
+
+.notification-container {
+    outline: none;
+}

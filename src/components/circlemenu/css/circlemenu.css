@@ -1,6 +1,6 @@
 #box {
-    /*background: url('https://sun9-55.userapi.com/6uzqef2pGVz0UMm_8LdLgNscuqVyNk1k-wdkqw/AOk5nr2Xktw.jpg') no-repeat;*/
-    background-size: 100%;
+    /*background: url('https://i.imgur.com/4w8TaCB.png') no-repeat;
+    background-size: 100%;*/
 }
 
 .circle-menu {
@@ -170,7 +170,8 @@
 
 .circle-slice:hover {
     color: white !important;
-    border: 6px solid #ABBABB !important;
+    box-shadow: rgb(226, 248, 255) 0px 0px 10px inset;
+    /*border: 6px solid #ABBABB !important;*/
     background: radial-gradient(transparent 120px, #424242 120px) !important;
 }
 

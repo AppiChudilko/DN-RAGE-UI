@@ -132,10 +132,10 @@ const PieMenu = ({
           position: 'absolute',
           borderRadius: '50%',
           background: 'transparent',
-          top: `calc(43% - ${centerRadius} - 3px)`,
-          left: `calc(52% - ${centerRadius})`,
-          width: `calc(2 * ${centerRadius})`,
-          height: `calc(2 * ${centerRadius})`
+          top: `calc(43% - ${centerRadius} - 10px - 3px)`,
+          left: `calc(52% - ${centerRadius} - 10px)`,
+          width: `calc(2 * ${centerRadius} + 20px)`,
+          height: `calc(2 * ${centerRadius} + 20px)`
         }}
       >
           <div className="center-content">
