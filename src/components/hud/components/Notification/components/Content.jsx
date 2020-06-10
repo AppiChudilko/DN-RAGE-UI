@@ -8,7 +8,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.67)',
+        backgroundColor: '#1c1c1c',
         paddingTop: '5%',
         paddingBottom: '5%'
     }
@@ -24,7 +24,7 @@ class Content extends React.Component {
     render() {
         return (
             <div style={styles.contentContainer}>
-                <span style={{fontFamily: 'TTSupermolotNeue-Regular', fontSize: 12, textAlign: 'center'}} className="notification-content-text">
+                <span className="notification-content-text">
                     {this.props.text.toUpperCase()}
                 </span>
             </div>
