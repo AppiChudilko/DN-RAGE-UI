@@ -12,7 +12,7 @@ const styles = {
         fontFamily: 'Choujikuu',
         color: '#000',
         fontSize: '1rem',
-        paddingLeft: '3%',
+        paddingLeft: '2%',
         width: '85%',
         height: '100%',
         alignItems: 'center',
@@ -67,7 +67,7 @@ class Notification extends React.Component {
             <div style={styles.header} className="notification-container">
                 <div style={styles.textContainer}>
                     <div style={{height: '100%', width: '10%', backgroundColor: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <img src={require(`../../../../inventory/img/all-items/Item_${this.props.img}.png`)} width="80%" style={{filter: 'brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%)'}} />
+                        <img src={require(`../../../../inventory/img/all-items/Item_${this.props.img}.png`)} width="80%" height="80%" style={{filter: 'brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%)'}} />
                     </div>
                     <span style={styles.headerText}>
                         {this.props.name}

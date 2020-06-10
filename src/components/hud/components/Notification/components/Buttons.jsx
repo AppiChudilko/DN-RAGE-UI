@@ -6,11 +6,14 @@ const styles = {
         height: '20%',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: '0.5%'
     },
     acceptButton: {
         backgroundColor: 'rgba(47, 233, 99, 1)',
         width: '48%',
+        paddingTop: '0.5%',
+        paddingBottom: '0.5%',
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
@@ -19,6 +22,8 @@ const styles = {
     declineButton: {
         backgroundColor: 'rgba(237, 29, 29, 1)',
         width: '48%',
+        paddingTop: '0.5%',
+        paddingBottom: '0.5%',
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
@@ -26,7 +31,7 @@ const styles = {
     },
     btnText: {
         fontFamily: 'Choujikuu',
-        fontSize: 8,
+        fontSize: 10,
         padding: '3%',
         textAlign: 'center'
     },

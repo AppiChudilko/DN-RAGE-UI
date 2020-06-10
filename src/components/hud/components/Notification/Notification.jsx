@@ -10,7 +10,7 @@ const styles = {
         margin: '0px',
         position: 'absolute',
         left: '750px',
-        top: '830px',
+        top: '630px',
         width: '480px',
         height: '140px'
     }
@@ -26,8 +26,8 @@ class Notification extends React.Component {
             notificationData: [
                 {
                     name: 'Подселение во фракцию',
-                    img: 240,
-                    time: 10, // seconds
+                    img: 268,
+                    time: 15, // seconds
                     text: 'Игрок (1362) приглашает Вас по фракцию "The Ballas Gang"'
                 },
                 {

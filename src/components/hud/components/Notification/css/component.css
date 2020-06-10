@@ -13,8 +13,8 @@
 
 .notification-timer::after {
     content: 'с';
-    margin-top: 5%;
-    font-size: 0.5rem;
+    margin-top: 16%;
+    font-size: 0.4rem;
 }
 
 .notification-timer-line {
@@ -27,4 +27,11 @@
 
 .notification-container {
     outline: none;
+}
+
+.notification-content-text {
+    font-family: 'Roboto';
+    font-size: 12;
+    padding-left: 9.5%;
+    padding-right: 9.5%;
 }
