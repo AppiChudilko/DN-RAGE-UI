@@ -60,7 +60,7 @@ export default function Header(props) {
         <div style={{backgroundColor: props.headerColor, borderRadius: props.headerBorder + 'px ' + props.headerBorder + 'px 0 0'}}>
             <div style={{minHeight: props.banner ? '120px' : ''}}>
                 {props.banner && (
-                    <img src={require(`../img/banners/${props.banner}.png`)} style={styles.banner} />
+                    <img src={`https://dednet.ru/client/images/banners/${props.banner}.png`} style={styles.banner} />
                 )}
                 <h1 className="header" style={styles.header}>{props.headerText}</h1>
             </div>
