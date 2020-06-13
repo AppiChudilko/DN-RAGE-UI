@@ -257,6 +257,8 @@ class MainMenu extends React.Component {
                 this.setState({show: !this.state.show})
             } else if (value.type === 'updateStyle') {
                 this.setState({mStyle: value.style})
+            } else if (value.type === 'focus') {
+                this.itemRefs[value.selected].focus();
             } else if (value.type === 'updateInfo') {
                 this.setState({show: true});
                 this.setState({header: value.header});
