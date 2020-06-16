@@ -1109,6 +1109,7 @@ h4 {
     font-size: 13px;
     color: #4DB6AC;
     margin-bottom: 7px;
+    display: flex;
 }
 
 .umenu-liner {
@@ -2784,4 +2785,38 @@ BankCard
 .loader-style-addchat .MuiCircularProgress-root.MuiCircularProgress-colorPrimary.MuiCircularProgress-indeterminate {
     width: 60px !important;
     height: 60px !important;
+}
+
+.chevron {
+    margin-right: 10%;
+}
+
+.chevron[data-hidden=true]::before {
+    border-style: solid;
+	border-width: 0.05em 0.05em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.4em;
+	position: relative;
+	vertical-align: top;
+    width: 0.4em;
+    top: 0.26em;
+    transform: rotate(135deg);
+}
+
+.chevron[data-hidden=false]::before {
+    border-style: solid;
+	border-width: 0.05em 0.05em 0 0;
+	content: '';
+	display: inline-block;
+	height: 0.4em;
+	position: relative;
+	vertical-align: top;
+    width: 0.4em;
+    top: 0.26em;
+    transform: rotate(315deg);
+}
+
+.umenu-title-name {
+    margin-right: auto;
 }

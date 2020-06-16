@@ -1,10 +1,9 @@
 import React from 'react';
-import UFrame from './UFrame';
+import UMenuContainerItem from './UMenuContainerItem';
 
 class UMenuContainer extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
     }
 
     componentDidCatch(error, errorInfo) {
@@ -21,30 +20,13 @@ class UMenuContainer extends React.Component {
                     {this.props.data.items.map((e, i) => {
                         let index = `umenucont${i}`
                         return (
-                            <React.Fragment key={index}>
-                                <div className="umenu-family-box">
-                                    <div className="umenu-title-family">{e.title}</div>
-                                    {e.umenu.map((e, i) => {
-                                        let index1 = `umenu${i}`
-                                        return (
-                                            <UFrame
-                                                menu={this.props.data.UUID}
-                                                item={e}
-                                                key={index1}
-                                                id={i}
-                                                type={e.type}
-                                                event={this.callback}
-                                                openScrollbar={this.props.openScrollbar}
-                                                openModal={this.props.openModal}
-                                                openInputModal={this.props.openInputModal}
-                                                rotate={this.props.rotate}
-                                                historyPush={this.props.historyPush}
-                                                path={this.props.path}
-                                            />
-                                        )
-                                    })}
-                                </div>
-                            </React.Fragment>
+                            <UMenuContainerItem
+                                e={e}
+                                key={index}
+                                data={this.props}
+                                callback={this.callback}
+                                hidden={e.hidden}
+                            />
                         )
                     })}
                 </div>
