@@ -12,7 +12,7 @@ class Phone extends React.Component {
         super(props)
         this.state = {
             show: false,
-            visible: true,
+            visible: false,
         }
     }
 
