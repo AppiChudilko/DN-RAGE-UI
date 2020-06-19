@@ -258,7 +258,10 @@ class MainMenu extends React.Component {
             } else if (value.type === 'updateStyle') {
                 this.setState({mStyle: value.style})
             } else if (value.type === 'focus') {
-                this.itemRefs[value.selected].focus();
+                try {
+                    this.itemRefs[value.selected].focus();
+                }
+                catch (e) {}
             } else if (value.type === 'updateInfo') {
                 this.setState({show: true});
                 this.setState({header: value.header});
@@ -294,15 +297,17 @@ class MainMenu extends React.Component {
             }, this.onChangeSelected(this.state.menuList.length - 1))
             setTimeout(
                 function() {
-                    this.itemRefs[this.state.menuList.length - 1].focus()
-                }
-                    .bind(this),
+                    try {
+                        this.itemRefs[this.state.menuList.length - 1].focus()
+                    }
+                    catch (e) {
+                        
+                    }
+                }.bind(this),
                 100
             )
         }
     }
-
-
 
     handleWheel(e) {
         if (e.deltaY < 0) {
