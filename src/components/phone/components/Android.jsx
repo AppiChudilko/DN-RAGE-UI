@@ -44,6 +44,7 @@ class Android extends React.Component {
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms', name: 'SMS' },
                 { link: "/phone/android/console", action: 'console', img: 'console', name: 'Console' },
                 { link: "/phone/android/achiev", action: 'achiev', img: 'achiev', name: 'Достижения' },
+                { link: "/phone/android/umenu", action: 'invader', img: 'uveh' },
                 /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },
                 { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
                 { link: "/phone/android/umenu", action: 'fleeca', img: 'fleeca' },
@@ -62,25 +63,55 @@ class Android extends React.Component {
                 title: 'Загрузка...',
                 items: [
                     {
-                        title: 'Загрузка...',
+                        title: 'Spectre | num 3712h3bj...',
+                        hidden: false,
                         umenu: [
                             {
-                                title: "Загрузка...",
-                                text: "",
+                                title: "Specter...",
+                                text: "290.000$",
                                 type: 0,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
                             },
                             {
-                                title: "Запись в историю",
-                                text: "",
+                                title: "Вызвать",
+                                text: "390.00$",
                                 type: 1,
                                 clickable: 1,
                                 value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
                                 params: { name: "null" }
                             },
                             {
-                                title: "Пропуск записи",
+                                title: "Узнать местоположение",
+                                text: "",
+                                type: 1,
+                                clickable: 1,
+                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                params: { name: "null", skip: true }
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Spectre | num 123...',
+                        hidden: true,
+                        umenu: [
+                            {
+                                title: "Specter...",
+                                text: "290.000$",
+                                type: 0,
+                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                params: { name: "null" }
+                            },
+                            {
+                                title: "Вызвать",
+                                text: "390.00$",
+                                type: 1,
+                                clickable: 1,
+                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                params: { name: "null" }
+                            },
+                            {
+                                title: "Узнать местоположение",
                                 text: "",
                                 type: 1,
                                 clickable: 1,

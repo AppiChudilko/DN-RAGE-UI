@@ -386,7 +386,7 @@ class MainMenu extends React.Component {
 
 
     handleKeyDown(e) {
-        if([38, 40].indexOf(e.keyCode) > -1) {
+        if([38, 32, 40].indexOf(e.keyCode) > -1) {
             e.preventDefault();
         }
 

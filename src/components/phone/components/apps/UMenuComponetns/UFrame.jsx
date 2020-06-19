@@ -60,6 +60,10 @@ class UFrame extends React.Component {
         )
     }
 
+    hideElements() {
+
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -68,7 +72,9 @@ class UFrame extends React.Component {
                      onClick={() => this.buttonClick(this.props.item.params)}>
                     {(this.props.type === 0) ?
                         <React.Fragment>
-                            <div className="umenu-mini-box">
+                            <div className="umenu-mini-box" onClick={() => {
+                                
+                            }}>
                                 <div className="mobile-profile">
                                     <img className="m-player-photo" alt="" src={this.props.item.value}/>
                                     <div className="m-player-info">
