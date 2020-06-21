@@ -263,17 +263,22 @@ class MainMenu extends React.Component {
                 }
                 catch (e) {}
             } else if (value.type === 'updateInfo') {
+
+                let select = 0;
+                //if (value.menuList.length >= select)
+                //    select = 0;
+
                 this.setState({show: true});
                 this.setState({header: value.header});
                 this.setState({opacity: value.opacity});
-                this.setState({selected: value.selected});
+                this.setState({selected: select});
                 this.setState({headerText: value.headerText});
                 this.setState({headerDesc: value.headerDesc});
                 this.setState({banner: value.banner});
                 this.setState({menuList: value.menuList});
                 this.setState({menuName: value.menuName});
                 try {
-                    this.itemRefs[value.selected].focus();
+                    this.itemRefs[select].focus();
                 }
                 catch (e) {}
             } else return;
@@ -383,7 +388,6 @@ class MainMenu extends React.Component {
             catch (e) {}
         }
     }
-
 
     handleKeyDown(e) {
         if([38, 32, 40].indexOf(e.keyCode) > -1) {
