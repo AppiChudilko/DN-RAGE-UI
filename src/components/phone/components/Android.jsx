@@ -17,6 +17,8 @@ import EditContact from './Android/PhoneBook/pages/EditContact';
 import Console from './Android/Console';
 import Achiev from './apps/Achiev';
 import AddChat from './apps/AddChat';
+import Calls from './apps/Calls'
+import CallingScreen from './Android/Calls/CallingScreen';
 
 class Android extends React.Component {
     constructor(props) {
@@ -43,6 +45,7 @@ class Android extends React.Component {
                 { link: "/phone/android/phonebook", action: 'cont', img: 'cont', name: 'Контакты' },
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms', name: 'SMS' },
                 { link: "/phone/android/console", action: 'console', img: 'console', name: 'Console' },
+                { link: "/phone/android/calls", action: 'calls', img: 'uveh', name: 'Звонки' },
                 { link: "/phone/android/achiev", action: 'achiev', img: 'achiev', name: 'Достижения' },
                 { link: "/phone/android/umenu", action: 'invader', img: 'uveh' },
                 /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },
@@ -158,7 +161,7 @@ class Android extends React.Component {
                     },*/
                 ],
                 contact: [
-                    /*{
+                    {
                         name: 'Wika Aretti',
                         numbers: ['222-1234212', '555-6347544'],
                         mail: 'wika.aretti@ded.net',
@@ -185,7 +188,7 @@ class Android extends React.Component {
                         mail: 'aika.aretti@ded.net',
                         isFavorite: false,
                         img: 'https://a.rsg.sc//n/socialclub',
-                    },*/
+                    },
 
                 ],
             },
@@ -270,8 +273,25 @@ class Android extends React.Component {
                 value: '',
                 buttons: ['Нет', 'Да'],
                 params: { name: "null" },
+            },
+            phonecall: {
+                number: '',
+                name: '',
+                avatar: '',
+                going: true
             }
         }
+    }
+
+    setCallNumber(phone) {
+        // Сами вызываем, получаем информацию о номере и передаем
+
+        this.setState(prevState => ({ ...prevState.phonecall.number = phone, ...prevState.phonecall.going = false }))
+        this.setLink(`/phone/android/callScreen`)
+    }
+
+    acceptCall() {
+        this.setState(prevState => ({ ...prevState.phonecall.going = false }))
     }
 
     componentDidCatch(error, errorInfo) {
@@ -396,6 +416,14 @@ class Android extends React.Component {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
             this.setState({ bg_color: '#000' })
         }
+        if (this.state.path === '/phone/android/calls') {
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+            this.setState({ bg_color: '#fff' })
+        }
+        if (this.state.path === '/phone/android/callScreen') {
+            this.setState(prevState => ({ ...prevState.top_bar.color_bar = 'rgba(0, 0, 0, 0.34)' }))
+            this.setState({ bg_color: `url(${this.state.bg_img_url}) no-repeat center` })
+        }
         if (this.state.path === '/phone/android/achiev') {
             this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
             this.setState({ bg_color: '#000' })
@@ -458,56 +486,74 @@ class Android extends React.Component {
     }
 
     clickApps(event, i) {
-        console.log(event.action)
+        
         let link = event.link.split('?')[0]
-        console.log(link)
-        console.log(event.link.split('?')[1])
-        if (link === "/phone/android/umenu") {
-            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
-            this.setState({ bg_color: '#000' })
-            this.setState({ path: `${event.link}?appmainpage:${event.action}` })
 
-            try {
-                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
-            } catch (e) {
-                console.log(e);
-                //#1C3AA9
+        switch(link) {
+            case '/phone/android/umenu': {
+                this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#000' }))
+                this.setState({ bg_color: '#000' })
+                this.setState({ path: `${event.link}?appmainpage:${event.action}` })
+    
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                    //#1C3AA9
+                }
+                break;
             }
-        } else if (link === "/phone/android/phonebook") {
-            this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
-            this.setState({ bg_color: '#1C3AA9' })
-            this.setState({ path: event.link })
-
-            try {
-                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
-            } catch (e) {
-                console.log(e);
+            case '/phone/android/phonebook': {
+                this.setState(prevState => ({ ...prevState.top_bar.color_bar = '#1C3AA9' }))
+                this.setState({ bg_color: '#1C3AA9' })
+                this.setState({ path: event.link })
+    
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                }
+                break;
             }
-        } else if (link === "/phone/android/messenger") {
-            this.setState({ path: event.link })
-            try {
-                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
-            } catch (e) {
-                console.log(e);
+            case '/phone/android/messenger': {
+                this.setState({ path: event.link })
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                }
+                break;
             }
+            case '/phone/android/calls': {
+                this.setState({ path: event.link })
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                }
+                break;
+            }
+            case '/phone/android/console': {
+                this.setState({ path: event.link })
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                }
+                break;
+            }
+            case '/phone/android/achiev': {
+                this.setState({ path: event.link })
+                try {
+                    mp.trigger('client:phone:apps', event.action); // eslint-disable-line
+                } catch (e) {
+                    console.log(e);
+                }
+                break;
+            }
+            default:
+                break;
         }
-        else if (link === "/phone/android/console") {
-            this.setState({ path: event.link })
-            try {
-                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
-            } catch (e) {
-                console.log(e);
-            }
-        }
-        else if (link === "/phone/android/achiev") {
-            this.setState({ path: event.link })
-            try {
-                mp.trigger('client:phone:apps', event.action); // eslint-disable-line
-            } catch (e) {
-                console.log(e);
-            }
-        }
-        console.log(event)
     }
 
     saveContact(contact, selected_contact) {
@@ -815,6 +861,23 @@ class Android extends React.Component {
                                 </Route>
                                 <Route exact path="/phone/android/console">
                                     <Console console_message={this.state.console_message} consoleCommand={this.consoleCommand.bind(this)} />
+                                </Route>
+                                <Route exact path="/phone/android/calls">
+                                    <Calls
+                                        onCall={this.setCallNumber.bind(this)}
+                                        setLink={this.setLink.bind(this)}
+                                    />
+                                </Route>
+                                <Route exact path="/phone/android/callScreen">
+                                    <CallingScreen
+                                        number={this.state.phonecall.number}
+                                        name={this.state.phonecall.name}
+                                        avatar={this.state.phonecall.avatar}
+                                        setLink={this.setLink.bind(this)}
+                                        going={this.state.phonecall.going}
+                                        onAccept={this.acceptCall.bind(this)}
+                                        onDecline={() => console.log(`Ты отменил вызов от ${this.state.phonecall.number}`)}
+                                    />
                                 </Route>
                                 <Route exact path="/phone/android/achiev">
                                     <Achiev data={this.state.achiev} openInfoShow={this.openInfoShow.bind(this)} />
