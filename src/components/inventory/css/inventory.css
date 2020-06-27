@@ -293,6 +293,14 @@ body {
     margin-left: 18px;
 }
 
+.outf-armour {
+    background: url(../img/outfit/armour.png)  no-repeat;
+    width: 51px;
+    height: 51px;
+    margin-left: 18px;
+    background-size: contain;
+}
+
 .outf-phone {
     background: url(../img/outfit/smartphone.png) no-repeat;
     width: 31px;

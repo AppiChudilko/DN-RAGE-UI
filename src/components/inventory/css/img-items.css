@@ -114,6 +114,15 @@
     filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
 }
 
+.img-armour {
+    background: url(../img/outfit/armour.png) no-repeat;
+    width: 41px;
+    height: 41px;
+    background-size: 32px;
+    background-position: center;
+    filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(7500%) hue-rotate(230deg) brightness(107%) contrast(100%);
+}
+
 .img-phone {
     background: url(../img/outfit/smartphone.png) no-repeat;
     width: 41px;

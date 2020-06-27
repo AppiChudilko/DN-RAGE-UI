@@ -196,7 +196,7 @@ class Inventory extends React.Component {
                 bracelet: [273], // Браслеты
                 boot: [267], // Обувь
                 bag: [264, 263], // Сумка
-                clock: [7], // Часы (второй раз?)
+                armour: [252], // Броня
                 phone: [27, 28, 29, 30], // Телефоны
                 money: [48], // Деньги?
                 card: [50], // Карточки
@@ -218,7 +218,7 @@ class Inventory extends React.Component {
                     { slot: "outf-bag", equipped: false, type: 'bag' },
                 ],
                 [
-                    { slot: "outf-clock", equipped: false, type: 'clock' },
+                    { slot: "outf-armour", equipped: false, type: 'armour' },
                     { slot: "outf-phone", equipped: false, type: 'phone' },
                     { slot: "outf-money", equipped: false, type: 'money' },
                     { slot: "outf-card", equipped: false, type: 'card' },
@@ -237,10 +237,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                /* {
+                {
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
                     craft: ['1', '2', '3'], craft_time: 2000
-                }, */
+                },
             ],
             itemCooldown: [
                 // { item_id: 14, cooldown: 5 }
@@ -281,6 +281,10 @@ class Inventory extends React.Component {
         }
         return 0;
     }
+
+    replaceAll(string, search, replace){
+        return string.toString().split(search).join(replace);
+    };
 
     componentDidCatch(error, errorInfo) {
         mp.trigger('client:ui:debug', 'Inventory.jsx', error, errorInfo); // eslint-disable-line
@@ -1965,7 +1969,7 @@ class Inventory extends React.Component {
         console.log(this.state.craft_process)
         if (this.state.craft_process > -1) {            
             console.log('Откат на крафт ' + this.state.selected_recipe.craft_time + 'ms')
-            //this.notifyToClient('~r~Крафт в процессе!');
+            this.notifyToClient('~r~Крафт в процессе!');
             return;
         }
         this.setState({ craft_process: 100 })
@@ -1974,12 +1978,19 @@ class Inventory extends React.Component {
             for (let i = 0; i < this.state.selected_recipe.craft.length; i++) {
                 if (!this.isItemInInventory(this.state.selected_recipe.craft[i])) {
                     console.log('Недостаточно ингридиентов')
-                    //this.notifyToClient('~r~Недостаточно ингридиентов ;c');
+                    this.notifyToClient('~r~Недостаточно ингридиентов ;c');
                     return;
                 }
             }
+
+            for (let i = 0; i < this.state.selected_recipe.craft.length; i++) {
+                this.removeItemInInventory(this.state.selected_recipe.craft[i]);
+            }
+
             console.log('Успешный крафт')
+            this.notifyToClient('Успешный крафт');
             //mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
+            mp.trigger('client:inventory:craft', this.state.selected_recipe.id); // eslint-disable-line
             return;
         }, this.state.selected_recipe.craft_time / 2)
         setTimeout(() => {
@@ -1990,6 +2001,17 @@ class Inventory extends React.Component {
         let check_item = this.state.items.filter(obj => { return obj.item_id.toString() === id.toString() })
         if (check_item !== undefined && check_item.length > 0) return true;
         else return false;
+    }
+    removeItemInInventory(id) {
+        let isRemove = false;
+        this.state.items.forEach((item) => {
+            if (id == item.item_id && !isRemove) {
+                isRemove = true;
+                this.setState({ items: this.arrayRemove(this.state.items, item) })
+                mp.trigger('client:inventory:removeItemInInventory', item.id); // eslint-disable-line
+            }
+        });
+        return isRemove
     }
     render() {
         if (!this.state.show) {
@@ -2150,7 +2172,7 @@ class Inventory extends React.Component {
                                                     <div className="craft-one-sp">
                                                         <div className='style-recipes-txt-craft'>
                                                             <span>{this.state.selected_recipe.name}</span>
-                                                            <span className="style-serial-recipes">{this.state.selected_recipe.desc}</span>
+                                                            <span className="style-serial-recipes">{this.replaceAll(this.state.selected_recipe.desc, '~br~', '\n')}</span>
                                                         </div>
                                                     </div>
                                                     <div className="crafting-object-main">
@@ -2203,7 +2225,7 @@ class Inventory extends React.Component {
                                                                             className={`style-weapon-txt-craft`}
                                                                             onClick={() => this.selectCraft(item)}>
                                                                             <span>{item.name}</span>
-                                                                            <div className="style-serial-rec-o">{item.desc}</div>
+                                                                            <div className="style-serial-rec-o">{this.replaceAll(item.desc, '~br~', ' ')}</div>
                                                                         </div>
                                                                     )
                                                                 })}
