@@ -325,6 +325,10 @@ class Inventory extends React.Component {
                 console.log(value.items);
                 this.setState({ items: value.items })
             }
+            if (value.type === 'updateCraft') {
+                console.log(value.recipes);
+                this.setState({ learned_recipes: value.recipes })
+            }
             if (value.type === 'updateEquipItems') {
                 this.setState({ equipment_outfit: value.items })
             }
