@@ -1988,7 +1988,7 @@ class Inventory extends React.Component {
             }
 
             console.log('Успешный крафт')
-            this.notifyToClient('Успешный крафт');
+            //this.notifyToClient('Успешный крафт');
             //mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
             mp.trigger('client:inventory:craft', this.state.selected_recipe.id); // eslint-disable-line
             return;
