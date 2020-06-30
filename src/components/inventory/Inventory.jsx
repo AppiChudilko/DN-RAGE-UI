@@ -170,7 +170,7 @@ class Inventory extends React.Component {
                 take50gr: [142, 143, 144, 145, 163, 164, 165, 166, 167, 168, 169, 170], // Взять 50гр
                 food: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 232, 233, 234, 235, 236, 237, 238, 239, 240], // Можно "съесть"
                 drinks: [241, 242, 243, 244, 245, 246, 247, 248, 249, 250], // Можно "выпить"
-                usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 49, 216, 0, 277, 278, 215, 221, 262], // Можно "использовать"
+                usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 49, 216, 0, 277, 278, 215, 221, 262, 474, 477], // Можно "использовать"
                 usablePlayer: [277, 278, 215, 221, 216], // Можно "использовать"
                 fish: [251], // Можно "Рыбачить"
                 smoke: [26, 3], // Можно "курить"
@@ -237,10 +237,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                {
+                /*{
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
                     craft: ['1', '2', '3'], craft_time: 2000
-                },
+                },*/
             ],
             itemCooldown: [
                 // { item_id: 14, cooldown: 5 }
@@ -1975,12 +1975,18 @@ class Inventory extends React.Component {
         this.setState({ craft_process: 100 })
         setTimeout(() => {
             this.setState({ craft_process: 0 })
-            for (let i = 0; i < this.state.selected_recipe.craft.length; i++) {
+            /*for (let i = 0; i < this.state.selected_recipe.craft.length; i++) {
                 if (!this.isItemInInventory(this.state.selected_recipe.craft[i])) {
                     console.log('Недостаточно ингридиентов')
                     this.notifyToClient('~r~Недостаточно ингридиентов ;c');
                     return;
                 }
+            }*/
+
+            if (!this.isItemsInInventory(this.state.selected_recipe.craft)) {
+                console.log('Недостаточно ингридиентов')
+                this.notifyToClient('~r~Недостаточно ингридиентов ;c');
+                return;
             }
 
             for (let i = 0; i < this.state.selected_recipe.craft.length; i++) {
@@ -2002,13 +2008,32 @@ class Inventory extends React.Component {
         if (check_item !== undefined && check_item.length > 0) return true;
         else return false;
     }
+    isItemsInInventory(craft, slot = -1) {
+        let allowSlot = [];
+        this.state.items.forEach((item) => {
+            craft.forEach((cItem, idx) => {
+                if (parseInt(cItem) === item.item_id && allowSlot[idx] !== item.id && !allowSlot.includes(item.id)) {
+                    allowSlot[idx] = item.id;
+                }
+            });
+        });
+        if (slot < 0)
+            return craft.length === allowSlot.length;
+        console.log(slot, allowSlot[slot]);
+        return allowSlot[slot] !== undefined;
+    }
     removeItemInInventory(id) {
         let isRemove = false;
         this.state.items.forEach((item) => {
             if (id == item.item_id && !isRemove) {
                 isRemove = true;
                 this.setState({ items: this.arrayRemove(this.state.items, item) })
-                mp.trigger('client:inventory:removeItemInInventory', item.id); // eslint-disable-line
+                try {
+                    mp.trigger('client:inventory:removeItemInInventory', item.id); // eslint-disable-line
+                }
+                catch (e) {
+                    
+                }
             }
         });
         return isRemove
@@ -2179,28 +2204,28 @@ class Inventory extends React.Component {
                                                         <div className="liner-crafting-obj" style={{ width: this.state.craft_process + "%", transition: this.state.selected_recipe.craft_time/2+'ms'}}></div>
                                                         <div className="main-box-craft-weapon">
                                                             <div className="square-box-craft-weapon sqr-wp-top">
-                                                                {this.state.selected_recipe.craft.length > 0 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[0]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[0]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 0 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 0) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[0]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-top">
-                                                                {this.state.selected_recipe.craft.length > 1 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[1]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[1]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 1 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 1) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[1]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-top">
-                                                                {this.state.selected_recipe.craft.length > 2 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[2]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[2]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 2 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 2) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[2]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-top">
-                                                                {this.state.selected_recipe.craft.length > 3 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[3]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[3]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 3 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 3) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[3]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-left sqr-wp-bottom">
-                                                                {this.state.selected_recipe.craft.length > 4 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[4]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[4]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 4 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 4) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[4]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-bottom">
-                                                                {this.state.selected_recipe.craft.length > 5 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[5]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[5]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 5 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 5) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[5]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-bottom">
-                                                                {this.state.selected_recipe.craft.length > 6 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[6]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[6]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 6 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 6) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[6]}`}></div> : null}
                                                             </div>
                                                             <div className="square-box-craft-weapon sqr-wp-bottom">
-                                                                {this.state.selected_recipe.craft.length > 7 ? <div className={`${this.isItemInInventory(this.state.selected_recipe.craft[7]) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[7]}`}></div> : null}
+                                                                {this.state.selected_recipe.craft.length > 7 ? <div className={`${this.isItemsInInventory(this.state.selected_recipe.craft, 7) ? 'select-craft' : null} icon-item img-${this.state.selected_recipe.craft[7]}`}></div> : null}
                                                             </div>
 
                                                         </div>
