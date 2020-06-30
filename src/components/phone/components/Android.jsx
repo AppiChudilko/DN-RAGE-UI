@@ -66,59 +66,15 @@ class Android extends React.Component {
                 title: 'Загрузка...',
                 items: [
                     {
-                        title: 'Spectre | num 3712h3bj...',
-                        hidden: false,
-                        umenu: [
-                            {
-                                title: "Specter...",
-                                text: "290.000$",
-                                type: 0,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Вызвать",
-                                text: "390.00$",
-                                type: 1,
-                                clickable: 1,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Узнать местоположение",
-                                text: "",
-                                type: 1,
-                                clickable: 1,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: { name: "null", skip: true }
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Spectre | num 123...',
+                        title: 'Загрузка...',
                         hidden: true,
                         umenu: [
+
                             {
-                                title: "Specter...",
-                                text: "290.000$",
-                                type: 0,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Вызвать",
-                                text: "390.00$",
-                                type: 1,
-                                clickable: 1,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
-                                params: { name: "null" }
-                            },
-                            {
-                                title: "Узнать местоположение",
+                                title: "Загрузка",
                                 text: "",
                                 type: 1,
-                                clickable: 1,
-                                value: 'https://a.rsg.sc//n/socialclub', //TODO Передаем сюда socialclub и получаем аватар
+                                clickable: false,
                                 params: { name: "null", skip: true }
                             },
                         ],

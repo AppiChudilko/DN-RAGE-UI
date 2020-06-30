@@ -86,6 +86,7 @@ class Inventory extends React.Component {
                 { id: 5, item_id: 279, name: "Патроны", volume: 15, desc: "", counti: 0, params: {} },
                 { id: 6, item_id: 1, name: "Что то там", volume: 15, desc: "", counti: 0, params: {} },
                 { id: 7, item_id: 3, name: "Еще что то", volume: 15, desc: "", counti: 0, params: {} },
+                { id: 10, item_id: 3, name: "Еще что то", volume: 15, desc: "", counti: 0, params: {} },
                 { id: 8, item_id: 2, name: "И тут еще что то", volume: 15, desc: "", counti: 0, params: {} },
                 {
                     id: 27,
@@ -226,7 +227,7 @@ class Inventory extends React.Component {
             ],
 
             equipment_weapon: [ // Экипированное оружие
-                { id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
+                //{ id: 33, item_id: 119, name: "Похоже на AWP", volume: 15, desc: "AR-0001244", counti: 0, params: { serial: '456', slot1: true, slot2: true, slot3: true, slot4: true } },
             ],
             selected_weapon_id: 33,
             selected_weapon_item_id: 0,
@@ -239,7 +240,7 @@ class Inventory extends React.Component {
             learned_recipes: [
                 /*{
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
-                    craft: ['1', '2', '3'], craft_time: 2000
+                    craft: ['3', '3', '3'], craft_time: 2000
                 },*/
             ],
             itemCooldown: [
@@ -2012,14 +2013,14 @@ class Inventory extends React.Component {
         let allowSlot = [];
         this.state.items.forEach((item) => {
             craft.forEach((cItem, idx) => {
-                if (parseInt(cItem) === item.item_id && allowSlot[idx] !== item.id && !allowSlot.includes(item.id)) {
-                    allowSlot[idx] = item.id;
+                if (parseInt(cItem) === item.item_id && !allowSlot.includes(item.id)) {
+                    allowSlot.push(item.id);
                 }
             });
         });
         if (slot < 0)
             return craft.length === allowSlot.length;
-        console.log(slot, allowSlot[slot]);
+        console.log(slot, allowSlot[slot], craft.length, allowSlot.length);
         return allowSlot[slot] !== undefined;
     }
     removeItemInInventory(id) {
