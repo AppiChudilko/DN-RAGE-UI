@@ -71,7 +71,7 @@ const Settings = ({ data }) => {
                     </div>
                 </div>
             </div>
-            <div className="accountmenu__content__cards__blitem">
+            <div className="accountmenu__content__cards__blitem accountmenu__scrollable">
                 <div className="accountmenu__content__cards__settings__container">
                     <span className="accountmenu__content__cards__settings__bcontainer__name">{settings[active].name}</span>
                     <div className="accountmenu__hr" style={{marginTop: '4%', marginBottom: '4%'}} />

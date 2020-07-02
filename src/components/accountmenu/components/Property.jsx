@@ -63,6 +63,14 @@ const Property = ({ house, business, cars }) => {
             </div>
             <div className="accountmenu__content__cards__item accountmenu__scrollable">
                 <div className="accountmenu__content__cards__container">
+                    <div className="accountmenu__content__cars__header__container">
+                        <span className="accountmenu__content__cards__title">
+                            Имущество
+                        </span>
+                        <span className="accountmenu__content__cards__title__count">
+                            {`кол-во: ${business.length}`}
+                        </span>
+                    </div>
                     <div className="accountmenu__cards__question__container">
                         {business.map((item, index) => (
                             <BusinessCard

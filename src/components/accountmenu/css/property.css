@@ -150,6 +150,10 @@
     justify-content: center;
 }
 
+.accountmenu__content__cards__button:hover {
+    background: linear-gradient(to bottom right, #2eb5f8, #0889c9);
+}
+
 .accountmenu__content__cards__button_over {
     background: #bc505d;
     padding-left: 2.5rem;
@@ -187,7 +191,7 @@
 }
 
 .accountmenu__content__cards__business:first-child {
-    margin-top: 5rem;
+    margin-top: 0;
 }
 
 .accountmenu__content__cards__business:last-child {
