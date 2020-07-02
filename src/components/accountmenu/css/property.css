@@ -328,19 +328,19 @@
 }
 
 .accountmenu__scrollable {
-    overflow-y: auto;
+    overflow-y: auto !important;
 }
 
 .accountmenu__scrollable::-webkit-scrollbar {
-   width: 0.8rem;
+   width: 0.8rem !important;
  }
    
  .accountmenu__scrollable::-webkit-scrollbar-track {
-   background: #303030;
+   background: #303030 !important;
  }
    
  .accountmenu__scrollable::-webkit-scrollbar-thumb {
-   background: #fff;
+   background: #fff !important;
 }
 
 

@@ -61,13 +61,13 @@ const Property = ({ house, business, cars }) => {
                     </div>
                 </div>
             </div>
-            <div className="accountmenu__content__cards__item">
-                <div className="accountmenu__list__business">
+            <div className="accountmenu__content__cards__item accountmenu__scrollable">
+                <div className="accountmenu__list__business accountmenu__scrollable">
                     {business.map((item, index) => (
-                    <BusinessCard
-                        {...item}
-                        key={`business-list-` + index}
-                    />
+                        <BusinessCard
+                            {...item}
+                            key={`business-list-` + index}
+                        />
                     ))}
                 </div>
             </div>
@@ -80,7 +80,7 @@ const Property = ({ house, business, cars }) => {
                         {`кол-во: ${cars.length} / 10`}
                     </span>
                 </div>
-                <div className="accountmenu__content__cards__cars__list">
+                <div className="accountmenu__content__cards__cars__list accountmenu__scrollable">
                     {cars.map((item, index) => (
                         <CarCard
                             {...item}

@@ -160,12 +160,12 @@ const General = ({ listElements, accountData }) => {
                 <div className="accountmenu__list">
                 {listElements.map((item, index) => (
                     <div className="accountmenu__content__cards__item__list" key={index.toString()}>
-                        <spam className="accountmenu__content__cards__item__list__title">
+                        <span className="accountmenu__content__cards__item__list__title">
                             {item.title}
-                        </spam>
-                        <spam className="accountmenu__content__cards__item__list__subtitle">
+                        </span>
+                        <span className="accountmenu__content__cards__item__list__subtitle">
                             {item.subtitle}
-                        </spam>
+                        </span>
                     </div>
                 ))}
                 </div>

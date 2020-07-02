@@ -20,7 +20,8 @@ const Settings = ({  }) => {
     const [settings, setSettings] = useState([
         {name: 'Настройки интерфейса', settings: [
             {type: 0, name: 'Показывать худ', active: 0},
-            {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']}
+            {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+            {type: 2, name: 'Голосовой чат', onClick: () => console.log('you clicked'), btntext: "Перезагрузить"}
         ]},
         {name: 'Игра', settings: []},
         {name: 'Дизайн', settings: []},
@@ -80,6 +81,8 @@ const Settings = ({  }) => {
                             listmenu={item.listmenu ? item.listmenu[item.active] : []}
                             nextVal={() => nextVal(index)}
                             prevVal={() => prevVal(index)}
+                            onButtonPress={item.onClick}
+                            btntext={item.btntext}
                         />
                     ))}
                 </div>
