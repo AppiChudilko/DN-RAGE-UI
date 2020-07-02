@@ -10,19 +10,13 @@ import Card from '../uikit/Card'
 const General = ({  }) => {
 
     const listElements = [
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'},
-        {text: 'a'}
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
+        {title: 'Репутация', subtitle: 'идеальная'},
     ]
 
     const accountData = {
@@ -165,7 +159,12 @@ const General = ({  }) => {
                 <div className="accountmenu__list">
                 {listElements.map((item, index) => (
                     <div className="accountmenu__content__cards__item__list" key={index.toString()}>
-                        {item.text}
+                        <spam className="accountmenu__content__cards__item__list__title">
+                            {item.title}
+                        </spam>
+                        <spam className="accountmenu__content__cards__item__list__subtitle">
+                            {item.subtitle}
+                        </spam>
                     </div>
                 ))}
                 </div>

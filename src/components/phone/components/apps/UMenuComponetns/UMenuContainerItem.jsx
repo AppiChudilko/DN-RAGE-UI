@@ -14,7 +14,6 @@ const UMenuContainerItem = ({ e, data, callback, hidden }) => {
                         <span className="umenu-title-name">{e.title}</span>
                         <span data-hidden={isHidden} className="chevron left"></span>
                     </div>
-                    <Animated animationIn="slideInUp" animationOut="slideOutDown" animationInDuration={200} animationOutDuration={200} isVisible={!isHidden}>
                     {!isHidden ? e.umenu.map((e, i) => {
                         let index1 = `umenu${i}`
                         return (
@@ -34,7 +33,6 @@ const UMenuContainerItem = ({ e, data, callback, hidden }) => {
                             />
                         )
                     }) : null}
-                    </Animated>
                 </div>
             </React.Fragment>
         )

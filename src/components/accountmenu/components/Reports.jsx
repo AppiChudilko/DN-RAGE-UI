@@ -157,7 +157,7 @@ const Reports = ({ }) => {
                         )) : null} 
                     </div>
                     <div className="accountmenu__content__reports__dialog__input">
-                        <label>
+                        <label style={{width: '70%'}}>
                             <input ref={reportMessage} type="text" name="name" placeholder="Введите сообщение..." className="accountmenu__report__input" />
                         </label>
                         <Button text="Отправить" onPress={() => console.log(reportMessage.current.value)} />
