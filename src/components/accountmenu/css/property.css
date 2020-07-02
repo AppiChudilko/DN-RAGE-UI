@@ -148,6 +148,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    min-height: 2vh;
 }
 
 .accountmenu__content__cards__button:hover {
