@@ -45,6 +45,90 @@ class AccountMenu extends React.Component {
                 {title: 'Репутация', subtitle: 'идеальная'},
                 {title: 'Репутация', subtitle: 'идеальная'},
             ],
+
+            propertyHouse: {
+                type: 'Дом',
+                name: 'Name Apartment',
+                address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
+                doors: 'Закрыто',
+                roommate: 2,
+                carplace: 'Есть',
+                gprice: '1522000'
+            },
+            propertyBusiness: [
+                {
+                    type: 0,
+                    title: 'Тест',
+                    price: '1250000',
+                    address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
+                    doors: 'Закрыты'
+                },
+                {
+                    type: 0,
+                    title: 'Тест',
+                    price: '1777000',
+                    address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
+                    doors: 'Открыты'
+                }
+            ],
+            propertyCars: [
+                {
+                    type: 'Автомобиль',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                },
+                {
+                    type: 'Мотоцикл',
+                    name: 'Neon',
+                    vin: 1337,
+                    carclass: 'A',
+                    def: 'Есть',
+                    number: 'NUMBER'
+                }
+            ]
         }
     }
 
@@ -71,7 +155,11 @@ class AccountMenu extends React.Component {
             } else if (value.type === 'updateInfoGeneral') {
                 this.setState({generalList: value.generalList})
                 this.setState({generalData: value.generalData})
-            } else return;
+            } else if (value.type === 'updateInfoProperty') {
+                this.setState({propertyHouse: value.propertyHouse})
+                this.setState({propertyBusiness: value.propertyBusiness})
+                this.setState({propertyCars: value.propertyCars})
+            }
         })
     }
 
@@ -127,6 +215,9 @@ class AccountMenu extends React.Component {
                     handleKeyPress={this.handleKeyPress}
                     generalList={this.state.generalList}
                     generalData={this.state.generalData}
+                    propertyHouse={this.state.propertyHouse}
+                    propertyBusiness={this.state.propertyBusiness}
+                    propertyCars={this.state.propertyCars}
                 />
             </div>
         )
