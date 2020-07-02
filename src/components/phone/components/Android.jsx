@@ -67,7 +67,7 @@ class Android extends React.Component {
                 items: [
                     {
                         title: 'Загрузка...',
-                        hidden: true,
+                        hidden: false,
                         umenu: [
 
                             {
