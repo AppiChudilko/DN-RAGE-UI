@@ -14,12 +14,12 @@ import CarCard from '../uikit/CarCard'
 const Property = ({  }) => {
 
     const house = {
-        type: 'Квартира',
+        type: 'Дом',
         name: 'Name Apartment',
         address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
         doors: 'Закрыто',
         roommate: 2,
-        carplace: 10,
+        carplace: 'Есть',
         gprice: '1522000'
     }
 
@@ -41,6 +41,46 @@ const Property = ({  }) => {
     const cars = [
         {
             type: 'Автомобиль',
+            name: 'Neon',
+            vin: 1337,
+            carclass: 'A',
+            def: 'Есть',
+            number: 'NUMBER'
+        },
+        {
+            type: 'Мотоцикл',
+            name: 'Neon',
+            vin: 1337,
+            carclass: 'A',
+            def: 'Есть',
+            number: 'NUMBER'
+        },
+        {
+            type: 'Мотоцикл',
+            name: 'Neon',
+            vin: 1337,
+            carclass: 'A',
+            def: 'Есть',
+            number: 'NUMBER'
+        },
+        {
+            type: 'Мотоцикл',
+            name: 'Neon',
+            vin: 1337,
+            carclass: 'A',
+            def: 'Есть',
+            number: 'NUMBER'
+        },
+        {
+            type: 'Мотоцикл',
+            name: 'Neon',
+            vin: 1337,
+            carclass: 'A',
+            def: 'Есть',
+            number: 'NUMBER'
+        },
+        {
+            type: 'Мотоцикл',
             name: 'Neon',
             vin: 1337,
             carclass: 'A',
@@ -84,11 +124,11 @@ const Property = ({  }) => {
                             rightinfo={house.doors}
                         />
                         <LineData
-                            leftinfo="Сожителей"
+                            leftinfo="Жилых мест"
                             rightinfo={house.roommate}
                         />
                         <LineData
-                            leftinfo="Машиномест"
+                            leftinfo="Гараж"
                             rightinfo={house.carplace}
                         />
                         <div className="accountmenu__content__cards__house__hprice">
@@ -100,9 +140,6 @@ const Property = ({  }) => {
                                     <img src={require('../icons/money-bag.svg')} className="accountmenu__content__cards__house__hprice__sell__icon" />
                                     <span className="accountmenu__content__cards__house__hprice__sell__text">{`$ ${house.gprice.replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}</span>
                                 </div>
-                                <Button
-                                    text="Продать"
-                                />
                             </div>
                         </div>
                     </div>
@@ -124,7 +161,7 @@ const Property = ({  }) => {
                         Транспорт
                     </span>
                     <span className="accountmenu__content__cards__title__count">
-                        {`кол-во: ${cars.length} / 50`}
+                        {`кол-во: ${cars.length} / 10`}
                     </span>
                 </div>
                 <div className="accountmenu__content__cards__cars__list">

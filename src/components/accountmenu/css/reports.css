@@ -116,6 +116,7 @@
      color: #9c9c9c;
      font-family: 'RobotoLight';
      letter-spacing: 0.1rem;
+     display: none;
  }
 
  .accountmenu__content__reports__item__list__open {
@@ -163,7 +164,7 @@
 }
 
 .accountmenu__content__reports__dialog__header__buttons {
-    display: flex;
+    display: none;
     align-items: flex-start;
     flex-direction: row;
     width: 14vw;
@@ -198,6 +199,7 @@
     margin-left: 5%;
     margin-right: 5%;
     letter-spacing: 0.1rem;
+    display: none;
 }
 
 .accountmenu__content__reports__dialog__header__icon {

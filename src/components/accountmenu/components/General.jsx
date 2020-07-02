@@ -41,9 +41,9 @@ const General = ({  }) => {
         kills: 100,
         maxkills: 500,
         status: "Гражданин",
-        statusDate: "01.01.2020",
-        pocketmoney: "100000",
-        cardmoney: "30000",
+        statusDate: "_________",
+        pocketmoney: "100000000",
+        cardmoney: "30000000",
         medDate: "01.01.2020",
         medPercent: "100"
     }
@@ -59,7 +59,7 @@ const General = ({  }) => {
                 </div>
                 <div className="accountmenu__cards__fraction">
                     <span className="accountmenu__cards__fraction__name">
-                        Фракция:
+                        Организация:
                     </span>
                     <span className="accountmenu__cards__fraction__text">
                         {accountData.fraction}
@@ -116,7 +116,7 @@ const General = ({  }) => {
                     <ProgressBarCircle
                         toptext="Статус игрока"
                         midtext={accountData.status}
-                        btmtext={`до ${accountData.statusDate}`}
+                        btmtext={`${accountData.statusDate}`}
                     />
                     <div className="accountmenu__content__cards__status__mcircle" />
                 </div>
@@ -165,7 +165,7 @@ const General = ({  }) => {
                 <div className="accountmenu__list">
                 {listElements.map((item, index) => (
                     <div className="accountmenu__content__cards__item__list" key={index.toString()}>
-                        
+                        {item.text}
                     </div>
                 ))}
                 </div>

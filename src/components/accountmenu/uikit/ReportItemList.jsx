@@ -11,7 +11,7 @@ const ReportItemList = ({ type, number, time, active, index, text, setReportData
                     className={type === 0 ? "accountmenu__content__reports__list__header__icon_ask" : "accountmenu__content__reports__list__header__icon_report"}    
                 />
                 <span className="accountmenu__content__reports__list__header__num">{`Запрос №${number}`}</span>
-                <span className={status === 0 ? "accountmenu__content__reports__list__header__status_new" : "accountmenu__content__reports__list__header__status_clsd"}>{status === 0 ? "Новый" : "Закрыт"}</span>
+                <span className={status === 0 ? "accountmenu__content__reports__list__header__status_new" : "accountmenu__content__reports__list__header__status_clsd"}>{status === 0 ? "Открыт" : "Закрыт"}</span>
             </div>
             <div className="accountmenu__content__reports__item__list__content">
                 <span className="accountmenu__content__reports__item__list__content__text">

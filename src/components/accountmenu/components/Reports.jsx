@@ -34,43 +34,25 @@ const Reports = ({ }) => {
                     {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
                     {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
                 ]
-            },
-            {
-                status: 1,
-                type: 0,
-                text: "Здравствуйте! помогите решить проблему с покупкой дома",
-                time: "01.07.2020 | 21:00",
-                number: 123123
-            },
-            {
-                status: 1,
-                type: 0,
-                text: "Здравствуйте! помогите решить проблему с покупкой дома",
-                time: "01.07.2020 | 21:00",
-                number: 123123
             }
         ],
         [
             {
                 status: 0,
                 type: 1,
-                text: "23 ID Читер",
+                text: "Здравствуйте! помогите решить проблему с покупкой дома",
                 time: "01.07.2020 | 21:00",
-                number: 123123
-            },
-            {
-                status: 1,
-                type: 1,
-                text: "222 ID покупает валюту",
-                time: "01.07.2020 | 21:00",
-                number: 123123
-            },
-            {
-                status: 1,
-                type: 1,
-                text: "Помогите застрял",
-                time: "01.07.2020 | 21:00",
-                number: 123123
+                number: 123123,
+                dialog: [
+                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
+                ]
             }
         ]
     ]
@@ -154,7 +136,7 @@ const Reports = ({ }) => {
                                     {item.name && (
                                         <span className="accountmenu__content__reports__dialog__content__item__name">
                                             <span className="accountmenu__content__reports__dialog__content__item__name_b">
-                                                Администратор:
+
                                             </span>
                                             {` ${item.name}`}
                                         </span>
