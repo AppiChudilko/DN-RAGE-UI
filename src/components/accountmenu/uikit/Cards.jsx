@@ -7,7 +7,7 @@ import Quests from '../components/Quests'
 import Settings from '../components/Settings'
 import Reports from '../components/Reports'
 
-const Cards = ({ page }) => {
+const Cards = ({ page, onChangePage }) => {
     return (
         <div className="accountmenu__content__cards">
             {page === 0 && (
@@ -17,7 +17,7 @@ const Cards = ({ page }) => {
                 <Property />
             )}
             {page === 2 && (
-                <Faq />
+                <Faq onChangePage={onChangePage} />
             )}
             {page === 3 && (
                 <Reports />

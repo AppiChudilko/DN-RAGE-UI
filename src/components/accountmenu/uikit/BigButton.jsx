@@ -1,9 +1,9 @@
 import React from 'react'
 import '../css/faq.css'
 
-const BigButton = ({ text }) => {
+const BigButton = ({ text, onPress }) => {
     return (
-        <div className="accountmenu__content__cards__bigbutton">
+        <div onClick={onPress} className="accountmenu__content__cards__bigbutton">
             <span className="accountmenu__content__cards__bigbutton__text">{text}</span>
         </div>
     )

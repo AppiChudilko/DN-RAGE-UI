@@ -13,7 +13,7 @@ import CarCard from '../uikit/CarCard'
 import Question from '../uikit/Question'
 import { useState } from 'react'
 
-const Faq = ({  }) => {
+const Faq = ({ onChangePage }) => {
 
     const questions = [
         {text: "как играть?", answer: `
@@ -101,6 +101,7 @@ const Faq = ({  }) => {
                         </span>
                     </div>
                     <BigButton
+                        onPress={() => onChangePage(3)}
                         text="задать вопрос"
                     />
                 </div>

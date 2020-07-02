@@ -11,7 +11,7 @@ const Content = ({ page, onChangePage, handleKeyPress }) => {
                 onChangePage={onChangePage}
                 handleKeyPress={handleKeyPress}
             />
-            <Cards page={page} />
+            <Cards page={page} onChangePage={onChangePage} />
         </div>
     )
 }
