@@ -8,8 +8,8 @@ class AccountMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: false,
-            activePage: 1,
+            show: true,
+            activePage: 0,
             accountId: 0,
             nick: 'Test',
             balance: 0,
@@ -28,7 +28,7 @@ class AccountMenu extends React.Component {
                 maxdeath: 100,
                 kills: 100,
                 maxkills: 100,
-                status: "Гражданин США",
+                status: "Гражданин",
                 statusDate: "_________",
                 pocketmoney: "100000000",
                 cardmoney: "30000000",
@@ -57,15 +57,36 @@ class AccountMenu extends React.Component {
             },
             propertyBusiness: [
                 {
-                    type: 0,
-                    title: 'Тест',
+                    type: 1,
+                    title: 'Склад',
                     price: '1250000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
                     doors: 'Закрыты'
                 },
                 {
                     type: 0,
-                    title: 'Тест',
+                    title: 'Бизнес',
+                    price: '1777000',
+                    address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
+                    doors: 'Открыты'
+                },
+                {
+                    type: 0,
+                    title: 'Квартира',
+                    price: '1777000',
+                    address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
+                    doors: 'Открыты'
+                },
+                {
+                    type: 0,
+                    title: 'Апартаменты',
+                    price: '1777000',
+                    address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
+                    doors: 'Открыты'
+                },
+                {
+                    type: 0,
+                    title: 'Яхта',
                     price: '1777000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
                     doors: 'Открыты'
