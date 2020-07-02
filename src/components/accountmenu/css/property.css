@@ -363,10 +363,10 @@
   .accountmenu__content__cards__cars__list::-webkit-scrollbar-thumb {
     background: #fff;
  }
- 
+
 .accountmenu__content__cards__car__img {
     display: flex;
-    height: 25vh;
+    height: 100%;
     background-position: center;
     background-size: 100%;
     border-radius: 0.4rem;
@@ -391,6 +391,7 @@
     flex-direction: column;
     border-bottom: 4px solid rgba(72, 72, 72, 0.1);
     margin-bottom: 8%;
+    height: 40vh;
 }
 
 .accountmenu__content__cards__car:last-child {
