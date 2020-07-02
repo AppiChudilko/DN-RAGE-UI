@@ -13,77 +13,42 @@ import CarCard from '../uikit/CarCard'
 import { useState } from 'react'
 import SettingsItem from '../uikit/SettingsItem'
 
-const Settings = ({  }) => {
+const Settings = ({ data }) => {
 
     const [active, setActive] = useState(0)
-
-    const [settings, setSettings] = useState([
-        {
-            name: 'Основное',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-        {
-            name: 'Интерфейс',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-        {
-            name: 'Голосовой чат',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-        {
-            name: 'Текстовый чат',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-        {
-            name: 'Дизайн меню',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-        {
-            name: 'Назначение клавиш',
-            settings: [
-                {type: 0, name: 'Показывать худ', active: 0},
-                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-            ]
-        },
-    ])
+    const [settings, setSettings] = useState(data);
 
     const updateCheckbox = (index) => {
         let newSettings = [...settings]
         newSettings[active].settings[index].active = newSettings[active].settings[index].active === 0 ? 1 : 0
         setSettings(newSettings)
+
+        try {
+            mp.trigger('client:mainMenu:settings:updateCheckbox', newSettings[active].settings[index].params, newSettings[active].settings[index].active); // eslint-disable-line
+        }
+        catch (e) {}
     }
 
     const nextVal = (index) => {
         let newSettings = [...settings]
         newSettings[active].settings[index].active = newSettings[active].settings[index].listmenu.length  === newSettings[active].settings[index].active + 1 ? 0 : newSettings[active].settings[index].active + 1
         setSettings(newSettings)
+
+        try {
+            mp.trigger('client:mainMenu:settings:updateList', newSettings[active].settings[index].params, newSettings[active].settings[index].active); // eslint-disable-line
+        }
+        catch (e) {}
     }
 
     const prevVal = (index) => {
         let newSettings = [...settings]
         newSettings[active].settings[index].active = newSettings[active].settings[index].active  === 0 ? newSettings[active].settings[index].listmenu.length - 1 : newSettings[active].settings[index].active - 1
         setSettings(newSettings)
+
+        try {
+            mp.trigger('client:mainMenu:settings:updateList', newSettings[active].settings[index].params, newSettings[active].settings[index].active); // eslint-disable-line
+        }
+        catch (e) {}
     }
 
     return (
