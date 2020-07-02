@@ -71,8 +71,18 @@ const Property = ({ house, business, cars }) => {
                     ))}
                 </div>
             </div>
-            <div className="accountmenu__content__cards__item">
-                <div className="accountmenu__content__cards__headerts" style={{paddingLeft: '3.5rem', paddingRight: '3.5rem', marginTop: '5%', marginBottom: '5%'}}>
+            <div className="accountmenu__content__cards__item accountmenu__scrollable">
+                <div className="accountmenu__content__cards__container">
+                    <div className="accountmenu__cards__question__container">
+                        {cars.map((item, index) => (
+                            <CarCard
+                                {...item}
+                                key={`car-list-` + index}
+                            />
+                        ))}
+                    </div>
+                </div>
+                {/*<div className="accountmenu__content__cards__headerts" style={{paddingLeft: '3.5rem', paddingRight: '3.5rem', marginTop: '5%', marginBottom: '5%'}}>
                     <span className="accountmenu__content__cards__title">
                         Транспорт
                     </span>
@@ -87,7 +97,8 @@ const Property = ({ house, business, cars }) => {
                             key={`car-list-` + index}
                         />
                     ))}
-                </div>
+
+                    </div>*/}
             </div>
         </React.Fragment>
     )
