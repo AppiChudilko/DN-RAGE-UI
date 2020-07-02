@@ -3,7 +3,7 @@ import Icon from '../../hud/components/MainMenu/uikit/Icon'
 import '../css/settings.css'
 import Button from './Button'
 
-const SettingsItem = ({ name, type, active, setCheckbox, listmenu, prevVal, nextVal, onButtonPress, btntext }) => {
+const SettingsItem = ({ name, type, active, setCheckbox, listmenu, prevVal, nextVal, params, btntext }) => {
     return (
         <div className="accountmenu__content__cards__setting__item">
             <span className="accountmenu__content__cards__setting__name">{name}</span>
@@ -35,7 +35,7 @@ const SettingsItem = ({ name, type, active, setCheckbox, listmenu, prevVal, next
                 </div>
             )}
             {type === 2 && (
-                <Button text={btntext} onPress={onButtonPress} />
+                <Button text={btntext} onPress={() => console.log(params)} />
             )}
         </div>
     )
