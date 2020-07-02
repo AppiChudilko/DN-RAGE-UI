@@ -15,31 +15,9 @@ import Quest from '../uikit/Quest'
 import ButtonOver from '../uikit/ButtonOver'
 import ButtonDone from '../uikit/ButtonDone'
 
-const Quests = ({  }) => {
+const Quests = ({ quests }) => {
 
     const [active, setActive] = useState(0)
-
-    const quests = [
-        {title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
-                {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
-                {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
-                {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 2},
-                {title: 'Кража арбузов', text: 'Украсть 10 кг арбузов', reward: '$ 500', complete: 2}
-        ]},
-        {title: 'Механик', subtitle: '1 задание', tasks: [
-            {title: 'Починить 20 машин', text: 'Пора бы починить 20 машинок для жителей города', reward: '$ 2 000', complete: 0}
-        ]},
-        {title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
-            {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
-            {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
-            {title: 'Кража арбузов', text: 'Украсть 10 кг арбузов', reward: '$ 500', complete: 2}
-        ]},
-        {title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
-            {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
-            {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
-            {title: 'Кража арбузов', text: 'Украсть 10 кг арбузов', reward: '$ 500', complete: 2}
-        ]}
-    ]
 
     return (
         <React.Fragment>

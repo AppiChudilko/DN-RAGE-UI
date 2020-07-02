@@ -35,7 +35,12 @@ const SettingsItem = ({ name, type, active, setCheckbox, listmenu, prevVal, next
                 </div>
             )}
             {type === 2 && (
-                <Button text={btntext} onPress={() => console.log(params)} />
+                <Button text={btntext} onPress={() => {
+                    try {
+                        mp.trigger('client:mainMenu:settings:btn', params); // eslint-disable-line
+                    }
+                    catch (e) {}
+                }} />
             )}
         </div>
     )

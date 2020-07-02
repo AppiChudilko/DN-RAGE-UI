@@ -118,7 +118,13 @@ const Reports = ({ data }) => {
                         <label style={{width: '70%'}}>
                             <input ref={reportMessage} type="text" name="name" placeholder="Введите сообщение..." className="accountmenu__report__input" />
                         </label>
-                        <Button text="Отправить" onPress={() => console.log(reportMessage.current.value)} />
+                        <Button text="Отправить" onPress={() => {
+                            try {
+                                mp.trigger('client:mainMenu:sendReportOrAsk', reportMessage.current.value, reportData.type); // eslint-disable-line
+                            }
+                            catch (e) {}
+                            reportMessage.current.value = '';
+                        }} />
                     </div>
                </div>
                )}

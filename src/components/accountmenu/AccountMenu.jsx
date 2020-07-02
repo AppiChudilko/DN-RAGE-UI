@@ -8,7 +8,7 @@ class AccountMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
+            show: false,
             activePage: 0,
             accountId: 0,
             nick: 'Test',
@@ -190,6 +190,81 @@ class AccountMenu extends React.Component {
                         ]
                     }
                 ]
+            ],
+
+            questData: [
+                {
+                    title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
+                        {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
+                        {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
+                        {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 2},
+                        {title: 'Кража арбузов', text: 'Украсть 10 кг арбузов', reward: '$ 500', complete: 2}
+                    ]
+                },
+                {
+                    title: 'Механик', subtitle: '1 задание', tasks: [
+                        {title: 'Починить 20 машин', text: 'Пора бы починить 20 машинок для жителей города', reward: '$ 2 000', complete: 0}
+                    ]
+                },
+                {
+                    title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
+                        {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
+                        {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
+                        {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 2},
+                        {title: 'Кража арбузов', text: 'Украсть 10 кг арбузов', reward: '$ 500', complete: 2}
+                    ]
+                },
+            ],
+
+            settingsData: [
+                {
+                    name: 'Основное',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', params: 'reload1', active: 0},
+                        {type: 1, name: 'Вид спидометра', params: 'reload2', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
+                {
+                    name: 'Интерфейс',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', active: 0},
+                        {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
+                {
+                    name: 'Голосовой чат',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', active: 0},
+                        {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
+                {
+                    name: 'Текстовый чат',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', active: 0},
+                        {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
+                {
+                    name: 'Дизайн меню',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', active: 0},
+                        {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
+                {
+                    name: 'Назначение клавиш',
+                    settings: [
+                        {type: 0, name: 'Показывать худ', active: 0},
+                        {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                        {type: 2, name: 'Голосовой чат', params: 'reload', btntext: "Перезагрузить"}
+                    ]
+                },
             ]
         }
     }
@@ -223,6 +298,10 @@ class AccountMenu extends React.Component {
                 this.setState({propertyCars: value.propertyCars})
             } else if (value.type === 'updateInfoReport') {
                 this.setState({reportData: value.reportData})
+            } else if (value.type === 'updateInfoQuest') {
+                this.setState({questData: value.questData})
+            } else if (value.type === 'updateInfoSettings') {
+                this.setState({settingsData: value.settingsData})
             }
         })
     }
@@ -283,6 +362,8 @@ class AccountMenu extends React.Component {
                     propertyBusiness={this.state.propertyBusiness}
                     propertyCars={this.state.propertyCars}
                     reportData={this.state.reportData}
+                    questData={this.state.questData}
+                    settingsData={this.state.settingsData}
                 />
             </div>
         )
