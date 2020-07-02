@@ -22,7 +22,7 @@ const Header = ({ nick, accountId, donateBalance }) => {
                     {donateBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                 </span>
                 <span className="accountmenu__topdata__donate__btn">
-                    Пополнить
+                    Закрыть
                 </span>
             </div>
         </div>

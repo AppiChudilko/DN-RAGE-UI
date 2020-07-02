@@ -79,7 +79,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
-                /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+                { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -142,7 +142,7 @@ class Inventory extends React.Component {
                 { id: 38, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 39, item_id: 265, name: "Футболка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 40, item_id: 269, name: "Кепка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }*/
+                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
@@ -238,10 +238,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                /*{
+                {
                     id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
-                    craft: ['3', '3', '3'], craft_time: 2000
-                },*/
+                    craft: ['199', '3', '3'], craft_time: 2000
+                },
             ],
             itemCooldown: [
                 // { item_id: 14, cooldown: 5 }
@@ -2011,16 +2011,19 @@ class Inventory extends React.Component {
     }
     isItemsInInventory(craft, slot = -1) {
         let allowSlot = [];
+        let allowAll = [];
+
         this.state.items.forEach((item) => {
             craft.forEach((cItem, idx) => {
-                if (parseInt(cItem) === item.item_id && !allowSlot.includes(item.id)) {
-                    allowSlot.push(item.id);
+                if (parseInt(cItem) === item.item_id && !allowSlot.includes(item.id) && allowSlot[idx] === undefined) {
+                    allowSlot[idx] = item.id;
+                    allowAll.push(item.id);
                 }
             });
         });
         if (slot < 0)
-            return craft.length === allowSlot.length;
-        console.log(slot, allowSlot[slot], craft.length, allowSlot.length);
+            return craft.length === allowAll.length;
+        //console.log(slot, allowSlot[slot], craft.length, allowSlot.length);
         return allowSlot[slot] !== undefined;
     }
     removeItemInInventory(id) {

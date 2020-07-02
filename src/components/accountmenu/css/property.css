@@ -161,6 +161,17 @@
     justify-content: center;
 }
 
+.accountmenu__content__cards__button_done {
+    background: #3fbc18;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    border-radius: 0.2rem;
+    display: flex;
+    justify-content: center;
+}
+
 .accountmenu__content__cards__button__text {
     font-family: 'RobotoMedium';
     font-size: 1rem;

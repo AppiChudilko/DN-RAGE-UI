@@ -26,12 +26,14 @@ const Property = ({  }) => {
     const business = [
         {
             type: 0,
+            title: 'Тест',
             price: '1250000',
             address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
             doors: 'Закрыты'
         },
         {
-            type: 1,
+            type: 0,
+            title: 'Тест',
             price: '1777000',
             address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
             doors: 'Открыты'

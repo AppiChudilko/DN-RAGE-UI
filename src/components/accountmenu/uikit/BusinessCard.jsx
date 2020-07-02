@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/property.css'
 import ButtonGps from './ButtonGps'
 
-const BusinessCard = ({ type, name, price, address, doors }) => {
+const BusinessCard = ({ type, name, price, address, doors, title }) => {
     return (
         <div className="accountmenu__content__cards__business">
             <div className="accountmenu__content__cards__business__img__container" style={{backgroundImage: `url('${require('../img/9fd75e-GTA5 2016-06-16 22-17-29-58.png')}')`}}>
@@ -15,7 +15,7 @@ const BusinessCard = ({ type, name, price, address, doors }) => {
             </div>
             <div className="accountmenu__content__cards__business__info__container">
                 <span className="accountmenu__content__cards__business__type">
-                    Офис
+                    {title}
                 </span>
                 <span className="accountmenu__content__cards__business__gprice">
                     ГОС. цена

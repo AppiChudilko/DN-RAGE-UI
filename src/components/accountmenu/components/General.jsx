@@ -6,10 +6,11 @@ import InfoBlock from '../uikit/InfoBlock'
 import ProgressBar from '../uikit/ProgressBar'
 import ProgressBarCircle from '../uikit/ProgressBarCircle'
 import Card from '../uikit/Card'
+import EventManager from "../../../EventManager";
 
-const General = ({  }) => {
+const General = ({ listElements, accountData }) => {
 
-    const listElements = [
+    /*let listElements = [
         {title: 'Репутация', subtitle: 'идеальная'},
         {title: 'Репутация', subtitle: 'идеальная'},
         {title: 'Репутация', subtitle: 'идеальная'},
@@ -19,7 +20,7 @@ const General = ({  }) => {
         {title: 'Репутация', subtitle: 'идеальная'},
     ]
 
-    const accountData = {
+    let accountData = {
         nickname: "Andrey Knyazev",
         fraction: "LSPD",
         gender: "Мужской",
@@ -40,7 +41,7 @@ const General = ({  }) => {
         cardmoney: "30000000",
         medDate: "01.01.2020",
         medPercent: "100"
-    }
+    }*/
 
     return (
         <React.Fragment>
@@ -64,8 +65,8 @@ const General = ({  }) => {
                     rightinfo={accountData.gender}
                 />
                 <LineData
-                    leftinfo="Возраст:"
-                    rightinfo={`${accountData.age} лет`}
+                    leftinfo="Дата рождения:"
+                    rightinfo={`${accountData.age}`}
                 />
                 <LineData
                     leftinfo="Супруг(а):"
@@ -73,17 +74,17 @@ const General = ({  }) => {
                 />
                 <div className="accountmenu__cards__stats">
                     <StatContainer
-                        title="Знакомых"
+                        title="Выносливость"
                         value={accountData.friends}
                         maxvalue={accountData.maxFriends}
                     />
                     <StatContainer
-                        title="Смертей"
+                        title="Сила"
                         value={accountData.death}
                         maxvalue={accountData.maxdeath}
                     />
                     <StatContainer
-                        title="Убийства"
+                        title="Стрельба"
                         value={accountData.kills}
                         maxvalue={accountData.maxkills}
                     />
@@ -135,7 +136,7 @@ const General = ({  }) => {
                 <div className="accountmenu__hr" />
                 <div className="accountmenu__content__cards__medicine__container">
                     <div className="accountmenu__content__cards__medicine">
-                        <span className="accountmenu__content__cards__medicine__name">LOS SANTOS MEDICIAL CENTER</span>
+                        <span className="accountmenu__content__cards__medicine__name">SAN ANDREAS MEDICIAL CENTER</span>
                         <div className="accountmenu__content__cards__medicine__status__container">
                             <span className="accountmenu__content__cards__medicine__status">СТАТУС</span>
                             <div className="accountmenu__content__cards__medicine__status__container__date">
@@ -143,18 +144,18 @@ const General = ({  }) => {
                                     {`до ${accountData.medDate}`}
                                 </span>
                                 <ProgressBar
-                                    value={70}
+                                    value={accountData.medActive}
                                     maxvalue={100}
                                 />
                             </div>
                         </div>
-                    <span className="accountmenu__content__cards__medicine__info">{`ваши медицинские расходы покрываются в размере ${accountData.medPercent}%`}</span>
+                    <span className="accountmenu__content__cards__medicine__info">{`ваша медицинская страховка ${accountData.medPercent}`}</span>
                     </div>
                 </div>
             </div>
             <div className="accountmenu__content__cards__item">
                 <span className="accountmenu__content__cards__title" style={{paddingLeft: '3.5rem', paddingRight: '3.5rem', marginTop: '5%', marginBottom: '5%'}}>
-                    Список
+                    Статистика
                 </span>
                 <div className="accountmenu__list">
                 {listElements.map((item, index) => (

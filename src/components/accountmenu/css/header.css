@@ -57,7 +57,7 @@
 }
 
 .accountmenu__topdata__donate__balance::before {
-    content: 'DC';
+    content: '$';
     font-family: 'RobotoBlack';
     font-size: 1.2rem;
     text-transform: uppercase;
