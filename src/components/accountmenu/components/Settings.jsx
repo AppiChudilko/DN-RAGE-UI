@@ -13,9 +13,9 @@ import CarCard from '../uikit/CarCard'
 import { useState } from 'react'
 import SettingsItem from '../uikit/SettingsItem'
 
-const Settings = ({ data }) => {
+const Settings = ({ data, activeData }) => {
 
-    const [active, setActive] = useState(0)
+    const [active, setActive] = useState(activeData)
     const [settings, setSettings] = useState(data);
 
     const updateCheckbox = (index) => {
@@ -74,7 +74,7 @@ const Settings = ({ data }) => {
             <div className="accountmenu__content__cards__blitem accountmenu__scrollable">
                 <div className="accountmenu__content__cards__settings__container">
                     <span className="accountmenu__content__cards__settings__bcontainer__name">{settings[active].name}</span>
-                    <div className="accountmenu__hr" style={{marginTop: '4%', marginBottom: '4%'}} />
+                    <div className="accountmenu__hr" style={{marginTop: '15px', marginBottom: '15px'}} />
                     {settings[active].settings.map((item, index) => (
                         <SettingsItem
                             name={item.name}

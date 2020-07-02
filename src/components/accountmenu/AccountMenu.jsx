@@ -216,6 +216,7 @@ class AccountMenu extends React.Component {
                 },
             ],
 
+            settingsActive: 0,
             settingsData: [
                 {
                     name: 'Основное',
@@ -302,6 +303,7 @@ class AccountMenu extends React.Component {
                 this.setState({questData: value.questData})
             } else if (value.type === 'updateInfoSettings') {
                 this.setState({settingsData: value.settingsData})
+                this.setState({settingsActive: value.settingsActive})
             }
         })
     }
@@ -364,6 +366,7 @@ class AccountMenu extends React.Component {
                     reportData={this.state.reportData}
                     questData={this.state.questData}
                     settingsData={this.state.settingsData}
+                    settingsActive={this.state.settingsActive}
                 />
             </div>
         )
