@@ -3,7 +3,7 @@ import '../css/content.css'
 import NavigationPanel from '../uikit/NavigationPanel'
 import Cards from '../uikit/Cards'
 
-const Content = ({ page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars }) => {
+const Content = ({ page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars, reportData }) => {
     return (
         <div className="accountmenu__content">
             <NavigationPanel
@@ -19,6 +19,7 @@ const Content = ({ page, onChangePage, handleKeyPress, generalList, generalData,
                 propertyHouse={propertyHouse}
                 propertyBusiness={propertyBusiness}
                 propertyCars={propertyCars}
+                reportData={reportData}
             />
         </div>
     )

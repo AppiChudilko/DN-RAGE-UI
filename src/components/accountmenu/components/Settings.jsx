@@ -18,14 +18,54 @@ const Settings = ({  }) => {
     const [active, setActive] = useState(0)
 
     const [settings, setSettings] = useState([
-        {name: 'Настройки интерфейса', settings: [
-            {type: 0, name: 'Показывать худ', active: 0},
-            {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
-            {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
-        ]},
-        {name: 'Игра', settings: []},
-        {name: 'Дизайн', settings: []},
-        {name: 'Телефон', settings: []},
+        {
+            name: 'Основное',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
+        {
+            name: 'Интерфейс',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
+        {
+            name: 'Голосовой чат',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
+        {
+            name: 'Текстовый чат',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
+        {
+            name: 'Дизайн меню',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
+        {
+            name: 'Назначение клавиш',
+            settings: [
+                {type: 0, name: 'Показывать худ', active: 0},
+                {type: 1, name: 'Вид спидометра', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
+                {type: 2, name: 'Голосовой чат', params: {}, btntext: "Перезагрузить"}
+            ]
+        },
     ])
 
     const updateCheckbox = (index) => {

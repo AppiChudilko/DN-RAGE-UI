@@ -14,49 +14,7 @@ import ReportItemList from '../uikit/ReportItemList'
 import { useState } from 'react'
 import { useRef } from 'react'
 
-const Reports = ({ }) => {
-
-    const data = [
-        [
-            {
-                status: 0,
-                type: 0,
-                text: "Здравствуйте! помогите решить проблему с покупкой дома",
-                time: "01.07.2020 | 21:00",
-                number: 123123,
-                dialog: [
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
-                ]
-            }
-        ],
-        [
-            {
-                status: 0,
-                type: 1,
-                text: "Здравствуйте! помогите решить проблему с покупкой дома",
-                time: "01.07.2020 | 21:00",
-                number: 123123,
-                dialog: [
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                    {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                    {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
-                ]
-            }
-        ]
-    ]
-
+const Reports = ({ data }) => {
     const reportMessage = useRef(null)
 
     const [reportData, setReportData] = useState({})
