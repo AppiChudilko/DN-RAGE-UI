@@ -20,7 +20,7 @@ const ReportItemList = ({ type, number, time, active, index, text, setReportData
             </div>
             <div className="accountmenu__content__reports__item__list__footer">
                 <span className="accountmenu__content__reports__item__list__time">{time}</span>
-                <span className="accountmenu__content__reports__item__list__open" onClick={setReportData}>развернуть</span>
+                <span className="accountmenu__content__reports__item__list__open" onClick={setReportData}>Написать</span>
             </div>
         </div>
     )

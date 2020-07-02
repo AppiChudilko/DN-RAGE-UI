@@ -8,7 +8,7 @@ class AccountMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
+            show: false,
             activePage: 0,
             accountId: 0,
             nick: 'Test',
@@ -149,6 +149,47 @@ class AccountMenu extends React.Component {
                     def: 'Есть',
                     number: 'NUMBER'
                 }
+            ],
+
+            reportData: [
+                [
+                    {
+                        status: 0,
+                        type: 0,
+                        text: "Здравствуйте! помогите решить проблему с покупкой дома",
+                        time: "01.07.2020 | 21:00",
+                        number: 123123,
+                        dialog: [
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
+                        ]
+                    }
+                ],
+                [
+                    {
+                        status: 0,
+                        type: 1,
+                        text: "Здравствуйте! помогите решить проблему с покупкой дома",
+                        time: "01.07.2020 | 21:00",
+                        number: 123123,
+                        dialog: [
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
+                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
+                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
+                        ]
+                    }
+                ]
             ]
         }
     }
@@ -180,6 +221,8 @@ class AccountMenu extends React.Component {
                 this.setState({propertyHouse: value.propertyHouse})
                 this.setState({propertyBusiness: value.propertyBusiness})
                 this.setState({propertyCars: value.propertyCars})
+            } else if (value.type === 'updateInfoReport') {
+                this.setState({reportData: value.reportData})
             }
         })
     }
@@ -239,6 +282,7 @@ class AccountMenu extends React.Component {
                     propertyHouse={this.state.propertyHouse}
                     propertyBusiness={this.state.propertyBusiness}
                     propertyCars={this.state.propertyCars}
+                    reportData={this.state.reportData}
                 />
             </div>
         )
