@@ -5,7 +5,7 @@ import ButtonGps from './ButtonGps'
 const BusinessCard = ({ type, name, price, address, doors, title }) => {
     return (
         <div className="accountmenu__content__cards__business">
-            <div className="accountmenu__content__cards__business__img__container" style={{backgroundImage: `url('${require('../img/9fd75e-GTA5 2016-06-16 22-17-29-58.png')}')`}}>
+            <div className="accountmenu__content__cards__business__img__container" style={{backgroundImage: `url(https://sun9-29.userapi.com/MI39cq7ufrkPh8WX12Y7D9PB81MgFxeszWm9pQ/JhtY99iL4R8.jpg)`}}>
                 <div className={type === 0 ? "accountmenu__content__cards__business__img__bg" : "accountmenu__content__cards__business__img__bg_btype"}>
                     <img 
                         src={require(type === 0 ? "../icons/company.svg" : "../icons/briefcase.svg")}

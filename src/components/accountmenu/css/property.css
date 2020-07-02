@@ -73,6 +73,7 @@
     padding: 2%;
     background: linear-gradient(to left, #70cfff, #43b2ea);
     cursor: pointer;
+    min-height: 2vh;
 }
 
 .accountmenu__cards__btngps_nonfilled {
@@ -410,4 +411,12 @@
     text-transform: uppercase;
     font-size: 1.2rem;
     margin-top: 6px;
+}
+
+.accountmenu__content__cars__header__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5%;
 }
