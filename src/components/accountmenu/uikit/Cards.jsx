@@ -7,14 +7,14 @@ import Quests from '../components/Quests'
 import Settings from '../components/Settings'
 import Reports from '../components/Reports'
 
-const Cards = ({ page, onChangePage, generalList, generalData }) => {
+const Cards = ({ page, onChangePage, generalList, generalData , propertyHouse , propertyBusiness , propertyCars }) => {
     return (
         <div className="accountmenu__content__cards">
             {page === 0 && (
                 <General listElements={generalList} accountData={generalData} />
             )}
             {page === 1 && (
-                <Property />
+                <Property house={propertyHouse} business={propertyBusiness} cars={propertyCars} />
             )}
             {page === 2 && (
                 <Faq onChangePage={onChangePage} />
