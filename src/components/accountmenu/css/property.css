@@ -147,6 +147,7 @@
     box-shadow: 0 0 16px rgba(85, 190, 243, 0.34);
     cursor: pointer;
     display: flex;
+    align-items: center;
     justify-content: center;
     min-height: 2vh;
 }
