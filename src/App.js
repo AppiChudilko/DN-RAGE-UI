@@ -19,6 +19,8 @@ import Notification from './components/notification/Notification';
 import CarShop from './components/carshop/CarShop';
 import Quickmenu from './components/quickmenu/Quickmenu';
 import CircleMenu from './components/circlemenu/CircleMenu';
+import Monopoly from './components/games/monopoly/Monopoly'
+import AccountMenu from './components/accountmenu/AccountMenu'
 
 function App() {
   return (
@@ -29,7 +31,8 @@ function App() {
       <div className="box" id="box">        
         <AuthMain />
         <Inventory />
-        <Phone />  
+        <Phone />
+        <AccountMenu />
         <Hud />
         <IDCard />
         <WorkID />
@@ -38,6 +41,7 @@ function App() {
         <ModalInput />
         <Notification />
         <CarShop />
+        <Monopoly />
         <Quickmenu />
         </div>
     </React.Fragment>
