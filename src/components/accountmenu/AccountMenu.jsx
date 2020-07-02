@@ -9,7 +9,7 @@ class AccountMenu extends React.Component {
         super(props)
         this.state = {
             show: false,
-            activePage: 0,
+            activePage: 1,
             accountId: 0,
             nick: 'Test',
             balance: 0,
@@ -28,7 +28,7 @@ class AccountMenu extends React.Component {
                 maxdeath: 100,
                 kills: 100,
                 maxkills: 100,
-                status: "Гражданин",
+                status: "Гражданин США",
                 statusDate: "_________",
                 pocketmoney: "100000000",
                 cardmoney: "30000000",
