@@ -9,7 +9,7 @@ const CardCard = ({ type, name, vin, carclass, def, number }) => {
         >
             <div
                 className="accountmenu__content__cards__car__img"
-                style={{backgroundImage: `url('${require('../img/neon.jpg')}')`}}
+                style={{backgroundImage: `url('https://dednet.ru/client/images/cars/${name}_1.jpg')`}}
             />
             <div className="accountmenu__content__cards__car__gpscont">
                 <ButtonGps filled={true} position="right" />
@@ -22,15 +22,15 @@ const CardCard = ({ type, name, vin, carclass, def, number }) => {
             </span>
             <div className="accountmenu__content__cards__car__props">
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">vin</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Расход</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{vin}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">класс</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Бак</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{carclass}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">защита</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Топливо</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{def}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
