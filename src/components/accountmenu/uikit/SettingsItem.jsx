@@ -10,16 +10,16 @@ const SettingsItem = ({ name, type, active, setCheckbox, listmenu, prevVal, next
             {type === 0 && (
                 <div className="accountmenu__content__cards__setting__checkbox">
                     <span
-                        className={active === 0 ? "accountmenu__content__cards__setting__checkbox__btn_on" : "accountmenu__content__cards__setting__checkbox__btn"}
-                        onClick={() => setCheckbox()}
-                    >
-                        Вкл
-                    </span>
-                    <span
-                        className={active === 1 ? "accountmenu__content__cards__setting__checkbox__btn_off" : "accountmenu__content__cards__setting__checkbox__btn"}
+                        className={active === 0 ? "accountmenu__content__cards__setting__checkbox__btn_off" : "accountmenu__content__cards__setting__checkbox__btn"}
                         onClick={() => setCheckbox()}
                     >
                         Выкл
+                    </span>
+                    <span
+                        className={active === 1 ? "accountmenu__content__cards__setting__checkbox__btn_on" : "accountmenu__content__cards__setting__checkbox__btn"}
+                        onClick={() => setCheckbox()}
+                    >
+                        Вкл
                     </span>
                 </div>
             )}

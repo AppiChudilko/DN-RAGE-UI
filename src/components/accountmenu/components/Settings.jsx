@@ -74,6 +74,7 @@ const Settings = ({ data, activeData }) => {
             <div className="accountmenu__content__cards__blitem accountmenu__scrollable">
                 <div className="accountmenu__content__cards__settings__container">
                     <span className="accountmenu__content__cards__settings__bcontainer__name">{settings[active].name}</span>
+                    <span className="accountmenu__content__cards__settings__bcontainer__desc">{settings[active].desc}</span>
                     <div className="accountmenu__hr" style={{marginTop: '15px', marginBottom: '15px'}} />
                     {settings[active].settings.map((item, index) => (
                         <SettingsItem

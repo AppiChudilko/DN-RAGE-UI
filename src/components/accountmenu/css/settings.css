@@ -75,6 +75,15 @@
     text-transform: uppercase;
 }
 
+.accountmenu__content__cards__settings__bcontainer__desc {
+    font-family: 'Roboto';
+    font-size: 1.0rem;
+    color: #c2c2c2;
+    letter-spacing: 0.12rem;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
 .accountmenu__content__cards__setting__item {
     display: flex;
     flex-direction: row;
@@ -124,6 +133,11 @@
 .accountmenu__content__cards__setting__name {
     font-family: 'Roboto';
     font-size: 1.4rem;
+    letter-spacing: 0.12rem;
+}
+.accountmenu__content__cards__setting__desc {
+    font-family: 'Roboto';
+    font-size: 1.0rem;
     letter-spacing: 0.12rem;
 }
 

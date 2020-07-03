@@ -220,6 +220,7 @@ class AccountMenu extends React.Component {
             settingsData: [
                 {
                     name: 'Основное',
+                    desc: 'test',
                     settings: [
                         {type: 0, name: 'Показывать худ', params: 'reload1', active: 0},
                         {type: 1, name: 'Вид спидометра', params: 'reload2', active: 0, listmenu: ['Цифровой', 'Буквенный', 'Интуитивный']},
