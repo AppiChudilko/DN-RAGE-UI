@@ -34,7 +34,7 @@ const BusinessCard = ({ type, name, price, address, doors, title }) => {
                     Адрес
                 </span>
                 <span className="accountmenu__content__cards__business__doors">
-                    Двери
+                    Налог
                 </span>
             </div>
             <div className="accountmenu__content__cards__business__info__container">

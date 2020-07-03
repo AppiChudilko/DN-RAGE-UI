@@ -22,11 +22,11 @@ const CardCard = ({ type, name, vin, carclass, def, number }) => {
             </span>
             <div className="accountmenu__content__cards__car__props">
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">Расход</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Налог</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{vin}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">Бак</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Штраф</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{carclass}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
@@ -34,7 +34,7 @@ const CardCard = ({ type, name, vin, carclass, def, number }) => {
                     <span className="accountmenu__content__cards__car__props__bdata">{def}</span>
                 </div>
                 <div className="accountmenu__content__cards__car__props__item">
-                    <span className="accountmenu__content__cards__car__props__tdata">номера</span>
+                    <span className="accountmenu__content__cards__car__props__tdata">Номера</span>
                     <span className="accountmenu__content__cards__car__props__bdata">{number}</span>
                 </div>
             </div>

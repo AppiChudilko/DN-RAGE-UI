@@ -36,7 +36,7 @@ const Property = ({ house, business, cars }) => {
                             <ButtonGps filled={false} />
                         </div>
                         <LineData
-                            leftinfo="Двери"
+                            leftinfo="Налог"
                             rightinfo={house.doors}
                         />
                         <LineData
