@@ -119,6 +119,7 @@ const Reports = ({ data }) => {
                             <input ref={reportMessage} type="text" name="name" placeholder="Введите сообщение..." className="accountmenu__report__input" />
                         </label>
                         <Button text="Отправить" onPress={() => {
+                            reportData.dialog.push({type: 0, text: reportMessage.current.value, time: 'Только что'});
                             try {
                                 mp.trigger('client:mainMenu:sendReportOrAsk', reportMessage.current.value, reportData.type); // eslint-disable-line
                             }
