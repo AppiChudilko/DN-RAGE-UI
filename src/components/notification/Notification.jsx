@@ -7,13 +7,14 @@ class Notification extends React.Component {
         super(props)
         this.state = {
             show: false,
-
-            type: 1,
+            type: 2,
             position: 'center', //leftTop,left,leftBottom,centerTop,center,centerBottom,rightTop,right,rightBottom
             icon: 'unicorm', //unicorm
-            title: 'Уведомление', //Для type 2 title: '!'
-            text: 'Test',
-            isShowClose: true,
+            title: 'заголовок подсказки', //Для type 2 title: '!'
+            text: `Таким образом сложившаяся структура организации позволяет выполнять важные задания по разработке дальнейших направлений развития. Разнообразный и богатый опыт реализация намеченных плановых заданий влечет за собой процесс внедрения и модернизации новых предложений.
+
+            `,
+            isShowClose: false,
             value: ['Далее']
         }
     }
@@ -80,8 +81,8 @@ class Notification extends React.Component {
                     {this.state.type === 0 ?
                         <div className="notifi-first-box">
                             <div className="notifi-f-main">
-                                {this.state.isShowClose ? <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null}
-                                <div className="notifi-text-box">{this.state.text}</div>
+                                {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
+                                <div className="notifi-text-box-z">{this.state.text}</div>
                             </div>
                             <div className="notifi-btn">
                                 {this.state.value.map((e, i) => {
@@ -96,22 +97,14 @@ class Notification extends React.Component {
                         : null}
                     {this.state.type === 1 ?
                         <div className="notifi-first-box">
-                            <div className="notifi-linear-left"></div>
-                            <div className="notifi-linear-rightbottom"></div>
                             <div className="notifi-f-main">
                                 <div className="notifi-head">
                                     {this.state.title !== "" ?
                                         <div className="notifi-title">
-                                            {this.state.icon !== "" ?
-                                                <div className="notifi-icons">
-                                                    <div className={styleIcons}></div>
-                                                </div>
-                                                : null}
                                             {this.state.title}
                                         </div>
                                         : null}
-                                    {this.state.isShowClose ?
-                                        <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null}
+                                    {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
                                 </div>
                                 <div className="notifi-text-box">{this.state.text}</div>
                             </div>
@@ -136,8 +129,7 @@ class Notification extends React.Component {
                                     {this.state.title !== "" ?
                                         <div className="notifi-title-text">{this.state.title}</div>
                                         : null}
-                                    {this.state.isShowClose ?
-                                        <div onClick={this.closeBtn.bind(this)} className="notifi-close"></div> : null}
+                                    {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
                                 </div>
                                 <div className="notifi-text-box-last">{this.state.text}</div>
                             </div>

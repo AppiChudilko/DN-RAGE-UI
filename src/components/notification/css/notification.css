@@ -52,7 +52,7 @@
 }
 
 .notifi-first-box {
-    width: 382px;
+    width: 35%;
     max-height: 800px;
     display: flex;
     flex-direction: column;
@@ -60,13 +60,14 @@
 }
 
 .notifi-f-main {
-    background-color: rgb(28, 28, 28);
-    width: 100%;
+    background-color: rgba(20, 20, 20, 0.7);
     height: auto;
+    padding: 5%;
     max-height: 700px;
     display: flex;
     flex-direction: column;
     position: relative;
+    border-radius: 0.4rem;
 }
 
 .notifi-close {
@@ -76,18 +77,36 @@
     margin-left: auto;
     margin-right: 8px;
     margin-top: 9px;
+    cursor: pointer;
 }
 
 .notifi-text-box {
     width: calc(100% - 24px);
     height: calc(79% - 24px);
-    padding: 12px;
+    overflow: scroll;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'RobotoLight';
+    line-height: 1.5;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+    font-size: 16px;
+    color: #fff;
+}
+
+.notifi-text-box-z {
+    width: calc(100% - 24px);
+    height: calc(79% - 24px);
     overflow: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-family: 'Roboto';
+    font-family: 'RobotoLight';
+    line-height: 1.5;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
     font-size: 16px;
     color: #fff;
 }
@@ -105,13 +124,23 @@
 }
 
 .n-btn-box {
-    background: #fff;
-    width: 127px;
-    height: 24px;
+    background: linear-gradient(to bottom right, #70cfff, #43b2ea);
+    width: 16%;
+    height: auto;
+    cursor: pointer;
+    margin-top: -1.5rem;
+    z-index: 10;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 1px;
+    border-radius: 0.2rem;
+    font-family: 'RobotoMedium';
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
 }
 
 .n-btn-box:last-child {
@@ -134,10 +163,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
-    font-family: "Choujikuu";
-    color: rgb(0, 0, 0);
-    font-size: 12px;
+    font-family: "HACKED";
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 500;
     padding-right: 8px;
     max-width: 340px;
 }
@@ -194,20 +223,29 @@
 }
 
 .notifi-title-text {
-    font-family: "Choujikuu";
+    width: auto;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "HACKED";
     color: #fff;
-    font-size: 46px;
-    margin-top: -5px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    padding-right: 8px;
+    max-width: 340px;
 }
 
 .notifi-text-box-last {
-    width: 320px;
-    margin-left: 32px;
     margin-top: 0px;
     height: 61%;
     overflow: scroll;
     display: flex;
-    font-family: 'Roboto';
+    margin-top: 3%;
+    font-family: 'RobotoLight';
+    line-height: 1.5;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
     font-size: 16px;
     color: #fff;
 }
@@ -220,10 +258,3 @@
 }
 
 /*Пример*/
-.notifi-icons .icons-unicorm {
-    background: url(../img/blips/blip_121.png) no-repeat;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    margin-top: -1px;
-}
