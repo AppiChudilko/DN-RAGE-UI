@@ -13,11 +13,19 @@ import CarCard from '../uikit/CarCard'
 import ReportItemList from '../uikit/ReportItemList'
 import { useState } from 'react'
 import { useRef } from 'react'
+import { useEffect } from 'react'
 
 const Reports = ({ data }) => {
     const reportMessage = useRef(null)
 
+    const messagesEndRef = useRef(null)
+
     const [reportData, setReportData] = useState({})
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      };
+      useEffect(() => scrollToBottom, [reportData]);
 
     return (
         <React.Fragment>
@@ -89,7 +97,7 @@ const Reports = ({ data }) => {
                     <div className="accountmenu__hr" style={{marginTop: '4%', marginBottom: '4%'}} />
                     <div className="accountmenu__content__reports__dialog__content">
                         {reportData.dialog ? reportData.dialog.map((item, index) => (
-                            <div key={`report-msg-` + index} className={item.type === 0 ? "accountmenu__content__reports__dialog__content__item__lcontainer" : "accountmenu__content__reports__dialog__content__item__rcontainer"}>
+                            <div key={`report-msg-` + index} ref={messagesEndRef} className={item.type === 0 ? "accountmenu__content__reports__dialog__content__item__lcontainer" : "accountmenu__content__reports__dialog__content__item__rcontainer"}>
                                 <div className="accountmenu__content__reports__dialog__content__item__header">
                                     {item.name && (
                                         <span className="accountmenu__content__reports__dialog__content__item__name">

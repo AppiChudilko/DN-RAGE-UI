@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/header.css'
 
-const Header = ({ nick, accountId, donateBalance }) => {
+const Header = ({ nick, accountId, donateBalance, setHide }) => {
     return (
         <div className="accountmenu__topdata">
             <div className="accountmenu__topdata__info">
@@ -21,7 +21,7 @@ const Header = ({ nick, accountId, donateBalance }) => {
                 <span className="accountmenu__topdata__donate__balance">
                     {donateBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                 </span>
-                <span className="accountmenu__topdata__donate__btn">
+                <span onClick={setHide} className="accountmenu__topdata__donate__btn">
                     Закрыть
                 </span>
             </div>

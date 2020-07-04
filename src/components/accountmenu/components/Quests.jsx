@@ -39,6 +39,7 @@ const Quests = ({ quests }) => {
                                 index={index}
                                 active={active}
                                 setActive={() => setActive(index)}
+                                done={item.done}
                             />
                         ))}
                     </div>

@@ -114,6 +114,12 @@
     font-family: 'Roboto';
 }
 
+.accountmenu__cards__quest__icon_done {
+    color: #fff;
+    font-size: 2rem;
+    font-family: 'Roboto';
+}
+
 .accountmenu__cards__quest__icon__container {
     width: 2vw;
     height: 2vw;
@@ -125,12 +131,24 @@
     background: #9c9c9c;
 }
 
+.accountmenu__cards__quest__icon__container_done {
+    width: 2vw;
+    height: 2vw;
+    padding: 2%;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #52df75, #078522);
+}
+
 .accountmenu__content__cards__questinfo__container {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
 }
 
 .accountmenu__content__cards__questinfo__img__container {
+    width: 100%;
 }
 
 .accountmenu__content__cards__questinfo__header {

@@ -194,7 +194,7 @@ class AccountMenu extends React.Component {
 
             questData: [
                 {
-                    title: 'Фруктовый вор', subtitle: '3 задания', tasks: [
+                    title: 'Фруктовый вор', subtitle: '3 задания', done: true, tasks: [
                         {title: 'Кража апельсинов', text: 'Украсть 2 кг апельсин', reward: '$ 5 000', complete: 0},
                         {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 1},
                         {title: 'Кража ананасов', text: 'Украсть 5 кг ананасов', reward: '$ 1 000', complete: 2},
@@ -319,6 +319,12 @@ class AccountMenu extends React.Component {
         })
     }
 
+    setHide = () => {
+        this.setState({
+            show: false
+        })
+    }
+
     handleKeyPress = (key) => {
         if (key === 81) {
             if (this.state.activePage === 0) {
@@ -354,6 +360,7 @@ class AccountMenu extends React.Component {
                     accountId={this.state.accountId}
                     donateBalance={this.state.balance}
                     nick={this.state.nick}
+                    setHide={this.setHide}
                 />
                 <Content
                     page={this.state.activePage}
