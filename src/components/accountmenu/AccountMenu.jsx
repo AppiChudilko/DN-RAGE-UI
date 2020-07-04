@@ -323,6 +323,12 @@ class AccountMenu extends React.Component {
         this.setState({
             show: false
         })
+
+        try {
+            mp.trigger('client:mainMenu:status', false); // eslint-disable-line
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     handleKeyPress = (key) => {
