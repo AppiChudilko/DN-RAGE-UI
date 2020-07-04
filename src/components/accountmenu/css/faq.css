@@ -184,7 +184,7 @@
 
 .accountmenu__content__cards__answer__img {
     display: flex;
-    height: 35vh;
+    height: 25vh;
     background-position: center;
     background-size: 100%;
     border-radius: 0.4rem;
@@ -229,15 +229,15 @@
 
 .accountmenu__content__cards__answer__li {
     list-style-type: square;
-    padding-left: 1.5rem;
+    padding-left: 10px;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
     font-family: 'RobotoLight';
     letter-spacing: 0.1rem;
     font-size: 1.4rem;
     line-height: 1.7;
-    color: #43b2ea;
-    margin-left: 5rem;
+    /*color: #43b2ea;*/
+    margin-left: 22px;
 }
 
 ol .accountmenu__content__cards__answer__li::first-line {

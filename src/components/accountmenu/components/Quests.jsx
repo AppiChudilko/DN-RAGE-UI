@@ -58,11 +58,16 @@ const Quests = ({ quests }) => {
                     <div className="accountmenu__content__cards__questinfo__list">
                         {quests[active].tasks.map((item, index) => (
                             <div className="accountmenu__content__cards__questinfo__list__item" key={index.toString() + quests[active].title}>
-                                <span className="accountmenu__content__cards__questinfo__item__name">{`Задание ${index + 1}: ${item.title}`}</span>
+                                <span className="accountmenu__content__cards__questinfo__item__name">{`${item.title}`}</span>
                                 <span className="accountmenu__content__cards__questinfo__item__info">{item.text}</span>
                                 <div className="accountmenu__content__cards__questinfo__item__btmdata">
                                     <span className="accountmenu__content__cards__questinfo__item__reward">{`Награда: ${item.reward}`}</span>
-                                    {item.complete === 2 ? <ButtonOver text="Не доступно" /> : item.complete === 1 ? <Button text="В процессе" /> : <ButtonDone text="Завершено" />}
+                                    {item.complete === 2 ? <ButtonOver text="Не доступно" /> : item.complete === 1 ? <Button onClick={() => {
+                                        try {
+                                            mp.trigger('client:menuList:quest:callback', item.posx, item.posy); // eslint-disable-line
+                                        }
+                                        catch (e) {}
+                                    }} text="Проложить путь" /> : <ButtonDone text="Завершено" />}
                                 </div>
                             </div>
                         ))}
