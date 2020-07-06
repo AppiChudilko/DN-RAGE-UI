@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/property.css'
 import ButtonGps from './ButtonGps'
 
-const BusinessCard = ({ type, name, price, address, doors, title }) => {
+const BusinessCard = ({ type, name, price, address, doors, title, x, y }) => {
     return (
         <div className="accountmenu__content__cards__business">
             <div className="accountmenu__content__cards__business__img__container" style={{backgroundImage: `url(https://sun9-29.userapi.com/MI39cq7ufrkPh8WX12Y7D9PB81MgFxeszWm9pQ/JhtY99iL4R8.jpg)`}}>
@@ -45,7 +45,7 @@ const BusinessCard = ({ type, name, price, address, doors, title }) => {
                     {doors}
                 </span>
             </div>
-            <ButtonGps filled={true} position="left" />
+            <ButtonGps filled={true} position="left" x={x} y={y} />
         </div>
     )
 }

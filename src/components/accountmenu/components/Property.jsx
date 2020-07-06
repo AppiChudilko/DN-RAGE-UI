@@ -1,13 +1,7 @@
 import React from 'react'
 import '../css/property.css'
 import LineData from '../uikit/LineData'
-import StatContainer from '../uikit/StatContainer'
-import InfoBlock from '../uikit/InfoBlock'
-import ProgressBar from '../uikit/ProgressBar'
-import ProgressBarCircle from '../uikit/ProgressBarCircle'
-import Card from '../uikit/Card'
 import ButtonGps from '../uikit/ButtonGps'
-import Button from '../uikit/Button'
 import BusinessCard from '../uikit/BusinessCard'
 import CarCard from '../uikit/CarCard'
 
@@ -33,7 +27,7 @@ const Property = ({ house, business, cars }) => {
                             </span>
                         </div>
                         <div style={{paddingLeft: '3.5rem', paddingRight: '3.5rem', marginLeft: 'auto', marginTop: '2%', marginBottom: '2%'}} >
-                            <ButtonGps filled={false} />
+                            <ButtonGps filled={false} x={house.x} y={house.y} />
                         </div>
                         <LineData
                             leftinfo="Налог"

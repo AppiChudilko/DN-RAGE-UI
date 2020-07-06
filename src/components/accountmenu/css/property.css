@@ -362,7 +362,8 @@
 }
 
 .accountmenu__content__cards__car__gpscont {
-    display: flex;
+    /*display: flex;*/
+    display: none;
     margin-top: -7vh;
 }
 

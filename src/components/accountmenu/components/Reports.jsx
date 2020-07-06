@@ -23,8 +23,11 @@ const Reports = ({ data }) => {
     const [reportData, setReportData] = useState({})
 
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-      };
+        try {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        catch (e) {}
+    };
       useEffect(() => scrollToBottom, [reportData]);
 
     return (

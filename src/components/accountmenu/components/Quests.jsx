@@ -1,15 +1,6 @@
 import React from 'react'
 import '../css/quests.css'
-import LineData from '../uikit/LineData'
-import StatContainer from '../uikit/StatContainer'
-import InfoBlock from '../uikit/InfoBlock'
-import ProgressBar from '../uikit/ProgressBar'
-import ProgressBarCircle from '../uikit/ProgressBarCircle'
-import Card from '../uikit/Card'
-import ButtonGps from '../uikit/ButtonGps'
 import Button from '../uikit/Button'
-import BusinessCard from '../uikit/BusinessCard'
-import CarCard from '../uikit/CarCard'
 import { useState } from 'react'
 import Quest from '../uikit/Quest'
 import ButtonOver from '../uikit/ButtonOver'
@@ -65,7 +56,7 @@ const Quests = ({ quests }) => {
                                     <span className="accountmenu__content__cards__questinfo__item__reward">{`Награда: ${item.reward}`}</span>
                                     {item.complete === 2 ? <ButtonOver text="Не доступно" /> : item.complete === 1 ? <Button onClick={() => {
                                         try {
-                                            mp.trigger('client:menuList:quest:callback', item.posx, item.posy); // eslint-disable-line
+                                            mp.trigger('client:mainMenu:sendPos', item.posx, item.posy); // eslint-disable-line
                                         }
                                         catch (e) {}
                                     }} text="Проложить путь" /> : <ButtonDone text="Завершено" />}
