@@ -54,9 +54,9 @@ const Quests = ({ quests }) => {
                                 <span className="accountmenu__content__cards__questinfo__item__info">{item.text}</span>
                                 <div className="accountmenu__content__cards__questinfo__item__btmdata">
                                     <span className="accountmenu__content__cards__questinfo__item__reward">{`Награда: ${item.reward}`}</span>
-                                    {item.complete === 2 ? <ButtonOver text="Не доступно" /> : item.complete === 1 ? <Button onClick={() => {
+                                    {item.complete === 2 ? <ButtonOver text="Не доступно" /> : item.complete === 1 ? <Button onPress={() => {
                                         try {
-                                            mp.trigger('client:mainMenu:sendPos', item.posx, item.posy); // eslint-disable-line
+                                            mp.trigger('client:mainMenu:sendPos', item.x, item.y); // eslint-disable-line
                                         }
                                         catch (e) {}
                                     }} text="Проложить путь" /> : <ButtonDone text="Завершено" />}

@@ -61,35 +61,40 @@ class AccountMenu extends React.Component {
                     title: 'Склад',
                     price: '1250000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
-                    doors: 'Закрыты'
+                    doors: 'Закрыты',
+                    img: 'https://dednet.ru/client/images/mmenu/stock.jpg'
                 },
                 {
                     type: 0,
                     title: 'Бизнес',
                     price: '1777000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
-                    doors: 'Открыты'
+                    doors: 'Открыты',
+                    img: 'https://dednet.ru/client/images/mmenu/office.jpg'
                 },
                 {
                     type: 0,
                     title: 'Квартира',
                     price: '1777000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
-                    doors: 'Открыты'
+                    doors: 'Открыты',
+                    img: 'https://dednet.ru/client/images/mmenu/condo.jpg'
                 },
                 {
                     type: 0,
                     title: 'Апартаменты',
                     price: '1777000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
-                    doors: 'Открыты'
+                    doors: 'Открыты',
+                    img: 'https://dednet.ru/client/images/mmenu/office.jpg'
                 },
                 {
                     type: 0,
                     title: 'Яхта',
                     price: '1777000',
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
-                    doors: 'Открыты'
+                    doors: 'Открыты',
+                    img: 'https://dednet.ru/client/images/mmenu/yacht.jpg'
                 }
             ],
             propertyCars: [
