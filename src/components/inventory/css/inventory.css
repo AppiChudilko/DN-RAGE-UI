@@ -783,9 +783,9 @@ input[type="radio"]:checked + label .bg-color-craft-block {
 .style-recipes-txt-craft {
     margin-bottom: 33px;
     padding-left: 9px;
-    height: 52px;
+    height: 200px;
     display: flex;
-    justify-content: center;
+    overflow-x: auto;
     flex-direction: column;
     margin-bottom: 9px;
 }

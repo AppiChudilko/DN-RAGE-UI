@@ -12,7 +12,6 @@ class Notification extends React.Component {
             icon: 'unicorm', //unicorm
             title: 'заголовок подсказки', //Для type 2 title: '!'
             text: `Таким образом сложившаяся структура организации позволяет выполнять важные задания по разработке дальнейших направлений развития. Разнообразный и богатый опыт реализация намеченных плановых заданий влечет за собой процесс внедрения и модернизации новых предложений.
-
             `,
             isShowClose: false,
             value: ['Далее']
@@ -40,7 +39,7 @@ class Notification extends React.Component {
                 this.setState({position: value.position});
                 this.setState({icon: value.icon});
                 this.setState({title: value.title});
-                this.setState({text: value.text.toString().replace('<br>', '\n')});
+                this.setState({text: value.text});
                 this.setState({value: value.buttons});
             } else return;
         })
@@ -49,6 +48,15 @@ class Notification extends React.Component {
     componentWillUnmount() {
         EventManager.removeHandler('dialog');
     }
+
+    escapeRegExp = function(str) {
+        return str.toString().replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    };
+
+    replaceAll(str, find, replace){
+        return str.toString().replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
+        //return str.toString().split(find).join(replace);
+    };
 
     closeBtn() {
         this.setState({show: false});
@@ -82,7 +90,10 @@ class Notification extends React.Component {
                         <div className="notifi-first-box">
                             <div className="notifi-f-main">
                                 {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
-                                <div className="notifi-text-box-z">{this.state.text}</div>
+                                <div
+                                    className="notifi-text-box-z"
+                                    dangerouslySetInnerHTML={{__html: this.replaceAll(this.state.text, '~br~', '<br>')}}
+                                />
                             </div>
                             <div className="notifi-btn">
                                 {this.state.value.map((e, i) => {
@@ -106,7 +117,10 @@ class Notification extends React.Component {
                                         : null}
                                     {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
                                 </div>
-                                <div className="notifi-text-box">{this.state.text}</div>
+                                <div
+                                    className="notifi-text-box"
+                                    dangerouslySetInnerHTML={{__html: this.replaceAll(this.state.text, '~br~', '<br>')}}
+                                />
                             </div>
                             <div className="notifi-btn">
                                 {this.state.value.map((e, i) => {
@@ -131,7 +145,10 @@ class Notification extends React.Component {
                                         : null}
                                     {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
                                 </div>
-                                <div className="notifi-text-box-last">{this.state.text}</div>
+                                <div
+                                    className="notifi-text-box-last"
+                                    dangerouslySetInnerHTML={{__html: this.replaceAll(this.state.text, '~br~', '<br>')}}
+                                />
                             </div>
                             <div className="notifi-btn">
                                 {this.state.value.map((e, i) => {

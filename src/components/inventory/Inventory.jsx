@@ -79,7 +79,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
-                { id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
+                /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 4, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -142,7 +142,7 @@ class Inventory extends React.Component {
                 { id: 38, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 39, item_id: 265, name: "Футболка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 40, item_id: 269, name: "Кепка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }
+                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }*/
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
@@ -238,10 +238,10 @@ class Inventory extends React.Component {
             craft_process: -1,
             selected_recipe: {},
             learned_recipes: [
-                {
-                    id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.\n Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
+                /*{
+                    id: 80, name: "Большая аптечка", desc: `Данная аптечка восстанавливает до 100% здоровья.~br~Ресурсы для создания: бинт стерильный, спирт, ледокоин~br~Ресурсы для создания: бинт стерильный, спирт, ледокоин`,
                     craft: ['199', '3', '3'], craft_time: 2000
-                },
+                },*/
             ],
             itemCooldown: [
                 // { item_id: 14, cooldown: 5 }
@@ -283,8 +283,13 @@ class Inventory extends React.Component {
         return 0;
     }
 
-    replaceAll(string, search, replace){
-        return string.toString().split(search).join(replace);
+    escapeRegExp = function(str) {
+        return str.toString().replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    };
+
+    replaceAll(str, find, replace){
+        //return str.toString().split(find).join(replace);
+        return str.toString().replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
     };
 
     componentDidCatch(error, errorInfo) {
