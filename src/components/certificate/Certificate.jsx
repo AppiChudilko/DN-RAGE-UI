@@ -82,6 +82,9 @@ class Certificate extends React.Component {
             case 'usmc':
                 this.setState({work: 'united states marine corps', img_frac: ``})
                 break;
+            case 'inv':
+                this.setState({work: 'Life Invader News', img_frac: ``})
+                break;
             default:
                 break;
         }
