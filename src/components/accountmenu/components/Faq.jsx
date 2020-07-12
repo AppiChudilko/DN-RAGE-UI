@@ -215,10 +215,9 @@ const Faq = ({ onChangePage }) => {
                 <div className="accountmenu__content__cards__container answer">
                     <div
                         className="accountmenu__content__cards__answer__img"
-                        style={{backgroundImage: `url('${require('../img/question-bg.png')}')`}}
                     />
                     <div className="accountmenu__cards__question__icon__container__active">
-                        <img src={require('../icons/help.svg')} className="accountmenu__cards__question__icon__active" />
+                        <img src={`https://dednet.ru/client/images/mmenu/all/icons/help.svg`} className="accountmenu__cards__question__icon__active" />
                     </div>
                     <div className="accountmenu__content__cards__answer__title__container">
                         <span className="accountmenu__content__cards__answer__title">

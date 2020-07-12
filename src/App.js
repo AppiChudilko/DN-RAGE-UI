@@ -21,6 +21,7 @@ import Quickmenu from './components/quickmenu/Quickmenu';
 import CircleMenu from './components/circlemenu/CircleMenu';
 import Monopoly from './components/games/monopoly/Monopoly'
 import AccountMenu from './components/accountmenu/AccountMenu'
+import GunShop from './components/hudmenus/gunshop/GunShop';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Inventory />
         <Phone />
         <AccountMenu />
+        <GunShop />
         <Hud />
         <IDCard />
         <WorkID />
