@@ -12,44 +12,36 @@ class CarRent extends React.Component {
             bgcolor: '#252525',
             cars: [
                 {
-                    img: '',
                     price: 200,
-                    name: 'Taxi'
+                    name: 'Elegy'
                 },
                 {
-                    img: '',
                     price: 444,
-                    name: 'Bus'
+                    name: 'Elegy2'
                 },
                 {
-                    img: '',
                     price: 200,
-                    name: 'Taxi'
+                    name: 'Toros'
                 },
                 {
-                    img: '',
                     price: 444,
-                    name: 'Bus'
+                    name: 'Thrax'
                 },
                 {
-                    img: '',
                     price: 200,
-                    name: 'Taxi'
+                    name: 'Nexus'
                 },
                 {
-                    img: '',
                     price: 444,
-                    name: 'Bus'
+                    name: 'Faggio'
                 },
                 {
-                    img: '',
                     price: 200,
-                    name: 'Taxi'
+                    name: 'Faggio2'
                 },
                 {
-                    img: '',
                     price: 444,
-                    name: 'Bus'
+                    name: 'Faggio3'
                 }
             ]
         }
@@ -71,7 +63,7 @@ class CarRent extends React.Component {
                     <Header
                         bgcolor={this.state.bgcolor}
                         banner={this.state.banner}
-                        title="Бери любую машину по вкусу"
+                        title=""
                         setHide={this.setHide}
                     />
                     <div className="carrent__content__list__container">
@@ -80,7 +72,6 @@ class CarRent extends React.Component {
                             <Car
                                 price={item.price}
                                 name={item.name}
-                                img={item.img}
                                 key={`carrent__content__list__item-${index}`}
                                 btnbg="#000"
                             />
