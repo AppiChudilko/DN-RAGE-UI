@@ -22,6 +22,8 @@ import CircleMenu from './components/circlemenu/CircleMenu';
 import Monopoly from './components/games/monopoly/Monopoly'
 import AccountMenu from './components/accountmenu/AccountMenu'
 import GunShop from './components/hudmenus/gunshop/GunShop';
+import CarRent from './components/hudmenus/carrent/CarRent';
+import Dialog from './components/hudmenus/dialog/Dialog';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
         <Phone />
         <AccountMenu />
         <GunShop />
+        <CarRent />
+        <Dialog />
         <Hud />
         <IDCard />
         <WorkID />
