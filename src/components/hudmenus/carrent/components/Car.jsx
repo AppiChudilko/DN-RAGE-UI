@@ -9,7 +9,7 @@ const Car = ({ name, price, btnbg }) => {
             </div>
             <div className="carrent__content__list__item__info">
                 <span className="carrent__content__list__item__info__price">
-                    {`$${price} / час`}
+                    {`$${price}`}
                 </span>
                 <span className="carrent__content__list__item__info__rentbtn">
                     Арендовать
