@@ -1999,7 +1999,7 @@ class Inventory extends React.Component {
                 this.removeItemInInventory(this.state.selected_recipe.craft[i]);
             }
 
-            console.log('Успешный крафт')
+            //console.log('Успешный крафт')
             //this.notifyToClient('Успешный крафт');
             //mp.trigger craft tools and do mag  (this.state.selected_recipe - выбранный рецепт)
             mp.trigger('client:inventory:craft', this.state.selected_recipe.id); // eslint-disable-line
@@ -2037,12 +2037,10 @@ class Inventory extends React.Component {
             if (id == item.item_id && !isRemove) {
                 isRemove = true;
                 this.setState({ items: this.arrayRemove(this.state.items, item) })
-                try {
+                /*try {
                     mp.trigger('client:inventory:removeItemInInventory', item.id); // eslint-disable-line
                 }
-                catch (e) {
-                    
-                }
+                catch (e) {}*/
             }
         });
         return isRemove
