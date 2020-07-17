@@ -1,0 +1,12 @@
+.tatoo__content__list__item {
+    font-family: 'RobotoLight';
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+}
+
+.tatoo__content__list__item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}

@@ -25,6 +25,7 @@ import GunShop from './components/hudmenus/gunshop/GunShop';
 import ItemShop from './components/hudmenus/itemshop/ItemShop';
 import CarRent from './components/hudmenus/carrent/CarRent';
 import Dialog from './components/hudmenus/dialog/Dialog';
+import Tatoo from './components/hudmenus/tatoo/Tatoo';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <ItemShop />
         <CarRent />
         <Dialog />
+        <Tatoo />
         <Hud />
         <IDCard />
         <WorkID />

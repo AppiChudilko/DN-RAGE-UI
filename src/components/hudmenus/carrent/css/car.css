@@ -7,18 +7,20 @@
 
 .carrent__content__list__img__container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
-    background-image: url('http://data.3dtuning.com/tun/PiteJ_IDAa.jpg');
+    align-items: flex-start;
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 40vh;
-    background-position: center;
+    background-position: top;
+}
+
+.carrent__content__list__img__item {
+    width: 100%;
+    height: auto;
 }
 
 .carrent__content__list__item {
-    height: 40vh;
     display: flex;
     flex-direction: column;
 }
@@ -29,13 +31,14 @@
 
 .carrent__content__list__item__info__price {
     font-family: 'RobotoBold';
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .carrent__content__list__item__info__rentbtn {
     font-family: 'RobotoBold';
     font-size: 1.2rem;
     cursor: pointer;
+    padding: 1rem;
 }
 
 .carrent__content__list__item__info {
@@ -43,7 +46,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1rem;
 }
 
 .carrent__content__list__item__name {

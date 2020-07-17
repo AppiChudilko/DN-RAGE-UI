@@ -4,7 +4,8 @@ import '../css/car.css'
 const Car = ({ name, price, btnbg }) => {
     return (
         <div className="carrent__content__list__item">
-            <div className="carrent__content__list__img__container" style={{backgroundImage: `url('https://dednet.ru/client/images/carssm/${name}_1.jpg')`}}>
+            <div className="carrent__content__list__img__container">
+                <img alt="" src={`https://dednet.ru/client/images/carssm/${name}_1.jpg`} className="carrent__content__list__img__item" />
                 <span style={{backgroundColor: btnbg}} className="carrent__content__list__item__name">{name}</span>
             </div>
             <div className="carrent__content__list__item__info">
