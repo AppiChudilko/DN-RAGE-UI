@@ -24,7 +24,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 1111,
-                            params: {}
+                            params: {},
+                            sale: 24
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пиротехническая установка',
@@ -34,7 +35,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 2222,
-                            params: {}
+                            params: {},
+                            sale: 20
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
@@ -44,7 +46,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 3333,
-                            params: {}
+                            params: {},
+                            sale: 11
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
@@ -54,7 +57,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 4444,
-                            params: {}
+                            params: {},
+                            sale: 0
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
@@ -64,7 +68,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 5555,
-                            params: {}
+                            params: {},
+                            sale: 1
                         }
                     ]
                 },
@@ -79,7 +84,8 @@ export default class GunShop extends React.Component {
                             menu: [], //доп меню, но с ним позже
                             count: 1, //С этим тоже позже
                             price: 5000,
-                            params: {}
+                            params: {},
+                            sale: 24
                         }
                     ]
                 }

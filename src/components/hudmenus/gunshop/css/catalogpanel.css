@@ -90,3 +90,19 @@
     font-family: 'RobotoMedium';
     font-size: 1.3rem;
 }
+
+.hmenu__gunshop__catalog__item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hmenu__gunshop__catalog__item__sale {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+    border-radius: 0.4rem;
+    font-family: 'RobotoBold';
+    background-color: red;
+}
