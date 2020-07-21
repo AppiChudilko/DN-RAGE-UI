@@ -20,7 +20,7 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                             Цена
                         </span>
                         <span className="hmenu__gunshop__stats__price__gprice">
-                            {`$${catalog[selected].items[selectedCatalog].price}`}
+                            {`${catalog[selected].items[selectedCatalog].price}`}
                         </span>
                     </div>
                     <FlatButton btncolor={btncolor} text="Оплатить по карте" />

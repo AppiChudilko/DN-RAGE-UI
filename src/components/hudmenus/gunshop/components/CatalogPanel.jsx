@@ -29,7 +29,7 @@ const CatalogPanel = ({ catalog, selected, selectedCatalog, setActiveCatalog }) 
                     </div>
                     <div className="hmenu__gunshop__catalog__item__info">
                        <span className="hmenu__gunshop__catalog__item__price">
-                            {`$${item.price}`}
+                            {`${item.price}`}
                        </span>
                        <div className="hmenu__gunshop__catalog__item__calibr">
                             <span className="hmenu__gunshop__catalog__item__calibr__text">
