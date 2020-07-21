@@ -10,7 +10,6 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                 <React.Fragment>
                 <span className="hmenu__gunshop__stats__name">{catalog[selected].items[selectedCatalog].title}</span>
                 <div className="hmenu__gunshop__stats__params">
-                    <span className="hmenu__gunshop__stats__pname">Об оружии</span>
                     <span className="hmenu__gunshop__stats__about">
                         {`${catalog[selected].items[selectedCatalog].desc}`}
                     </span>
@@ -21,7 +20,7 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                             Цена
                         </span>
                         <span className="hmenu__gunshop__stats__price__gprice">
-                            {`$${catalog[selected].items[selectedCatalog].price},00`}
+                            {`$${catalog[selected].items[selectedCatalog].price}`}
                         </span>
                     </div>
                     <FlatButton btncolor={btncolor} text="Оплатить по карте" />

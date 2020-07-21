@@ -20,23 +20,23 @@ const CatalogPanel = ({ catalog, selected, selectedCatalog, setActiveCatalog }) 
                         </span>
                         {item.sale > 0 && (
                         <span className="hmenu__gunshop__catalog__item__sale">
-                                {`— ${item.sale}%`}
+                                {`${item.sale}%`}
                         </span>
                         )}
                     </div>
                     <div className="hmenu__gunshop__catalog__item__img__container">
-                        <img src="https://libertycity.ru/uploads/gta5/weapons/gta5-pistol.png" className="hmenu__gunshop__catalog__item__img" />
+                        <img src={item.img} className="hmenu__gunshop__catalog__item__img" />
                     </div>
                     <div className="hmenu__gunshop__catalog__item__info">
                        <span className="hmenu__gunshop__catalog__item__price">
-                            {`$${item.price},00`}
+                            {`$${item.price}`}
                        </span>
                        <div className="hmenu__gunshop__catalog__item__calibr">
                             <span className="hmenu__gunshop__catalog__item__calibr__text">
-                                Калибр
+                                {item.desc2t}
                             </span>
-                            <span className="hmenu__gunshop__catalog__item__calibr__name">
-                                9x19mm
+                                <span className="hmenu__gunshop__catalog__item__calibr__name">
+                                {item.desc2}
                             </span>
                        </div>
                     </div>

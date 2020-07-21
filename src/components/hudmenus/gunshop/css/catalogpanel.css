@@ -35,6 +35,8 @@
 .hmenu__gunshop__catalog__item__img {
     width: 75%;
     height: auto;
+    max-height: 160px;
+    object-fit: contain;
 }
 
 .hmenu__gunshop__catalog__item__img__container {

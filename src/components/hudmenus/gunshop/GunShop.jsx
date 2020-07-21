@@ -3,6 +3,7 @@ import NavigationPanel from './components/NavigationPanel.jsx'
 import CatalogPanel from './components/CatalogPanel.jsx'
 import StatsPanel from './components/StatsPanel.jsx'
 import './css/main.css'
+import EventManager from "../../../EventManager";
 
 export default class GunShop extends React.Component {
     constructor(props) {
@@ -11,93 +12,93 @@ export default class GunShop extends React.Component {
             show: false,
             selected: 0,
             selectedCatalog: -1,
-            banner: '',
+            banner: 'bs_hair',
+            bgColor: '#2f2f2f',
             catalog: [
                 {
                     title: 'Оружие',
                     items: [
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
-                            title: 'Пистолет',
-                            desc: 'Описание',
-                            descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
                             price: 1111,
-                            params: {},
+                            params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пиротехническая установка',
                             desc: 'Описание',
-                            descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
-                            price: 2222,
-                            params: {},
+                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
+                            price:12.50,
+                            params: {id: 23, price: 12.5, shop: 106},
                             sale: 20
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
                             desc: 'Описание',
                             descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
+                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
                             price: 3333,
-                            params: {},
+                            params: {id: 23, price: 12.5, shop: 106},
                             sale: 11
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
                             desc: 'Описание',
-                            descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
+                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
                             price: 4444,
-                            params: {},
+                            params: {id: 23, price: 12.5, shop: 106},
                             sale: 0
                         },
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
                             desc: 'Описание',
-                            descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
+                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
                             price: 5555,
-                            params: {},
+                            params: {id: 23, price: 12.5, shop: 106},
                             sale: 1
                         }
                     ]
-                },
-                {
-                    title: 'Боеприпасы',
-                    items: [
-                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
-                            title: 'Пистолет',
-                            desc: 'Описание',
-                            descFull: 'Полное описание~br~Полное описание',
-                            img: 'url картинки',
-                            menu: [], //доп меню, но с ним позже
-                            count: 1, //С этим тоже позже
-                            price: 5000,
-                            params: {},
-                            sale: 24
-                        }
-                    ]
                 }
-            
+
             ]
         }
+    }
+
+    componentDidMount() {
+        EventManager.addHandler('gunshop', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateItems') {
+                this.setState({show: true})
+                this.setState({catalog: value.list})
+                this.setState({selected: value.selected})
+                this.setState({selectedCatalog: value.selectedCatalog})
+                this.setState({banner: value.banner})
+                this.setState({bgColor: value.bgColor})
+            }
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('gunshop');
     }
 
     setHide = () => {
         this.setState({
             show: false
         })
+
+        try {
+            mp.trigger('client:shopMenu:hide'); // eslint-disable-line
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     setActive = (value) => {
@@ -120,26 +121,26 @@ export default class GunShop extends React.Component {
         return (
             <div className="hmenu__container">
                 <div className="hmenu__gunshop">
-                    <NavigationPanel 
+                    <NavigationPanel
                         selected={this.state.selected}
-                        bgcolor="#252525"
+                        bgcolor={this.state.bgColor}
                         activecolor="#000"
                         catalog={this.state.catalog}
                         setHide={this.setHide}
-                        banner="bs_hair"
+                        banner={this.state.banner}
                         setActive={this.setActive}
                     />
-                    <CatalogPanel 
+                    <CatalogPanel
                         selected={this.state.selected}
                         catalog={this.state.catalog}
                         selectedCatalog={this.state.selectedCatalog}
                         setActiveCatalog={this.setActiveCatalog}
                     />
-                    <StatsPanel 
+                    <StatsPanel
                         selected={this.state.selected}
                         catalog={this.state.catalog}
                         selectedCatalog={this.state.selectedCatalog}
-                        btncolor="#252525"
+                        btncolor={this.state.bgColor}
                     />
                 </div>
             </div>
