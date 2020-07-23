@@ -23,8 +23,20 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                             {`${catalog[selected].items[selectedCatalog].price}`}
                         </span>
                     </div>
-                    <FlatButton btncolor={btncolor} text="Оплатить по карте" />
-                    <FlatButton btncolor={btncolor} text="Оплатить наличными" />
+                    <FlatButton onPress={() => {
+                        try {
+                            mp.trigger('client:shopMenu:buyCard', JSON.stringify(catalog[selected].items[selectedCatalog].params)); // eslint-disable-line
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }} btncolor={btncolor} text="Оплатить по карте" />
+                    <FlatButton onPress={() => {
+                        try {
+                            mp.trigger('client:shopMenu:buyCash', JSON.stringify(catalog[selected].items[selectedCatalog].params)); // eslint-disable-line
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }} btncolor={btncolor} text="Оплатить наличными" />
                 </div>
                 </React.Fragment>
             )}
