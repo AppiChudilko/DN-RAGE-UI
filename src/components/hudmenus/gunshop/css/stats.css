@@ -85,6 +85,10 @@
     margin-bottom: 5%;
 }
 
+.hmenu__gunshop__hide {
+    display: none !important;
+}
+
 .hmenu__gunshop__stats__price__gtext {
     font-family: 'RobotoBold';
     font-size: 1.2rem;

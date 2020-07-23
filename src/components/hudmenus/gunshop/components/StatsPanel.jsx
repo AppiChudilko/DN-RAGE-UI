@@ -15,7 +15,7 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                     </span>
                 </div>
                 <div className="hmenu__gunshop__stats__price">
-                    <div className="hmenu__gunshop__stats__price__text">
+                    <div className={(catalog[selected].items[selectedCatalog].price !== '' ? 'hmenu__gunshop__stats__price__text' : 'hmenu__gunshop__hide')}>
                         <span className="hmenu__gunshop__stats__price__gtext">
                             Цена
                         </span>
@@ -23,20 +23,27 @@ const StatsPanel = ({ catalog, selected, selectedCatalog, btncolor }) => {
                             {`${catalog[selected].items[selectedCatalog].price}`}
                         </span>
                     </div>
-                    <FlatButton onPress={() => {
+                    <FlatButton isHide={catalog[selected].items[selectedCatalog].price === ''} onPress={() => {
                         try {
                             mp.trigger('client:shopMenu:buyCard', JSON.stringify(catalog[selected].items[selectedCatalog].params)); // eslint-disable-line
                         } catch (e) {
                             console.log(e);
                         }
                     }} btncolor={btncolor} text="Оплатить по карте" />
-                    <FlatButton onPress={() => {
+                    <FlatButton isHide={catalog[selected].items[selectedCatalog].price === ''} onPress={() => {
                         try {
                             mp.trigger('client:shopMenu:buyCash', JSON.stringify(catalog[selected].items[selectedCatalog].params)); // eslint-disable-line
                         } catch (e) {
                             console.log(e);
                         }
                     }} btncolor={btncolor} text="Оплатить наличными" />
+                    <FlatButton isHide={catalog[selected].items[selectedCatalog].price !== ''} onPress={() => {
+                        try {
+                            mp.trigger('client:shopMenu:doName', JSON.stringify(catalog[selected].items[selectedCatalog].params)); // eslint-disable-line
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }} btncolor={btncolor} text="Открыть" />
                 </div>
                 </React.Fragment>
             )}
