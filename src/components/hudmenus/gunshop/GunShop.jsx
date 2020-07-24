@@ -23,8 +23,203 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
-                            price: 1111,
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
+                            params: {id: 23, price: 12.5, shop: 106},
+                            sale: 24
+                        },
+                    ]
+                },
+                {
+                    title: 'Оружие',
+                    items: [
+                        { //Если кликаем сюда, то открывается меню справа (Там где покупка)
+                            title: 'Пастила P`s & Q`s',
+                            desc: 'Полное описание~br~Полное описание',
+                            desc2t: 'Калибр',
+                            desc2: '9x19mm',
+                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
                         },
@@ -32,7 +227,7 @@ export default class GunShop extends React.Component {
                             title: 'Пиротехническая установка',
                             desc: 'Описание',
                             img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
-                            price:12.50,
+                            price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 20
                         },
@@ -41,7 +236,7 @@ export default class GunShop extends React.Component {
                             desc: 'Описание',
                             descFull: 'Полное описание~br~Полное описание',
                             img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
-                            price: 3333,
+                            price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 11
                         },
@@ -49,7 +244,7 @@ export default class GunShop extends React.Component {
                             title: 'Пистолет',
                             desc: 'Описание',
                             img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
-                            price: 4444,
+                            price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 0
                         },
@@ -57,7 +252,7 @@ export default class GunShop extends React.Component {
                             title: 'Пистолет',
                             desc: 'Описание',
                             img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
-                            price: 5555,
+                            price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 1
                         }
