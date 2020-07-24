@@ -2066,7 +2066,7 @@ class Inventory extends React.Component {
                             <div className="inv-row-main">
                                 <div className="player-inv">
                                     <div className="liner-inv"></div>
-                                    <div className="title-inv">{this.state.secondary_inv_open && this.state.items.length > 0 ? <div className="moveall_left" onClick={() => this.moveAllItem(true)}></div> : null}<span>Инвентарь</span>
+                                    <div className="title-inv"><span>Инвентарь</span>
                                         <span
                                             className="weight-title-inv">({this.numberToK(this.state.weight_now)}/{this.numberToK(this.state.weight_max)})</span>
                                     </div>

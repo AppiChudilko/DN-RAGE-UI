@@ -23,7 +23,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -38,7 +38,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -53,7 +53,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -68,7 +68,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -83,7 +83,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -98,7 +98,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -113,7 +113,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -128,7 +128,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -143,7 +143,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -158,7 +158,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -173,7 +173,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -188,7 +188,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -203,7 +203,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -218,7 +218,7 @@ export default class GunShop extends React.Component {
                             desc: 'Полное описание~br~Полное описание',
                             desc2t: 'Калибр',
                             desc2: '9x19mm',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_54.png',
+                            img: 'Item_54.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 24
@@ -226,7 +226,7 @@ export default class GunShop extends React.Component {
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пиротехническая установка',
                             desc: 'Описание',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
+                            img: 'Item_25.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 20
@@ -235,7 +235,7 @@ export default class GunShop extends React.Component {
                             title: 'Пистолет',
                             desc: 'Описание',
                             descFull: 'Полное описание~br~Полное описание',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
+                            img: 'Item_25.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 11
@@ -243,7 +243,7 @@ export default class GunShop extends React.Component {
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
                             desc: 'Описание',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
+                            img: 'Item_25.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 0
@@ -251,7 +251,7 @@ export default class GunShop extends React.Component {
                         { //Если кликаем сюда, то открывается меню справа (Там где покупка)
                             title: 'Пистолет',
                             desc: 'Описание',
-                            img: 'https://dednet.ru/client/images/items-cl/Item_25.png',
+                            img: 'Item_25.png',
                             price: '$500',
                             params: {id: 23, price: 12.5, shop: 106},
                             sale: 1
