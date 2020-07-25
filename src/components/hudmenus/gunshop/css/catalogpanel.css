@@ -1,10 +1,12 @@
 .hmenu__gunshop__catalog {
     display: grid;
+    grid-template-rows: 45% 45%;
     grid-template-columns: 50% 50%;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     height: 100%;
     padding: 2%;
+    width: 100%;
 }
 
 .hmenu__gunshop__catalog__container {
@@ -19,7 +21,6 @@
     display: flex;
     padding: 1.5rem;
     flex-direction: column;
-    max-height: 35vh;
     cursor: pointer;
 }
 
@@ -28,7 +29,6 @@
     display: flex;
     padding: 1.5rem;
     flex-direction: column;
-    max-height: 35vh;
     cursor: pointer;
 }
 
@@ -67,6 +67,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: auto;
     justify-content: space-between;
 }
 
