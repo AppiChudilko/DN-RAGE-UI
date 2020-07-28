@@ -289,13 +289,23 @@ export default class GunShop extends React.Component {
                 this.setState({show: true})
             } else if (value.type === 'hide') {
                 this.setState({show: false})
+
+                this.setState({
+                    selected: 0,
+                    selectedCatalog: -1
+                })
             } else if (value.type === 'updateItems') {
-                this.setState({show: true})
-                this.setState({catalog: value.list})
-                this.setState({selected: value.selected})
-                this.setState({selectedCatalog: value.selectedCatalog})
-                this.setState({banner: value.banner})
-                this.setState({bgColor: value.bgColor})
+                try {
+                    this.setState({show: true})
+                    this.setState({selected: value.selected})
+                    this.setState({selectedCatalog: value.selectedCatalog})
+                    this.setState({banner: value.banner})
+                    this.setState({bgColor: value.bgColor})
+                    this.setState({catalog: value.list})
+                }
+                catch (e) {
+
+                }
             }
         })
     }
@@ -314,6 +324,11 @@ export default class GunShop extends React.Component {
         } catch (e) {
             console.log(e);
         }
+
+        this.setState({
+            selected: 0,
+            selectedCatalog: -1
+        })
     }
 
     setActive = (value) => {
