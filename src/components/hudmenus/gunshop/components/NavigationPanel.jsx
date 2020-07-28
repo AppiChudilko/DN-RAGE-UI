@@ -20,7 +20,7 @@ const NavigationPanel = ({ bgcolor, catalog, selected, setHide, setActive, banne
                 ))}
             </div>
             <span className="hmenu__gunshop__navpanel__exitbtn" onClick={setHide}>
-                Выход
+                Закрыть
             </span>
         </div>
     )
