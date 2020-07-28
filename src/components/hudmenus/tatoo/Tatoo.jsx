@@ -15,12 +15,12 @@ class Tatoo extends React.Component {
             type: 1,
             selected: -1,
             items: [
-                {name: 'Прическа', price: 111},
-                {name: 'Борода', price: 1123},
+                {name: 'Прическа', price: 111, sale: 11},
+                {name: 'Борода', price: 1123, sale: 0},
             ],
             itemsBack: [
-                {name: 'Прическа', price: 111},
-                {name: 'Борода123123', price: 1123},
+                {name: 'Прическа', price: 111, sale: 0},
+                {name: 'Борода123123', price: 1123, sale: 0},
             ]
         }
     }
@@ -109,6 +109,7 @@ class Tatoo extends React.Component {
                             <CatalogItem
                                 key={`tatoo__content__list-${index}`}
                                 name={item.name}
+                                sale={item.sale}
                                 setSelected={() => this.setSelected(index)}
                             />
                         ))}
@@ -139,14 +140,14 @@ class Tatoo extends React.Component {
                         } catch (e) {
                             console.log(e);
                         }
-                    }}  btncolor="#252525" customStyle={{paddingLeft: '1rem', paddingRight: '1rem', border: `0px`}} />
+                    }}  btncolor="#252525" customStyle={{paddingLeft: '1rem', paddingRight: '1rem', border: `1px solid #fff`}} />
                     <FlatButton text="Оплатить картой" onPress={() => {
                         try {
                             mp.trigger('client:shopMenu:buyCard2', JSON.stringify(this.state.items[this.state.selected].params)); // eslint-disable-line
                         } catch (e) {
                             console.log(e);
                         }
-                    }}  btncolor="#252525" customStyle={{paddingLeft: '1rem', paddingRight: '1rem', border: `0px`}} />
+                    }}  btncolor="#252525" customStyle={{paddingLeft: '1rem', paddingRight: '1rem', border: `1px solid #fff`}} />
                 </div>
                 )}
             </div>

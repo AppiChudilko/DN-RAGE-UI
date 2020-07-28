@@ -11,7 +11,7 @@ const Header = ({ banner, title, subtitle }) => (
                 <span className="tatoo__content__header__subtitle">
                     {subtitle}
                 </span>
-    </div>
+        </div>
     </div>
 )
 
