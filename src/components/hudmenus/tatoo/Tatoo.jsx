@@ -96,7 +96,7 @@ class Tatoo extends React.Component {
         })
 
         try {
-            mp.trigger('client:shopMenu:changeSelect2', JSON.stringify(this.state.items[this.state.selected].params)); // eslint-disable-line
+            mp.trigger('client:shopMenu:changeSelect2', JSON.stringify(this.state.items[value].params)); // eslint-disable-line
         } catch (e) {
             console.log(e);
         }
@@ -146,20 +146,25 @@ class Tatoo extends React.Component {
                             />
                         ))}
                     </div>
-                    {(this.state.type === 1) && (
+                    {/*(this.state.type === 1) && (
                         <div className="tatoo__content__exitbtn__container">
                         <span className="tatoo__content__exitbtn" onClick={() => this.backBtn()}>
                             Назад
                         </span>
                         </div>
-                    )}
-                    {(this.state.type === 0) && (
+                    )*/}
+                    {/*(this.state.type === 0) && (
                         <div className="tatoo__content__exitbtn__container">
                         <span className="tatoo__content__exitbtn" onClick={() => this.closeBtn()}>
-                            Выход
+                            Закрыть
                         </span>
                         </div>
-                    )}
+                    )*/}
+                    <div className="tatoo__content__exitbtn__container">
+                        <span className="tatoo__content__exitbtn" onClick={() => this.closeBtn()}>
+                            Закрыть
+                        </span>
+                    </div>
                 </div>
                 {(this.state.type === 1 && this.state.selected !== -1) && (
                 <div className="tatoo__payment">
