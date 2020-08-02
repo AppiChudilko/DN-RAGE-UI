@@ -2,6 +2,19 @@
     font-family: 'RobotoLight';
     font-size: 1.4rem;
     letter-spacing: 0.05rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.tatoo__content__list__item__desc {
+    font-family: 'RobotoLight';
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    color: rgba(255, 255, 255, 0.67);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .tatoo__content__list__item__sale {
