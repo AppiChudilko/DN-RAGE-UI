@@ -3,11 +3,13 @@ import '../css/content.css'
 import NavigationPanel from '../uikit/NavigationPanel'
 import Cards from '../uikit/Cards'
 
-const Content = ({ page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars, reportData, questData , settingsData, settingsActive }) => {
+const Content = ({ activeIndex, panels, page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars, reportData, questData , settingsData, settingsActive }) => {
+    
     return (
         <div className="accountmenu__content">
             <NavigationPanel
-                activePage={page}
+                panels={panels}
+                activePage={activeIndex}
                 onChangePage={onChangePage}
                 handleKeyPress={handleKeyPress}
             />

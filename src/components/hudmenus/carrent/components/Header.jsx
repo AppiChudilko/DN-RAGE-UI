@@ -17,7 +17,7 @@ const Header = ({ banner, title, bgcolor, setHide }) => {
             className="carrent__content__header__exitbtn"
             onClick={setHide}
         >
-            Выход    
+            Закрыть    
         </span>                
         </div>
     )

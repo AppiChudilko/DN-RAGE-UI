@@ -13,31 +13,38 @@ class CarRent extends React.Component {
             cars: [
                 {
                     price: 200,
-                    name: 'Elegy'
+                    name: 'Elegy',
+                    sale: 0
                 },
                 {
                     price: 444,
-                    name: 'Elegy2'
+                    name: 'Elegy2',
+                    sale: 13
                 },
                 {
                     price: 200,
-                    name: 'Toros'
+                    name: 'Toros',
+                    sale: 60
                 },
                 {
                     price: 444,
-                    name: 'Thrax'
+                    name: 'Thrax',
+                    sale: 0
                 },
                 {
                     price: 200,
-                    name: 'Nexus'
+                    name: 'Nexus',
+                    sale: 0
                 },
                 {
                     price: 444,
-                    name: 'Faggio'
+                    name: 'Faggio',
+                    sale: 0
                 },
                 {
                     price: 200,
-                    name: 'Faggio2'
+                    name: 'Faggio2',
+                    sale: 13
                 },
                 {
                     price: 444,
@@ -74,6 +81,7 @@ class CarRent extends React.Component {
                                 name={item.name}
                                 key={`carrent__content__list__item-${index}`}
                                 btnbg="#000"
+                                sale={item.sale}
                             />
                         ))}
                         </div>

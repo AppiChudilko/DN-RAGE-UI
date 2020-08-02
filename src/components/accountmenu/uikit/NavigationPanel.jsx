@@ -5,16 +5,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
 
-const NavigationPanel = ({ activePage, onChangePage, handleKeyPress }) => {
-
-    const panels = [
-        {name: 'Общее'},
-        {name: 'Имущество'},
-        {name: 'FAQ'},
-        {name: 'Обращения'},
-        {name: 'Настройки'},
-        {name: 'Квесты'}
-    ]
+const NavigationPanel = ({ activePage, onChangePage, handleKeyPress, panels }) => {
 
     const navigationPanel = useRef(null)
 

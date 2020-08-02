@@ -9,18 +9,24 @@ const Header = ({ nick, accountId, donateBalance, setHide }) => {
                     {nick}
                 </span>
                 <div className="accountmenu__topdata__number">
+                    {accountId && (
                     <span className="accountmenu__topdata__number__text">
                         {`Номер аккаунта: ${accountId.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
                     </span>
+                    )}
                 </div>
             </div>
             <div className="accountmenu__topdata__donate">
-                <span className="accountmenu__topdata__donate__text">
-                    Баланс
-                </span>
-                <span className="accountmenu__topdata__donate__balance">
-                    {donateBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
-                </span>
+                {accountId && (
+                    <React.Fragment>
+                        <span className="accountmenu__topdata__donate__text">
+                            Баланс
+                        </span>
+                        <span className="accountmenu__topdata__donate__balance">
+                            {donateBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+                        </span>
+                    </React.Fragment>
+                )}
                 <span onClick={setHide} className="accountmenu__topdata__donate__btn">
                     Закрыть
                 </span>

@@ -9,6 +9,14 @@ class AccountMenu extends React.Component {
         super(props)
         this.state = {
             show: false,
+            panels: [
+                {name: 'Общее', id: 'accmenu-main'},
+                {name: 'Имущество', id: 'accmenu-property'},
+                {name: 'FAQ', id: 'accmenu-faq'},
+                {name: 'Обращения', id: 'accmenu-reports'},
+                {name: 'Настройки', id: 'accmenu-settings'},
+                {name: 'Квесты', id: 'accmenu-quests'}
+            ],
             activePage: 0,
             accountId: 0,
             nick: 'Test',
@@ -339,7 +347,7 @@ class AccountMenu extends React.Component {
         if (key === 81) {
             if (this.state.activePage === 0) {
                 this.setState({
-                    activePage: 5
+                    activePage: this.state.panels.length - 1
                 })
             } else {
                 this.setState((state) => (
@@ -348,7 +356,7 @@ class AccountMenu extends React.Component {
             }
         }
         else if (key === 69) {
-            if (this.state.activePage === 5) {
+            if (this.state.activePage === this.state.panels.length - 1) {
                 this.setState({
                     activePage: 0
                 })
@@ -373,7 +381,8 @@ class AccountMenu extends React.Component {
                     setHide={this.setHide}
                 />
                 <Content
-                    page={this.state.activePage}
+                    panels={this.state.panels}
+                    page={this.state.panels[this.state.activePage]}
                     onChangePage={this.onChangePage}
                     handleKeyPress={this.handleKeyPress}
                     generalList={this.state.generalList}
@@ -385,6 +394,7 @@ class AccountMenu extends React.Component {
                     questData={this.state.questData}
                     settingsData={this.state.settingsData}
                     settingsActive={this.state.settingsActive}
+                    activeIndex={this.state.activePage}
                 />
             </div>
         )
