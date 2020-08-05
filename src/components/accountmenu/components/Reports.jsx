@@ -15,12 +15,12 @@ import { useState } from 'react'
 import { useRef } from 'react'
 import { useEffect } from 'react'
 
-const Reports = ({ data }) => {
+const Reports = ({ data, initValue }) => {
     const reportMessage = useRef(null)
 
     const messagesEndRef = useRef(null)
 
-    const [reportData, setReportData] = useState({})
+    const [reportData, setReportData] = useState(initValue ? initValue : {})
 
     const scrollToBottom = () => {
         try {
@@ -28,7 +28,8 @@ const Reports = ({ data }) => {
         }
         catch (e) {}
     };
-      useEffect(() => scrollToBottom, [reportData]);
+      useEffect(() => scrollToBottom, [reportData])
+      useEffect(() => initValue ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
 
     return (
         <React.Fragment>

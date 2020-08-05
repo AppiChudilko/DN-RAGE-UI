@@ -7,8 +7,12 @@ import ProgressBar from '../uikit/ProgressBar'
 import ProgressBarCircle from '../uikit/ProgressBarCircle'
 import Card from '../uikit/Card'
 import EventManager from "../../../EventManager";
+import { ButtonBase } from '@material-ui/core'
+import ButtonOver from '../uikit/ButtonOver'
+import Button from '../uikit/Button'
+import BigButton from '../uikit/BigButton'
 
-const General = ({ listElements, accountData }) => {
+const General = ({ listElements, accountData, setActivePage }) => {
 
     /*let listElements = [
         {title: 'Репутация', subtitle: 'идеальная'},
@@ -48,9 +52,11 @@ const General = ({ listElements, accountData }) => {
             <div className="accountmenu__content__cards__item accountmenu__scrollable">
                 <div className="accountmenu__cards__nickname">
                     <img className="accountmenu__cards__avatar" src="https://dednet.ru/client/images/mmenu/all/person.png" alt="" />
-                    <span className="accountmenu__cards__nickname__text" style={{fontSize: `2.6rem`}}>
-                        {accountData.nickname}
-                    </span>
+                    <div className="wrapper__progress">
+                        <span className="accountmenu__cards__nickname__text" style={{fontSize: `2.6rem`}}>
+                            {accountData.nickname}
+                        </span>
+                    </div>
                 </div>
                 <div className="accountmenu__cards__fraction">
                     <span className="accountmenu__cards__fraction__name">
@@ -90,6 +96,14 @@ const General = ({ listElements, accountData }) => {
                     />
                 </div>
                 <div className="accountmenu__hr" />
+                <div className="accountmenu__cards__btnreports">
+                    <div style={{width: '45%'}}>
+                        <BigButton text="Жалоба" type={1} onPress={() => setActivePage('accmenu-reports', 1)} />
+                    </div>
+                    <div style={{width: '45%'}}>
+                        <BigButton text="Вопрос" type={0} onPress={() => setActivePage('accmenu-reports', 0)} />
+                    </div>
+                </div>
                 <div className="accountmenu__cards__logindata">
                     <InfoBlock
                         title="Часов в игре"

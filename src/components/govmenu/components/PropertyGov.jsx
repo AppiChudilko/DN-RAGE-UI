@@ -3,9 +3,14 @@ import '../css/propertygov.css'
 
 const PropertyGov = ({  }) => {
     return (
-        <div>
-            
-        </div>
+        <React.Fragment>
+            <div className="accountmenu__content__cards__item">
+
+            </div>
+            <div className="accountmenu__content__cards__blitem">
+                
+            </div>
+        </React.Fragment>
     )
 }
 

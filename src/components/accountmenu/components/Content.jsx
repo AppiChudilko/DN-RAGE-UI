@@ -3,7 +3,7 @@ import '../css/content.css'
 import NavigationPanel from '../uikit/NavigationPanel'
 import Cards from '../uikit/Cards'
 
-const Content = ({ activeIndex, panels, page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars, reportData, questData , settingsData, settingsActive }) => {
+const Content = ({ initValueReports, setActivePage, activeIndex, panels, page, onChangePage, handleKeyPress, generalList, generalData, propertyHouse, propertyBusiness, propertyCars, reportData, questData , settingsData, settingsActive }) => {
     
     return (
         <div className="accountmenu__content">
@@ -14,7 +14,9 @@ const Content = ({ activeIndex, panels, page, onChangePage, handleKeyPress, gene
                 handleKeyPress={handleKeyPress}
             />
             <Cards
+                initValueReports={initValueReports}
                 page={page}
+                setActivePage={setActivePage}
                 onChangePage={onChangePage}
                 generalList={generalList}
                 generalData={generalData}

@@ -21,6 +21,7 @@ class AccountMenu extends React.Component {
             accountId: 0,
             nick: 'Test',
             balance: 0,
+            initValueReports: null,
             generalData: {
                 nickname: "Andrey Knyazev",
                 fraction: "LSPD",
@@ -332,6 +333,14 @@ class AccountMenu extends React.Component {
         })
     }
 
+    setActivePage = (name, type) => {
+        const page = this.state.panels.findIndex(val => val.id === name)
+        this.setState({
+            activePage: page,
+            initValueReports: this.state.reportData[type][0]
+        })
+    }
+
     setHide = () => {
         this.setState({
             show: false
@@ -381,6 +390,8 @@ class AccountMenu extends React.Component {
                     setHide={this.setHide}
                 />
                 <Content
+                    initValueReports={this.state.initValueReports}
+                    setActivePage={this.setActivePage}
                     panels={this.state.panels}
                     page={this.state.panels[this.state.activePage]}
                     onChangePage={this.onChangePage}

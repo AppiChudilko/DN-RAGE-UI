@@ -15,7 +15,7 @@
 .accountmenu__cards__nickname__text {
     font-family: 'RobotoBold';
     position: absolute;
-    margin-top: 9%;
+    margin-top: -12%;
     padding-left: 3.5rem;
     padding-right: 3.5rem;
     text-transform: uppercase;
@@ -385,4 +385,21 @@
     font-size: 1rem;
     color: #fff;
     text-transform: uppercase;
+}
+
+.accountmenu__cards__btnreports {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-bottom: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.wrapper__progress {
+    position: relative;
+    height: auto;
 }

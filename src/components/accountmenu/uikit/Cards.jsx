@@ -11,11 +11,11 @@ import LicenseGov from '../../govmenu/components/LicenseGov'
 import PropertyGov from '../../govmenu/components/PropertyGov'
 import JobsGov from '../../govmenu/components/JobsGov'
 
-const Cards = ({ page, onChangePage, generalList, generalData , propertyHouse , propertyBusiness, propertyCars, reportData, questData, settingsData, settingsActive }) => {
+const Cards = ({ initValueReports, setActivePage, page, onChangePage, generalList, generalData , propertyHouse , propertyBusiness, propertyCars, reportData, questData, settingsData, settingsActive }) => {
     let pageContent = ''
     switch (page.id) {
         case 'accmenu-main':
-            pageContent = <General listElements={generalList} accountData={generalData} />
+            pageContent = <General setActivePage={setActivePage} listElements={generalList} accountData={generalData} />
             break;
         case 'accmenu-property':
             pageContent = <Property house={propertyHouse} business={propertyBusiness} cars={propertyCars} />
@@ -24,7 +24,7 @@ const Cards = ({ page, onChangePage, generalList, generalData , propertyHouse , 
             pageContent = <Faq onChangePage={onChangePage} />
             break;
         case 'accmenu-reports':
-            pageContent = <Reports data={reportData} />
+            pageContent = <Reports initValue={initValueReports} data={reportData} />
             break;
         case 'accmenu-settings':
             pageContent = <Settings data={settingsData} activeData={settingsActive} />
