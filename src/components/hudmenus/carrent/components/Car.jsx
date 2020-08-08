@@ -1,7 +1,8 @@
 import React from 'react'
 import '../css/car.css'
+import FlatButton from "../../gunshop/uikit/FlatButton";
 
-const Car = ({ name, price, btnbg, sale }) => {
+const Car = ({ name, price, btnbg, sale, params }) => {
     return (
         <div className="carrent__content__list__item">
             <div className="carrent__content__list__img__container">
@@ -16,11 +17,23 @@ const Car = ({ name, price, btnbg, sale }) => {
                     {`$${price}`}
                 </span>
                 <div className="carrent__content__list__item__info__rent">
-                    <span className="carrent__content__list__item__info__rentbtn">
-                        Арендовать по карте
+                    <span onClick={() => {
+                        try {
+                            mp.trigger('client:carRent:buyCard', price, name, JSON.stringify(params)); // eslint-disable-line
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }} className="carrent__content__list__item__info__rentbtn">
+                        По карте
                     </span>
-                    <span className="carrent__content__list__item__info__rentbtn">
-                        Арендовать за наличные
+                    <span onClick={() => {
+                        try {
+                            mp.trigger('client:carRent:buyCash', price, name, JSON.stringify(params)); // eslint-disable-line
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }} className="carrent__content__list__item__info__rentbtn">
+                        Наличные
                     </span>
                 </div>
             </div>

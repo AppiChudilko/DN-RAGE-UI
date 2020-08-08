@@ -31,7 +31,7 @@
 
 .carrent__content__list__item__info__price {
     font-family: 'RobotoBold';
-    font-size: 2.2rem;
+    font-size: 2.7rem;
 }
 
 .carrent__content__list__item__info__rentbtn {
@@ -74,12 +74,16 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-top: -50px;
 }
 
 .carrent__content__list__item__info__rent {
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     align-items: center;
+    display: block;
+    height: 50px;
+    margin-top: 28px;
 }
 
 .carrent__content__list__item__sale {
@@ -87,7 +91,6 @@
     padding-bottom: 2%;
     padding-left: 1.3rem;
     padding-right: 1.3rem;
-    border-radius: 0.4rem;
     font-family: 'RobotoBold';
     background-color: #ef3038;
 }

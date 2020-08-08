@@ -2,13 +2,15 @@ import React from 'react'
 import './css/main.css'
 import Header from './components/Header';
 import Car from './components/Car';
+import EventManager from "../../../EventManager";
 
 class CarRent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             show: false,
-            banner: 'bs_hair',
+            banner: '',
+            title: 'Аренда транспорта',
             bgcolor: '#252525',
             cars: [
                 {
@@ -54,10 +56,41 @@ class CarRent extends React.Component {
         }
     }
 
+    componentDidMount() {
+        EventManager.addHandler('carrent', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateItems') {
+                try {
+                    this.setState({show: true})
+                    this.setState({title: value.title})
+                    this.setState({banner: value.banner})
+                    this.setState({bgcolor: value.bgColor})
+                    this.setState({cars: value.items})
+                }
+                catch (e) {
+
+                }
+            }
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('carrent');
+    }
+
     setHide = () => {
         this.setState({
             show: false
         })
+
+        try {
+            mp.trigger('client:carRent:hide'); // eslint-disable-line
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     render() {
@@ -70,7 +103,7 @@ class CarRent extends React.Component {
                     <Header
                         bgcolor={this.state.bgcolor}
                         banner={this.state.banner}
-                        title=""
+                        title={this.state.title}
                         setHide={this.setHide}
                     />
                     <div className="carrent__content__list__container">
@@ -79,6 +112,7 @@ class CarRent extends React.Component {
                             <Car
                                 price={item.price}
                                 name={item.name}
+                                params={item.params}
                                 key={`carrent__content__list__item-${index}`}
                                 btnbg="#000"
                                 sale={item.sale}
