@@ -14,12 +14,12 @@ const Car = ({ name, price, btnbg, sale, params }) => {
             </div>
             <div className="carrent__content__list__item__info">
                 <span className="carrent__content__list__item__info__price">
-                    {`$${price}`}
+                    {`${price}`}
                 </span>
                 <div className="carrent__content__list__item__info__rent">
                     <span onClick={() => {
                         try {
-                            mp.trigger('client:carRent:buyCard', price, name, JSON.stringify(params)); // eslint-disable-line
+                            mp.trigger('client:carRent:buyCard', name, JSON.stringify(params)); // eslint-disable-line
                         } catch (e) {
                             console.log(e);
                         }
@@ -28,7 +28,7 @@ const Car = ({ name, price, btnbg, sale, params }) => {
                     </span>
                     <span onClick={() => {
                         try {
-                            mp.trigger('client:carRent:buyCash', price, name, JSON.stringify(params)); // eslint-disable-line
+                            mp.trigger('client:carRent:buyCash', name, JSON.stringify(params)); // eslint-disable-line
                         } catch (e) {
                             console.log(e);
                         }

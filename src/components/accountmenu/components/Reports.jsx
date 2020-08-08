@@ -29,7 +29,9 @@ const Reports = ({ data, initValue }) => {
         catch (e) {}
     };
       useEffect(() => scrollToBottom, [reportData])
-      useEffect(() => initValue ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
+
+      useEffect(() => initValue.dialog.length > 0 ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
+
 
     return (
         <React.Fragment>

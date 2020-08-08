@@ -174,14 +174,7 @@ class AccountMenu extends React.Component {
                         time: "01.07.2020 | 21:00",
                         number: 123123,
                         dialog: [
-                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'},
-                            {type: 0, text: 'Не могу купить дом', time: '01.07.2020 | 21:00'},
-                            {type: 1, text: 'Попробуйте перезайти', time: '01.07.2020 | 21:01', name: 'Namename Namename'}
+
                         ]
                     }
                 ],
