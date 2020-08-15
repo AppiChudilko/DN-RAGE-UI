@@ -9,7 +9,7 @@ const Car = ({ name, price, btnbg, sale, params }) => {
                 <img alt="" src={`https://dednet.ru/client/images/carssm/${name}_1.jpg`} className="carrent__content__list__img__item" />
                 <div className="carrent__content__list__img__container__data">
                     <span style={{backgroundColor: btnbg}} className="carrent__content__list__item__name">{name}</span>
-                    {sale > 0 && (<span className="carrent__content__list__item__sale">{`- ${sale}%`}</span>)}
+                    {sale > 0 && (<span className="carrent__content__list__item__sale">{`-${sale}%`}</span>)}
                 </div>
             </div>
             <div className="carrent__content__list__item__info">

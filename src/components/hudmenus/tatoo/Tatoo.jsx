@@ -12,6 +12,8 @@ class Tatoo extends React.Component {
             show: false,
             bgcolor: '#252525',
             banner: 'bs_hair',
+            title: 'Добро пожаловать',
+            subTitle: '',
             type: 1,
             selected: -1,
             items: [
@@ -74,6 +76,8 @@ class Tatoo extends React.Component {
                     this.setState({banner: value.banner})
                     this.setState({bgcolor: value.bgColor})
                     this.setState({items: value.items})
+                    this.setState({title: value.title})
+                    this.setState({subTitle: value.subTitle})
                     this.setState({type: value.t})
 
                     if (value.type === 0)
@@ -133,8 +137,8 @@ class Tatoo extends React.Component {
                 <div className="tatoo__content" style={{backgroundColor: this.state.bgcolor}}>
                     <Header
                         banner={this.state.banner}
-                        title="Добро пожаловать"
-                        subtitle=""
+                        title={this.state.title}
+                        subtitle={this.state.subTitle}
                     />
                     <div className="tatoo__content__list">
                         {this.state.items.map((item, index) => (

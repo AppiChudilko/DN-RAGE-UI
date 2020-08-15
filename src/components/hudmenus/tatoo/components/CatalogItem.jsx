@@ -13,7 +13,7 @@ const CatalogItem = ({ name, setSelected, sale, desc }) => (
         </span>
         {sale > 0 && (
             <span className="tatoo__content__list__item__sale">
-                {`${sale}%`}
+                {`-${sale}%`}
             </span>
         )}
     </div>
