@@ -33,9 +33,9 @@ function notify(type, layout, message, time) {
         }
     });
     ntf.show();
-    ntf.onClose((id, type) => {
+    /*ntf.onClose((id, type) => {
 
-    });
+    });*/
 }
 
 setInterval(function () {
@@ -48,7 +48,7 @@ setInterval(function () {
 
 // notify(0, 1, 'Видимо произошла какая-то непредвиденная ошибка ', 5000)
 // notify(1, 1, 'Видимо произошла какая-то непредвиденная ошибка', 3000)
-// notify(2, 1, 'Видимо произошла какая-то непредвиденная ошибка', 2000)
+// notify(2, 1, 'Видимо произошла какая-то непредвиденная ошибка', 20000)
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 
