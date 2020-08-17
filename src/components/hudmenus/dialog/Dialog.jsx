@@ -1,6 +1,7 @@
 import React from 'react'
 import './css/main.css'
 import DialogButton from './components/DialogButton';
+import EventManager from "../../../EventManager";
 
 class Dialog extends React.Component {
     constructor(props) {
@@ -13,24 +14,52 @@ class Dialog extends React.Component {
             buttons: [
                 {
                     text: '1',
-                    bgcolor: ''
+                    bgcolor: '',
+                    params: {}
                 },
                 {
                     text: '2',
-                    bgcolor: ''
+                    bgcolor: '',
+                    params: {}
                 },
                 {
                     text: '3',
-                    bgcolor: ''
+                    bgcolor: '',
+                    params: {}
                 },
                 {
                     text: '4',
-                    bgcolor: ''
+                    bgcolor: '',
+                    params: {}
                 }
             ]
         }
     }
 
+    componentDidMount() {
+        EventManager.addHandler('ndialog', value => {
+            if (value.type === 'show') {
+                this.setState({show: true})
+            } else if (value.type === 'hide') {
+                this.setState({show: false})
+            } else if (value.type === 'updateItems') {
+                try {
+                    this.setState({show: true})
+                    this.setState({name: value.name})
+                    this.setState({subtitle: value.subtitle})
+                    this.setState({qustion: value.qustion})
+                    this.setState({buttons: value.buttons})
+                }
+                catch (e) {
+
+                }
+            }
+        })
+    }
+
+    componentWillUnmount() {
+        EventManager.removeHandler('ndialog');
+    }
     
     render() {
         if (!this.state.show) {
@@ -53,6 +82,7 @@ class Dialog extends React.Component {
                             <DialogButton
                                 text={item.text}
                                 bgcolor={item.bgcolor}
+                                params={item.params}
                             />
                         ))}
                     </div>

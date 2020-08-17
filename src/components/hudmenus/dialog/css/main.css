@@ -53,7 +53,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 5%;
     cursor: pointer;
     font-family: 'RobotoBold';
@@ -61,5 +61,5 @@
 }
 
 .dialog__content__buttons__item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.55);
 }
