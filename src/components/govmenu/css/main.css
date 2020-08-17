@@ -6,10 +6,22 @@
     padding-left: 7%;
     padding-right: 7%;
 }
-/*
-#box {
+
+/*#box {
     background-image: url('https://sun3-13.userapi.com/413KDSuEI9aZSUnFRXI9k-g9bI4FOUZuDOBuVA/WCUfY0r8Uuc.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
+}*/
+
+.chevron-top::before {
+    border-style: solid;
+    border-width: 0.05em 0.05em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.4em;
+    position: relative;
+    vertical-align: top;
+    width: 0.4em;
+    top: 0.4em;
+    transform: rotate(-45deg);
 }
-*/

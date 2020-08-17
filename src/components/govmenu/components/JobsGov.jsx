@@ -1,12 +1,9 @@
 import React, {useState} from 'react'
 import Quest from '../../accountmenu/uikit/Quest'
 import BigButton from '../../accountmenu/uikit/BigButton'
-import ButtonDone from '../../accountmenu/uikit/ButtonDone'
-import ButtonOver from '../../accountmenu/uikit/ButtonOver'
-import ButtonNav from '../../accountmenu/uikit/ButtonNav'
 import '../css/jobsgov.css'
 
-const JobsGov = ({ jobIndex = 1, jobname = 'Механик' }) => {
+const JobsGov = ({ jobIndex , jobname }) => {
 
     const jobs = [
         {
@@ -76,20 +73,24 @@ const JobsGov = ({ jobIndex = 1, jobname = 'Механик' }) => {
                         Работы
                     </span>
                     <div className="accountmenu__hr" style={{marginTop: '4%', marginBottom: '4%'}} />
-                    <div className="govmenu__jobbar">
-                        <span className="govmenu__jobbar__text">
-                            Текущая работа:
-                        </span>
-                        <span className="govmenu__jobbar__name">
-                            {jobname}
-                        </span>
-                    </div>
+                    {jobIndex !== -1 && jobname && (
+                    <React.Fragment>
+                        <div className="govmenu__jobbar">
+                            <span className="govmenu__jobbar__text">
+                                Текущая работа:
+                            </span>
+                            <span className="govmenu__jobbar__name">
+                                {jobname}
+                            </span>
+                        </div>
                         <BigButton
                             text={'Уволиться'}
                             onPress={() => console.log('ты утсроился')}
                             disabled={false}
                             type={1}
                         />
+                    </React.Fragment>
+                    )}
                     <div className="accountmenu__cards__question__container">
                         {jobs.map((item, index) => (
                             <Quest

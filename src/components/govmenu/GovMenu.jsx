@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../accountmenu/components/Header'
 import Content from '../accountmenu/components/Content'
 import './css/main.css'
+import Alert from '../alert/Alert'
 
 class GovMenu extends React.Component {
     constructor(props) {
@@ -14,8 +15,25 @@ class GovMenu extends React.Component {
                 {name: 'Работы', id: 'govmenu-jobs'},
                 {name: 'Лицензии', id: 'govmenu-license'}
             ],
-            activePage: 0
+            activePage: 1,
+            jobIndex: 0, // -1 - безработный
+            jobname: 'Механик',
+            isAlert: false,
+            alertConfig: {
+                type: 1,
+                title: 'Test',
+                text: 'Testtt',
+                value: [{text: 'Далее', type: -1}]
+            }
         }
+    }
+
+    setAlert = (value, alertConfig = this.state.alertConfig) => {
+        console.log(alertConfig)
+        this.setState({
+            isAlert: value,
+            alertConfig: alertConfig
+        })
     }
 
     setHide = () => {
@@ -60,21 +78,32 @@ class GovMenu extends React.Component {
             return null;
         }
         return (
-            <div className="govmenu">
-                <Header
-                    setHide={this.setHide}
-                />
-                <Content
-                    page={this.state.panels[this.state.activePage]}
-                    /*
-                        ИМЯ PANEL - АЙДИШНИК, ПЕРЕПИСАТЬ ПОД НАЗВАНИЕ РОУТЕР В КОНТЕНТЕ
-                    */
-                    activeIndex={this.state.activePage}
-                    onChangePage={this.onChangePage}
-                    handleKeyPress={this.handleKeyPress}
-                    panels={this.state.panels}
-                />
-            </div>
+            <React.Fragment>
+                {this.state.isAlert && (
+                    <Alert
+                        title={this.state.alertConfig.title}
+                        text={this.state.alertConfig.text}
+                        value={this.state.alertConfig.value}
+                        type={this.state.alertConfig.type}
+                        setAlert={this.setAlert}
+                    />
+                )}
+                <div className="govmenu">
+                    <Header
+                        setHide={this.setHide}
+                    />
+                    <Content
+                        page={this.state.panels[this.state.activePage]}
+                        jobname={this.state.jobname}
+                        jobIndex={this.state.jobIndex}
+                        activeIndex={this.state.activePage}
+                        onChangePage={this.onChangePage}
+                        handleKeyPress={this.handleKeyPress}
+                        panels={this.state.panels}
+                        setAlert={this.setAlert}
+                    />
+                </div>
+            </React.Fragment>
         )
     }
 }
