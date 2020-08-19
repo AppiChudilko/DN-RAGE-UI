@@ -15,7 +15,7 @@ class GovMenu extends React.Component {
                 {name: 'Работы', id: 'govmenu-jobs'},
                 {name: 'Лицензии', id: 'govmenu-license'}
             ],
-            activePage: 1,
+            activePage: 0,
             jobIndex: 0, // -1 - безработный
             jobname: 'Механик',
             isAlert: false,

@@ -93,7 +93,7 @@ const LicenseGov = ({ licIndex }) => {
                     </div>
                 </div>
             </div>
-            <div className="accountmenu__content__cards__blitem">
+            <div className="accountmenu__content__cards__blitem accountmenu__scrollable">
                 <div className="accountmenu__content__cards__questinfo__container">
                     <img src={'https://dednet.ru/client/images/mmenu/all/quest-bg.png'} className="accountmenu__content__cards__questinfo__img__container" alt="" />
                     <div className="accountmenu__content__cards__questinfo__header">

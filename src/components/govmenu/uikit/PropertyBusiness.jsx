@@ -13,7 +13,7 @@ const PropertyBussines = (props) => {
 
     const { name, setAlert, gprice, tax, balance, maxbalance } = props
 
-    const [ isHidden, setHidden ] = useState(true)
+    const [ taxValue, setTaxValue ] = useState('')
     
     return (
         <React.Fragment>
@@ -27,7 +27,7 @@ const PropertyBussines = (props) => {
                         <div className="accountmenu__content__cards__house__hprice__sell" style={{marginTop: 0, paddingTop: '1%', paddingBottom: '2%'}}>
                                 <div className="accountmenu__content__cards__house__hprice__sell__linebtn">
                                     <img src={'https://dednet.ru/client/images/mmenu/all/icons/money-bag.svg'} className="accountmenu__content__cards__house__hprice__sell__icon" />
-                                    <span className="accountmenu__content__cards__house__hprice__sell__text">{`$ ${gprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}</span>
+                                    <span className="accountmenu__content__cards__house__hprice__sell__text">{`$ ${gprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}</span>
                                 </div>
                         </div>
                         <span className="govmenu__propertygov__info__balance">
@@ -49,7 +49,7 @@ const PropertyBussines = (props) => {
                 <div className="govmenu__propertygov__payment" style={{justifyContent: 'space-between'}}>
                     <div className="accountmenu__content__reports__dialog__input" style={{width: '20%', height: 'auto', marginTop: 0, marginBottom: 0, paddingTop: '0.9rem', paddingBottom: '0.9rem'}}>
                         <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                            <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму..." className="accountmenu__report__input" />
+                            <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму..." className="accountmenu__report__input" value={taxValue} onChange={(event) => setTaxValue(event.target.value)} />
                             <div style={{display: 'flex'}}>
                                 <span className="govmenu__propertygov__info__balance" style={{fontSize: '0.8rem', marginRight: '10%'}}>
                                     {`MAX`}
@@ -63,10 +63,21 @@ const PropertyBussines = (props) => {
                     </span>
                     <div className="govmenu__propertygov__payment__btns" style={{minWidth: '60%'}}>
                         <div style={{width: '100%'}}>
-                            <BigButton text="Наличными" children={<MdCash fontSize="20px" color="white" />} type={0} />
+                            <BigButton
+                                text="Наличными"
+                                children={<MdCash fontSize="20px" color="white" />}
+                                type={0}
+                                onPress={() => console.log('Успешно оплатил налог наличными на сумму ' + taxValue)}
+                            />
                         </div>
                         <div style={{width: '100%', marginLeft: '4%'}}>
-                            <BigButton nowrap={true} text="Банковской картой" children={<MdCard fontSize="20px" color="white" />} type={0} />
+                            <BigButton
+                                nowrap={true}
+                                text="Банковской картой"
+                                children={<MdCard fontSize="20px" color="white" />}
+                                type={0}
+                                onPress={() => console.log('Успешно оплатил налог банковской картой на сумму ' + taxValue)}
+                            />
                         </div>
                     </div>
                 </div>

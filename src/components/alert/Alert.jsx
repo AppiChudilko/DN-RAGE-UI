@@ -15,7 +15,9 @@ class Alert extends React.Component {
             text: this.props.text || `Таким образом сложившаяся структура организации позволяет выполнять важные задания по разработке дальнейших направлений развития. Разнообразный и богатый опыт реализация намеченных плановых заданий влечет за собой процесс внедрения и модернизации новых предложений.
             `,
             isShowClose: false,
-            value: this.props.value || [{text: 'Далее', type: -1}]
+            value: this.props.value || [{text: 'Далее', type: -1}],
+            playerIdInput: '',
+            priceInput: ''
         }
     }
 
@@ -46,6 +48,7 @@ class Alert extends React.Component {
             console.log(e);
         }
     }
+
 
     render() {
         const styleNotifi = `notifi-type notifi-position-${this.state.position}`;
@@ -104,12 +107,12 @@ class Alert extends React.Component {
                                 <div style={{display: 'flex', flexDirection: 'row'}}>
                                     <div className="accountmenu__content__reports__dialog__input" style={{width: '30%', height: 'auto'}}>
                                         <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                                            <input style={{width: '100%'}} type="text" name="name" placeholder="Введите ID игрока..." className="accountmenu__report__input" />
+                                            <input style={{width: '100%'}} type="text" name="name" placeholder="Введите ID игрока..." className="accountmenu__report__input" value={this.state.playerIdInput} onChange={(event) => this.setState({playerIdInput: event.target.value})} />
                                         </label>
                                     </div>
                                     <div className="accountmenu__content__reports__dialog__input" style={{width: '70%', height: 'auto'}}>
                                         <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                                            <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму продажи..." className="accountmenu__report__input" />
+                                            <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму продажи..." className="accountmenu__report__input" value={this.state.priceInput} onChange={(event) => this.setState({priceInput: event.target.value})} />
                                         </label>
                                     </div>
                                 </div>

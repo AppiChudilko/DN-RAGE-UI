@@ -15,6 +15,7 @@ const PropertyCar = (props) => {
     
     const [ isHidden, setHidden ] = useState(true)
 
+    const [ taxValue, setTaxValue ] = useState('')
     
     return (
         <React.Fragment>
@@ -30,7 +31,7 @@ const PropertyCar = (props) => {
                         <div className="accountmenu__content__cards__house__hprice__sell" style={{marginTop: 0, paddingTop: '1%', paddingBottom: '2%'}}>
                                 <div className="accountmenu__content__cards__house__hprice__sell__linebtn">
                                     <img src={'https://dednet.ru/client/images/mmenu/all/icons/money-bag.svg'} className="accountmenu__content__cards__house__hprice__sell__icon" />
-                                    <span className="accountmenu__content__cards__house__hprice__sell__text">{`$ ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}</span>
+                                    <span className="accountmenu__content__cards__house__hprice__sell__text">{`$ ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}</span>
                                 </div>
                         </div>
                         <span className="govmenu__propertygov__info__balance">
@@ -39,7 +40,10 @@ const PropertyCar = (props) => {
                                 {`$ ${balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
                                 <span className="govmenu__propertygov__info__balance"> из </span>
                                 <span className="govmenu__propertygov__info__balance__info__max">
-                                    {` $ ${maxbalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
+                                    {` $ ${maxbalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}
+                                    <span className="govmenu__propertygov__info__balance">
+                                        {`  [$ ${tax.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} в день ]`}
+                                    </span>
                                 </span>
                             </span>
                         </span>
@@ -52,7 +56,7 @@ const PropertyCar = (props) => {
                         <div className="govmenu__propertygov__payment">
                             <div className="accountmenu__content__reports__dialog__input" style={{width: '20%', height: 'auto', marginTop: 0, marginBottom: 0, paddingTop: '0.9rem', paddingBottom: '0.9rem'}}>
                                 <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                                    <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму..." className="accountmenu__report__input" />
+                                    <input style={{width: '70%'}} type="text" name="name" placeholder="Введите сумму..." className="accountmenu__report__input" value={taxValue} onChange={(event) => setTaxValue(event.target.value)} />
                                     <div style={{display: 'flex'}}>
                                         <span className="govmenu__propertygov__info__balance" style={{fontSize: '0.8rem', marginRight: '10%'}}>
                                             {`MAX`}
@@ -64,12 +68,23 @@ const PropertyCar = (props) => {
                             <span className="govmenu__propertygov__info__balance" style={{marginLeft: '3%', marginRight: '3%'}}>
                                 {`Оплатить`}
                             </span>
-                            <div className="govmenu__propertygov__payment__btns">
+                            <div className="govmenu__propertygov__payment__btns" style={{minWidth: '60%'}}>
                                 <div style={{width: '100%'}}>
-                                    <BigButton text="Наличными" children={<MdCash fontSize="20px" color="white" />} type={0} />
+                                    <BigButton
+                                        text="Наличными"
+                                        children={<MdCash fontSize="20px" color="white" />}
+                                        type={0}
+                                        onPress={() => console.log('Успешно оплатил налог наличными на сумму ' + taxValue)}
+                                    />
                                 </div>
                                 <div style={{width: '100%', marginLeft: '4%'}}>
-                                    <BigButton nowrap={true} text="Банковской картой" children={<MdCard fontSize="20px" color="white" />} type={0} />
+                                    <BigButton
+                                        nowrap={true}
+                                        text="Банковской картой"
+                                        children={<MdCard fontSize="20px" color="white" />}
+                                        type={0}
+                                        onPress={() => console.log('Успешно оплатил налог банковской картой на сумму ' + taxValue)}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -88,10 +103,6 @@ const PropertyCar = (props) => {
                                         <span className="accountmenu__content__cards__car__props__tdata">Топливо</span>
                                         <span className="accountmenu__content__cards__car__props__bdata">{fuel}</span>
                                     </div>
-                                    <div className="accountmenu__content__cards__car__props__item">
-                                        <span className="accountmenu__content__cards__car__props__tdata">Налог</span>
-                                        <span className="accountmenu__content__cards__car__props__bdata">{`${tax} в день`}</span>
-                                    </div>
                                 </div>
                             </div>
                             <div className="accountmenu__cards__btnreports" style={{paddingTop: 0, paddingBottom: 0}}>
@@ -99,7 +110,7 @@ const PropertyCar = (props) => {
                                     <BigButton text="Продать автосалону" type={2} onPress={() => setAlert(true, {
                                         type: 1,
                                         title: 'Продажа автосалону',
-                                        text: `Вы действительно хотите продать транспорт ${name} (${vin}) автосалону за $ ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}?`,
+                                        text: `Вы действительно хотите продать транспорт ${name} (${vin}) автосалону за $ ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}?`,
                                         value: [{text: 'Отказаться', type: 0}, {text: 'Продать', type: 1}]
                                     })}
                                     />
