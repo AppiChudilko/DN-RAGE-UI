@@ -158,9 +158,12 @@ const Information = ({  }) => {
                        
                     </div>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                        <ProgressBarCircle toptext="Текущий налог" midtext="$2.342" />
-                        <ProgressBarCircle toptext="В бюджете штата" midtext="$2.232.211.342" />
-                        <ProgressBarCircle toptext="Средний чек" midtext="$2.34" />
+                        <ProgressBarCircle toptext="Пособие" midtext="$100" />
+                        <ProgressBarCircle toptext="В бюджете штата" midtext="$2,232,211,342" />
+                        <ProgressBarCircle toptext="Промежуточный налог" midtext="10%" />
+                        <ProgressBarCircle toptext="Налог на зарплату" midtext="10%" />
+                        <ProgressBarCircle toptext="Налог на бизнес" midtext="10%" />
+                        <ProgressBarCircle toptext="Налог на имущество" midtext="10%" />
                     </div>
                 </div>
             </div>
