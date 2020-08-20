@@ -10,6 +10,54 @@ const Information = ({  }) => {
 
     const governor = { name: 'Donald Trump', date: '8 августа 2021 года' }
 
+    const circlesInfo = [
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        },
+        {
+            toptext: "Текущий налог",
+            midtext: "2.342$",
+            btmtext: "",
+        }
+    ]
+
     const info = [
         {
             title: 'Общая информация',
@@ -167,10 +215,12 @@ const Information = ({  }) => {
                                     </span>
                                 </div>
                             </div>
-                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                                <ProgressBarCircle toptext="Текущий налог" midtext="2.342$" />
-                                <ProgressBarCircle toptext="В бюджете штата" midtext="2.232.211.342$" />
-                                <ProgressBarCircle toptext="Средний чек" midtext="2.342$" />
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around', flexWrap: 'wrap'}}>
+                            {circlesInfo.map((item, index) => (
+                                <div style={{width: '33%', marginTop: '2%', marginBottom: '2%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                    <ProgressBarCircle toptext={item.toptext} midtext={item.midtext} btmtext={item.btmtext} />
+                                </div>
+                            ))}
                             </div>
                         </React.Fragment>
                     ) : (
