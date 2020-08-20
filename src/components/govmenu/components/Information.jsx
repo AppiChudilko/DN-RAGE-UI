@@ -4,7 +4,7 @@ import Quest from '../../accountmenu/uikit/Quest'
 import BigButton from '../../accountmenu/uikit/BigButton'
 import { useState } from 'react'
 import ProgressBarCircle from '../../accountmenu/uikit/ProgressBarCircle'
-import IosCall from 'react-ionicons/lib/IosCall'
+import MdInformation from 'react-ionicons/lib/MdInformation'
 
 const Information = ({  }) => {
 
@@ -21,7 +21,8 @@ const Information = ({  }) => {
             `,
             subtitle: 'Очищай город от грязи',
             minidesc: 'Тестовое описание',
-            id: 'info'
+            id: 'info',
+            children: <MdInformation fontSize="36px" color="white" />
         },
         {
             title: 'Правительство Сан Андреас',
@@ -136,6 +137,7 @@ const Information = ({  }) => {
                                 active={active}
                                 setActive={() => setActive(index)}
                                 done={item.done}
+                                children={item.children ? item.children : null}
                             />
                         ))}
                     </div>
