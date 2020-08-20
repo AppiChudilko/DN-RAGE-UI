@@ -138,6 +138,7 @@ const Information = ({  }) => {
                                 setActive={() => setActive(index)}
                                 done={item.done}
                                 children={item.children ? item.children : null}
+                                empty={item.children ? false : true}
                             />
                         ))}
                     </div>
