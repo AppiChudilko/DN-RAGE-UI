@@ -30,7 +30,7 @@ const Reports = ({ data, initValue }) => {
     };
       useEffect(() => scrollToBottom, [reportData])
 
-      useEffect(() => initValue.dialog.length > 0 ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
+      //useEffect(() => initValue.dialog.length > 0 ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
 
 
     return (
@@ -130,7 +130,17 @@ const Reports = ({ data, initValue }) => {
                     </div>
                     <div className="accountmenu__content__reports__dialog__input">
                         <label style={{width: '70%'}}>
-                            <input ref={reportMessage} type="text" name="name" placeholder="Введите сообщение..." className="accountmenu__report__input" />
+                            <input onBlur={(e) => {
+                                try {
+                                    mp.trigger('client:mainMenu:sendReportOrAsk:focus', false); // eslint-disable-line
+                                }
+                                catch (e) {}
+                            }} onFocus={(e) => {
+                                try {
+                                    mp.trigger('client:mainMenu:sendReportOrAsk:focus', true); // eslint-disable-line
+                                }
+                                catch (e) {}
+                            }} onChange={(e) => this.inputChange(e)} ref={reportMessage} type="text" name="name" placeholder="Введите сообщение..." className="accountmenu__report__input" />
                         </label>
                         <Button text="Отправить" onPress={() => {
                             reportData.dialog.push({type: 0, text: reportMessage.current.value, time: 'Только что'});
