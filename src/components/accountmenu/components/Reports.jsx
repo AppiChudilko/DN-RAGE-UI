@@ -30,7 +30,7 @@ const Reports = ({ data, initValue }) => {
     };
       useEffect(() => scrollToBottom, [reportData])
 
-      useEffect(() => initValue.dialog.length > 0 ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined, [initValue])
+      useEffect(() => initValue ? initValue.dialog.length > 0 ? messagesEndRef.current.scrollIntoView({ behavior: "smooth" }) : undefined : undefined, [initValue])
 
 
     return (
