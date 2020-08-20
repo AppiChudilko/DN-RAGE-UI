@@ -11,7 +11,7 @@ import LicenseGov from '../../govmenu/components/LicenseGov'
 import PropertyGov from '../../govmenu/components/PropertyGov'
 import JobsGov from '../../govmenu/components/JobsGov'
 
-const Cards = ({ initValueReports, setActivePage, page, onChangePage, generalList, generalData , propertyHouse , propertyBusiness, propertyCars, reportData, questData, settingsData, settingsActive }) => {
+const Cards = ({ setAlert, jobIndex, jobname, initValueReports, setActivePage, page, onChangePage, generalList, generalData , propertyHouse , propertyBusiness, propertyCars, reportData, questData, settingsData, settingsActive }) => {
     let pageContent = ''
     switch (page.id) {
         case 'accmenu-main':
@@ -36,10 +36,10 @@ const Cards = ({ initValueReports, setActivePage, page, onChangePage, generalLis
             pageContent = <Information />
             break;
         case 'govmenu-property':
-            pageContent = <PropertyGov />
+            pageContent = <PropertyGov setAlert={setAlert} />
             break;
         case 'govmenu-jobs':
-            pageContent = <JobsGov />
+            pageContent = <JobsGov jobIndex={jobIndex} jobname={jobname} />
             break;
         case 'govmenu-license':
             pageContent = <LicenseGov />

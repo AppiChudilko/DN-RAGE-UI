@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/faq.css'
 
-const BigButton = ({ text, onPress, disabled, type }) => {
+const BigButton = ({ text, onPress, disabled, type, children, nowrap }) => {
 
     /*
 
@@ -25,13 +25,19 @@ const BigButton = ({ text, onPress, disabled, type }) => {
         case 1:
             btnClass = 'accountmenu__content__cards__bigbutton_red'
             break;
+        case 2:
+            btnClass = 'accountmenu__content__cards__bigbutton_green'
+            break;
         default:
             btnClass = 'accountmenu__content__cards__bigbutton_blue'
             break;
     }
     return (
-        <div onClick={disabled ? null : onPress} className={btnClass}>
-            <span className="accountmenu__content__cards__bigbutton__text">{text}</span>
+        <div onClick={disabled ? null : onPress} className={btnClass} style={{alignItems: 'center'}}>
+            {children && (
+                children
+            )}
+            <span style={{paddingLeft: children ? '1rem' : 0, whiteSpace: nowrap ? 'nowrap' : ''}} className="accountmenu__content__cards__bigbutton__text">{text}</span>
         </div>
     )
 }

@@ -148,6 +148,8 @@ class Tatoo extends React.Component {
                                 desc={item.desc}
                                 sale={item.sale}
                                 setSelected={() => this.setSelected(index)}
+                                selected={this.state.selected}
+                                index={index}
                             />
                         ))}
                     </div>

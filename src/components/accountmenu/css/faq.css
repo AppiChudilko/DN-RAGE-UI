@@ -97,6 +97,19 @@
     justify-content: center;
 }
 
+.accountmenu__content__cards__bigbutton_green {
+    background: linear-gradient(to bottom right, #52df75, #078522);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 16px rgba(115, 248, 175, 0.34);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
 .accountmenu__content__cards__bigbutton_blue {
     background: linear-gradient(to bottom right, #70cfff, #43b2ea);
     padding-left: 2.5rem;
