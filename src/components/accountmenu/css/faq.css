@@ -72,12 +72,11 @@
 }
 
 .accountmenu__content__cards__bigbutton_red {
-    background: linear-gradient(to bottom right, #ED213A, #93291E);
+    background: #ED213A;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-bottom: 1rem;
     padding-top: 1rem;
-    border-radius: 0.4rem;
     box-shadow: 0 0 16px rgba(243, 85, 98, 0.34);
     cursor: pointer;
     display: flex;
@@ -85,12 +84,11 @@
 }
 
 .accountmenu__content__cards__bigbutton_disabled {
-    background: linear-gradient(to bottom right, #5f5f5f, #858484);
+    background: #5f5f5f;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-bottom: 1rem;
     padding-top: 1rem;
-    border-radius: 0.4rem;
     box-shadow: 0 0 16px rgba(168, 168, 168, 0.34);
     cursor: pointer;
     display: flex;
@@ -98,25 +96,22 @@
 }
 
 .accountmenu__content__cards__bigbutton_green {
-    background: linear-gradient(to bottom right, #52df75, #078522);
+    background: #36cc5c;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-bottom: 1rem;
     padding-top: 1rem;
-    border-radius: 0.4rem;
-    box-shadow: 0 0 16px rgba(115, 248, 175, 0.34);
     cursor: pointer;
     display: flex;
     justify-content: center;
 }
 
 .accountmenu__content__cards__bigbutton_blue {
-    background: linear-gradient(to bottom right, #70cfff, #43b2ea);
+    background: #70cfff;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     padding-bottom: 1rem;
     padding-top: 1rem;
-    border-radius: 0.4rem;
     box-shadow: 0 0 16px rgba(85, 190, 243, 0.34);
     cursor: pointer;
     display: flex;

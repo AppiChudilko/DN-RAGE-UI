@@ -3,12 +3,13 @@ import Header from '../accountmenu/components/Header'
 import Content from '../accountmenu/components/Content'
 import './css/main.css'
 import Alert from '../alert/Alert'
+import { TextareaAutosize } from '@material-ui/core'
 
 class GovMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
+            show: TextareaAutosize,
             panels: [
                 {name: 'Информация', id: 'govmenu-info'},
                 {name: 'Имущество', id: 'govmenu-property'},
@@ -29,7 +30,6 @@ class GovMenu extends React.Component {
     }
 
     setAlert = (value, alertConfig = this.state.alertConfig) => {
-        console.log(alertConfig)
         this.setState({
             isAlert: value,
             alertConfig: alertConfig

@@ -100,10 +100,10 @@ const PropertyHouse = (props) => {
                             <div className="accountmenu__cards__btnreports" style={{paddingTop: 0, paddingBottom: 0}}>
                                 <div style={{width: '100%'}}>
                                     <BigButton text="Подселить игрока" type={0} onPress={() => setAlert(true, {
-                                        type: 0, 
+                                        type: 2, 
                                         title: 'Подселение игрока', 
                                         text: `Вы действительно хотите подселить игрока?`,
-                                        value: [{text: 'Отказаться', type: 0}, {text: 'Подселить', type: 1}]
+                                        value: [{text: 'Отказаться', type: 0}, {text: 'Подселить', type: 1}],
                                     })} 
                                     />
                                 </div>

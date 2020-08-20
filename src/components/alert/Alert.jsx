@@ -8,7 +8,7 @@ class Alert extends React.Component {
         super(props)
         this.state = {
             show: true,
-            type: this.props.type === 0 ? 0 : 1,
+            type: this.props.type === 0 ? 0 : this.props.type,
             position: 'center', //leftTop,left,leftBottom,centerTop,center,centerBottom,rightTop,right,rightBottom
             icon: 'unicorm', //unicorm
             title: this.props.title || 'заголовок подсказки', //Для type 2 title: '!'
@@ -59,6 +59,47 @@ class Alert extends React.Component {
         return (
             <React.Fragment>
                 <div className={styleNotifi} style={{background: 'rgba(0,0,0,0.9)', zIndex: 100}}>
+                    {this.state.type === 2 && (
+                        <div className="notifi-first-box">
+                            <div className="notifi-f-main">
+                                <div className="notifi-head">
+                                    {this.state.title !== "" ?
+                                        <div className="notifi-title">
+                                            {this.state.title}
+                                        </div>
+                                        : null}
+                                    {this.state.isShowClose && (<div onClick={this.closeBtn.bind(this)} className="notifi-close" />)}
+                                </div>
+                                <div style={{display: 'flex', flexDirection: 'row'}}>
+                                    <div className="accountmenu__content__reports__dialog__input" style={{width: '100%', height: 'auto'}}>
+                                        <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                                            <input style={{width: '100%'}} type="text" name="name" placeholder="Введите ID игрока..." className="accountmenu__report__input" value={this.state.playerIdInput} onChange={(event) => this.setState({playerIdInput: event.target.value})} />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div
+                                    className="notifi-text-box"
+                                    dangerouslySetInnerHTML={{__html: this.replaceAll(this.state.text, '~br~', '<br>')}}
+                                />
+                            </div>
+                            <div className="notifi-btn">
+                                {this.state.value.map((e, i) => {
+                                    let index = `notifibtnt${i}`
+                                    return (
+                                        <div
+                                            onClick={this.clickBtn.bind(this)}
+                                            className={`n-btn-box ${e.type ? `alert-access-btn` : `alert-decline-btn`} `}
+                                            key={index}
+                                        >
+                                            <span style={{paddingLeft: '2rem', paddingRight: '2rem'}}>
+                                                {e.text}
+                                            </span>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    )}
                     {this.state.type === 1 && (
                         <div className="notifi-first-box">
                             <div className="notifi-f-main">
