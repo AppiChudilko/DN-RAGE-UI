@@ -152,15 +152,15 @@ const Information = ({  }) => {
                                 {`Donald Trump`}
                             </span>
                             <span className="accountmenu__content__cards__questinfo__header__count">
-                                {`Избран до 8 августа 2021 года`}
+                                {``}
                             </span>
                         </div>
                        
                     </div>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                        <ProgressBarCircle toptext="Текущий налог" midtext="2.342$" />
-                        <ProgressBarCircle toptext="В бюджете штата" midtext="2.232.211.342$" />
-                        <ProgressBarCircle toptext="Средний чек" midtext="2.342$" />
+                        <ProgressBarCircle toptext="Текущий налог" midtext="$2.342" />
+                        <ProgressBarCircle toptext="В бюджете штата" midtext="$2.232.211.342" />
+                        <ProgressBarCircle toptext="Средний чек" midtext="$2.34" />
                     </div>
                 </div>
             </div>
