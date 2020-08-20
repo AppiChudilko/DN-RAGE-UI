@@ -8,6 +8,8 @@ import IosCall from 'react-ionicons/lib/IosCall'
 
 const Information = ({  }) => {
 
+    const governor = { name: 'Donald Trump', date: '8 августа 2021 года' }
+
     const info = [
         {
             title: 'Общая информация',
@@ -18,7 +20,8 @@ const Information = ({  }) => {
                 </p>
             `,
             subtitle: 'Очищай город от грязи',
-            minidesc: 'Тестовое описание'
+            minidesc: 'Тестовое описание',
+            id: 'info'
         },
         {
             title: 'Правительство Сан Андреас',
@@ -44,7 +47,8 @@ const Information = ({  }) => {
                 </p>
             `,
             subtitle: 'Правительство',
-            minidesc: 'Является правительственной структурой штата Сан Андреас, установленной Конституцией Сан Андреас.'
+            minidesc: 'Является правительственной структурой штата Сан Андреас, установленной Конституцией Сан Андреас.',
+            id: 'government'
         },
         {
             title: 'ИСТОРИЯ ШТАТА САН АНДРЕАС',
@@ -72,7 +76,8 @@ const Information = ({  }) => {
                 <br>
             `,
             subtitle: 'Очищай город от грязи',
-            minidesc: 'Столица - Лос Сантос, население - 9.000.000, площадь 126,9 км².'
+            minidesc: 'Столица - Лос Сантос, население - 9.000.000, площадь 126,9 км².',
+            id: 'history'
         },
         {
             title: 'ГЕОГРАФИЯ ШТАТА САН АНДРЕАС',
@@ -107,7 +112,8 @@ const Information = ({  }) => {
                 <br>
             `,
             subtitle: 'Очищай город от грязи',
-            minidesc: 'Сан Андреас и ряд более мелких островов в архипелаге с ним лежат в Тихом океане и на многие километры отделены им от суши.'
+            minidesc: 'Сан Андреас и ряд более мелких островов в архипелаге с ним лежат в Тихом океане и на многие километры отделены им от суши.',
+            id: 'geography'
         }
     ]
 
@@ -143,25 +149,41 @@ const Information = ({  }) => {
                             null :
                             <img src={'https://dednet.ru/client/images/mmenu/all/quest-bg.png'} className="accountmenu__content__cards__questinfo__img__container" alt="" />
                     }
-                    <div className="govmenu__worker">
-                        <div className="govmenu__worker__info">
-                            <span className="accountmenu__content__cards__questinfo__header__name">
-                                {`Губернатор штата`}
-                            </span>
-                            <span className="govmenu__propertygov__info__balance" style={{fontSize: '1.8rem', marginTop: '2%'}}>
-                                {`Donald Trump`}
-                            </span>
-                            <span className="accountmenu__content__cards__questinfo__header__count">
-                                {`Избран до 8 августа 2021 года`}
-                            </span>
-                        </div>
-                       
+                    {info[active].id === 'info' ? (
+                        <React.Fragment>
+                            <div className="govmenu__worker">
+                                <div className="govmenu__worker__info">
+                                    <span className="accountmenu__content__cards__questinfo__header__name">
+                                        {`Губернатор штата`}
+                                    </span>
+                                    <span className="govmenu__propertygov__info__balance" style={{fontSize: '1.8rem', marginTop: '2%'}}>
+                                        {`${governor.name}`}
+                                    </span>
+                                    <span className="accountmenu__content__cards__questinfo__header__count">
+                                        {`Избран до ${governor.date}`}
+                                    </span>
+                                </div>
+                            </div>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+                                <ProgressBarCircle toptext="Текущий налог" midtext="2.342$" />
+                                <ProgressBarCircle toptext="В бюджете штата" midtext="2.232.211.342$" />
+                                <ProgressBarCircle toptext="Средний чек" midtext="2.342$" />
+                            </div>
+                        </React.Fragment>
+                    ) : (
+                    <div className="accountmenu__content__cards__questinfo__header">
+                        <span className="accountmenu__content__cards__questinfo__header__name">
+                            {info[active].title}
+                        </span>
+                        <span className="accountmenu__content__cards__questinfo__header__count">
+                            {info[active].minidesc}
+                        </span>
+                        <div
+                            className="govmenu__content__cards__answer__text__container" 
+                            dangerouslySetInnerHTML={{__html: info[active].desc}}
+                        />
                     </div>
-                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                        <ProgressBarCircle toptext="Текущий налог" midtext="2.342$" />
-                        <ProgressBarCircle toptext="В бюджете штата" midtext="2.232.211.342$" />
-                        <ProgressBarCircle toptext="Средний чек" midtext="2.342$" />
-                    </div>
+                    )}
                 </div>
             </div>
         </React.Fragment>
