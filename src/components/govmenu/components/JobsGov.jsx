@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Quest from '../../accountmenu/uikit/Quest'
 import BigButton from '../../accountmenu/uikit/BigButton'
 import '../css/jobsgov.css'
+import MdPerson from 'react-ionicons/lib/MdPerson'
 
 const JobsGov = ({ jobIndex , jobname }) => {
 
@@ -101,6 +102,7 @@ const JobsGov = ({ jobIndex , jobname }) => {
                                 active={active}
                                 setActive={() => setActive(index)}
                                 done={item.done}
+                                children={<MdPerson fontSize="32px" color="white" />}
                             />
                         ))}
                     </div>
