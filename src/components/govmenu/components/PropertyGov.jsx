@@ -177,9 +177,15 @@ const PropertyGov = ({ setAlert }) => {
                 {
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
                     gprice: '1522000',
-                    garageType: 'большой',
+                    garageTypes: ['большой', 'маленький', 'подводный'],
                     garageCount: 3,
                     roommatefree: 2,
+                    roommatemax: 100,
+                    roommates: [
+                        {name: 'Stas Baretskiy'},
+                        {name: 'Stas Baretskiy'},
+                        {name: 'Stas Baretskiy'}
+                    ],
                     tax: 1500,
                     balance: 1300,
                     maxbalance: 15000
