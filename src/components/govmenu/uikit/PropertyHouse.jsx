@@ -11,8 +11,10 @@ import Alert from '../../alert/Alert'
 const PropertyHouse = (props) => {
     // <img className="govmenu__licensegov__propertycar__img" src={`https://dednet.ru/client/images/cars/${props.name}_1.jpg`} />
 
-    const { address, setAlert, gprice, tax, balance, maxbalance, garageType, roommatefree, garageCount } = props
+    const { address, setAlert, gprice, tax, balance, maxbalance, garageTypes, roommatefree, garageCount, roommatemax, roommates } = props
     
+    const html = garageTypes.forEach((item) => `${item}<br>`)
+
     const [ taxValue, setTaxValue ] = useState('')
 
     return (
@@ -81,31 +83,46 @@ const PropertyHouse = (props) => {
                     </div>
                 </div>
                 <div className="govmenu__propertygov__propertycar">
-                            <div className="govmenu__propertygov__propertycar__card" style={{border: 0}}>
-                                <div className="accountmenu__content__cards__car__props">
-                                    <div className="accountmenu__content__cards__car__props__item">
-                                        <span className="accountmenu__content__cards__car__props__tdata">Свободные места для подселения</span>
-                                        <span className="accountmenu__content__cards__car__props__bdata">{roommatefree}</span>
-                                    </div>
-                                    <div className="accountmenu__content__cards__car__props__item">
-                                        <span className="accountmenu__content__cards__car__props__tdata">Кол-во гаражей</span>
-                                        <span className="accountmenu__content__cards__car__props__bdata">{garageCount}</span>
-                                    </div>
-                                    <div className="accountmenu__content__cards__car__props__item">
-                                        <span className="accountmenu__content__cards__car__props__tdata">Тип гаража</span>
-                                        <span className="accountmenu__content__cards__car__props__bdata">{garageType}</span>
-                                    </div>
-                                </div>
+                            <div className="govmenu__propertygov__info__balance__container">
+                                <span className="govmenu__propertygov__info__balance">
+                                    {`Гараж: `}
+                                    <span className="govmenu__property__roommates__list__item">
+                                        {garageCount === 0 ? 
+                                        (`Отсутствует`)
+                                        : (
+                                            garageTypes.map((item, index) =>  index === garageTypes.length-1 ? `${item}` : `${item} | `)
+                                        )}
+                                    </span>
+                                </span>
+                                <span className="govmenu__propertygov__info__balance">
+                                    {`Свободных мест: `}
+                                    <span className="govmenu__property__roommates__list__item">
+                                        {`${roommatefree} / ${roommatemax}`}
+                                    </span>
+                                </span>
                             </div>
-                            <div className="accountmenu__cards__btnreports" style={{paddingTop: 0, paddingBottom: 0}}>
-                                <div style={{width: '100%'}}>
-                                    <BigButton text="Подселить игрока" type={0} onPress={() => setAlert(true, {
-                                        type: 2, 
-                                        title: 'Подселение игрока', 
-                                        text: `Вы действительно хотите подселить игрока?`,
-                                        value: [{text: 'Отказаться', type: 0}, {text: 'Подселить', type: 1}],
-                                    })} 
-                                    />
+                            <div className="govmenu__property__roommatesheader__container">
+                                <div className="accountmenu__content__reports__dialog__input" style={{width: '35%', height: 'auto', marginTop: 0, marginBottom: 0, paddingTop: '0.9rem', paddingBottom: '0.9rem'}}>
+                                    <label style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                                        <input style={{width: '70%'}} type="text" name="name" placeholder="Введите никнейм..." className="accountmenu__report__input" value={taxValue} onChange={(event) => setTaxValue(event.target.value)} />
+                                    </label>
+                                </div>
+                                <BigButton text="Заселить игрока за $ 25.000" type={0} />
+                            </div>
+                            <div className="govmenu__property__roommates__container">
+                                <div className="govmenu__property__roommates__list">
+                                {roommates.map((item, index) => {
+                                    return (
+                                        <div className="govmenu__property__roommates__list__container">
+                                            <li className="govmenu__property__roommates__list__item">
+                                                {`${index+1}. ${item.name}`}
+                                            </li>
+                                            <div style={{width: '40%'}}>
+                                                <BigButton text="Выселить игрока за $ 5.000" type={1} />
+                                            </div>
+                                        </div>
+                                    )
+                                })}
                                 </div>
                             </div>
                             <div className="accountmenu__cards__btnreports">
