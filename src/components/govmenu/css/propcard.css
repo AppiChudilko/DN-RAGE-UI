@@ -129,3 +129,47 @@
     justify-content: space-between;
     flex-direction: row;
 }
+
+.govmenu__property__roommates__container {
+    padding-top: 0;
+    margin-bottom: 2%;
+    display: flex;
+}
+
+.govmenu__property__roommates__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.govmenu__property__roommates__list__item {
+    font-family: 'RobotoBold';
+    font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.govmenu__property__roommates__list__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.govmenu__property__roommatesheader__container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 0;
+    margin-top: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2%;
+}
+
+.govmenu__propertygov__info__balance__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
