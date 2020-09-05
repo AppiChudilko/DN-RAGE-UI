@@ -80,8 +80,15 @@ class Authorization extends React.Component {
 
     clickLogin() {
         try {
-            mp.trigger('client:user:auth:login', // eslint-disable-line
-                this.state.login, this.state.password);
+            if (!this.state.login)
+            {
+                mp.trigger('client:user:auth:login', // eslint-disable-line
+                    this.state.defaultLogin, this.state.password);
+            }
+            else {
+                mp.trigger('client:user:auth:login', // eslint-disable-line
+                    this.state.login, this.state.password);
+            }
         } catch (e) {
             console.log(e);
         }
