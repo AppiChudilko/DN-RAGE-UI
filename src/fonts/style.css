@@ -91,6 +91,22 @@
 }
 
 @font-face {
+    font-family: 'DSEG7Classic';
+    src: local('DSEG7Classic'), local('DSEG7Classic'),
+    url('dseg7.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'D-DIN Bold';
+    src: local('D-DIN Bold'), local('D-DIN Bold'),
+    url('d-din.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;

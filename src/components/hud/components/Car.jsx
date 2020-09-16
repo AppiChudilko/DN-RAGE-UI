@@ -8,7 +8,7 @@ class Car extends React.Component {
         super(props)
         this.state = {
             show: true,
-            isShowSmall: true,
+            isShowSmall: false,
             light: false,
             door: false,
             engine: false,
@@ -21,6 +21,13 @@ class Car extends React.Component {
             deg: -45,
             color: '#48B9F2',
             background: 0.5,
+
+            showRadar: false,
+            radarRearSpeed: '',
+            radarRearSpeedMax: '',
+            radarFrontSpeed: '',
+            radarFrontSpeedMax: '',
+            radarPatrolSpeed: '',
         }
     }
 
@@ -48,6 +55,13 @@ class Car extends React.Component {
                 this.setState({speed: value.speed});
                 this.setState({speedLabel: value.speedLabel});
                 this.setState({background: value.background});
+            }  else if (value.type === 'updateRadarValues') {
+                this.setState({showRadar: value.showRadar});
+                this.setState({radarRearSpeed: value.radarRearSpeed});
+                this.setState({radarRearSpeedMax: value.radarRearSpeedMax});
+                this.setState({radarFrontSpeed: value.radarFrontSpeed});
+                this.setState({radarFrontSpeedMax: value.radarFrontSpeedMax});
+                this.setState({radarPatrolSpeed: value.radarPatrolSpeed});
             } else return;
         })
 
@@ -86,6 +100,76 @@ class Car extends React.Component {
         }
         return (
             <React.Fragment>
+                <Draggable id="car-radar" className={this.state.showRadar ? '' : 'hide'}>
+                    <div className="primary">
+                        <table className="front">
+                            <tr>
+                                <td>
+                                    <ul className="lamps">
+                                        <li id="front-same">Same</li>
+                                        <li id="front-opp">Opp</li>
+                                        <li id="front-xmit">XMit</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span className="label">Front</span>
+                                    <div className="display orange">
+                                        <span id="front-speed">{this.state.radarFrontSpeed}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span className="label dim">Fast</span>
+                                    <div className="display red">
+                                        <span id="front-fast">{this.state.radarFrontSpeedMax}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="arrows">
+                                        <span className="arrow up" id="front-fwd">&#129053;</span>
+                                        <span className="arrow down" id="front-bwd">&#129055;</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table className="rear">
+                            <tr>
+                                <td>
+                                    <ul className="lamps">
+                                        <li id="rear-same">Same</li>
+                                        <li id="rear-opp">Opp</li>
+                                        <li id="rear-xmit">XMit</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div className="display orange">
+                                        <span id="rear-speed">{this.state.radarRearSpeed}</span>
+                                    </div>
+                                    <span className="label">Rear</span>
+                                </td>
+                                <td>
+                                    <div className="display red">
+                                        <span id="rear-fast">{this.state.radarRearSpeedMax}</span>
+                                    </div>
+                                    <span className="label dim">Fast</span>
+                                </td>
+                                <td>
+                                    <div className="arrows">
+                                        <span className="arrow up" id="rear-fwd">&#129053;</span>
+                                        <span className="arrow down" id="rear-bwd">&#129055;</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div className="patrol">
+                        <span className="label logo">RS 9000</span>
+                        <div className="display green">
+                            <span id="patrol-speed">{this.state.radarPatrolSpeed}</span>
+                        </div>
+                        <span className="label">Patrol Speed</span>
+                    </div>
+                </Draggable>
                 <Draggable id="car-speedbox" isShowSmall={this.state.isShowSmall}>
                     <div className={this.state.isShowSmall ? 'hide' : 'speedbox-main-small'}>
                         <div className="speedbox">

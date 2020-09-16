@@ -1,4 +1,5 @@
 import React from 'react';
+import EventManager from "../../../EventManager";
 
 class Authorization extends React.Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class Authorization extends React.Component {
             showAuto: true,
             acceptRules: false,
 
+            defaultLogin: '',
             login: '',
             password: '',
             mailReg: '',
@@ -32,10 +34,18 @@ class Authorization extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleKeyPress);
+
+        EventManager.addHandler('authMain:2', value => {
+            if (value.type === 'login') {
+                this.setState({defaultLogin: value.login})
+
+            } else return;
+        })
     }
 
     componentWillUnmount() {
         document.removeEventListener("keydown", this.handleKeyPress);
+        EventManager.removeHandler('authMain:2');
     }
 
     handleChange(value) {
@@ -70,8 +80,15 @@ class Authorization extends React.Component {
 
     clickLogin() {
         try {
-            mp.trigger('client:user:auth:login', // eslint-disable-line
-                this.state.login, this.state.password);
+            if (!this.state.login)
+            {
+                mp.trigger('client:user:auth:login', // eslint-disable-line
+                    this.state.defaultLogin, this.state.password);
+            }
+            else {
+                mp.trigger('client:user:auth:login', // eslint-disable-line
+                    this.state.login, this.state.password);
+            }
         } catch (e) {
             console.log(e);
         }
@@ -153,7 +170,7 @@ class Authorization extends React.Component {
                                 <React.Fragment>
                                     <div className="auth-input">
                                         <input type="text" pattern="[a-zA-Z0-9]*" placeholder="введите логин"
-                                            name="login-auth" className="auth-input-style" value={this.state.login}
+                                            name="login-auth" className="auth-input-style" defaultValue={this.state.defaultLogin}
                                             onChange={this.valueLogin.bind(this)}
                                         />
                                         <input type="password" pattern="[a-zA-Z0-9]*" placeholder="введите пароль"
