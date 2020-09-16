@@ -9,7 +9,7 @@ class GovMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            show: true,
+            show: false,
             panels: [
                 {name: 'Информация', id: 'govmenu-info'},
                 {name: 'Имущество', id: 'govmenu-property'},

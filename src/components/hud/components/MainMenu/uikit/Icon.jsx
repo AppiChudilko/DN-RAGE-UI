@@ -9,9 +9,11 @@ export default function Icon(name) {
             alignItems: 'center'
         }
     }
+    
+
     return (
         <div className={name.arrow ? "list-arrow-icon" : "iconContainer"} style={styles.iconContainer}>
-            <img src={require(`../img/icons/${name.name}.png`)} width="15" height="15" />
+            <img src={require(`../img/icons/${name.name}.png`)} width={name.size || "15"} height={name.size || "15"} />
         </div>
     )
 }
