@@ -5,6 +5,12 @@ import Question from '../uikit/Question'
 import { useState } from 'react'
 import Quest from '../uikit/Quest'
 import DonationRouter from './DonationRouter'
+import IosClipboard from 'react-ionicons/lib/IosClipboard'
+import IosCheckbox from 'react-ionicons/lib/IosCheckbox'
+import IosMedal from 'react-ionicons/lib/IosMedal'
+import IosCar from 'react-ionicons/lib/IosCar'
+import LogoUsd from 'react-ionicons/lib/LogoUsd'
+
 
 const Donation = ({ onChangePage }) => {
 
@@ -13,6 +19,7 @@ const Donation = ({ onChangePage }) => {
             title: 'Наборы',
             subtitle: 'Выгодные предложения по низким ценами',
             type: 0,
+            children: <IosCheckbox fontSize="32px" color="white" />,
             items: [
                 {
                     type: 0,
@@ -154,6 +161,7 @@ const Donation = ({ onChangePage }) => {
             title: 'VIP статус',
             subtitle: 'Получай больше и стань лучше',
             type: 1,
+            children: <IosMedal fontSize="32px" color="white" />,
             items: [
                 [[{
                     name: 'VIP Light',
@@ -253,6 +261,7 @@ const Donation = ({ onChangePage }) => {
             title: 'Обмен валюты',
             subtitle: 'Перевод DC в игровую валюту',
             type: 2,
+            children: <LogoUsd fontSize="32px" color="white" />,
             items: [
                 [[{
                     name: 'VIP Light',
@@ -352,6 +361,7 @@ const Donation = ({ onChangePage }) => {
             title: 'Услуги',
             subtitle: 'От смены ника до прокачки характеристик',
             type: 3,
+            children: <IosClipboard fontSize="32px" color="white" />,
             items: [
                 [[{
                     title: 'Прокачать все скиллы',
@@ -405,6 +415,7 @@ const Donation = ({ onChangePage }) => {
             title: 'Пополнить Dedcoin',
             subtitle: 'Пополните счет, чтобы совершать покупки',
             type: 4,
+            hidden: true,
             items: [
                 [[{
                     name: 'VIP Light',
@@ -504,6 +515,7 @@ const Donation = ({ onChangePage }) => {
             title: 'Уникальный транспорт',
             subtitle: 'Эксклюзив на котором вы будете выделятся',
             type: 5,
+            children: <IosCar fontSize="32px" color="white" />,
             items: [
                 {
                     type: 0,
@@ -560,6 +572,8 @@ const Donation = ({ onChangePage }) => {
         }
     ]
 
+    const donationBalance = 111
+
     const [active, setActive] = useState(0)
 
     return (
@@ -570,6 +584,22 @@ const Donation = ({ onChangePage }) => {
                     ДОНАТ
                 </span>
                 <div className="accountmenu__hr" style={{marginTop: '4%', marginBottom: '4%'}} />
+                <React.Fragment>
+                        <div className="govmenu__jobbar">
+                            <span className="govmenu__jobbar__text">
+                                Баланс:
+                            </span>
+                            <span className="govmenu__jobbar__name">
+                                {`${donationBalance} DC`}
+                            </span>
+                        </div>
+                        <BigButton
+                            text={'Пополнить'}
+                            onPress={() => setActive(4)}
+                            disabled={false}
+                            type={0}
+                        />
+                </React.Fragment>
                 <div className="accountmenu__cards__question__container">
                     {categories.map((item, index) => (
                         <Quest
@@ -580,7 +610,9 @@ const Donation = ({ onChangePage }) => {
                             active={active}
                             setActive={() => setActive(index)}
                             done={item.buyed}
+                            children={item.children}
                             empty={item.children ? false : true}
+                            hidden={item.hidden ? true : false}
                         />
                     ))}
                 </div>
