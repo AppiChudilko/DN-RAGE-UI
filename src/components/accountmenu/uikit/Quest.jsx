@@ -1,8 +1,8 @@
 import React from 'react'
 import '../css/quests.css'
 
-const Quest = ({ active, index, title, setActive, subtitle, done, children, empty }) => {
-    return (
+const Quest = ({ active, index, title, setActive, subtitle, done, children, empty, hidden }) => {
+    return (!hidden ? (
         <div
             onClick={setActive}
             className={active === index ? "accountmenu__cards__quest__active" : "accountmenu__cards__quest"}
@@ -28,7 +28,7 @@ const Quest = ({ active, index, title, setActive, subtitle, done, children, empt
                 </span>
             </div>
         </div>
-    )
+    ) : (<div></div>))
 }
 
 export default Quest
