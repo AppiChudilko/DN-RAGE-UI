@@ -71,7 +71,7 @@ const KitItem = ( props ) => {
                                         <span className="accountmenu__donation__kit__kititem__name">{name}</span>
                                         <div className="accountmenu__donation__kit__kititem__row">
                                             {list.map((item, index) => (
-                                                <div className="accountmenu__donation__kit__kititem__row__item">
+                                                <div key={`accountmenu__donation__kit__kititem__row__item-${index}`} className="accountmenu__donation__kit__kititem__row__item">
                                                     <span className="accountmenu__donation__kit__kititem__row__name">{item.name}</span>
                                                     {item.items.map((i, ind) => (
                                                         <li key={`${i}-${index}`} className="accountmenu__content__cards__answer__row__li">{i}</li>

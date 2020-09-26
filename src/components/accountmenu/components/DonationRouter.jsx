@@ -6,7 +6,7 @@ import ServicesDonate from '../uikit/ServicesDonate'
 import AboutDonate from '../uikit/AboutDonate'
 import UniqueVehicle from '../uikit/UniqueVehicle'
 
-const DonationRouter = ({ props, type, setAlert }) => {
+const DonationRouter = ({ props, type, setAlert, carslots }) => {
     let page = {}
 
     switch (type) {
@@ -26,7 +26,7 @@ const DonationRouter = ({ props, type, setAlert }) => {
             page = <AboutDonate {...props} />
             break;
         case 5:
-            page = <UniqueVehicle {...props} />
+            page = <UniqueVehicle props={props} carslots={carslots} />
             break;
         default:
             page = <div></div>

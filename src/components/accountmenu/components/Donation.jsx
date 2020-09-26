@@ -516,8 +516,9 @@ const Donation = ({ onChangePage }) => {
             subtitle: 'Эксклюзив на котором вы будете выделятся',
             type: 5,
             children: <IosCar fontSize="32px" color="white" />,
+            carslots: 3,
             items: [
-                {
+                [[{
                     type: 0,
                     name: 'Стартовый набор',
                     list: [
@@ -567,7 +568,7 @@ const Donation = ({ onChangePage }) => {
                     ],
                     price: 299,
                     buyed: 0
-                }
+                }]]
             ]
         }
     ]
@@ -623,6 +624,7 @@ const Donation = ({ onChangePage }) => {
                     <DonationRouter
                         type={categories[active].type}
                         props={{...item}}
+                        carslots={categories[active].carslots || null}
                         key={`govmenu-propertycard-${index}`}
                     />
             ))}

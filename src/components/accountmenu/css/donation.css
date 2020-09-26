@@ -151,3 +151,12 @@
     display: flex;
     flex-direction: column;
 }
+
+.accountmenu__donation__kit__kititem__cars {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
