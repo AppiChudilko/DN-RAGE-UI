@@ -8,8 +8,9 @@ import EventManager from "../../../EventManager";
 class Tatoo extends React.Component {
     constructor(props) {
         super(props)
+        this.itemRefs = {}
         this.state = {
-            show: false,
+            show: true,
             bgcolor: '#252525',
             banner: 'bs_hair',
             title: 'Добро пожаловать',
@@ -128,12 +129,103 @@ class Tatoo extends React.Component {
         }
     }
 
+    handleWheel = (e) => {
+
+    }
+
+    handleKeyDown = (e) => {
+        if([38, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+
+        if (e.keyCode === 13) {
+            console.log('clicked Enter')
+
+            /*
+
+                шото сделать
+
+            */
+        }
+        else if (e.keyCode === 38) {
+            if (this.state.selected != 0 || this.state.selected === -1) {
+                this.setState((state) => (
+                    {selected: state.selected - 1}
+                ))
+                this.scrollMenu('up')
+            } else {
+                this.setState((state) => (
+                    {selected: state.items.length - 1}
+                ))
+                this.itemRefs[this.state.items.length - 1].focus()
+            }
+        }
+        else if (e.keyCode === 40) {
+            if (this.state.selected != this.state.items.length - 1 || this.state.selected === -1) {
+                this.setState((state) => (
+                    {selected: state.selected + 1}
+                ))
+                this.scrollMenu('down')
+            } else {
+                this.setState((state) => (
+                    {selected: 0}
+                ))
+                this.itemRefs[0].focus()
+            }
+        }
+    }
+
+    scrollMenu(type) {
+        if ((this.state.selected === this.state.items.length) && (type === 'up')) {
+            setTimeout(
+                function() {
+                    this.itemRefs[this.state.items.length - 2].focus()
+                }
+                    .bind(this),
+                120
+            )
+            return null
+        }
+
+        if ((this.state.selected === 0) && (type === 'down')) {
+            setTimeout(
+                function() {
+                    this.itemRefs[1].focus()
+                }
+                    .bind(this),
+                120
+            )
+            return null
+        }
+
+        if (type === 'up') {
+            const selected = this.state.selected - 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
+        }
+        if (type === 'down') {
+            const selected = this.state.selected + 1
+            setTimeout(
+                function() {
+                    this.itemRefs[selected].focus()
+                }
+                    .bind(this),
+                120
+            )
+        }
+    }
+
     render() {
         if (!this.state.show) {
             return null;
         }
         return (
-            <div className="tatoo__container">
+            <div className="tatoo__container" onWheel={(e) => this.handleWheel(e)} tabIndex="1" onKeyDown={(e) => this.handleKeyDown(e)}>
                 <div className="tatoo__content" style={{backgroundColor: this.state.bgcolor}}>
                     <Header
                         banner={this.state.banner}
@@ -142,15 +234,17 @@ class Tatoo extends React.Component {
                     />
                     <div className="tatoo__content__list">
                         {this.state.items.map((item, index) => (
-                            <CatalogItem
-                                key={`tatoo__content__list-${index}`}
-                                name={item.name}
-                                desc={item.desc}
-                                sale={item.sale}
-                                setSelected={() => this.setSelected(index)}
-                                selected={this.state.selected}
-                                index={index}
-                            />
+                            <div key={`tatoo__content__list-container-${index}`} ref={el => (this.itemRefs[index] = el)} tabIndex="-1" style={{outline: 'none'}}>
+                                <CatalogItem
+                                    key={`tatoo__content__list-${index}`}
+                                    name={item.name}
+                                    desc={item.desc}
+                                    sale={item.sale}
+                                    setSelected={() => this.setSelected(index)}
+                                    selected={this.state.selected}
+                                    index={index}
+                                />
+                            </div>
                         ))}
                     </div>
                     {/*(this.state.type === 1) && (
