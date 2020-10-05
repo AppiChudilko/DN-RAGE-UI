@@ -10,7 +10,7 @@ class Tatoo extends React.Component {
         super(props)
         this.itemRefs = {}
         this.state = {
-            show: true,
+            show: false,
             bgcolor: '#252525',
             banner: 'bs_hair',
             title: 'Добро пожаловать',
@@ -64,6 +64,7 @@ class Tatoo extends React.Component {
         EventManager.addHandler('tattooshop', value => {
             if (value.type === 'show') {
                 this.setState({show: true})
+                this.itemRefs[0].focus()
             } else if (value.type === 'hide') {
                 this.setState({show: false})
 
@@ -83,6 +84,7 @@ class Tatoo extends React.Component {
 
                     if (value.type === 0)
                         this.setState({itemsBack: value.items})
+                    this.itemRefs[0].focus()
                 }
                 catch (e) {
 
@@ -100,6 +102,10 @@ class Tatoo extends React.Component {
             selected: value
         })
 
+        this.sendEvent(value);
+    }
+
+    sendEvent = (value) => {
         try {
             mp.trigger('client:shopMenu:changeSelect2', JSON.stringify(this.state.items[value].params)); // eslint-disable-line
         } catch (e) {
@@ -134,18 +140,12 @@ class Tatoo extends React.Component {
     }
 
     handleKeyDown = (e) => {
-        if([38, 40].indexOf(e.keyCode) > -1) {
+        if([13, 38, 40].indexOf(e.keyCode) > -1) {
             e.preventDefault();
         }
 
         if (e.keyCode === 13) {
-            console.log('clicked Enter')
-
-            /*
-
-                шото сделать
-
-            */
+            this.setSelected(this.state.selected);
         }
         else if (e.keyCode === 38) {
             if (this.state.selected != 0 || this.state.selected === -1) {
@@ -153,11 +153,13 @@ class Tatoo extends React.Component {
                     {selected: state.selected - 1}
                 ))
                 this.scrollMenu('up')
+                this.sendEvent(this.state.selected - 1);
             } else {
                 this.setState((state) => (
                     {selected: state.items.length - 1}
                 ))
                 this.itemRefs[this.state.items.length - 1].focus()
+                this.sendEvent(this.state.items.length - 1);
             }
         }
         else if (e.keyCode === 40) {
@@ -166,11 +168,13 @@ class Tatoo extends React.Component {
                     {selected: state.selected + 1}
                 ))
                 this.scrollMenu('down')
+                this.sendEvent(this.state.selected + 1);
             } else {
                 this.setState((state) => (
                     {selected: 0}
                 ))
                 this.itemRefs[0].focus()
+                this.sendEvent(0);
             }
         }
     }

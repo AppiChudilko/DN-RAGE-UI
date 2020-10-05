@@ -16,7 +16,7 @@ class AccountMenu extends React.Component {
                 {name: 'Обращения', id: 'accmenu-reports'},
                 {name: 'Настройки', id: 'accmenu-settings'},
                 {name: 'Квесты', id: 'accmenu-quests'},
-                {name: 'Донат', id: 'accmenu-donat'}
+                //{name: 'Донат', id: 'accmenu-donat'}
             ],
             activePage: 0,
             accountId: 0,
@@ -48,25 +48,19 @@ class AccountMenu extends React.Component {
             },
             generalList: [
                 {title: 'Репутация', subtitle: '12323'},
-                {title: 'Репутация', subtitle: 'идеальная'},
-                {title: 'Репутация', subtitle: 'идеальная'},
-                {title: 'Репутация', subtitle: 'идеальная'},
-                {title: 'Репутация', subtitle: 'идеальная'},
-                {title: 'Репутация', subtitle: 'идеальная'},
-                {title: 'Репутация', subtitle: 'идеальная'},
             ],
 
             propertyHouse: {
-                type: 'Дом',
-                name: 'Name Apartment',
-                address: 'Саут-Рокфорд-драйв,  д. 0112, кв.13',
-                doors: 'Закрыто',
-                roommate: 2,
-                carplace: 'Есть',
-                gprice: '1522000'
+                type: 'Загрузка',
+                name: 'Загрузка',
+                address: 'Загрузка',
+                doors: 'Загрузка',
+                roommate: 0,
+                carplace: 'Загрузка',
+                gprice: 'Загрузка'
             },
             propertyBusiness: [
-                {
+                /*{
                     type: 1,
                     title: 'Склад',
                     price: '1250000',
@@ -105,10 +99,10 @@ class AccountMenu extends React.Component {
                     address: 'Саут-Рокфорд-драйв,  д. 0112, кв.14',
                     doors: 'Открыты',
                     img: 'https://dednet.ru/client/images/mmenu/yacht.jpg'
-                }
+                }*/
             ],
             propertyCars: [
-                {
+                /*{
                     type: 'Автомобиль',
                     name: 'Neon',
                     vin: 1337,
@@ -163,7 +157,7 @@ class AccountMenu extends React.Component {
                     carclass: 'A',
                     def: 'Есть',
                     number: 'NUMBER'
-                }
+                }*/
             ],
 
             reportData: [
