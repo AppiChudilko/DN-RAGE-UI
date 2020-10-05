@@ -15,7 +15,8 @@ class AccountMenu extends React.Component {
                 {name: 'FAQ', id: 'accmenu-faq'},
                 {name: 'Обращения', id: 'accmenu-reports'},
                 {name: 'Настройки', id: 'accmenu-settings'},
-                {name: 'Квесты', id: 'accmenu-quests'}
+                {name: 'Квесты', id: 'accmenu-quests'},
+                {name: 'Донат', id: 'accmenu-donat'}
             ],
             activePage: 0,
             accountId: 0,

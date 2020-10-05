@@ -6,6 +6,7 @@ import Faq from '../components/Faq'
 import Quests from '../components/Quests'
 import Settings from '../components/Settings'
 import Reports from '../components/Reports'
+import Donation from '../components/Donation'
 import Information from '../../govmenu/components/Information'
 import LicenseGov from '../../govmenu/components/LicenseGov'
 import PropertyGov from '../../govmenu/components/PropertyGov'
@@ -43,6 +44,9 @@ const Cards = ({ setAlert, jobIndex, jobname, initValueReports, setActivePage, p
             break;
         case 'govmenu-license':
             pageContent = <LicenseGov />
+            break;
+        case 'accmenu-donat':
+            pageContent = <Donation />
             break;
         default:
             break;
