@@ -68,6 +68,7 @@ class Inventory extends React.Component {
                 { name: "Переложить все", action: "move_all", show: false, color: '#2196F3' },
                 { name: "Взять", action: "take", show: false, color: '#2196F3' },
                 { name: "Взять все", action: "take_all", show: false, color: '#2196F3' },
+                { name: "Переименовать", action: "rename", show: false, color: '#2196F3' },
 
                 { name: "Информация о предмете", action: "infoItem", show: false },
 
@@ -171,13 +172,14 @@ class Inventory extends React.Component {
                 take50gr: [142, 143, 144, 145, 163, 164, 165, 166, 167, 168, 169, 170], // Взять 50гр
                 food: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 232, 233, 234, 235, 236, 237, 238, 239, 240], // Можно "съесть"
                 drinks: [241, 242, 243, 244, 245, 246, 247, 248, 249, 250], // Можно "выпить"
-                usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 49, 216, 0, 277, 278, 215, 221, 262, 474, 477], // Можно "использовать"
+                usable: [4, 5, 6, 8, 9, 10, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 47, 49, 216, 0, 277, 278, 215, 221, 262, 474, 477], // Можно "использовать"
                 usablePlayer: [277, 278, 215, 221, 216], // Можно "использовать"
                 fish: [251], // Можно "Рыбачить"
                 smoke: [26, 3], // Можно "курить"
                 play: [253], // Можно "Играть"
                 consumable: [2, 158, 159, 160, 161, 162], // Можно "употребить"
                 bag: [264, 263, 252], // Открыть сумку
+                rename: [264, 263, 252], // Переименовать
                 equipable: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 146, 147], // Можно "экипировать"
                 ammo: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
                 countPt: [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292], // Предметы которыми можно зарядить оружие (патроны)
@@ -700,6 +702,9 @@ class Inventory extends React.Component {
             else if (source === 'outfit' && this.state.secondary_inv_open)
                 actions.push('move') // Убрать в багажник
         }
+        if (this.state.itemsById.rename.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('rename') // Открыть сумку
+        }
 
         if (this.state.itemsById.countItems.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
             actions.push('countItems') // Посчитать
@@ -774,6 +779,10 @@ class Inventory extends React.Component {
             if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit') !== null) {
                 if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 263 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 264 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 252) {
                     actions.push('openBag') // Открыть сумку
+                }
+
+                if (this.state.itemsById.rename.includes(this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+                    actions.push('rename') // Открыть сумку
                 }
             }
 
@@ -819,6 +828,9 @@ class Inventory extends React.Component {
             else if (source === 'outfit' && this.state.secondary_inv_open)
                 actions.push('move') // Убрать в багажник
         }
+        if (this.state.itemsById.rename.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+            actions.push('rename') // Открыть сумку
+        }
 
         if (this.state.itemsById.countItems.includes(item.item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
             actions.push('countItems') // Посчитать
@@ -893,6 +905,10 @@ class Inventory extends React.Component {
             if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit') !== null) {
                 if (this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 263 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 264 || this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id === 252) {
                     actions.push('openBag') // Открыть сумку
+                }
+
+                if (this.state.itemsById.rename.includes(this.checkItem(this.getOutfitByType(item.type)[0], 'outfit').item_id)) { // По айди предмета (item_id) определяет какие действия можно совершить с предметом
+                    actions.push('rename') // Открыть сумку
                 }
             }
 
@@ -1013,6 +1029,9 @@ class Inventory extends React.Component {
                 break;
             case "openBag": // Открыть сумку
                 this.itemOpenBag(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
+                break;
+            case "rename": // Открыть сумку
+                this.itemRename(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
                 break;
             case "infoItem": // Открыть сумку
                 this.itemInfoItem(this.state.inter_menu_selected.item, this.state.inter_menu_selected.source)
@@ -1460,6 +1479,32 @@ class Inventory extends React.Component {
                 if (this.checkItem(item, 'secondary_inv') !== null) {
                     item = this.checkItem(item, 'secondary_inv')
                     mp.trigger('client:inventory:openBag', item.id, item.item_id); // eslint-disable-line
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    itemRename(item, source) {
+        switch (source) {
+            case 'inventory':
+                if (this.checkItem(item, 'inventory') !== null) {
+                    item = this.checkItem(item, 'inventory')
+                    mp.trigger('client:inventory:rename', item.id, item.item_id, JSON.stringify(item.params)); // eslint-disable-line
+                }
+                break;
+            case 'outfit':
+                item = this.getOutfitByType(item.type)[0]
+                if (this.checkItem(item, 'outfit') !== null) {
+                    item = this.checkItem(item, 'outfit')
+                    mp.trigger('client:inventory:rename', item.id, item.item_id, JSON.stringify(item.params)); // eslint-disable-line
+                }
+                break;
+            case 'secondary_inv':
+                if (this.checkItem(item, 'secondary_inv') !== null) {
+                    item = this.checkItem(item, 'secondary_inv')
+                    mp.trigger('client:inventory:rename', item.id, item.item_id, JSON.stringify(item.params)); // eslint-disable-line
                 }
                 break;
             default:
