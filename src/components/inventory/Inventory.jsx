@@ -316,6 +316,11 @@ class Inventory extends React.Component {
             if (value.type === 'hide') {
                 this.setState({ show: false })
                 this.closeInterMenu(null, { action: null });
+
+                this.setState({ secondary_inv_open: false });
+                this.setState({ secondary_items: [] });
+                this.setState({ secondary_items_owner_id: 0 });
+                this.setState({ secondary_items_owner_type: 0 });
             }
             if (value.type === 'showOrHide') {
                 let status = !this.state.show;
@@ -347,6 +352,16 @@ class Inventory extends React.Component {
             if (value.type === 'updateSubItems') {
                 this.setState({ secondary_inv_open: true });
                 this.setState({ secondary_items: value.items });
+                this.setState({ secondary_items_owner_id: value.ownerId });
+                this.setState({ secondary_items_owner_type: value.ownerType });
+            }
+            if (value.type === 'addItems') {
+                console.log(value.items);
+                this.setState({ items: this.state.items.concat(value.items) })
+            }
+            if (value.type === 'addSubItems') {
+                this.setState({ secondary_inv_open: true });
+                this.setState({ secondary_items: this.state.secondary_items.concat(value.items) });
                 this.setState({ secondary_items_owner_id: value.ownerId });
                 this.setState({ secondary_items_owner_type: value.ownerType });
             }
@@ -2036,7 +2051,7 @@ class Inventory extends React.Component {
 
             if (!this.isItemsInInventory(this.state.selected_recipe.craft)) {
                 console.log('Недостаточно ингридиентов')
-                this.notifyToClient('~r~Недостаточно ингридиентов ;c');
+                this.notifyToClient('~r~Недостаточно ингредиентов ;c');
                 return;
             }
 

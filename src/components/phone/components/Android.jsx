@@ -46,7 +46,7 @@ class Android extends React.Component {
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms', name: 'SMS' },
                 { link: "/phone/android/console", action: 'console', img: 'console', name: 'Console' },
                 { link: "/phone/android/calls", action: 'calls', img: 'uveh', name: 'Звонки' },
-                { link: "/phone/android/achiev", action: 'achiev', img: 'achiev', name: 'Достижения' },
+                { link: "/phone/android/achiev", action: 'achiev', img: 'trophy', name: 'Достижения' },
                 { link: "/phone/android/umenu", action: 'invader', img: 'uveh' },
                 /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },
                 { link: "/phone/android/umenu", action: 'pacific', img: 'pacific' },
@@ -192,7 +192,7 @@ class Android extends React.Component {
                     title: 'Достижения',
                     achiev_map:
                         [
-                            { name: '1Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [50, 200], result: '$50', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: false, },
+                            { name: '1Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [50, 200], result: '$50', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: true, },
                             { name: '1Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [0, 1], result: '$150', img: 'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show: false, },
                         ],
                 },
@@ -200,7 +200,7 @@ class Android extends React.Component {
                     title: 'Ежедневные задания',
                     achiev_map:
                         [
-                            { name: '2Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [99, 200], result: '$50000', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: false, },
+                            { name: '2Пополнить кошелек', desc: 'Для выполнения данный ачивки вам нужно зарабоать 100$', value: [99, 200], result: '$50000', img: 'https://static.stratege.ru/trophies/NPWR06221_00/TROP036.PNG', info_show: true, },
                             { name: '2Купить банковскую карточку', desc: 'Приобрести банкоскую карту любого банка', value: [1, 3], result: '$999', img: 'https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dialling_Digits_Achievement-GTA_Online.png/revision/latest/scale-to-width-down/64?cb=20150209113920', info_show: false, },
                         ],
                 }
@@ -282,6 +282,13 @@ class Android extends React.Component {
             if (value.type === 'updateMessenger') {
                 try {
                     this.setState({ chats: value.chats });
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            if (value.type === 'updateAchive') {
+                try {
+                    this.setState({ achiev: value.achiev });
                 } catch (e) {
                     console.log(e);
                 }
