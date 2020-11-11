@@ -502,6 +502,35 @@
     background: rgb(0, 0, 0, 0.502);
 }
 
+.logo-main .logo-quest {
+    position: absolute;
+    max-width: 250px;
+    top: 124px;
+    right: 24px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    padding: 16px;
+    background: rgb(0, 0, 0, 0.502);
+}
+
+.logo-main .logo-quest .quest-title {
+    font-family: 'HACKED';
+    font-weight: 300;
+    color: rgba(255, 255, 255, 1);
+}
+
+.logo-main .logo-quest .quest-text {
+    font-family: 'Roboto';
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.logo-main .logo-quest .quest-win {
+    font-family: 'Roboto';
+    font-weight: 300;
+    color: rgb(72, 185, 242);
+}
+
 .logo-main .logo-ammo-img {
     width: 23px;
     height: 17px;

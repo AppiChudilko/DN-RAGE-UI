@@ -6,7 +6,11 @@ class Logo extends React.Component {
         super(props)
         this.state = {
             show: true,
-            showAmmo: false,
+            showAmmo: true,
+            showQuest: false,
+            questTitle: 'Квестовое задание',
+            questText: 'Получите два ящика травы, три ящика кокаина, отвезите труп Минори на свалку',
+            questDesc: 'Мертвый минори',
             ammoCount: 0,
             ammoMode: 'auto',
             date: '01.01',
@@ -39,6 +43,10 @@ class Logo extends React.Component {
                 this.setState({ammoCount: value.ammoCount});
                 this.setState({ammoMode: value.ammoMode});
                 this.setState({background: value.background});
+            } else if (value.type === 'updateQuest') {
+                this.setState({showQuest: value.showQuest});
+                this.setState({questTitle: value.questTitle});
+                this.setState({questText: value.questText});
             } else return;
         })
     }
@@ -64,6 +72,11 @@ class Logo extends React.Component {
                          className={this.state.showAmmo ? 'logo-ammo' : 'hide'}>
                         <div className={'logo-ammo-img ammo-' + this.state.ammoMode}></div>
                         {this.state.ammoCount}
+                    </div>
+                    <div style={{backgroundColor: 'rgba(0, 0, 0, ' + this.state.background + ')'}}
+                         className={this.state.showQuest ? 'logo-quest' : 'hide'}>
+                        <h2 className="quest-title">{this.state.questTitle}</h2>
+                        <div className="quest-text">{this.state.questText}</div>
                     </div>
                 </div>
             </React.Fragment>
