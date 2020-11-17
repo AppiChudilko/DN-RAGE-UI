@@ -38,27 +38,28 @@ class NameCharacter extends React.Component {
                     <div className="title-block">Данные</div>
                     <span className="title-in-block">Введите свои данные</span>
                     <div className="create-info-input">
-                        <input type="text" placeholder="Имя" name="firstname-create" pattern="[a-zA-Z]*"
+                        <input type="text" placeholder="Имя (Англ)" name="firstname-create" pattern="[a-zA-Z]*"
                                className="auth-input-style" value={this.props.first_name}
                                onChange={this.props.valueFirstName.bind(this)}/>
-                        <input type="text" placeholder="Фамилия" name="lastname-create" pattern="[a-zA-Z]*"
+                        <input type="text" placeholder="Фамилия (Англ)" name="lastname-create" pattern="[a-zA-Z]*"
                                className="auth-input-style" value={this.props.last_name}
                                onChange={this.props.valueLastName.bind(this)}/>
-                        <input type="text" placeholder="Возраст" min="18" max="60" pattern="[0-9]*"
+                        <input type="text" placeholder="Возраст (От 18 до 60)" min="18" max="60" pattern="[0-9]*"
                                onInput={this.props.onCheckNumber.bind(this)}
                                onChange={this.changeAge(this.props.old_input)} value={this.props.old_input}
                                name="old-create" className="auth-input-style"/>
 
-                        <input type="text" placeholder="Промокод" name="lastname-create" pattern="[a-zA-Z]*"
+                        <input type="text" placeholder="Промокод (Если есть)" name="lastname-create" pattern="[a-zA-Z]*"
                                className="auth-input-style" value={this.props.promocode}
                                onChange={this.props.valuePromocode.bind(this)}/>
-                        <input type="text" placeholder="Ник пригласившего" name="lastname-create" pattern="[a-zA-Z]*"
+                        <input type="text" placeholder="Ник пригласившего (Если есть)" name="lastname-create" pattern="[a-zA-Z]*"
                                className="auth-input-style" value={this.props.referer}
                                onChange={this.props.valueReferer.bind(this)}/>
                     </div>
                     <SliderEditor
                         index={0}
                         title={this.props.title}
+                        desc={this.props.desc}
                         index_help={this.props.index_help}
                         name_array={this.props.nationality}
                         clickLeftArrow={this.props.clickLeftArrow.bind(this)}

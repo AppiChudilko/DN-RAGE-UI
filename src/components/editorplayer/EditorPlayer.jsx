@@ -16,7 +16,7 @@ class EditorPlayer extends React.Component {
                 {name: 'Глубина бровей', value: 0},
                 {name: 'Высота скул', value: 0},
                 {name: 'Ширина скул', value: 0},
-                {name: 'Глубина щеки', value: 0},
+                {name: 'Скулы', value: 0},
                 {name: 'Ширина челюсти', value: 0},
                 {name: 'Форма челюсти', value: 0},
                 {name: 'Высота подбородка', value: 0},
@@ -123,6 +123,7 @@ class EditorPlayer extends React.Component {
             slider_national: [
                 {
                     title: 'Выберите национальность',
+                    desc: 'Ваша национальность никак не влияет на внешность. Внешность выбирается следующим шагом.',
                     nationality: [
                         "Австралиец",
                         "Австриец",
@@ -514,6 +515,7 @@ class EditorPlayer extends React.Component {
                                 promocode={this.state.promocode}
                                 referer={this.state.referer}
                                 title={this.state.slider_national[0].title}
+                                desc={this.state.slider_national[0].desc}
                                 index_help={this.state.slider_national[0].index_help}
                                 nationality={this.state.slider_national[0].nationality}
                                 valueFirstName={this.valueFirstName.bind(this)}

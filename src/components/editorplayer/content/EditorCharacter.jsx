@@ -17,6 +17,10 @@ class EditorCharacter extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <div className="editor-info">
+                    <div>Для того чтобы крутить камерой зажмите ЛКМ</div>
+                    <div>Для приближения используйте колесико мыши</div>
+                </div>
                 <div className="editor-main">
                     <div className="title-block">Редактор</div>
                     <Route path="/editor/editor-character/face-first">

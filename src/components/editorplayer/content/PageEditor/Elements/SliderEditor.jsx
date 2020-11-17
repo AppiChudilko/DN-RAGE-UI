@@ -23,6 +23,7 @@ class SliderEditor extends React.Component {
                         <div className="arrow-change right-arrow"
                              onClick={() => this.props.clickRightArrow(this.props.index)}></div>
                     </div>
+                    <span className="box-editor-desc">{this.props.desc}</span>
                 </div>
             </React.Fragment>
         )

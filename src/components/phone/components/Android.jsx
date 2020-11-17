@@ -69,14 +69,91 @@ class Android extends React.Component {
                         title: 'Загрузка...',
                         hidden: false,
                         umenu: [
-
                             {
-                                title: "Загрузка",
+                                title: "Итем по умолчанию",
                                 text: "",
                                 type: 1,
                                 clickable: false,
                                 params: { name: "null", skip: true }
                             },
+                            /*{
+                                title: "Checkbox",
+                                text: "",
+                                value: true,
+                                type: 2,
+                                clickable: false,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: "Button",
+                                text: "",
+
+                                type: 3,
+                                clickable: false,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: "User Name",
+                                text: "",
+                                img: "https://i.imgur.com/v4aju8F.jpg",
+                                online: true,
+                                type: 4,
+                                clickable: false,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: "Radio Input",
+                                text: "",
+                                scrollbarTitle: 'Выберите должность',
+                                scrollbar: [{title: 'Name1', params: { name: 'memberNewRank'}}, {title: 'Name2', params: { name: 'memberNewRank'}}, {title: 'Name3', params: { name: 'memberNewRank'}}],
+                                type: 5,
+                                clickable: false,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: "Картинка",
+                                value: "https://i.imgur.com/v4aju8F.jpg",
+                                type: 6,
+                                clickable: false,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: "Модальное окно",
+                                modalTitle: 'Вы долбаеб?',
+                                modalButton: ['Отмена', 'Создать'],
+                                type: 7,
+                                clickable: true,
+                                params: { name: "null", skip: true }
+                            },
+                            {
+                                title: 'Окно ввода текста',
+                                modalTitle: 'Введите название раздела',
+                                modalButton: ['Отмена', 'Создать'],
+                                type: 8,
+                                params: { name: "createFractionDepF" },
+                                clickable: true,
+                            },
+                            {
+                                title: 'Таблица',
+                                columns: [
+                                    { title: '№', field: 'id' },
+                                    { title: 'Имя', field: 'name' },
+                                    { title: 'Описание', field: 'text' },
+                                ],
+                                data: [
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                    {id: '#1', name: 'Name', text: 'text'},
+                                ],
+                                readonly: true,
+                                type: 10,
+                                params: { },
+                                clickable: true,
+                            },*/
                         ],
                     },
                 ],
