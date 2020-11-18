@@ -192,7 +192,7 @@ body {
     height: 51px;
     position: absolute;
     margin-top: 35px;
-    margin-left: 74px;
+    margin-left: 150px;
 }
 
 .outf-glasses {
@@ -201,7 +201,7 @@ body {
     height: 22px;
     position: absolute;
     margin-top: 50px;
-    margin-left: 215px;
+    margin-left: 235px;
 }
 
 .outf-mask {
@@ -209,8 +209,8 @@ body {
     width: 52px;
     height: 64px;
     position: absolute;
-    margin-top: 118px;
-    margin-left: 40px;
+    margin-top: 35px;
+    margin-left: 70px;
 }
 
 .outf-shirt {
@@ -236,7 +236,7 @@ body {
     width: 48px;
     height: 62px;
     position: absolute;
-    margin-top: 221px;
+    margin-top: 120px;
     margin-left: 42px;
 }
 
@@ -263,8 +263,18 @@ body {
     width: 34px;
     height: 56px;
     position: absolute;
-    margin-top: 321px;
+    margin-top: 221px;
     margin-left: 52px;
+}
+
+.outf-gloves {
+    background: url(../img/outfit/gloves.png) no-repeat;
+    background-size: contain;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    margin-top: 321px;
+    margin-left: 40px;
 }
 
 .outf-bag {

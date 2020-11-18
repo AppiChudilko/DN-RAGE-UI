@@ -86,8 +86,8 @@
     overflow: scroll;
     margin-top: 3%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: normal;
+    justify-content: normal;
     font-family: 'RobotoLight';
     line-height: 1.5;
     font-size: 1.2rem;

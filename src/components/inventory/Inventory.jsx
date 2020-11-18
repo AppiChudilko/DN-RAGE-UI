@@ -143,7 +143,7 @@ class Inventory extends React.Component {
                 { id: 38, item_id: 264, name: "Сумка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 39, item_id: 265, name: "Футболка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
                 { id: 40, item_id: 269, name: "Кепка", volume: 15, desc: "SM-0001244", counti: 0, params: {} },
-                { id: 41, item_id: 48, name: "Деньги", volume: 15, desc: "SM-0001244", counti: 0, params: {} }*/
+                { id: 41, item_id: 275, name: "Перчатки", volume: 15, desc: "SM-0001244", counti: 0, params: {} }*/
 
             ],
             itemsCounted: [ // Сюда переписываются все предметы которые стакаются при обновлении инвентаря для правильного отображения
@@ -199,6 +199,7 @@ class Inventory extends React.Component {
                 bracelet: [273], // Браслеты
                 boot: [267], // Обувь
                 bag: [264, 263], // Сумка
+                gloves: [275], // Сумка
                 armour: [252], // Броня
                 phone: [27, 28, 29, 30], // Телефоны
                 money: [48], // Деньги?
@@ -219,6 +220,7 @@ class Inventory extends React.Component {
                     { slot: "outf-bracelet", equipped: false, type: 'bracelet' },
                     { slot: "outf-boot", equipped: false, type: 'boot' },
                     { slot: "outf-bag", equipped: false, type: 'bag' },
+                    { slot: "outf-gloves", equipped: false, type: 'gloves' },
                 ],
                 [
                     { slot: "outf-armour", equipped: false, type: 'armour' },
@@ -671,10 +673,10 @@ class Inventory extends React.Component {
                 for (let k = 0; k < this.state.equipment_outfit.length; k++) {
                     if (Object.values(this.state.outfitById)[i][j] === this.state.equipment_outfit[k].item_id) {
                         foundOutfit.push(i);
-                        if (i < 11) {
+                        if (i < 12) {
                             this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = true }))
                         } else {
-                            this.setState(prevState => ({ ...prevState.outfit[1][i - 11].equipped = true }))
+                            this.setState(prevState => ({ ...prevState.outfit[1][i - 12].equipped = true }))
                         }
                     }
                 }
@@ -682,10 +684,10 @@ class Inventory extends React.Component {
         }
         for (let i = 0; i < 15; i++) {
             if (!foundOutfit.includes(i)) {
-                if (i < 11) {
+                if (i < 12) {
                     this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = false }))
                 } else {
-                    this.setState(prevState => ({ ...prevState.outfit[1][i - 11].equipped = false }))
+                    this.setState(prevState => ({ ...prevState.outfit[1][i - 12].equipped = false }))
                 }
             }
         }

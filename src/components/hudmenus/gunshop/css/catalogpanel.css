@@ -1,7 +1,7 @@
 .hmenu__gunshop__catalog {
     display: grid;
     grid-template-rows: 45% 45%;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 32% 32% 32%;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     height: 100%;
