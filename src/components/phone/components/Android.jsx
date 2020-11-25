@@ -46,6 +46,7 @@ class Android extends React.Component {
                 { link: "/phone/android/messenger", action: 'sms', img: 'sms', name: 'SMS' },
                 { link: "/phone/android/console", action: 'console', img: 'console', name: 'Console' },
                 { link: "/phone/android/calls", action: 'calls', img: 'uveh', name: 'Звонки' },
+                { link: "/phone/android/callScreen", action: 'callScreen', img: 'uveh', name: 'Звонки' },
                 { link: "/phone/android/achiev", action: 'achiev', img: 'trophy', name: 'Достижения' },
                 { link: "/phone/android/umenu", action: 'invader', img: 'uveh' },
                 /*{ link: "/phone/android/umenu", action: 'maze', img: 'maze' },

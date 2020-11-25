@@ -80,6 +80,7 @@ class Inventory extends React.Component {
             ],
 
             items: [ // Инвентарь
+                { id: 1, item_id: 50, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 /*{ id: 1, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 2, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
                 { id: 3, item_id: 14, name: "Бургер", volume: 15, desc: "", counti: 0, params: {} }, // айди предмета из базы
@@ -682,7 +683,7 @@ class Inventory extends React.Component {
                 }
             }
         }
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             if (!foundOutfit.includes(i)) {
                 if (i < 12) {
                     this.setState(prevState => ({ ...prevState.outfit[0][i].equipped = false }))
@@ -1224,7 +1225,7 @@ class Inventory extends React.Component {
                 setTimeout(() => {
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     this.setState({ items: this.state.items.concat(item) })
-                    mp.trigger('client:inventory:moveFrom', item.id, item.item_id, this.state.secondary_items_owner_type); // eslint-disable-line
+                    mp.trigger('client:inventory:moveFrom', item.id, item.item_id, this.state.secondary_items_owner_type, item.desc); // eslint-disable-line
                 }, 20);
             }
         }
@@ -1244,7 +1245,7 @@ class Inventory extends React.Component {
                     }
                     this.setState({ secondary_items: this.arrayRemove(this.state.secondary_items, item) })
                     this.setState({ items: this.state.items.concat(item) })
-                    mp.trigger('client:inventory:moveFrom', item.id, item.item_id, this.state.secondary_items_owner_type); // eslint-disable-line
+                    mp.trigger('client:inventory:moveFrom', item.id, item.item_id, this.state.secondary_items_owner_type, item.desc); // eslint-disable-line
                     // // // // mp.call ... переместить в инвентарь и удалить из багажника
                 }
                 break;
